@@ -22,7 +22,9 @@ _SENSITIVE_KEYS = frozenset(
         "api-key",
         "api_key",
         "authorization",
+        "client_secret",
         "github_token",
+        "password",
         "proxy-authorization",
         "token",
         "x-api-key",
@@ -745,7 +747,9 @@ def _reject_sensitive_keys(value: object) -> None:
 
 
 _CREDENTIAL_PATTERN = re.compile(
-    r"(?i)(?:authorization|proxy-authorization)\s*[:=]|"
+    r"(?i)\b(?:access[\s_-]*token|api[\s_-]*key|x[\s_-]*api[\s_-]*key|"
+    r"github[\s_-]*token|client[\s_-]*secret|password|authorization|"
+    r"proxy[\s_-]*authorization|token)\s*[:=]\s*(?=\S)|"
     r"\bbearer\s+[A-Za-z0-9._~+/=-]{6,}|"
     r"\bgh[pousr]_[A-Za-z0-9_]{8,}|"
     r"\bgithub_pat_[A-Za-z0-9_]{8,}|"

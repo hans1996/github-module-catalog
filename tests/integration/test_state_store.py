@@ -406,3 +406,61 @@ def test_state_rejects_credential_material_and_has_all_required_schema_tables(
     assert b"secret-token" not in state.path.read_bytes()
     assert state.foreign_keys_enabled is True
     assert state.journal_mode in {"wal", "memory"}
+
+
+@pytest.mark.parametrize(
+    "credential",
+    [
+        "access_token=secret-value",
+        "Access Token : secret-value",
+        "token: secret-value",
+        "X-Api-Key: secret-value",
+        "x_api_key = secret-value",
+        "api_key=secret-value",
+        "github_token=secret-value",
+        "client_secret=secret-value",
+        "password=secret-value",
+        "Authorization: Basic secret-value",
+        "Bearer secret-value",
+        "gh" + "p_abcdefghijklmnopqrstuvwxyz123456",
+        "github_" + "pat_abcdefghijklmnopqrstuvwxyz123456",
+        "https://user:password@example.com/private",
+    ],
+)
+def test_state_rejects_embedded_credential_values_recursively(
+    tmp_path: Path, credential: str
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+
+    with pytest.raises(SensitiveStateError):
+        state.append_work_item_event(
+            7,
+            "enrichment",
+            "retry",
+            occurred_at=NOW,
+            details={"context": [{"error": f"request failed: {credential}"}]},
+        )
+
+    assert credential.encode() not in state.path.read_bytes()
+
+
+def test_state_allows_benign_prose_that_mentions_token_without_a_value(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+
+    event = state.append_work_item_event(
+        7,
+        "enrichment",
+        "retry",
+        occurred_at=NOW,
+        details={"message": "Token rotation is documented without storing a credential value."},
+    )
+
+    assert event.event == "retry"
