@@ -1,0 +1,206 @@
+version: "1.0.0"
+
+axes:
+  artifact_type:
+    - id: library
+      label: Library
+      aliases: [package, module]
+      parents: []
+      inclusion_examples: [importable package]
+      exclusion_examples: [standalone end-user application]
+    - id: application
+      label: Application
+      aliases: [app]
+      parents: []
+      inclusion_examples: [standalone user-facing program]
+      exclusion_examples: [import-only library]
+  capability:
+    - id: cli
+      label: Command-line interface
+      aliases: [command line, terminal tool]
+      parents: []
+      inclusion_examples: [a documented executable command]
+      exclusion_examples: [a library with no executable interface]
+    - id: web-ui
+      label: Web user interface
+      aliases: [frontend, webapp]
+      parents: []
+      inclusion_examples: [an interactive browser interface]
+      exclusion_examples: [a headless HTTP API]
+    - id: api-backend
+      label: API backend
+      aliases: [rest api, graphql server]
+      parents: []
+      inclusion_examples: [a reusable HTTP service]
+      exclusion_examples: [a client-only SDK]
+    - id: auth
+      label: Authentication and authorization
+      aliases: [oauth, identity]
+      parents: [security]
+      inclusion_examples: [login or access-control components]
+      exclusion_examples: [unrelated user profile rendering]
+    - id: database-storage
+      label: Database and storage
+      aliases: [database, persistence]
+      parents: []
+      inclusion_examples: [durable data persistence]
+      exclusion_examples: [in-memory variables only]
+    - id: ai-ml
+      label: Artificial intelligence and machine learning
+      aliases: [machine learning, llm]
+      parents: []
+      inclusion_examples: [model inference or training]
+      exclusion_examples: [ordinary deterministic algorithms]
+    - id: testing
+      label: Testing
+      aliases: [test framework, quality assurance]
+      parents: []
+      inclusion_examples: [automated test utilities]
+      exclusion_examples: [a repository that merely has its own tests]
+    - id: devops
+      label: DevOps and delivery
+      aliases: [ci cd, infrastructure]
+      parents: []
+      inclusion_examples: [deployment or infrastructure automation]
+      exclusion_examples: [an application with a basic build script]
+    - id: observability
+      label: Observability
+      aliases: [monitoring, tracing]
+      parents: [devops]
+      inclusion_examples: [metrics logs or distributed tracing tools]
+      exclusion_examples: [ad-hoc print debugging]
+    - id: media
+      label: Media processing
+      aliases: [audio, video, image]
+      parents: []
+      inclusion_examples: [reusable image audio or video processing]
+      exclusion_examples: [a repository containing only screenshots]
+    - id: security
+      label: Security
+      aliases: [security scanner, cryptography]
+      parents: []
+      inclusion_examples: [vulnerability scanning or security controls]
+      exclusion_examples: [generic claims that a project is secure]
+  domain:
+    - id: developer-tools
+      label: Developer tools
+      aliases: [devtools]
+      parents: []
+      inclusion_examples: [software used to build other software]
+      exclusion_examples: [consumer entertainment application]
+  runtime:
+    - id: server
+      label: Server
+      aliases: [backend]
+      parents: []
+      inclusion_examples: [runs as a server process]
+      exclusion_examples: [browser-only package]
+    - id: browser
+      label: Browser
+      aliases: [web]
+      parents: []
+      inclusion_examples: [runs in a web browser]
+      exclusion_examples: [server-only daemon]
+  interface:
+    - id: library-api
+      label: Library API
+      aliases: [package api]
+      parents: []
+      inclusion_examples: [importable public functions]
+      exclusion_examples: [only a graphical interface]
+    - id: rest
+      label: REST
+      aliases: [http api]
+      parents: []
+      inclusion_examples: [documented REST endpoints]
+      exclusion_examples: [local function calls only]
+  ecosystem:
+    - id: python
+      label: Python
+      aliases: [pypi]
+      parents: []
+      inclusion_examples: [Python package or application]
+      exclusion_examples: [JavaScript-only package]
+  lifecycle:
+    - id: active
+      label: Active
+      aliases: [maintained]
+      parents: []
+      inclusion_examples: [non-archived repository with recent activity]
+      exclusion_examples: [archived repository]
+    - id: archived
+      label: Archived
+      aliases: [read-only]
+      parents: []
+      inclusion_examples: [repository marked archived]
+      exclusion_examples: [actively maintained repository]
+  license:
+    - id: permissive
+      label: Permissive SPDX license
+      aliases: [mit-like]
+      parents: []
+      inclusion_examples: [MIT or Apache-2.0 signal]
+      exclusion_examples: [missing or NOASSERTION license]
+    - id: unknown
+      label: Unknown license
+      aliases: [noassertion]
+      parents: []
+      inclusion_examples: [missing license metadata]
+      exclusion_examples: [recognized SPDX license]
+
+rules:
+  - capability_id: cli
+    topics: [cli, command-line, terminal]
+    description_tokens: [cli, command-line, terminal]
+    language_hints: [go, python, rust]
+    exclude_tokens: [client-only]
+  - capability_id: web-ui
+    topics: [frontend, ui, web-ui, webapp]
+    description_tokens: [frontend, dashboard, webapp]
+    language_hints: [javascript, typescript]
+    exclude_tokens: [headless]
+  - capability_id: api-backend
+    topics: [api, backend, graphql, rest-api]
+    description_tokens: [api, backend, graphql, rest]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_tokens: [client-only]
+  - capability_id: auth
+    topics: [auth, authentication, authorization, oauth]
+    description_tokens: [auth, authentication, authorization, oauth]
+    language_hints: [go, java, python, typescript]
+    exclude_tokens: [theme]
+  - capability_id: database-storage
+    topics: [database, persistence, storage]
+    description_tokens: [database, persistence, storage]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_tokens: [screenshot]
+  - capability_id: ai-ml
+    topics: [ai, llm, machine-learning, ml]
+    description_tokens: [ai, inference, llm, machine-learning]
+    language_hints: [cpp, cuda, python]
+    exclude_tokens: [curated-list]
+  - capability_id: testing
+    topics: [e2e-testing, test-framework, testing]
+    description_tokens: [assertion, test-framework, testing]
+    language_hints: [go, java, javascript, python, typescript]
+    exclude_tokens: [tutorial]
+  - capability_id: devops
+    topics: [ci-cd, deployment, devops, infrastructure]
+    description_tokens: [deployment, devops, infrastructure]
+    language_hints: [go, hcl, python, shell]
+    exclude_tokens: [demo]
+  - capability_id: observability
+    topics: [logging, metrics, monitoring, observability, tracing]
+    description_tokens: [metrics, monitoring, observability, tracing]
+    language_hints: [go, java, python, rust]
+    exclude_tokens: [example-only]
+  - capability_id: media
+    topics: [audio, image-processing, media, video]
+    description_tokens: [audio, image, media, video]
+    language_hints: [cpp, javascript, python, rust]
+    exclude_tokens: [wallpaper]
+  - capability_id: security
+    topics: [cryptography, security, vulnerability-scanner]
+    description_tokens: [cryptography, security, vulnerability]
+    language_hints: [go, python, rust]
+    exclude_tokens: [claim-only]
