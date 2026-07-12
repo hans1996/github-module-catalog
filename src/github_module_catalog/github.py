@@ -103,9 +103,9 @@ class GitHubRepositorySource:
         if type(max_response_bytes) is not int or max_response_bytes <= 0:
             raise ValueError("max_response_bytes must be a positive integer")
         self._base_url = _validate_base_url(base_url)
+        self._token = _validate_token(token)
         self._owns_client = client is None
         self._client = client or httpx.Client(transport=transport, timeout=timeout)
-        self._token = _validate_token(token)
         self._timeout = timeout
         self._max_response_bytes = max_response_bytes
         self._now = now or (lambda: datetime.now(UTC))
@@ -395,9 +395,12 @@ def _parse_retry_after(value: str, current: datetime) -> tuple[int, datetime] | 
         retry_at = parsedate_to_datetime(value)
     except (TypeError, ValueError, OverflowError):
         return None
-    if retry_at.tzinfo is None or retry_at.utcoffset() is None:
-        return None
-    retry_at = retry_at.astimezone(UTC)
+    try:
+        if retry_at.tzinfo is None or retry_at.utcoffset() is None:
+            return None
+        retry_at = retry_at.astimezone(UTC)
+    except (OverflowError, OSError, ValueError):
+        raise InvalidGitHubResponse("invalid GitHub retry timing") from None
     return _retry_timing(retry_at, current)
 
 

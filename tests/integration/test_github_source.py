@@ -141,6 +141,24 @@ def test_response_limit_must_be_a_positive_integer(max_response_bytes: int) -> N
         GitHubRepositorySource(max_response_bytes=max_response_bytes)
 
 
+def test_invalid_token_is_rejected_before_owned_client_allocation(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    client_constructed = False
+
+    def client_factory(*args: object, **kwargs: object) -> httpx.Client:
+        nonlocal client_constructed
+        client_constructed = True
+        raise AssertionError("client must not be constructed")
+
+    monkeypatch.setattr(httpx, "Client", client_factory)
+    invalid_credential = "line-one\nline-two"
+
+    with pytest.raises(ValueError, match="invalid GitHub token"):
+        GitHubRepositorySource(token=invalid_credential)
+    assert not client_constructed
+
+
 def test_context_manager_closes_only_an_owned_client() -> None:
     transport = TrackingTransport()
 
@@ -246,6 +264,7 @@ def test_valid_retry_after_precedes_a_malformed_rate_limit_reset() -> None:
     "headers",
     [
         {"Retry-After": str(10**20)},
+        {"Retry-After": "Fri, 31 Dec 9999 23:59:59 -2359"},
         {"X-RateLimit-Reset": str(10**20)},
     ],
 )
