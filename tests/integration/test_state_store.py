@@ -72,20 +72,33 @@ def test_raw_write_is_content_addressed_fsynced_and_atomically_replaced(
     payload = b'{"public":true}'
     digest = hashlib.sha256(payload).hexdigest()
     fsynced: list[int] = []
-    replacements: list[tuple[Path, Path]] = []
+    links: list[tuple[str | os.PathLike[str], str | os.PathLike[str]]] = []
     real_fsync = os.fsync
-    real_replace = os.replace
+    real_link = os.link
 
     def observed_fsync(fd: int) -> None:
         fsynced.append(fd)
         real_fsync(fd)
 
-    def observed_replace(source: str | os.PathLike[str], target: str | os.PathLike[str]) -> None:
-        replacements.append((Path(source), Path(target)))
-        real_replace(source, target)
+    def observed_link(
+        source: str | os.PathLike[str],
+        target: str | os.PathLike[str],
+        *,
+        src_dir_fd: int | None = None,
+        dst_dir_fd: int | None = None,
+        follow_symlinks: bool = True,
+    ) -> None:
+        links.append((source, target))
+        real_link(
+            source,
+            target,
+            src_dir_fd=src_dir_fd,
+            dst_dir_fd=dst_dir_fd,
+            follow_symlinks=follow_symlinks,
+        )
 
     monkeypatch.setattr(os, "fsync", observed_fsync)
-    monkeypatch.setattr(os, "replace", observed_replace)
+    monkeypatch.setattr(os, "link", observed_link)
 
     stored = RawObjectStore(tmp_path).write(payload, expected_sha256=digest)
 
@@ -95,8 +108,45 @@ def test_raw_write_is_content_addressed_fsynced_and_atomically_replaced(
     assert stored.size_bytes == len(payload)
     assert expected_path.read_bytes() == payload
     assert fsynced
-    assert replacements == [(replacements[0][0], expected_path)]
-    assert not replacements[0][0].exists()
+    assert len(links) == 1
+    assert Path(links[0][1]).name == expected_path.name
+
+
+def test_raw_write_never_clobbers_a_symlink_that_wins_the_publication_race(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    store = RawObjectStore(tmp_path)
+    payload = b'{"safe":true}'
+    digest = hashlib.sha256(payload).hexdigest()
+    target = store.path_for(digest)
+    target.parent.mkdir(parents=True)
+    attacker = tmp_path / "attacker.json"
+    attacker.write_bytes(b"attacker-owned")
+    real_link = os.link
+
+    def racing_link(
+        source: str | os.PathLike[str],
+        destination: str | os.PathLike[str],
+        *,
+        src_dir_fd: int | None = None,
+        dst_dir_fd: int | None = None,
+        follow_symlinks: bool = True,
+    ) -> None:
+        target.symlink_to(attacker)
+        real_link(
+            source,
+            destination,
+            src_dir_fd=src_dir_fd,
+            dst_dir_fd=dst_dir_fd,
+            follow_symlinks=follow_symlinks,
+        )
+
+    monkeypatch.setattr(os, "link", racing_link)
+
+    with pytest.raises(ObjectCollisionError):
+        store.write(payload)
+    assert target.is_symlink()
+    assert attacker.read_bytes() == b"attacker-owned"
 
 
 def test_raw_write_is_idempotent_and_does_not_replace_an_existing_object(tmp_path: Path) -> None:
@@ -127,6 +177,30 @@ def test_raw_write_rejects_digest_mismatch_collision_and_path_traversal(tmp_path
     with pytest.raises(ObjectCollisionError):
         store.write(payload, expected_sha256=digest)
     assert target.read_bytes() == b"corrupt"
+
+
+def test_raw_read_returns_the_bytes_from_the_same_verified_read(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    store = RawObjectStore(tmp_path)
+    payload = b'{"stable":true}'
+    stored = store.write(payload)
+    real_read_bytes = Path.read_bytes
+    reads = 0
+
+    def replacing_read(path: Path) -> bytes:
+        nonlocal reads
+        observed = real_read_bytes(path)
+        if path == stored.path:
+            reads += 1
+            if reads == 1:
+                stored.path.write_bytes(b"replacement")
+        return observed
+
+    monkeypatch.setattr(Path, "read_bytes", replacing_read)
+
+    assert store.read(stored.sha256) == payload
+    assert reads <= 1
 
 
 def test_cursor_advances_only_after_raw_object_and_page_transaction_are_durable(
@@ -228,6 +302,43 @@ def test_stage_checkpoints_are_independent_and_return_frozen_records(tmp_path: P
         enrichment.value = "repo:8"  # type: ignore[misc]
 
 
+def test_new_crawl_run_resumes_only_the_same_source_cursor(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    github_run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(github_run.id, cursor_before=0, page=page, committed_at=NOW)
+
+    archive_run = state.create_crawl_run("archive", started_at=NOW)
+    resumed_github_run = state.create_crawl_run("github", started_at=NOW)
+
+    assert archive_run.discovery_cursor == 0
+    assert resumed_github_run.discovery_cursor == 7
+
+
+def test_work_queue_replay_is_idempotent_while_event_history_remains_append_only(
+    tmp_path: Path,
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+
+    first = state.queue_work_item(7, "classification", "revision-1", "classifier-v1", queued_at=NOW)
+    replay = state.queue_work_item(
+        7, "classification", "revision-1", "classifier-v1", queued_at=NOW
+    )
+
+    assert first is True
+    assert replay is False
+    assert len(state.list_work_items(stage="classification")) == 1
+    assert tuple(
+        event.event
+        for event in state.list_work_item_events(repository_id=7, stage="classification")
+    ) == ("queued",)
+
+
 def test_work_item_events_preserve_append_only_history(tmp_path: Path) -> None:
     raw_store, state = _stores(tmp_path)
     run = state.create_crawl_run("github-public-repositories", started_at=NOW)
@@ -262,6 +373,16 @@ def test_state_rejects_credential_material_and_has_all_required_schema_tables(
             occurred_at=NOW,
             details={"Authorization": "Bearer secret-token"},
         )
+    valid_page = _page()
+    state.commit_discovery_page(run.id, cursor_before=0, page=valid_page, committed_at=NOW)
+    with pytest.raises(SensitiveStateError):
+        state.append_work_item_event(
+            7,
+            "enrichment",
+            "retry",
+            occurred_at=NOW,
+            details={"error": "Authorization: Bearer secret-token"},
+        )
 
     with sqlite3.connect(state.path) as connection:
         tables = {
@@ -277,6 +398,7 @@ def test_state_rejects_credential_material_and_has_all_required_schema_tables(
         "repository_identities",
         "repository_observations",
         "work_item_events",
+        "work_items",
         "stage_checkpoints",
         "catalog_publications",
     } <= tables

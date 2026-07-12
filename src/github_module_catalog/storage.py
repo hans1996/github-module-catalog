@@ -5,7 +5,8 @@ from __future__ import annotations
 import hashlib
 import os
 import re
-import tempfile
+import secrets
+import stat
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -69,65 +70,64 @@ class RawObjectStore:
             if expected_sha256 != actual_sha256:
                 raise DigestMismatchError("raw bytes do not match expected SHA-256")
         target = self.path_for(actual_sha256)
-        existing = self._verify_existing(target, actual_sha256, raw_bytes)
-        if existing is not None:
-            return existing
-
         target.parent.mkdir(parents=True, exist_ok=True)
-        temporary_path: Path | None = None
+        directory_fd = _open_directory(target.parent)
+        temporary_name: str | None = None
         try:
-            with tempfile.NamedTemporaryFile(
-                mode="wb",
-                dir=target.parent,
-                prefix=f".{actual_sha256}.",
-                suffix=".tmp",
-                delete=False,
-            ) as temporary:
-                temporary_path = Path(temporary.name)
-                temporary.write(raw_bytes)
-                temporary.flush()
-                os.fsync(temporary.fileno())
+            temporary_name, temporary_fd = _create_temporary(directory_fd, actual_sha256)
+            try:
+                _write_all(temporary_fd, raw_bytes)
+                os.fsync(temporary_fd)
+            finally:
+                os.close(temporary_fd)
 
-            existing = self._verify_existing(target, actual_sha256, raw_bytes)
-            if existing is not None:
-                return existing
-            os.replace(temporary_path, target)
-            temporary_path = None
-            _fsync_directory(target.parent)
-            return RawObject(actual_sha256, target, len(raw_bytes))
+            try:
+                os.link(
+                    temporary_name,
+                    target.name,
+                    src_dir_fd=directory_fd,
+                    dst_dir_fd=directory_fd,
+                    follow_symlinks=False,
+                )
+            except FileExistsError:
+                pass
+            else:
+                os.fsync(directory_fd)
+
+            observed = _read_verified_at(
+                directory_fd, target.name, actual_sha256, expected_bytes=raw_bytes
+            )
+            return RawObject(actual_sha256, target, len(observed))
         finally:
-            if temporary_path is not None:
-                temporary_path.unlink(missing_ok=True)
+            if temporary_name is not None:
+                try:
+                    os.unlink(temporary_name, dir_fd=directory_fd)
+                except FileNotFoundError:
+                    pass
+            os.close(directory_fd)
 
     def verify(self, sha256: str, *, expected_bytes: bytes | None = None) -> RawObject:
         """Verify a referenced object without exposing mutable store state."""
 
         target = self.path_for(sha256)
-        if not target.is_file():
-            raise FileNotFoundError(f"raw object does not exist: {sha256}")
-        observed = target.read_bytes()
-        if hashlib.sha256(observed).hexdigest() != sha256:
-            raise ObjectCollisionError(f"raw object failed digest verification: {sha256}")
-        if expected_bytes is not None and observed != expected_bytes:
-            raise ObjectCollisionError(f"raw object bytes differ from expected content: {sha256}")
-        return RawObject(sha256, target, len(observed))
+        directory_fd = _open_directory(target.parent)
+        try:
+            observed = _read_verified_at(
+                directory_fd, target.name, sha256, expected_bytes=expected_bytes
+            )
+            return RawObject(sha256, target, len(observed))
+        finally:
+            os.close(directory_fd)
 
     def read(self, sha256: str) -> bytes:
         """Return an immutable copy of a verified object's bytes."""
 
-        verified = self.verify(sha256)
-        return verified.path.read_bytes()
-
-    @staticmethod
-    def _verify_existing(target: Path, sha256: str, raw_bytes: bytes) -> RawObject | None:
-        if not target.exists():
-            return None
-        if not target.is_file():
-            raise ObjectCollisionError(f"raw object path is not a regular file: {sha256}")
-        observed = target.read_bytes()
-        if hashlib.sha256(observed).hexdigest() != sha256 or observed != raw_bytes:
-            raise ObjectCollisionError(f"immutable raw object collision: {sha256}")
-        return RawObject(sha256, target, len(observed))
+        target = self.path_for(sha256)
+        directory_fd = _open_directory(target.parent)
+        try:
+            return _read_verified_at(directory_fd, target.name, sha256)
+        finally:
+            os.close(directory_fd)
 
 
 def _validate_digest(sha256: str) -> None:
@@ -135,9 +135,57 @@ def _validate_digest(sha256: str) -> None:
         raise InvalidDigestError("SHA-256 must be exactly 64 lowercase hexadecimal characters")
 
 
-def _fsync_directory(directory: Path) -> None:
-    descriptor = os.open(directory, os.O_RDONLY)
+def _open_directory(directory: Path) -> int:
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
     try:
-        os.fsync(descriptor)
+        return os.open(directory, flags)
+    except FileNotFoundError:
+        raise
+    except OSError as error:
+        raise ObjectCollisionError("raw object directory is not a safe directory") from error
+
+
+def _create_temporary(directory_fd: int, sha256: str) -> tuple[str, int]:
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW
+    for _ in range(10):
+        name = f".{sha256}.{secrets.token_hex(16)}.tmp"
+        try:
+            return name, os.open(name, flags, 0o600, dir_fd=directory_fd)
+        except FileExistsError:
+            continue
+    raise FileExistsError("could not allocate an exclusive raw object temporary file")
+
+
+def _write_all(descriptor: int, content: bytes) -> None:
+    offset = 0
+    while offset < len(content):
+        offset += os.write(descriptor, content[offset:])
+
+
+def _read_verified_at(
+    directory_fd: int,
+    name: str,
+    sha256: str,
+    *,
+    expected_bytes: bytes | None = None,
+) -> bytes:
+    try:
+        descriptor = os.open(name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=directory_fd)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"raw object does not exist: {sha256}") from None
+    except OSError as error:
+        raise ObjectCollisionError(f"raw object is not a safe regular file: {sha256}") from error
+    try:
+        if not stat.S_ISREG(os.fstat(descriptor).st_mode):
+            raise ObjectCollisionError(f"raw object is not a regular file: {sha256}")
+        chunks: list[bytes] = []
+        while chunk := os.read(descriptor, 1024 * 1024):
+            chunks.append(chunk)
     finally:
         os.close(descriptor)
+    observed = b"".join(chunks)
+    if hashlib.sha256(observed).hexdigest() != sha256:
+        raise ObjectCollisionError(f"raw object failed digest verification: {sha256}")
+    if expected_bytes is not None and observed != expected_bytes:
+        raise ObjectCollisionError(f"raw object bytes differ from expected content: {sha256}")
+    return observed

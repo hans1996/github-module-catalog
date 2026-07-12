@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
 from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import contextmanager
@@ -98,6 +99,17 @@ class WorkItemEventRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class WorkItemRecord:
+    """One uniquely keyed unit of processing work."""
+
+    repository_id: int
+    stage: str
+    source_revision: str
+    analyzer_version: str
+    queued_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
 class StageCheckpointRecord:
     """An independently addressable stage checkpoint."""
 
@@ -160,13 +172,17 @@ class StateStore:
     ) -> CrawlRunRecord:
         """Create a run that resumes from the most recently durable cursor."""
 
-        source = _nonempty_text(source, "source")
+        source = _validated_text(source, "source")
         started_text = _datetime_text(started_at)
         with self._transaction() as connection:
             cursor = initial_cursor
             if cursor is None:
                 row = connection.execute(
-                    "SELECT COALESCE(MAX(discovery_cursor), 0) FROM crawl_runs"
+                    """
+                    SELECT COALESCE(MAX(discovery_cursor), 0)
+                    FROM crawl_runs WHERE source = ?
+                    """,
+                    (source,),
                 ).fetchone()
                 cursor = int(row[0])
             if cursor < 0:
@@ -200,7 +216,7 @@ class StateStore:
         """Commit page metadata, identities, queued events, and cursor atomically."""
 
         raw_object = self._raw_store.verify(page.raw_sha256, expected_bytes=page.raw_bytes)
-        _validate_state_url(page.next_url)
+        _validate_repository_page_state(page)
         cursor_after = _cursor_after(cursor_before, page)
         committed_text = _datetime_text(committed_at)
         rate_limit_json = json.dumps(
@@ -259,8 +275,13 @@ class StateStore:
             page_id = _last_row_id(result)
             for identity in page.identities:
                 if self._insert_discovered_identity(connection, identity, committed_text):
-                    self._insert_queued_event(
-                        connection, identity.repository_id, page.raw_sha256, committed_text
+                    self._insert_work_item(
+                        connection,
+                        identity.repository_id,
+                        "enrichment",
+                        page.raw_sha256,
+                        "inventory-v1",
+                        committed_text,
                     )
             updated = connection.execute(
                 """
@@ -324,6 +345,7 @@ class StateStore:
         """Persist validated facts and explicitly update mutable identity names."""
 
         observation_json = observation.stable_json()
+        _reject_credential_text(observation_json)
         observation_hash = observation.stable_hash()
         observed_text = _datetime_text(observation.observed_at)
         repository_id = observation.identity.repository_id
@@ -399,8 +421,12 @@ class StateStore:
     ) -> WorkItemEventRecord:
         """Append an immutable processing event."""
 
-        stage = _nonempty_text(stage, "stage")
-        event = _nonempty_text(event, "event")
+        stage = _validated_text(stage, "stage")
+        event = _validated_text(event, "event")
+        if source_revision is not None:
+            _reject_credential_text(source_revision)
+        if analyzer_version is not None:
+            _reject_credential_text(analyzer_version)
         details_json = _safe_details_json(details)
         occurred_text = _datetime_text(occurred_at)
         with self._transaction() as connection:
@@ -433,6 +459,53 @@ class StateStore:
             details_json,
         )
 
+    def queue_work_item(
+        self,
+        repository_id: int,
+        stage: str,
+        source_revision: str,
+        analyzer_version: str,
+        *,
+        queued_at: datetime,
+    ) -> bool:
+        """Queue a unique work key and append an event only on first insertion."""
+
+        stage = _validated_text(stage, "stage")
+        source_revision = _validated_text(source_revision, "source_revision")
+        analyzer_version = _validated_text(analyzer_version, "analyzer_version")
+        queued_text = _datetime_text(queued_at)
+        with self._transaction() as connection:
+            return self._insert_work_item(
+                connection,
+                repository_id,
+                stage,
+                source_revision,
+                analyzer_version,
+                queued_text,
+            )
+
+    def list_work_items(self, *, stage: str | None = None) -> tuple[WorkItemRecord, ...]:
+        """Return unique work keys in deterministic order."""
+
+        rows = self._connection.execute(
+            """
+            SELECT repository_id, stage, source_revision, analyzer_version, queued_at
+            FROM work_items WHERE (? IS NULL OR stage = ?)
+            ORDER BY repository_id, stage, source_revision, analyzer_version
+            """,
+            (stage, stage),
+        ).fetchall()
+        return tuple(
+            WorkItemRecord(
+                int(row["repository_id"]),
+                str(row["stage"]),
+                str(row["source_revision"]),
+                str(row["analyzer_version"]),
+                _parse_datetime(str(row["queued_at"])),
+            )
+            for row in rows
+        )
+
     def list_work_item_events(
         self, *, repository_id: int | None = None, stage: str | None = None
     ) -> tuple[WorkItemEventRecord, ...]:
@@ -461,9 +534,9 @@ class StateStore:
     ) -> StageCheckpointRecord:
         """Set one stage/partition checkpoint without affecting other stages."""
 
-        stage = _nonempty_text(stage, "stage")
-        partition_key = _nonempty_text(partition_key, "partition_key")
-        value = _nonempty_text(value, "value")
+        stage = _validated_text(stage, "stage")
+        partition_key = _validated_text(partition_key, "partition_key")
+        value = _validated_text(value, "value")
         updated_text = _datetime_text(updated_at)
         with self._transaction() as connection:
             connection.execute(
@@ -529,20 +602,34 @@ class StateStore:
         return result.rowcount == 1
 
     @staticmethod
-    def _insert_queued_event(
+    def _insert_work_item(
         connection: sqlite3.Connection,
         repository_id: int,
+        stage: str,
         source_revision: str,
-        occurred_at: str,
-    ) -> None:
+        analyzer_version: str,
+        queued_at: str,
+    ) -> bool:
+        result = connection.execute(
+            """
+            INSERT INTO work_items(
+                repository_id, stage, source_revision, analyzer_version, queued_at
+            ) VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT(repository_id, stage, source_revision, analyzer_version) DO NOTHING
+            """,
+            (repository_id, stage, source_revision, analyzer_version, queued_at),
+        )
+        if result.rowcount != 1:
+            return False
         connection.execute(
             """
             INSERT INTO work_item_events(
-                repository_id, stage, event, occurred_at, source_revision
-            ) VALUES (?, ?, ?, ?, ?)
+                repository_id, stage, event, occurred_at, source_revision, analyzer_version
+            ) VALUES (?, ?, ?, ?, ?, ?)
             """,
-            (repository_id, "enrichment", "queued", occurred_at, source_revision),
+            (repository_id, stage, "queued", queued_at, source_revision, analyzer_version),
         )
+        return True
 
     @contextmanager
     def _transaction(self) -> Iterator[sqlite3.Connection]:
@@ -612,15 +699,17 @@ def _parse_datetime(value: str) -> datetime:
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
-def _nonempty_text(value: str, field: str) -> str:
+def _validated_text(value: str, field: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{field} must be a nonempty string")
+    _reject_credential_text(value)
     return value
 
 
 def _validate_state_url(url: str | None) -> None:
     if url is None:
         return
+    _reject_credential_text(url)
     parsed = urlsplit(url)
     if parsed.username is not None or parsed.password is not None:
         raise SensitiveStateError("credential-bearing URLs cannot be stored")
@@ -648,9 +737,40 @@ def _reject_sensitive_keys(value: object) -> None:
             if normalized_key in _NORMALIZED_SENSITIVE_KEYS:
                 raise SensitiveStateError("credential fields cannot be stored in state")
             _reject_sensitive_keys(child)
+    elif isinstance(value, str):
+        _reject_credential_text(value)
     elif isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):
         for child in value:
             _reject_sensitive_keys(child)
+
+
+_CREDENTIAL_PATTERN = re.compile(
+    r"(?i)(?:authorization|proxy-authorization)\s*[:=]|"
+    r"\bbearer\s+[A-Za-z0-9._~+/=-]{6,}|"
+    r"\bgh[pousr]_[A-Za-z0-9_]{8,}|"
+    r"\bgithub_pat_[A-Za-z0-9_]{8,}|"
+    r"https?://[^\s/:@]+:[^\s/@]+@"
+)
+
+
+def _reject_credential_text(value: str) -> None:
+    if _CREDENTIAL_PATTERN.search(value) is not None:
+        raise SensitiveStateError("credential material cannot be stored in state")
+
+
+def _validate_repository_page_state(page: RepositoryPage) -> None:
+    _validate_state_url(page.next_url)
+    for value in (page.etag, page.rate_limit.resource):
+        if value is not None:
+            _reject_credential_text(value)
+    for identity in page.identities:
+        for value in (
+            identity.owner_login,
+            identity.name,
+            identity.full_name,
+            identity.html_url,
+        ):
+            _reject_credential_text(value)
 
 
 _SCHEMA = """
@@ -705,6 +825,15 @@ CREATE TABLE IF NOT EXISTS work_item_events (
     source_revision TEXT,
     analyzer_version TEXT,
     details_json TEXT CHECK(details_json IS NULL OR json_valid(details_json))
+);
+
+CREATE TABLE IF NOT EXISTS work_items (
+    repository_id INTEGER NOT NULL REFERENCES repository_identities(repository_id),
+    stage TEXT NOT NULL,
+    source_revision TEXT NOT NULL,
+    analyzer_version TEXT NOT NULL,
+    queued_at TEXT NOT NULL,
+    PRIMARY KEY(repository_id, stage, source_revision, analyzer_version)
 );
 
 CREATE TRIGGER IF NOT EXISTS work_item_events_no_update
