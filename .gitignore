@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Runtime data is intentionally kept out of Git.
+data/
+state/
+catalog-output/
+
+# Local credentials and environment overrides.
+.env
+.env.*
+!.env.example
+
+# Isolated feature worktrees.
+.worktrees/
+
