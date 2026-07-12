@@ -7,6 +7,8 @@ import re
 from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 from email.utils import parsedate_to_datetime
+from math import ceil
+from types import TracebackType
 
 import httpx
 from pydantic import (
@@ -33,6 +35,7 @@ from github_module_catalog.source import (
 
 GITHUB_API_VERSION = "2026-03-10"
 _DEFAULT_BASE_URL = "https://api.github.com"
+_DEFAULT_MAX_RESPONSE_BYTES = 10 * 1024 * 1024
 _ALLOWED_API_HOSTS = frozenset({"api.github.com"})
 _DIGITS = re.compile(r"[0-9]+")
 
@@ -90,16 +93,21 @@ class GitHubRepositorySource:
         token: str | None = None,
         base_url: str = _DEFAULT_BASE_URL,
         timeout: float = 10.0,
+        max_response_bytes: int = _DEFAULT_MAX_RESPONSE_BYTES,
         now: Callable[[], datetime] | None = None,
     ) -> None:
         if client is not None and transport is not None:
             raise ValueError("provide either client or transport, not both")
         if timeout <= 0:
             raise ValueError("timeout must be positive")
+        if type(max_response_bytes) is not int or max_response_bytes <= 0:
+            raise ValueError("max_response_bytes must be a positive integer")
         self._base_url = _validate_base_url(base_url)
+        self._owns_client = client is None
         self._client = client or httpx.Client(transport=transport, timeout=timeout)
         self._token = _validate_token(token)
         self._timeout = timeout
+        self._max_response_bytes = max_response_bytes
         self._now = now or (lambda: datetime.now(UTC))
 
     def __repr__(self) -> str:
@@ -107,8 +115,26 @@ class GitHubRepositorySource:
 
         return (
             f"{type(self).__name__}(base_url={str(self._base_url)!r}, "
-            f"authenticated={self._token is not None})"
+            f"authenticated={self._token is not None}, "
+            f"max_response_bytes={self._max_response_bytes})"
         )
+
+    def __enter__(self) -> GitHubRepositorySource:
+        return self
+
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> None:
+        self.close()
+
+    def close(self) -> None:
+        """Close only a client created by this adapter."""
+
+        if self._owns_client:
+            self._client.close()
 
     def fetch_page(self, cursor: int, *, etag: str | None = None) -> RepositoryFetchResult:
         """Fetch and validate one inventory page without waiting or retrying."""
@@ -125,16 +151,23 @@ class GitHubRepositorySource:
 
         request_url = self._base_url.copy_with(path="/repositories")
         try:
-            response = self._client.get(
+            with self._client.stream(
+                "GET",
                 request_url,
                 params={"since": str(cursor)},
                 headers=headers,
                 timeout=self._timeout,
                 follow_redirects=False,
-            )
+            ) as response:
+                return self._result_from_response(response, etag=etag)
+        except GitHubSourceError:
+            raise
         except httpx.HTTPError:
             raise GitHubSourceError("GitHub request failed") from None
 
+    def _result_from_response(
+        self, response: httpx.Response, *, etag: str | None
+    ) -> RepositoryFetchResult:
         if response.status_code in {httpx.codes.FORBIDDEN, httpx.codes.TOO_MANY_REQUESTS}:
             return _build_retry_result(response.status_code, response.headers, self._now)
 
@@ -147,7 +180,7 @@ class GitHubRepositorySource:
         if response.status_code != httpx.codes.OK:
             raise GitHubSourceError(f"GitHub returned unexpected status {response.status_code}")
 
-        raw_bytes = response.content
+        raw_bytes = _read_bounded_body(response, self._max_response_bytes)
         identities = _parse_identities(raw_bytes)
         next_url, next_cursor = _parse_next_link(response)
         return PageResult(
@@ -161,6 +194,26 @@ class GitHubRepositorySource:
                 identities=identities,
             )
         )
+
+
+def _read_bounded_body(response: httpx.Response, max_response_bytes: int) -> bytes:
+    content_length = response.headers.get("Content-Length")
+    if content_length is not None:
+        try:
+            declared_length = int(content_length)
+        except ValueError:
+            raise InvalidGitHubResponse("invalid GitHub Content-Length header") from None
+        if declared_length < 0:
+            raise InvalidGitHubResponse("invalid GitHub Content-Length header")
+        if declared_length > max_response_bytes:
+            raise InvalidGitHubResponse("GitHub response exceeds byte limit")
+
+    body = bytearray()
+    for chunk in response.iter_bytes():
+        if len(chunk) > max_response_bytes - len(body):
+            raise InvalidGitHubResponse("GitHub response exceeds byte limit")
+        body.extend(chunk)
+    return bytes(body)
 
 
 def _validate_cursor(cursor: int) -> int:
@@ -271,7 +324,10 @@ def _parse_nonnegative_header(headers: httpx.Headers, name: str) -> int | None:
     value = value.strip()
     if _DIGITS.fullmatch(value) is None:
         raise InvalidGitHubResponse(f"invalid {name} header")
-    return int(value)
+    try:
+        return int(value)
+    except ValueError:
+        raise InvalidGitHubResponse(f"invalid {name} header") from None
 
 
 def _parse_reset_header(headers: httpx.Headers, *, ignore_invalid: bool) -> int | None:
@@ -310,8 +366,11 @@ def _build_retry_result(
 
     rate_limit = _parse_rate_limit(headers)
     if rate_limit.reset_epoch is not None:
-        retry_at = datetime.fromtimestamp(rate_limit.reset_epoch, tz=UTC)
-        delay = max(0, int((retry_at - current).total_seconds()))
+        try:
+            retry_at = datetime.fromtimestamp(rate_limit.reset_epoch, tz=UTC)
+        except (OverflowError, OSError, ValueError):
+            raise InvalidGitHubResponse("invalid GitHub retry timing") from None
+        delay, retry_at = _retry_timing(retry_at, current)
         return RetryResult(
             status_code=status_code,
             decision=RetryDecision(
@@ -327,8 +386,11 @@ def _build_retry_result(
 def _parse_retry_after(value: str, current: datetime) -> tuple[int, datetime] | None:
     value = value.strip()
     if _DIGITS.fullmatch(value) is not None:
-        delay = int(value)
-        return delay, current + timedelta(seconds=delay)
+        try:
+            delay = int(value)
+            return delay, current + timedelta(seconds=delay)
+        except (OverflowError, ValueError):
+            raise InvalidGitHubResponse("invalid GitHub retry timing") from None
     try:
         retry_at = parsedate_to_datetime(value)
     except (TypeError, ValueError, OverflowError):
@@ -336,4 +398,10 @@ def _parse_retry_after(value: str, current: datetime) -> tuple[int, datetime] | 
     if retry_at.tzinfo is None or retry_at.utcoffset() is None:
         return None
     retry_at = retry_at.astimezone(UTC)
-    return max(0, int((retry_at - current).total_seconds())), retry_at
+    return _retry_timing(retry_at, current)
+
+
+def _retry_timing(retry_at: datetime, current: datetime) -> tuple[int, datetime]:
+    if retry_at <= current:
+        return 0, current
+    return ceil((retry_at - current).total_seconds()), retry_at

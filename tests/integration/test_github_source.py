@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Iterator
 from dataclasses import FrozenInstanceError
 from datetime import UTC, datetime
+from email.utils import format_datetime
 from typing import Any
 
 import httpx
@@ -26,6 +28,17 @@ from github_module_catalog.source import (
 NOW = datetime(2026, 7, 13, 8, 0, tzinfo=UTC)
 
 
+class ChunkedStream(httpx.SyncByteStream):
+    def __init__(self, chunks: list[bytes]) -> None:
+        self._chunks = chunks
+        self.chunks_read = 0
+
+    def __iter__(self) -> Iterator[bytes]:
+        for chunk in self._chunks:
+            self.chunks_read += 1
+            yield chunk
+
+
 def inventory_record(**updates: Any) -> dict[str, Any]:
     record: dict[str, Any] = {
         "id": 42,
@@ -36,6 +49,17 @@ def inventory_record(**updates: Any) -> dict[str, Any]:
     }
     record.update(updates)
     return record
+
+
+class TrackingTransport(httpx.BaseTransport):
+    def __init__(self) -> None:
+        self.closed = False
+
+    def handle_request(self, request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, request=request, json=[inventory_record()])
+
+    def close(self) -> None:
+        self.closed = True
 
 
 def test_fetches_inventory_page_with_cursor_headers_and_source_facts() -> None:
@@ -93,6 +117,53 @@ def test_inventory_records_may_omit_enrichment_only_topics_and_license() -> None
 
     assert isinstance(result, PageResult)
     assert len(result.page.identities) == 1
+
+
+@pytest.mark.parametrize("headers", [{}, {"Content-Length": "1"}])
+def test_response_limit_rejects_chunk_overflow_without_trusting_content_length(
+    headers: dict[str, str],
+) -> None:
+    stream = ChunkedStream([b"1234", b"5678", b"must-not-be-read"])
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, headers=headers, stream=stream)
+
+    source = GitHubRepositorySource(transport=httpx.MockTransport(handler), max_response_bytes=5)
+
+    with pytest.raises(InvalidGitHubResponse, match="response exceeds byte limit"):
+        source.fetch_page(0)
+    assert stream.chunks_read == 2
+
+
+@pytest.mark.parametrize("max_response_bytes", [0, -1, True])
+def test_response_limit_must_be_a_positive_integer(max_response_bytes: int) -> None:
+    with pytest.raises(ValueError, match="max_response_bytes must be a positive integer"):
+        GitHubRepositorySource(max_response_bytes=max_response_bytes)
+
+
+def test_context_manager_closes_only_an_owned_client() -> None:
+    transport = TrackingTransport()
+
+    with GitHubRepositorySource(transport=transport) as source:
+        result = source.fetch_page(0)
+        assert isinstance(result, PageResult)
+        assert not transport.closed
+
+    assert transport.closed
+
+
+def test_context_manager_leaves_an_injected_client_open() -> None:
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=[inventory_record()])
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    try:
+        with GitHubRepositorySource(client=client) as source:
+            result = source.fetch_page(0)
+            assert isinstance(result, PageResult)
+        assert not client.is_closed
+    finally:
+        client.close()
 
 
 def test_link_next_relation_is_the_only_pagination_signal() -> None:
@@ -169,6 +240,67 @@ def test_valid_retry_after_precedes_a_malformed_rate_limit_reset() -> None:
     assert result.decision.source is RetrySource.RETRY_AFTER
     assert result.decision.delay_seconds == 30
     assert result.rate_limit.reset_epoch is None
+
+
+@pytest.mark.parametrize(
+    "headers",
+    [
+        {"Retry-After": str(10**20)},
+        {"X-RateLimit-Reset": str(10**20)},
+    ],
+)
+def test_extreme_retry_timestamps_fail_closed(headers: dict[str, str]) -> None:
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(429, headers=headers)
+
+    source = GitHubRepositorySource(transport=httpx.MockTransport(handler), now=lambda: NOW)
+
+    with pytest.raises(InvalidGitHubResponse, match="invalid GitHub retry timing"):
+        source.fetch_page(0)
+
+
+@pytest.mark.parametrize(
+    "headers",
+    [
+        {"Retry-After": format_datetime(datetime.fromtimestamp(1002, tz=UTC), usegmt=True)},
+        {"X-RateLimit-Reset": "1002"},
+    ],
+)
+def test_fractional_positive_retry_delay_rounds_up(headers: dict[str, str]) -> None:
+    current = datetime.fromtimestamp(1000.25, tz=UTC)
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(429, headers=headers)
+
+    result = GitHubRepositorySource(
+        transport=httpx.MockTransport(handler), now=lambda: current
+    ).fetch_page(0)
+
+    assert isinstance(result, RetryResult)
+    assert result.decision.delay_seconds == 2
+    assert result.decision.retry_at == datetime.fromtimestamp(1002, tz=UTC)
+
+
+@pytest.mark.parametrize(
+    "headers",
+    [
+        {"Retry-After": format_datetime(datetime.fromtimestamp(999, tz=UTC), usegmt=True)},
+        {"X-RateLimit-Reset": "999"},
+    ],
+)
+def test_past_retry_timestamp_clamps_to_current_time(headers: dict[str, str]) -> None:
+    current = datetime.fromtimestamp(1000.25, tz=UTC)
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(429, headers=headers)
+
+    result = GitHubRepositorySource(
+        transport=httpx.MockTransport(handler), now=lambda: current
+    ).fetch_page(0)
+
+    assert isinstance(result, RetryResult)
+    assert result.decision.delay_seconds == 0
+    assert result.decision.retry_at == current
 
 
 def test_etag_is_sent_and_304_returns_typed_unchanged_result() -> None:
