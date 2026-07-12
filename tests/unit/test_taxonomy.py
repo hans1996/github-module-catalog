@@ -8,7 +8,7 @@ import pytest
 from pydantic import ValidationError
 
 from github_module_catalog.models import RepositoryObservation, ReuseStatus
-from github_module_catalog.taxonomy import classify_repository, load_taxonomy
+from github_module_catalog.taxonomy import Taxonomy, classify_repository, load_taxonomy
 
 TAXONOMY_PATH = Path(__file__).parents[2] / "config" / "taxonomy.yaml"
 REQUIRED_CAPABILITIES = {
@@ -77,6 +77,49 @@ def test_taxonomy_rejects_unknown_configuration_fields(tmp_path: Path) -> None:
         load_taxonomy(invalid)
 
 
+def taxonomy_node(node_id: str, *, parents: list[str] | None = None) -> dict[str, object]:
+    return {
+        "id": node_id,
+        "label": node_id,
+        "aliases": [],
+        "parents": parents or [],
+        "inclusion_examples": [f"includes {node_id}"],
+        "exclusion_examples": [f"excludes {node_id}"],
+    }
+
+
+def test_taxonomy_rejects_parent_from_a_different_axis() -> None:
+    document = {
+        "version": "1.0.0",
+        "axes": {
+            "capability": [taxonomy_node("child", parents=["shared-parent"])],
+            "domain": [taxonomy_node("shared-parent")],
+        },
+        "rules": [],
+    }
+
+    with pytest.raises(ValidationError, match="missing parent"):
+        Taxonomy.model_validate(document)
+
+
+@pytest.mark.parametrize(
+    "nodes",
+    [
+        [taxonomy_node("self-parent", parents=["self-parent"])],
+        [taxonomy_node("first", parents=["second"]), taxonomy_node("second", parents=["first"])],
+    ],
+)
+def test_taxonomy_rejects_parent_cycles(nodes: list[dict[str, object]]) -> None:
+    document = {
+        "version": "1.0.0",
+        "axes": {"capability": nodes},
+        "rules": [],
+    }
+
+    with pytest.raises(ValidationError, match="parent cycle"):
+        Taxonomy.model_validate(document)
+
+
 def test_classifier_returns_deterministic_multi_label_assertions_with_provenance() -> None:
     taxonomy = load_taxonomy(TAXONOMY_PATH)
     observation = repository_fixture()
@@ -138,3 +181,25 @@ def test_classifier_is_stable_and_does_not_mutate_inputs() -> None:
     assert tuple(assertion.stable_json() for assertion in first) == tuple(
         assertion.stable_json() for assertion in second
     )
+
+
+def test_classifier_strips_sentence_punctuation_from_positive_signals() -> None:
+    taxonomy = load_taxonomy(TAXONOMY_PATH)
+    observation = repository_fixture(
+        description="A modern API. A command-line.", topics=[], primary_language=None
+    )
+
+    assertions = classify_repository(observation, taxonomy)
+
+    assert [assertion.capability_id for assertion in assertions] == ["api-backend", "cli"]
+
+
+def test_classifier_strips_sentence_punctuation_from_exclusion_signals() -> None:
+    taxonomy = load_taxonomy(TAXONOMY_PATH)
+    observation = repository_fixture(
+        description="API client-only.", topics=[], primary_language=None
+    )
+
+    assertions = classify_repository(observation, taxonomy)
+
+    assert assertions == ()

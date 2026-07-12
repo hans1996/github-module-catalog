@@ -94,6 +94,29 @@ def test_repository_observation_validates_source_facts(
         repository_fixture(**overrides)
 
 
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {"html_url": "https://github.com/other/repository"},
+        {"observed_at": datetime(2024, 1, 15, tzinfo=UTC)},
+        {"pushed_at": datetime(2024, 3, 1, tzinfo=UTC)},
+    ],
+)
+def test_repository_observation_rejects_mismatched_url_or_future_source_facts(
+    overrides: dict[str, object],
+) -> None:
+    with pytest.raises(ValidationError, match="html_url|observed_at"):
+        repository_fixture(**overrides)
+
+
+def test_repository_observation_allows_normalized_trailing_url_slash() -> None:
+    observation = repository_fixture(
+        html_url="https://github.com/octocat/hello-world/",
+    )
+
+    assert observation.identity.repository_id == 42
+
+
 def test_repository_identity_is_the_numeric_github_id() -> None:
     before_rename = RepositoryIdentity(repository_id=42)
     after_rename = RepositoryIdentity(repository_id=42)
@@ -151,6 +174,48 @@ def test_catalog_entry_rejects_assertions_from_another_observation() -> None:
 
     with pytest.raises(ValidationError, match="repository_id"):
         CatalogEntry(repository=observation, assertions=(assertion,))
+
+
+@pytest.mark.parametrize(
+    "forged_fields",
+    [
+        {"license_spdx": "MIT", "reuse_status": ReuseStatus.SAFE_TO_INTEGRATE},
+        {"license_spdx": None, "reuse_status": ReuseStatus.SAFE_TO_INTEGRATE},
+    ],
+)
+def test_catalog_entry_rejects_forged_reuse_metadata(
+    forged_fields: dict[str, object],
+) -> None:
+    observation = repository_fixture(license_spdx=None, license_name=None)
+    assertion = assertion_fixture(observation, **forged_fields)
+
+    with pytest.raises(ValidationError, match="license_spdx|reuse_status"):
+        CatalogEntry(repository=observation, assertions=(assertion,))
+
+
+def test_catalog_entry_rejects_duplicate_capability_ids() -> None:
+    observation = repository_fixture()
+    first = assertion_fixture(observation, confidence=0.9)
+    second = assertion_fixture(observation, confidence=0.8)
+
+    with pytest.raises(ValidationError, match="duplicate capability_id"):
+        CatalogEntry(repository=observation, assertions=(first, second))
+
+
+def test_catalog_manifest_rejects_duplicate_repository_ids() -> None:
+    first_repository = repository_fixture(description="First observation")
+    second_repository = repository_fixture(description="Second observation")
+    first_entry = CatalogEntry(repository=first_repository)
+    second_entry = CatalogEntry(repository=second_repository)
+
+    with pytest.raises(ValidationError, match="duplicate repository_id"):
+        CatalogManifest(
+            schema_version="1.0.0",
+            taxonomy_version="1.0.0",
+            classifier_version="rules-v1",
+            generated_at=datetime(2024, 2, 2, tzinfo=UTC),
+            entries=(first_entry, second_entry),
+        )
 
 
 def test_catalog_manifest_canonicalizes_entry_and_assertion_order() -> None:

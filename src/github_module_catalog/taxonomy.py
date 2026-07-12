@@ -19,7 +19,7 @@ from github_module_catalog.models import (
     RepositoryObservation,
 )
 
-_TOKEN_PATTERN = re.compile(r"[a-z0-9][a-z0-9+#.-]*")
+_TOKEN_PATTERN = re.compile(r"[a-z0-9](?:[a-z0-9+#.-]*[a-z0-9+#])?")
 _AXIS_ID_PATTERN = r"^[a-z][a-z0-9_]*$"
 _NODE_ID_PATTERN = r"^[a-z0-9][a-z0-9-]*$"
 
@@ -97,6 +97,36 @@ class ClassificationRule(ImmutableModel):
         return self
 
 
+def _validate_axis_parent_graph(axis: TaxonomyAxis) -> None:
+    node_ids = {node.id for node in axis.nodes}
+    missing_parents = sorted(
+        (node.id, parent)
+        for node in axis.nodes
+        for parent in node.parents
+        if parent not in node_ids
+    )
+    if missing_parents:
+        raise ValueError(f"missing parent on axis {axis.id!r}: {missing_parents}")
+
+    parents_by_node = {node.id: node.parents for node in axis.nodes}
+    visiting: set[str] = set()
+    visited: set[str] = set()
+
+    def visit(node_id: str) -> None:
+        if node_id in visiting:
+            raise ValueError(f"parent cycle on axis {axis.id!r} involving {node_id!r}")
+        if node_id in visited:
+            return
+        visiting.add(node_id)
+        for parent in parents_by_node[node_id]:
+            visit(parent)
+        visiting.remove(node_id)
+        visited.add(node_id)
+
+    for node_id in sorted(node_ids):
+        visit(node_id)
+
+
 class Taxonomy(ImmutableModel):
     """Validated taxonomy document loaded from versioned YAML."""
 
@@ -131,6 +161,8 @@ class Taxonomy(ImmutableModel):
 
     @model_validator(mode="after")
     def validate_rule_targets(self) -> Self:
+        for axis in self.axis_definitions:
+            _validate_axis_parent_graph(axis)
         capability_ids = {node.id for node in self.axes.get("capability", ())}
         missing = sorted(
             rule.capability_id for rule in self.rules if rule.capability_id not in capability_ids

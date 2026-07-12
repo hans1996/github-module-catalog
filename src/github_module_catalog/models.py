@@ -148,12 +148,18 @@ class RepositoryObservation(ImmutableModel):
             "www.github.com",
         }:
             raise ValueError("html_url must be an HTTPS github.com URL")
+        expected_path = f"/{self.owner}/{self.name}"
+        observed_path = (self.html_url.path or "").rstrip("/")
+        if observed_path != expected_path:
+            raise ValueError(f"html_url path must equal {expected_path!r}")
         if self.updated_at < self.created_at:
             raise ValueError("updated_at cannot precede created_at")
         if self.pushed_at is not None and self.pushed_at < self.created_at:
             raise ValueError("pushed_at cannot precede created_at")
-        if self.observed_at < self.created_at:
-            raise ValueError("observed_at cannot precede created_at")
+        if self.observed_at < self.updated_at:
+            raise ValueError("observed_at cannot precede updated_at")
+        if self.pushed_at is not None and self.observed_at < self.pushed_at:
+            raise ValueError("observed_at cannot precede pushed_at")
         return self
 
     @computed_field  # type: ignore[prop-decorator]
@@ -220,6 +226,9 @@ class CatalogEntry(ImmutableModel):
     def canonicalize_assertions(
         cls, value: tuple[CapabilityAssertion, ...]
     ) -> tuple[CapabilityAssertion, ...]:
+        capability_ids = [assertion.capability_id for assertion in value]
+        if len(capability_ids) != len(set(capability_ids)):
+            raise ValueError("duplicate capability_id in catalog entry")
         return tuple(sorted(value, key=lambda assertion: assertion.capability_id))
 
     @model_validator(mode="after")
@@ -231,6 +240,10 @@ class CatalogEntry(ImmutableModel):
                 raise ValueError("assertion repository_id does not match repository identity")
             if assertion.source_observation_hash != observation_hash:
                 raise ValueError("assertion source_observation_hash does not match repository")
+            if assertion.license_spdx != self.repository.license_spdx:
+                raise ValueError("assertion license_spdx does not match repository observation")
+            if assertion.reuse_status != self.repository.reuse_status:
+                raise ValueError("assertion reuse_status does not match repository observation")
         return self
 
 
@@ -246,6 +259,9 @@ class CatalogManifest(ImmutableModel):
     @field_validator("entries")
     @classmethod
     def canonicalize_entries(cls, value: tuple[CatalogEntry, ...]) -> tuple[CatalogEntry, ...]:
+        repository_ids = [entry.repository.identity.repository_id for entry in value]
+        if len(repository_ids) != len(set(repository_ids)):
+            raise ValueError("duplicate repository_id in catalog manifest")
         return tuple(sorted(value, key=lambda entry: entry.repository.identity.repository_id))
 
     @computed_field  # type: ignore[prop-decorator]
