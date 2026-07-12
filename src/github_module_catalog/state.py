@@ -121,6 +121,22 @@ class StageCheckpointRecord:
     updated_at: datetime
 
 
+@dataclass(frozen=True, slots=True)
+class CatalogStateSnapshot:
+    """One source-scoped, transactionally consistent catalog input snapshot."""
+
+    source: str
+    cursor_start: int
+    cursor_end: int
+    discovered_count: int
+    validated_observation_count: int
+    pending_count: int
+    retry_count: int
+    dead_letter_count: int
+    raw_page_hashes: tuple[str, ...]
+    observations: tuple[RepositoryObservation, ...]
+
+
 class StateStore:
     """SQLite repository whose write methods use explicit transactions."""
 
@@ -276,7 +292,15 @@ class StateStore:
             )
             page_id = _last_row_id(result)
             for identity in page.identities:
-                if self._insert_discovered_identity(connection, identity, committed_text):
+                is_new = self._insert_discovered_identity(connection, identity, committed_text)
+                connection.execute(
+                    """
+                    INSERT INTO discovery_page_repositories(page_id, repository_id)
+                    VALUES (?, ?) ON CONFLICT(page_id, repository_id) DO NOTHING
+                    """,
+                    (page_id, identity.repository_id),
+                )
+                if is_new:
                     self._insert_work_item(
                         connection,
                         identity.repository_id,
@@ -434,6 +458,29 @@ class StateStore:
                 raise StateConflictError("observation hash does not match validated content")
             observations.append(observation)
         return tuple(observations)
+
+    def catalog_snapshot(self, source: str) -> CatalogStateSnapshot:
+        """Read source coverage, current work state, and observations in one transaction."""
+
+        source = _validated_text(source, "source")
+        with self._read_transaction() as connection:
+            cursor_start, cursor_end = _source_cursors(connection, source)
+            raw_page_hashes = _source_raw_hashes(connection, source)
+            observations = _source_observations(connection, source)
+            discovered_count = _source_discovered_count(connection, source)
+            pending_count, retry_count, dead_letter_count = _source_work_counts(connection, source)
+            return CatalogStateSnapshot(
+                source=source,
+                cursor_start=cursor_start,
+                cursor_end=cursor_end,
+                discovered_count=discovered_count,
+                validated_observation_count=len(observations),
+                pending_count=pending_count,
+                retry_count=retry_count,
+                dead_letter_count=dead_letter_count,
+                raw_page_hashes=raw_page_hashes,
+                observations=observations,
+            )
 
     def append_work_item_event(
         self,
@@ -669,6 +716,17 @@ class StateStore:
         else:
             self._connection.commit()
 
+    @contextmanager
+    def _read_transaction(self) -> Iterator[sqlite3.Connection]:
+        self._connection.execute("BEGIN")
+        try:
+            yield self._connection
+        except BaseException:
+            self._connection.rollback()
+            raise
+        else:
+            self._connection.commit()
+
     def _initialize_schema(self) -> None:
         self._connection.executescript(_SCHEMA)
 
@@ -683,6 +741,124 @@ def _cursor_after(cursor_before: int, page: RepositoryPage) -> int:
     if cursor_after < cursor_before:
         raise ValueError("page cursor cannot move backwards")
     return cursor_after
+
+
+def _source_cursors(connection: sqlite3.Connection, source: str) -> tuple[int, int]:
+    latest = connection.execute(
+        """
+        SELECT discovery_cursor FROM crawl_runs
+        WHERE source = ? ORDER BY id DESC LIMIT 1
+        """,
+        (source,),
+    ).fetchone()
+    cursor_end = 0 if latest is None else int(latest["discovery_cursor"])
+    earliest = connection.execute(
+        """
+        SELECT MIN(page.cursor_before) AS cursor_start
+        FROM discovery_pages AS page
+        JOIN crawl_runs AS run ON run.id = page.crawl_run_id
+        WHERE run.source = ?
+        """,
+        (source,),
+    ).fetchone()
+    cursor_start = cursor_end if earliest["cursor_start"] is None else int(earliest["cursor_start"])
+    return cursor_start, cursor_end
+
+
+def _source_raw_hashes(connection: sqlite3.Connection, source: str) -> tuple[str, ...]:
+    rows = connection.execute(
+        """
+        SELECT DISTINCT page.raw_sha256
+        FROM discovery_pages AS page
+        JOIN crawl_runs AS run ON run.id = page.crawl_run_id
+        WHERE run.source = ? ORDER BY page.raw_sha256
+        """,
+        (source,),
+    ).fetchall()
+    return tuple(str(row["raw_sha256"]) for row in rows)
+
+
+def _source_observations(
+    connection: sqlite3.Connection, source: str
+) -> tuple[RepositoryObservation, ...]:
+    rows = connection.execute(
+        """
+        WITH source_repositories AS (
+            SELECT DISTINCT link.repository_id
+            FROM discovery_page_repositories AS link
+            JOIN discovery_pages AS page ON page.id = link.page_id
+            JOIN crawl_runs AS run ON run.id = page.crawl_run_id
+            WHERE run.source = ?
+        )
+        SELECT observed.repository_id, observed.observation_hash, observed.observation_json
+        FROM repository_observations AS observed
+        JOIN source_repositories AS source ON source.repository_id = observed.repository_id
+        WHERE observed.id = (
+            SELECT MAX(candidate.id) FROM repository_observations AS candidate
+            WHERE candidate.repository_id = observed.repository_id
+        )
+        ORDER BY observed.repository_id
+        """,
+        (source,),
+    ).fetchall()
+    return _validated_observations(rows)
+
+
+def _validated_observations(rows: Sequence[sqlite3.Row]) -> tuple[RepositoryObservation, ...]:
+    observations: list[RepositoryObservation] = []
+    for row in rows:
+        observation = RepositoryObservation.model_validate_json(str(row["observation_json"]))
+        if observation.identity.repository_id != int(row["repository_id"]):
+            raise StateConflictError("observation identity does not match state key")
+        if observation.stable_hash() != str(row["observation_hash"]):
+            raise StateConflictError("observation hash does not match validated content")
+        observations.append(observation)
+    return tuple(observations)
+
+
+def _source_discovered_count(connection: sqlite3.Connection, source: str) -> int:
+    row = connection.execute(
+        """
+        SELECT COUNT(DISTINCT link.repository_id) AS discovered_count
+        FROM discovery_page_repositories AS link
+        JOIN discovery_pages AS page ON page.id = link.page_id
+        JOIN crawl_runs AS run ON run.id = page.crawl_run_id
+        WHERE run.source = ?
+        """,
+        (source,),
+    ).fetchone()
+    return int(row["discovered_count"])
+
+
+def _source_work_counts(connection: sqlite3.Connection, source: str) -> tuple[int, int, int]:
+    row = connection.execute(
+        """
+        WITH source_repositories AS (
+            SELECT DISTINCT link.repository_id
+            FROM discovery_page_repositories AS link
+            JOIN discovery_pages AS page ON page.id = link.page_id
+            JOIN crawl_runs AS run ON run.id = page.crawl_run_id
+            WHERE run.source = ?
+        ), latest_events AS (
+            SELECT event.event,
+                   ROW_NUMBER() OVER (
+                       PARTITION BY event.repository_id, event.stage ORDER BY event.id DESC
+                   ) AS position
+            FROM work_item_events AS event
+            JOIN source_repositories AS source ON source.repository_id = event.repository_id
+        )
+        SELECT
+            COALESCE(SUM(CASE WHEN event IN ('queued', 'pending') THEN 1 ELSE 0 END), 0)
+                AS pending_count,
+            COALESCE(SUM(CASE WHEN event = 'retry' THEN 1 ELSE 0 END), 0)
+                AS retry_count,
+            COALESCE(SUM(CASE WHEN event = 'dead_letter' THEN 1 ELSE 0 END), 0)
+                AS dead_letter_count
+        FROM latest_events WHERE position = 1
+        """,
+        (source,),
+    ).fetchone()
+    return int(row["pending_count"]), int(row["retry_count"]), int(row["dead_letter_count"])
 
 
 def _last_row_id(cursor: sqlite3.Cursor) -> int:
@@ -834,6 +1010,12 @@ CREATE TABLE IF NOT EXISTS repository_identities (
     html_url TEXT NOT NULL,
     first_seen_at TEXT NOT NULL,
     last_observed_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS discovery_page_repositories (
+    page_id INTEGER NOT NULL REFERENCES discovery_pages(id),
+    repository_id INTEGER NOT NULL REFERENCES repository_identities(repository_id),
+    PRIMARY KEY(page_id, repository_id)
 );
 
 CREATE TABLE IF NOT EXISTS repository_observations (

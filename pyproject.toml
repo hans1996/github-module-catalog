@@ -42,9 +42,11 @@ strict = true
 files = ["src", "tests"]
 
 [tool.pytest.ini_options]
-addopts = [
-    "--cov=github_module_catalog",
-    "--cov-report=term-missing",
-    "--cov-fail-under=80",
-]
 testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["github_module_catalog"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true

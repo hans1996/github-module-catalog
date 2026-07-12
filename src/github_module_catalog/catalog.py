@@ -86,7 +86,7 @@ def build_catalog_from_state(
     state: StateStore,
     *,
     taxonomy: Taxonomy,
-    context: CatalogBuildContext,
+    source: str,
     classifier_version: str = "rules-v1",
     generated_at: datetime | None = None,
     classifier: Classifier = classify_repository,
@@ -94,10 +94,20 @@ def build_catalog_from_state(
 ) -> CatalogManifest:
     """Build from the state's latest hash-verified observations."""
 
+    snapshot = state.catalog_snapshot(source)
     return build_catalog(
-        state.list_latest_repository_observations(),
+        snapshot.observations,
         taxonomy=taxonomy,
-        context=context,
+        context=CatalogBuildContext(
+            source=snapshot.source,
+            cursor_start=snapshot.cursor_start,
+            cursor_end=snapshot.cursor_end,
+            discovered_count=snapshot.discovered_count,
+            pending_count=snapshot.pending_count,
+            retry_count=snapshot.retry_count,
+            dead_letter_count=snapshot.dead_letter_count,
+            raw_page_hashes=snapshot.raw_page_hashes,
+        ),
         classifier_version=classifier_version,
         generated_at=generated_at,
         classifier=classifier,

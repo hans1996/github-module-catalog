@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
+from dataclasses import FrozenInstanceError
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -28,6 +30,11 @@ from github_module_catalog.models import (
     RepositoryIdentity,
     RepositoryObservation,
     ReuseStatus,
+)
+from github_module_catalog.source import (
+    RateLimitFacts,
+    RepositoryInventoryIdentity,
+    RepositoryPage,
 )
 from github_module_catalog.state import StateStore
 from github_module_catalog.storage import RawObjectStore
@@ -90,22 +97,105 @@ def _manifest(
     )
 
 
-def test_builder_accepts_only_validated_immutable_observations_and_state_round_trip(
+def _commit_page(
+    state: StateStore,
+    raw_store: RawObjectStore,
+    source: str,
+    repository_id: int,
+) -> str:
+    name = f"repo-{repository_id}"
+    raw_bytes = json.dumps([{"id": repository_id}], separators=(",", ":")).encode()
+    raw_sha256 = hashlib.sha256(raw_bytes).hexdigest()
+    page = RepositoryPage(
+        raw_bytes=raw_bytes,
+        raw_sha256=raw_sha256,
+        etag=None,
+        next_url=f"https://api.github.com/repositories?since={repository_id}",
+        next_cursor=repository_id,
+        rate_limit=RateLimitFacts(),
+        identities=(
+            RepositoryInventoryIdentity(
+                repository_id=repository_id,
+                name=name,
+                full_name=f"octocat/{name}",
+                owner_login="octocat",
+                owner_id=1,
+                html_url=f"https://github.com/octocat/{name}",
+            ),
+        ),
+    )
+    run = state.create_crawl_run(source, started_at=NOW)
+    raw_store.write(raw_bytes, expected_sha256=raw_sha256)
+    state.commit_discovery_page(
+        run.id,
+        cursor_before=run.discovery_cursor,
+        page=page,
+        committed_at=NOW,
+    )
+    return raw_sha256
+
+
+def test_state_catalog_build_derives_source_scoped_manifest_and_cannot_be_forged(
     tmp_path: Path,
 ) -> None:
     taxonomy = load_taxonomy(TAXONOMY_PATH)
-    with pytest.raises(TypeError, match="RepositoryObservation"):
-        build_catalog(({"id": 7},), taxonomy=taxonomy, context=_context())  # type: ignore[arg-type]
-
     raw_store = RawObjectStore(tmp_path)
     state = StateStore(tmp_path / "state.sqlite3", raw_store)
-    observation = _observation(7)
-    state.record_repository_observation(observation)
+    first_hash = _commit_page(state, raw_store, "github", 7)
+    second_hash = _commit_page(state, raw_store, "github", 8)
+    _commit_page(state, raw_store, "archive", 9)
+    first_observation = _observation(7)
+    state.record_repository_observation(first_observation)
+    state.record_repository_observation(_observation(9))
+    state.append_work_item_event(7, "enrichment", "retry", occurred_at=NOW)
+    state.append_work_item_event(8, "enrichment", "dead_letter", occurred_at=NOW)
 
-    manifest = build_catalog_from_state(state, taxonomy=taxonomy, context=_context())
+    snapshot = state.catalog_snapshot("github")
+    manifest = build_catalog_from_state(state, taxonomy=taxonomy, source="github")
 
-    assert manifest.entries[0].repository == observation
-    assert manifest.source_hashes == (observation.stable_hash(),)
+    assert snapshot.source == "github"
+    assert (snapshot.cursor_start, snapshot.cursor_end) == (0, 8)
+    assert snapshot.discovered_count == 2
+    assert snapshot.validated_observation_count == 1
+    assert (snapshot.pending_count, snapshot.retry_count, snapshot.dead_letter_count) == (0, 1, 1)
+    assert snapshot.raw_page_hashes == tuple(sorted((first_hash, second_hash)))
+    assert snapshot.observations == (first_observation,)
+    with pytest.raises(FrozenInstanceError):
+        snapshot.cursor_end = 999  # type: ignore[misc]
+
+    assert manifest.source == snapshot.source
+    assert (manifest.cursor_start, manifest.cursor_end) == (0, 8)
+    assert manifest.discovered_count == 2
+    assert manifest.validated_observation_count == 1
+    assert (manifest.pending_count, manifest.retry_count, manifest.dead_letter_count) == (0, 1, 1)
+    assert manifest.raw_page_hashes == snapshot.raw_page_hashes
+    assert manifest.source_hashes == (first_observation.stable_hash(),)
+    assert [entry.repository.identity.repository_id for entry in manifest.entries] == [7]
+    with pytest.raises(TypeError, match="context"):
+        build_catalog_from_state(  # type: ignore[call-arg]
+            state,
+            taxonomy=taxonomy,
+            source="github",
+            context=_context(),
+        )
+
+    second_observation = _observation(8, topic="auth", description="Auth service")
+    state.record_repository_observation(second_observation)
+    state.append_work_item_event(7, "enrichment", "queued", occurred_at=NOW)
+    updated = build_catalog_from_state(state, taxonomy=taxonomy, source="github")
+
+    assert updated.validated_observation_count == 2
+    assert (updated.pending_count, updated.retry_count, updated.dead_letter_count) == (1, 0, 1)
+    assert [entry.repository.identity.repository_id for entry in updated.entries] == [7, 8]
+
+
+def test_explicit_catalog_builder_rejects_unvalidated_observations() -> None:
+    with pytest.raises(TypeError, match="RepositoryObservation"):
+        build_catalog(
+            ({"id": 7},),  # type: ignore[arg-type]
+            taxonomy=load_taxonomy(TAXONOMY_PATH),
+            context=_context(),
+        )
 
 
 def test_classifier_failure_is_isolated_and_manifest_remains_truthful() -> None:

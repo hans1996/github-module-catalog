@@ -37,9 +37,11 @@ Expected: collection fails because `github_module_catalog` does not exist.
 
 Configure a `src` layout, `ghmod` console script, Python `>=3.12`, runtime
 dependencies (`httpx`, `pydantic`, `PyYAML`, `typer`) and development tools.
-Set Ruff, mypy strict mode, and pytest coverage threshold to 80%. CI runs format
-check, lint, type check, tests with coverage, and dependency audit without live
-network tests.
+Set Ruff and mypy strict mode. Keep the coverage threshold at 80% in coverage
+configuration, while CI and full verification invoke pytest-cov explicitly so
+targeted pytest commands remain independently runnable. CI runs format check,
+lint, type check, tests with coverage, and dependency audit without live network
+tests.
 
 **Step 4: Run GREEN and quality checks**
 
