@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.31.0"]
 build-backend = "hatchling.build"
 
 [project]
@@ -20,6 +20,7 @@ ghmod = "github_module_catalog:main"
 
 [dependency-groups]
 dev = [
+    "hatchling==1.31.0",
     "mypy>=1.17,<2",
     "pip-audit>=2.9,<3",
     "pytest>=9.0.3,<10",
