@@ -410,6 +410,31 @@ class StateStore:
             for row in rows
         )
 
+    def list_latest_repository_observations(self) -> tuple[RepositoryObservation, ...]:
+        """Return only hash-verified, Pydantic-validated latest observations."""
+
+        rows = self._connection.execute(
+            """
+            SELECT observed.repository_id, observed.observation_hash,
+                   observed.observation_json
+            FROM repository_observations AS observed
+            WHERE observed.id = (
+                SELECT MAX(candidate.id) FROM repository_observations AS candidate
+                WHERE candidate.repository_id = observed.repository_id
+            )
+            ORDER BY observed.repository_id
+            """
+        ).fetchall()
+        observations: list[RepositoryObservation] = []
+        for row in rows:
+            observation = RepositoryObservation.model_validate_json(str(row["observation_json"]))
+            if observation.identity.repository_id != int(row["repository_id"]):
+                raise StateConflictError("observation identity does not match state key")
+            if observation.stable_hash() != str(row["observation_hash"]):
+                raise StateConflictError("observation hash does not match validated content")
+            observations.append(observation)
+        return tuple(observations)
+
     def append_work_item_event(
         self,
         repository_id: int,

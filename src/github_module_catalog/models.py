@@ -68,7 +68,7 @@ class ImmutableModel(BaseModel):
         """Return canonical JSON suitable for hashing and byte comparisons."""
 
         return json.dumps(
-            self.model_dump(mode="json"),
+            self.model_dump(mode="json", exclude_computed_fields=True),
             ensure_ascii=False,
             separators=(",", ":"),
             sort_keys=True,
@@ -253,8 +253,35 @@ class CatalogManifest(ImmutableModel):
     schema_version: NonEmptyStr = Field(max_length=100)
     taxonomy_version: NonEmptyStr = Field(max_length=100)
     classifier_version: NonEmptyStr = Field(max_length=100)
-    generated_at: AwareDatetime
+    generated_at: AwareDatetime | None = None
+    source: NonEmptyStr = Field(default="explicit-observations", max_length=200)
+    cursor_start: int = Field(default=0, ge=0)
+    cursor_end: int = Field(default=0, ge=0)
+    discovered_count: int = Field(default=0, ge=0)
+    validated_observation_count: int | None = Field(default=None, ge=0)
+    pending_count: int = Field(default=0, ge=0)
+    retry_count: int = Field(default=0, ge=0)
+    dead_letter_count: int = Field(default=0, ge=0)
+    source_hashes: tuple[str, ...] = ()
+    raw_page_hashes: tuple[str, ...] = ()
+    classification_failure_repository_ids: tuple[int, ...] = ()
+    coverage_complete: StrictBool = False
+    coverage_note: NonEmptyStr = "Bounded discovery interval; not all public GitHub repositories."
     entries: tuple[CatalogEntry, ...] = ()
+
+    @field_validator("source_hashes", "raw_page_hashes")
+    @classmethod
+    def canonicalize_hashes(cls, value: tuple[str, ...]) -> tuple[str, ...]:
+        if any(not _SHA256_PATTERN.fullmatch(item) for item in value):
+            raise ValueError("source hashes must be lowercase SHA-256 digests")
+        return tuple(sorted(set(value)))
+
+    @field_validator("classification_failure_repository_ids")
+    @classmethod
+    def canonicalize_failure_ids(cls, value: tuple[int, ...]) -> tuple[int, ...]:
+        if any(repository_id <= 0 for repository_id in value):
+            raise ValueError("classification failure repository IDs must be positive")
+        return tuple(sorted(set(value)))
 
     @field_validator("entries")
     @classmethod
@@ -264,7 +291,24 @@ class CatalogManifest(ImmutableModel):
             raise ValueError("duplicate repository_id in catalog manifest")
         return tuple(sorted(value, key=lambda entry: entry.repository.identity.repository_id))
 
+    @model_validator(mode="after")
+    def validate_coverage(self) -> Self:
+        if self.cursor_end < self.cursor_start:
+            raise ValueError("cursor_end cannot precede cursor_start")
+        if self.validated_observation_count is not None and self.validated_observation_count < len(
+            self.entries
+        ):
+            raise ValueError("validated observation count cannot be smaller than entry count")
+        return self
+
     @computed_field  # type: ignore[prop-decorator]
     @property
     def entry_count(self) -> int:
         return len(self.entries)
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def capability_count(self) -> int:
+        return len(
+            {assertion.capability_id for entry in self.entries for assertion in entry.assertions}
+        )
