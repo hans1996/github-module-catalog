@@ -33,7 +33,7 @@ from github_module_catalog.state import CatalogStateSnapshot, StateStore
 from github_module_catalog.storage import RawObjectStore
 from github_module_catalog.taxonomy import classify_repository, load_taxonomy
 
-_SOURCE_NAME = "github-public-repositories"
+_SOURCE_NAME = "github"
 _MAX_PAGES = 1_000
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -440,10 +440,12 @@ def _validate_against_state(
     raw_store: RawObjectStore,
     dependencies: CliDependencies,
 ) -> None:
+    if observed.source != _SOURCE_NAME:
+        raise CliOperationError("catalog source is not trusted")
     taxonomy = load_taxonomy(dependencies.taxonomy_path)
     if taxonomy.version != observed.taxonomy_version:
         raise CliOperationError("catalog taxonomy version differs from configured taxonomy")
-    snapshot = state.catalog_snapshot(observed.source)
+    snapshot = state.catalog_snapshot(_SOURCE_NAME)
     for raw_hash in snapshot.raw_page_hashes:
         raw_store.verify(raw_hash)
     expected = build_catalog(

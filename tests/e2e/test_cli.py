@@ -169,6 +169,31 @@ def _forge_permissive_license_catalog(output: Path) -> None:
     _refresh_manifest_hashes(output, **manifest_fields)
 
 
+def _forge_unknown_source_empty_catalog(output: Path) -> None:
+    catalog = cast(dict[str, object], json.loads((output / "catalog.json").read_text()))
+    catalog.update(
+        {
+            "source": "attacker-controlled-source",
+            "cursor_start": 0,
+            "cursor_end": 0,
+            "discovered_count": 0,
+            "validated_observation_count": 0,
+            "pending_count": 0,
+            "retry_count": 0,
+            "dead_letter_count": 0,
+            "source_hashes": [],
+            "raw_page_hashes": [],
+            "classification_failure_repository_ids": [],
+            "entries": [],
+            "entry_count": 0,
+            "capability_count": 0,
+        }
+    )
+    _write_catalog_documents(output, catalog)
+    manifest_fields = {key: value for key, value in catalog.items() if key != "entries"}
+    _refresh_manifest_hashes(output, **manifest_fields)
+
+
 def test_init_and_live_discover_use_injected_source_without_leaking_token(tmp_path: Path) -> None:
     app, received_tokens = _test_app()
     workspace = tmp_path / "workspace"
@@ -265,9 +290,9 @@ def test_status_classify_build_and_validate_use_durable_state(tmp_path: Path) ->
     assert json.loads(build_result.stdout)["output"] == str(output.resolve())
     assert validate_result.exit_code == 0
     assert json.loads(validate_result.stdout)["status"] == "valid"
-    assert json.loads((output / "catalog.json").read_text()) == yaml.safe_load(
-        (output / "catalog.yaml").read_text()
-    )
+    catalog_document = json.loads((output / "catalog.json").read_text())
+    assert catalog_document["source"] == "github"
+    assert catalog_document == yaml.safe_load((output / "catalog.yaml").read_text())
     assert "discovery_only" in (output / "catalog.json").read_text()
 
 
@@ -389,6 +414,31 @@ def test_validate_rejects_a_consistent_license_forgery_that_differs_from_state(
     assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
     output = workspace / "catalog-output"
     _forge_permissive_license_catalog(output)
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+
+
+def test_validate_rejects_an_empty_catalog_from_an_unknown_source(tmp_path: Path) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    built = RUNNER.invoke(
+        app,
+        [
+            "build",
+            "--workspace",
+            str(workspace),
+            "--format",
+            "json",
+            "--format",
+            "yaml",
+        ],
+    )
+    assert built.exit_code == 0
+    output = workspace / "catalog-output"
+    _forge_unknown_source_empty_catalog(output)
 
     result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
 

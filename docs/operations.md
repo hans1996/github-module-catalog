@@ -45,6 +45,10 @@ decision rather than sleeping inside the adapter.
 
 ## Cursor and recovery semantics
 
+The CLI binds discovery, status, build, and validation to the trusted source ID
+`github`. Catalog output naming any other source is rejected before a
+source-scoped state snapshot can be accepted.
+
 Discovery uses `GET /repositories?since=<repository-id>` and follows only the
 allowlisted `rel="next"` URL returned by GitHub. The numeric cursor moves only
 after all of these steps succeed:
