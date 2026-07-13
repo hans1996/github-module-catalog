@@ -102,6 +102,17 @@ def render_module_page(manifest: CatalogManifest, capability_id: str) -> str:
     return _newline("\n".join(lines))
 
 
+def render_publication_manifest(
+    manifest: CatalogManifest,
+    *,
+    formats: frozenset[CatalogFormat] = ALL_CATALOG_FORMATS,
+) -> bytes:
+    """Render the exact artifact manifest bytes for a selected format set."""
+
+    artifacts = _publication_artifacts(manifest, _validate_formats(formats))
+    return artifacts[Path("manifest.json")]
+
+
 def publish_catalog(
     manifest: CatalogManifest,
     output_dir: Path,

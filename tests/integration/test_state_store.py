@@ -13,7 +13,7 @@ from pathlib import Path
 import pytest
 from pydantic import HttpUrl
 
-from github_module_catalog.models import RepositoryIdentity, RepositoryObservation
+from github_module_catalog.models import CatalogManifest, RepositoryIdentity, RepositoryObservation
 from github_module_catalog.source import (
     RateLimitFacts,
     RepositoryInventoryIdentity,
@@ -487,6 +487,37 @@ def test_state_rejects_credential_material_and_has_all_required_schema_tables(
     assert b"secret-token" not in state.path.read_bytes()
     assert state.foreign_keys_enabled is True
     assert state.journal_mode in {"wal", "memory"}
+
+
+def test_catalog_publication_rejects_same_semantics_with_different_artifacts(
+    tmp_path: Path,
+) -> None:
+    _raw_store, state = _stores(tmp_path)
+    manifest = CatalogManifest(
+        schema_version="1.0.0",
+        taxonomy_version="1.0.0",
+        classifier_version="rules-v1",
+        generated_at=NOW,
+        source="github",
+    )
+    first = state.record_catalog_publication(
+        manifest,
+        artifact_manifest_sha256="a" * 64,
+        published_at=NOW,
+    )
+
+    repeated = state.record_catalog_publication(
+        manifest,
+        artifact_manifest_sha256="a" * 64,
+        published_at=NOW,
+    )
+    assert repeated == first
+    with pytest.raises(StateConflictError, match="different artifacts"):
+        state.record_catalog_publication(
+            manifest,
+            artifact_manifest_sha256="b" * 64,
+            published_at=NOW,
+        )
 
 
 def test_legacy_database_backfills_source_links_from_verified_raw_pages(tmp_path: Path) -> None:

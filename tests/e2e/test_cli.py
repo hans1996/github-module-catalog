@@ -760,6 +760,39 @@ def test_build_rejects_markdown_only_before_publication(tmp_path: Path) -> None:
     assert not (workspace / "catalog-output").exists()
 
 
+def test_rebuild_rejects_conflicting_format_set_before_replacing_valid_output(
+    tmp_path: Path,
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    first = RUNNER.invoke(
+        app,
+        ["build", "--workspace", str(workspace), "--format", "json"],
+    )
+    assert first.exit_code == 0
+    output = workspace / "catalog-output"
+    before = {
+        path.relative_to(output): path.read_bytes()
+        for path in output.rglob("*")
+        if path.is_file()
+    }
+
+    conflicting = RUNNER.invoke(
+        app,
+        ["build", "--workspace", str(workspace), "--format", "yaml"],
+    )
+
+    after = {
+        path.relative_to(output): path.read_bytes()
+        for path in output.rglob("*")
+        if path.is_file()
+    }
+    assert conflicting.exit_code != 0
+    assert after == before
+    assert RUNNER.invoke(app, ["validate", "--workspace", str(workspace)]).exit_code == 0
+
+
 @pytest.mark.parametrize("formats", [["xml"], ["json", "json"]])
 def test_build_rejects_unknown_or_duplicate_formats(tmp_path: Path, formats: list[str]) -> None:
     app, _ = _test_app()

@@ -26,7 +26,11 @@ from github_module_catalog.catalog import (
     Classifier,
     build_catalog,
 )
-from github_module_catalog.exporters import CatalogFormat, publish_catalog
+from github_module_catalog.exporters import (
+    CatalogFormat,
+    publish_catalog,
+    render_publication_manifest,
+)
 from github_module_catalog.github import GitHubRepositorySource, parse_github_inventory
 from github_module_catalog.models import CatalogManifest
 from github_module_catalog.safeio import (
@@ -343,6 +347,13 @@ def _build(
             generated_at=generated_at,
         )
         output = stores.workspace / "catalog-output"
+        expected_artifact_manifest_sha256 = hashlib.sha256(
+            render_publication_manifest(manifest, formats=selected)
+        ).hexdigest()
+        stores.state.ensure_catalog_publication_compatible(
+            manifest,
+            artifact_manifest_sha256=expected_artifact_manifest_sha256,
+        )
         artifacts = publish_catalog(
             manifest,
             output,
@@ -358,9 +369,12 @@ def _build(
             )
         finally:
             os.close(output_fd)
+        artifact_manifest_sha256 = hashlib.sha256(manifest_bytes).hexdigest()
+        if artifact_manifest_sha256 != expected_artifact_manifest_sha256:
+            raise CliOperationError("published artifact manifest differs from planned output")
         stores.state.record_catalog_publication(
             manifest,
-            artifact_manifest_sha256=hashlib.sha256(manifest_bytes).hexdigest(),
+            artifact_manifest_sha256=artifact_manifest_sha256,
             published_at=dependencies.now(),
         )
     return {

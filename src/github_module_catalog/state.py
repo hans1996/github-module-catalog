@@ -877,6 +877,21 @@ class StateStore:
         manifest_sha256 = manifest.stable_hash()
         published_text = _datetime_text(published_at)
         with self._transaction() as connection:
+            existing = connection.execute(
+                """
+                SELECT id, source, manifest_sha256, manifest_json,
+                       generated_at, schema_version, taxonomy_version,
+                       classifier_version, artifact_manifest_sha256, published_at
+                FROM catalog_publications WHERE manifest_sha256 = ?
+                """,
+                (manifest_sha256,),
+            ).fetchone()
+            if existing is not None:
+                return _compatible_publication_record(
+                    existing,
+                    manifest,
+                    artifact_manifest_sha256=artifact_manifest_sha256,
+                )
             connection.execute(
                 """
                 INSERT INTO catalog_publications(
@@ -884,7 +899,6 @@ class StateStore:
                     schema_version, taxonomy_version, classifier_version,
                     artifact_manifest_sha256, published_at
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT(manifest_sha256) DO NOTHING
                 """,
                 (
                     manifest.source,
@@ -910,6 +924,32 @@ class StateStore:
         if row is None:
             raise StateConflictError("catalog publication could not be recorded")
         return _publication_record(row)
+
+    def ensure_catalog_publication_compatible(
+        self,
+        manifest: CatalogManifest,
+        *,
+        artifact_manifest_sha256: str,
+    ) -> None:
+        """Reject an artifact selection conflicting with known manifest semantics."""
+
+        if re.fullmatch(r"[0-9a-f]{64}", artifact_manifest_sha256) is None:
+            raise ValueError("artifact_manifest_sha256 must be a SHA-256 digest")
+        row = self._connection.execute(
+            """
+            SELECT id, source, manifest_sha256, manifest_json,
+                   generated_at, schema_version, taxonomy_version,
+                   classifier_version, artifact_manifest_sha256, published_at
+            FROM catalog_publications WHERE manifest_sha256 = ?
+            """,
+            (manifest.stable_hash(),),
+        ).fetchone()
+        if row is not None:
+            _compatible_publication_record(
+                row,
+                manifest,
+                artifact_manifest_sha256=artifact_manifest_sha256,
+            )
 
     def latest_catalog_publication(self, source: str) -> CatalogPublicationRecord | None:
         """Return the latest hash-verified publication for one trusted source."""
@@ -1138,6 +1178,20 @@ def _publication_record(row: sqlite3.Row) -> CatalogPublicationRecord:
         manifest=manifest,
         published_at=_parse_datetime(str(row["published_at"])),
     )
+
+
+def _compatible_publication_record(
+    row: sqlite3.Row,
+    manifest: CatalogManifest,
+    *,
+    artifact_manifest_sha256: str,
+) -> CatalogPublicationRecord:
+    record = _publication_record(row)
+    if record.manifest != manifest:
+        raise StateConflictError("catalog publication hash has different semantics")
+    if record.artifact_manifest_sha256 != artifact_manifest_sha256:
+        raise StateConflictError("catalog publication has different artifacts")
+    return record
 
 
 def _source_cursors(connection: sqlite3.Connection, source: str) -> tuple[int, int]:
