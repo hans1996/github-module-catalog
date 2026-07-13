@@ -1,11 +1,13 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime
+import json
+from datetime import UTC, datetime, timedelta, timezone
 from typing import Any
 
 import pytest
 from pydantic import ValidationError
 
+import github_module_catalog.models as models
 from github_module_catalog.models import (
     CapabilityAssertion,
     CatalogEntry,
@@ -30,10 +32,12 @@ def repository_fixture(**overrides: Any) -> RepositoryObservation:
         "created_at": datetime(2024, 1, 1, tzinfo=UTC),
         "updated_at": datetime(2024, 2, 1, tzinfo=UTC),
         "pushed_at": datetime(2024, 1, 31, tzinfo=UTC),
+        "stargazers_count": 100,
         "observed_at": datetime(2024, 2, 2, tzinfo=UTC),
         "archived": False,
         "disabled": False,
         "fork": False,
+        "private": False,
         "license_spdx": "MIT",
         "license_name": "MIT License",
     }
@@ -55,6 +59,24 @@ def assertion_fixture(observation: RepositoryObservation, **overrides: Any) -> C
     return CapabilityAssertion(**(values | overrides))
 
 
+def ranked_manifest(entries: tuple[CatalogEntry, ...], **overrides: Any) -> CatalogManifest:
+    values: dict[str, Any] = {
+        "schema_version": "1.0.0",
+        "taxonomy_version": "1.0.0",
+        "classifier_version": "rules-v1",
+        "selection": models.CatalogSelectionCriteria(
+            min_stars=100,
+            pushed_since=datetime(2024, 1, 15, tzinfo=UTC),
+            result_limit=1_000,
+        ),
+        "api_total_count": 2_500,
+        "pages_fetched": 10,
+        "result_limit": 1_000,
+        "entries": entries,
+    }
+    return CatalogManifest(**(values | overrides))
+
+
 def test_repository_observation_is_deeply_immutable() -> None:
     input_topics = ["Python", "CLI", "python"]
     observation = repository_fixture(topics=input_topics)
@@ -66,6 +88,95 @@ def test_repository_observation_is_deeply_immutable() -> None:
     assert observation.topics == ("cli", "python")
     with pytest.raises(TypeError):
         observation.topics[0] = "changed"  # type: ignore[index]
+
+
+def test_catalog_selection_criteria_is_fixed_utc_and_immutable() -> None:
+    criteria = models.CatalogSelectionCriteria(
+        min_stars=100,
+        pushed_since=datetime(2025, 7, 13, tzinfo=UTC),
+        result_limit=1_000,
+    )
+
+    assert criteria.exclude_archived is True
+    assert criteria.exclude_forks is True
+    assert criteria.public_only is True
+    assert criteria.sort == "stars"
+    assert criteria.order == "desc"
+    with pytest.raises(ValidationError):
+        criteria.min_stars = 99
+
+
+@pytest.mark.parametrize(
+    ("overrides", "field_name"),
+    [
+        ({"min_stars": -1}, "min_stars"),
+        ({"pushed_since": datetime(2025, 7, 13)}, "pushed_since"),
+        (
+            {
+                "pushed_since": datetime(
+                    2025,
+                    7,
+                    13,
+                    tzinfo=timezone(timedelta(hours=8)),
+                )
+            },
+            "pushed_since",
+        ),
+        ({"exclude_archived": False}, "exclude_archived"),
+        ({"exclude_archived": 1}, "exclude_archived"),
+        ({"exclude_forks": False}, "exclude_forks"),
+        ({"exclude_forks": 1}, "exclude_forks"),
+        ({"public_only": False}, "public_only"),
+        ({"public_only": 1}, "public_only"),
+        ({"sort": "updated"}, "sort"),
+        ({"order": "asc"}, "order"),
+        ({"result_limit": 1_001}, "result_limit"),
+    ],
+)
+def test_catalog_selection_criteria_rejects_weakened_or_unbounded_policy(
+    overrides: dict[str, object], field_name: str
+) -> None:
+    values: dict[str, object] = {
+        "min_stars": 100,
+        "pushed_since": datetime(2025, 7, 13, tzinfo=UTC),
+        "result_limit": 1_000,
+    }
+
+    with pytest.raises(ValidationError, match=field_name):
+        models.CatalogSelectionCriteria.model_validate(values | overrides)
+
+
+def test_repository_observation_accepts_a_nonnegative_strict_stargazer_count() -> None:
+    observation = repository_fixture(stargazers_count=0)
+
+    assert observation.stargazers_count == 0
+
+
+def test_unknown_ranked_facts_preserve_legacy_observation_hash_contract() -> None:
+    legacy = repository_fixture(stargazers_count=None, private=None)
+    legacy_document = legacy.model_dump(mode="json", exclude_computed_fields=True)
+    legacy_document.pop("stargazers_count")
+    legacy_document.pop("private")
+    expected_legacy_json = json.dumps(
+        legacy_document,
+        ensure_ascii=False,
+        separators=(",", ":"),
+        sort_keys=True,
+    )
+
+    assert legacy.stable_json() == expected_legacy_json
+
+    ranked = repository_fixture(stargazers_count=100, private=False)
+    assert '"private":false' in ranked.stable_json()
+    assert '"stargazers_count":100' in ranked.stable_json()
+
+
+@pytest.mark.parametrize("stargazers_count", [-1, True, "100"])
+def test_repository_observation_rejects_invalid_stargazer_counts(
+    stargazers_count: object,
+) -> None:
+    with pytest.raises(ValidationError, match="stargazers_count"):
+        repository_fixture(stargazers_count=stargazers_count)
 
 
 def test_models_reject_unknown_input_fields() -> None:
@@ -285,6 +396,118 @@ def test_catalog_entry_rejects_duplicate_capability_ids() -> None:
 
     with pytest.raises(ValidationError, match="duplicate capability_id"):
         CatalogEntry(repository=observation, assertions=(first, second))
+
+
+def test_ranked_manifest_canonicalizes_entries_by_contiguous_rank() -> None:
+    lower_ranked_repository = repository_fixture(stargazers_count=100)
+    higher_ranked_repository = repository_fixture(
+        identity={"repository_id": 7},
+        owner="example",
+        name="service",
+        full_name="example/service",
+        html_url="https://github.com/example/service",
+        stargazers_count=200,
+    )
+    lower_ranked_entry = CatalogEntry(repository=lower_ranked_repository, rank=2)
+    higher_ranked_entry = CatalogEntry(repository=higher_ranked_repository, rank=1)
+
+    manifest = ranked_manifest((lower_ranked_entry, higher_ranked_entry))
+    reversed_manifest = ranked_manifest((higher_ranked_entry, lower_ranked_entry))
+
+    assert [entry.rank for entry in manifest.entries] == [1, 2]
+    assert [entry.repository.identity.repository_id for entry in manifest.entries] == [7, 42]
+    assert manifest.stable_json() == reversed_manifest.stable_json()
+
+
+@pytest.mark.parametrize(
+    "repository_overrides",
+    [
+        {"stargazers_count": None},
+        {"stargazers_count": 99},
+        {"pushed_at": None},
+        {"pushed_at": datetime(2024, 1, 10, tzinfo=UTC)},
+        {"archived": None},
+        {"archived": True},
+        {"fork": None},
+        {"fork": True},
+        {"private": None},
+        {"private": True},
+    ],
+)
+def test_ranked_manifest_rejects_ineligible_repository_facts(
+    repository_overrides: dict[str, object],
+) -> None:
+    entry = CatalogEntry(repository=repository_fixture(**repository_overrides), rank=1)
+
+    with pytest.raises(ValidationError, match="ranked catalog entry"):
+        ranked_manifest((entry,))
+
+
+@pytest.mark.parametrize("ranks", [(1, 1), (1, 3)])
+def test_ranked_manifest_rejects_duplicate_or_non_contiguous_ranks(
+    ranks: tuple[int, int],
+) -> None:
+    first = repository_fixture(
+        identity={"repository_id": 7},
+        owner="example",
+        name="service",
+        full_name="example/service",
+        html_url="https://github.com/example/service",
+        stargazers_count=200,
+    )
+    second = repository_fixture(stargazers_count=100)
+
+    with pytest.raises(ValidationError, match="unique contiguous ranks"):
+        ranked_manifest(
+            (
+                CatalogEntry(repository=first, rank=ranks[0]),
+                CatalogEntry(repository=second, rank=ranks[1]),
+            )
+        )
+
+
+def test_ranked_manifest_rejects_rank_order_that_is_not_stars_desc_then_id() -> None:
+    larger_id = repository_fixture(stargazers_count=200)
+    smaller_id = repository_fixture(
+        identity={"repository_id": 7},
+        owner="example",
+        name="service",
+        full_name="example/service",
+        html_url="https://github.com/example/service",
+        stargazers_count=200,
+    )
+
+    with pytest.raises(ValidationError, match="stars descending"):
+        ranked_manifest(
+            (
+                CatalogEntry(repository=larger_id, rank=1),
+                CatalogEntry(repository=smaller_id, rank=2),
+            )
+        )
+
+
+def test_ranked_manifest_requires_complete_search_coverage_metadata() -> None:
+    entry = CatalogEntry(repository=repository_fixture(), rank=1)
+
+    with pytest.raises(ValidationError, match="selection metadata"):
+        CatalogManifest(
+            schema_version="1.0.0",
+            taxonomy_version="1.0.0",
+            classifier_version="rules-v1",
+            selection=models.CatalogSelectionCriteria(
+                min_stars=100,
+                pushed_since=datetime(2024, 1, 15, tzinfo=UTC),
+                result_limit=1_000,
+            ),
+            entries=(entry,),
+        )
+
+
+def test_ranked_manifest_rejects_zero_fetched_pages_for_nonempty_entries() -> None:
+    entry = CatalogEntry(repository=repository_fixture(), rank=1)
+
+    with pytest.raises(ValidationError, match="pages_fetched"):
+        ranked_manifest((entry,), pages_fetched=0)
 
 
 def test_catalog_manifest_rejects_duplicate_repository_ids() -> None:

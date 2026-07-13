@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from datetime import UTC, datetime, timedelta
 from enum import StrEnum
 from typing import Annotated, Literal, Self
 
@@ -16,6 +17,7 @@ from pydantic import (
     Field,
     HttpUrl,
     StrictBool,
+    ValidationInfo,
     computed_field,
     field_validator,
     model_validator,
@@ -68,11 +70,14 @@ class ImmutableModel(BaseModel):
         """Return canonical JSON suitable for hashing and byte comparisons."""
 
         return json.dumps(
-            self.model_dump(mode="json", exclude_computed_fields=True),
+            self._stable_document(),
             ensure_ascii=False,
             separators=(",", ":"),
             sort_keys=True,
         )
+
+    def _stable_document(self) -> dict[str, object]:
+        return self.model_dump(mode="json", exclude_computed_fields=True)
 
     def stable_hash(self) -> str:
         """Return the SHA-256 of the canonical JSON representation."""
@@ -93,6 +98,33 @@ class RepositoryIdentity(ImmutableModel):
     repository_id: int = Field(gt=0)
 
 
+class CatalogSelectionCriteria(ImmutableModel):
+    """Immutable eligibility and ordering policy for a ranked Search snapshot."""
+
+    min_stars: int = Field(ge=0, strict=True)
+    pushed_since: AwareDatetime
+    exclude_archived: StrictBool = True
+    exclude_forks: StrictBool = True
+    public_only: StrictBool = True
+    sort: Literal["stars"] = "stars"
+    order: Literal["desc"] = "desc"
+    result_limit: int = Field(gt=0, le=1_000, strict=True)
+
+    @field_validator("exclude_archived", "exclude_forks", "public_only")
+    @classmethod
+    def require_fail_closed_flags(cls, value: bool, info: ValidationInfo) -> bool:
+        if value is not True:
+            raise ValueError(f"{info.field_name} must be true")
+        return value
+
+    @field_validator("pushed_since")
+    @classmethod
+    def require_utc_cutoff(cls, value: datetime) -> datetime:
+        if value.utcoffset() != timedelta(0):
+            raise ValueError("pushed_since must use UTC")
+        return value.astimezone(UTC)
+
+
 class RepositoryObservation(ImmutableModel):
     """Validated source facts observed for a public GitHub repository."""
 
@@ -111,12 +143,22 @@ class RepositoryObservation(ImmutableModel):
     created_at: AwareDatetime | None = None
     updated_at: AwareDatetime | None = None
     pushed_at: AwareDatetime | None = None
+    stargazers_count: int | None = Field(default=None, ge=0, strict=True)
     observed_at: AwareDatetime
     archived: StrictBool | None = None
     disabled: StrictBool | None = None
     fork: StrictBool | None = None
+    private: StrictBool | None = None
     license_spdx: str | None = None
     license_name: str | None = Field(default=None, min_length=1, max_length=500)
+
+    def _stable_document(self) -> dict[str, object]:
+        document = super()._stable_document()
+        # Unknown facts added for ranked Search remain absent from legacy canonical hashes.
+        for field_name in ("stargazers_count", "private"):
+            if document[field_name] is None:
+                del document[field_name]
+        return document
 
     @field_validator("topics", mode="before")
     @classmethod
@@ -258,6 +300,7 @@ class CatalogEntry(ImmutableModel):
 
     repository: RepositoryObservation
     assertions: tuple[CapabilityAssertion, ...] = ()
+    rank: int | None = Field(default=None, gt=0, strict=True)
 
     @field_validator("assertions")
     @classmethod
@@ -293,6 +336,10 @@ class CatalogManifest(ImmutableModel):
     classifier_version: NonEmptyStr = Field(max_length=100)
     generated_at: AwareDatetime | None = None
     source: NonEmptyStr = Field(default="explicit-observations", max_length=200)
+    selection: CatalogSelectionCriteria | None = None
+    api_total_count: int | None = Field(default=None, ge=0, strict=True)
+    pages_fetched: int | None = Field(default=None, ge=0, strict=True)
+    result_limit: int | None = Field(default=None, gt=0, le=1_000, strict=True)
     cursor_start: int = Field(default=0, ge=0)
     cursor_end: int = Field(default=0, ge=0)
     discovered_count: int = Field(default=0, ge=0)
@@ -323,10 +370,14 @@ class CatalogManifest(ImmutableModel):
 
     @field_validator("entries")
     @classmethod
-    def canonicalize_entries(cls, value: tuple[CatalogEntry, ...]) -> tuple[CatalogEntry, ...]:
+    def canonicalize_entries(
+        cls, value: tuple[CatalogEntry, ...], info: ValidationInfo
+    ) -> tuple[CatalogEntry, ...]:
         repository_ids = [entry.repository.identity.repository_id for entry in value]
         if len(repository_ids) != len(set(repository_ids)):
             raise ValueError("duplicate repository_id in catalog manifest")
+        if info.data.get("selection") is not None:
+            return tuple(sorted(value, key=lambda entry: entry.rank or 0))
         return tuple(sorted(value, key=lambda entry: entry.repository.identity.repository_id))
 
     @model_validator(mode="after")
@@ -337,7 +388,55 @@ class CatalogManifest(ImmutableModel):
             self.entries
         ):
             raise ValueError("validated observation count cannot be smaller than entry count")
+        self._validate_ranked_selection()
         return self
+
+    def _validate_ranked_selection(self) -> None:
+        metadata = (self.api_total_count, self.pages_fetched, self.result_limit)
+        if self.selection is None:
+            if any(item is not None for item in metadata) or any(
+                entry.rank is not None for entry in self.entries
+            ):
+                raise ValueError("rank and selection metadata require selection criteria")
+            return
+        if any(item is None for item in metadata):
+            raise ValueError("ranked selection metadata must be complete")
+        if self.result_limit != self.selection.result_limit:
+            raise ValueError("result_limit must match the selection criteria")
+        if self.result_limit is not None and len(self.entries) > self.result_limit:
+            raise ValueError("ranked entry count cannot exceed result_limit")
+        if self.api_total_count is not None and self.api_total_count < len(self.entries):
+            raise ValueError("api_total_count cannot be smaller than ranked entry count")
+        if self.entries and self.pages_fetched == 0:
+            raise ValueError("pages_fetched must be positive for a nonempty ranked catalog")
+
+        ranks = [entry.rank for entry in self.entries]
+        if ranks != list(range(1, len(self.entries) + 1)):
+            raise ValueError("ranked catalog entries must have unique contiguous ranks")
+        for entry in self.entries:
+            repository = entry.repository
+            if (
+                repository.stargazers_count is None
+                or repository.stargazers_count < self.selection.min_stars
+                or repository.pushed_at is None
+                or repository.pushed_at < self.selection.pushed_since
+                or repository.archived is not False
+                or repository.fork is not False
+                or repository.private is not False
+            ):
+                raise ValueError("ranked catalog entry does not satisfy selection criteria")
+
+        expected = sorted(
+            self.entries,
+            key=lambda entry: (
+                -(entry.repository.stargazers_count or 0),
+                entry.repository.identity.repository_id,
+            ),
+        )
+        if list(self.entries) != expected:
+            raise ValueError(
+                "ranked catalog entries must follow stars descending then repository ID"
+            )
 
     @computed_field  # type: ignore[prop-decorator]
     @property

@@ -9,6 +9,7 @@ import os
 import re
 import stat
 import uuid
+from datetime import UTC, datetime
 from enum import StrEnum
 from pathlib import Path
 
@@ -67,13 +68,29 @@ def render_readme(manifest: CatalogManifest) -> str:
         "",
         _untrusted_markdown_inline(manifest.coverage_note),
         "",
-        f"Source: `{_markdown_text(manifest.source)}`; cursor: "
-        f"`{manifest.cursor_start}` through `{manifest.cursor_end}`.",
-        "",
-        "| Repository ID | Repository | Capabilities | License | Reuse status |",
-        "| ---: | --- | --- | --- | --- |",
     ]
-    lines.extend(_entry_row(entry) for entry in manifest.entries)
+    if manifest.selection is not None:
+        lines.extend(_selection_summary(manifest))
+        lines.extend(
+            [
+                f"Source: {_markdown_code_span(manifest.source)}.",
+                "",
+                "| Rank | Stars | Last push | Repository | Capabilities | License | Reuse status |",
+                "| ---: | ---: | --- | --- | --- | --- | --- |",
+            ]
+        )
+        lines.extend(_ranked_entry_row(entry) for entry in manifest.entries)
+    else:
+        lines.extend(
+            [
+                f"Source: {_markdown_code_span(manifest.source)}; cursor: "
+                f"`{manifest.cursor_start}` through `{manifest.cursor_end}`.",
+                "",
+                "| Repository ID | Repository | Capabilities | License | Reuse status |",
+                "| ---: | --- | --- | --- | --- |",
+            ]
+        )
+        lines.extend(_legacy_entry_row(entry) for entry in manifest.entries)
     return _newline("\n".join(lines))
 
 
@@ -86,19 +103,37 @@ def render_module_page(manifest: CatalogManifest, capability_id: str) -> str:
         for assertion in entry.assertions
         if assertion.capability_id == capability_id
     )
-    lines = [
-        f"# `{_markdown_text(capability_id)}` modules",
-        "",
-        "| Repository ID | Repository | Confidence | License | Reuse status |",
-        "| ---: | --- | ---: | --- | --- |",
-    ]
-    for entry, assertion in matching:
-        lines.append(
-            "| "
-            f"{entry.repository.identity.repository_id} | {_repository_link(entry)} | "
-            f"{assertion.confidence:.2f} | {_license(entry)} | "
-            f"`{assertion.reuse_status.value}` |"
+    lines = [f"# `{_markdown_text(capability_id)}` modules", ""]
+    if manifest.selection is None:
+        lines.extend(
+            [
+                "| Repository ID | Repository | Confidence | License | Reuse status |",
+                "| ---: | --- | ---: | --- | --- |",
+            ]
         )
+    else:
+        lines.extend(
+            [
+                "| Rank | Stars | Last push | Repository | Confidence | License | Reuse status |",
+                "| ---: | ---: | --- | --- | ---: | --- | --- |",
+            ]
+        )
+    for entry, assertion in matching:
+        if manifest.selection is None:
+            lines.append(
+                "| "
+                f"{entry.repository.identity.repository_id} | {_repository_link(entry)} | "
+                f"{assertion.confidence:.2f} | {_license(entry)} | "
+                f"`{assertion.reuse_status.value}` |"
+            )
+        else:
+            lines.append(
+                "| "
+                f"{_rank(entry)} | {_stars(entry)} | {_last_push(entry)} | "
+                f"{_repository_link(entry)} | "
+                f"{assertion.confidence:.2f} | {_license(entry)} | "
+                f"`{assertion.reuse_status.value}` |"
+            )
     return _newline("\n".join(lines))
 
 
@@ -214,7 +249,20 @@ def _manifest_document(
     return document
 
 
-def _entry_row(entry: CatalogEntry) -> str:
+def _ranked_entry_row(entry: CatalogEntry) -> str:
+    capabilities = ", ".join(
+        f"`{_markdown_text(assertion.capability_id)}`" for assertion in entry.assertions
+    )
+    return (
+        "| "
+        f"{_rank(entry)} | {_stars(entry)} | {_last_push(entry)} | "
+        f"{_repository_link(entry)} | "
+        f"{capabilities or '—'} | {_license(entry)} | "
+        f"`{entry.repository.reuse_status.value}` |"
+    )
+
+
+def _legacy_entry_row(entry: CatalogEntry) -> str:
     capabilities = ", ".join(
         f"`{_markdown_text(assertion.capability_id)}`" for assertion in entry.assertions
     )
@@ -224,6 +272,41 @@ def _entry_row(entry: CatalogEntry) -> str:
         f"{capabilities or '—'} | {_license(entry)} | "
         f"`{entry.repository.reuse_status.value}` |"
     )
+
+
+def _selection_summary(manifest: CatalogManifest) -> list[str]:
+    selection = manifest.selection
+    if selection is None:
+        return []
+    return [
+        "## Selection",
+        "",
+        f"Minimum stars: `{selection.min_stars}`; "
+        f"Pushed since: `{_utc_timestamp(selection.pushed_since)}`.",
+        "Archived: `false`; forks: `false`; visibility: `public`; "
+        f"Order: `{selection.sort} {selection.order}`.",
+        f"Top `{manifest.entry_count}` of `{manifest.api_total_count}` matching repositories; "
+        f"result limit: `{manifest.result_limit}`; pages fetched: `{manifest.pages_fetched}`.",
+        "",
+    ]
+
+
+def _rank(entry: CatalogEntry) -> str:
+    return "—" if entry.rank is None else str(entry.rank)
+
+
+def _stars(entry: CatalogEntry) -> str:
+    stars = entry.repository.stargazers_count
+    return "—" if stars is None else str(stars)
+
+
+def _last_push(entry: CatalogEntry) -> str:
+    pushed_at = entry.repository.pushed_at
+    return "—" if pushed_at is None else _utc_timestamp(pushed_at)
+
+
+def _utc_timestamp(value: datetime) -> str:
+    return value.astimezone(UTC).isoformat().replace("+00:00", "Z")
 
 
 def _repository_link(entry: CatalogEntry) -> str:
@@ -245,6 +328,13 @@ def _markdown_text(value: str) -> str:
         .replace("\r", " ")
         .replace("\n", " ")
     )
+
+
+def _markdown_code_span(value: str) -> str:
+    collapsed = re.sub(r"[\r\n]+", " ", value)
+    longest_run = max((len(run) for run in re.findall(r"`+", collapsed)), default=0)
+    delimiter = "`" * (longest_run + 1)
+    return f"{delimiter} {collapsed} {delimiter}"
 
 
 def _untrusted_markdown_inline(value: str) -> str:

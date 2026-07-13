@@ -24,11 +24,13 @@ from github_module_catalog.exporters import (
     publish_catalog,
     render_catalog_json,
     render_catalog_yaml,
+    render_module_page,
     render_readme,
 )
 from github_module_catalog.models import (
     CapabilityAssertion,
     CatalogManifest,
+    CatalogSelectionCriteria,
     RepositoryIdentity,
     RepositoryObservation,
     ReuseStatus,
@@ -54,6 +56,11 @@ def _observation(
     topic: str = "cli",
     license_spdx: str | None = "MIT",
     description: str = "A useful CLI",
+    stargazers_count: int | None = None,
+    pushed_at: datetime | None = None,
+    archived: bool | None = None,
+    fork: bool | None = None,
+    private: bool | None = None,
 ) -> RepositoryObservation:
     name = f"repo-{repository_id}"
     return RepositoryObservation(
@@ -67,7 +74,12 @@ def _observation(
         primary_language="Python",
         created_at=NOW,
         updated_at=NOW,
+        pushed_at=pushed_at,
+        stargazers_count=stargazers_count,
         observed_at=NOW,
+        archived=archived,
+        fork=fork,
+        private=private,
         license_spdx=license_spdx,
         license_name="License" if license_spdx else None,
     )
@@ -83,6 +95,59 @@ def _context() -> CatalogBuildContext:
         retry_count=1,
         dead_letter_count=1,
         raw_page_hashes=("a" * 64, "b" * 64),
+    )
+
+
+def _ranked_context(
+    repository_ranks: tuple[tuple[int, int], ...],
+) -> CatalogBuildContext:
+    return CatalogBuildContext(
+        source="github-search-repositories",
+        discovered_count=len(repository_ranks),
+        selection=CatalogSelectionCriteria(
+            min_stars=100,
+            pushed_since=datetime(2025, 7, 13, tzinfo=UTC),
+            result_limit=1_000,
+        ),
+        api_total_count=2_500,
+        pages_fetched=10,
+        result_limit=1_000,
+        repository_ranks=repository_ranks,
+        coverage_note="Top ranked GitHub Search window; not all public repositories.",
+    )
+
+
+def _ranked_manifest() -> CatalogManifest:
+    return build_catalog(
+        (
+            _observation(
+                9,
+                topic="auth",
+                stargazers_count=200,
+                pushed_at=NOW,
+                archived=False,
+                fork=False,
+                private=False,
+            ),
+            _observation(
+                8,
+                stargazers_count=300,
+                pushed_at=NOW,
+                archived=False,
+                fork=False,
+                private=False,
+            ),
+            _observation(
+                2,
+                stargazers_count=200,
+                pushed_at=NOW,
+                archived=False,
+                fork=False,
+                private=False,
+            ),
+        ),
+        taxonomy=load_taxonomy(TAXONOMY_PATH),
+        context=_ranked_context(((8, 1), (2, 2), (9, 3))),
     )
 
 
@@ -232,6 +297,130 @@ def test_classifier_failure_is_isolated_and_manifest_remains_truthful() -> None:
     assert manifest.validated_observation_count == 2
 
 
+def test_ranked_catalog_builder_uses_immutable_repository_rank_mapping() -> None:
+    context = _ranked_context(((8, 1), (2, 2), (9, 3)))
+
+    manifest = _ranked_manifest()
+
+    assert context.repository_ranks == ((8, 1), (2, 2), (9, 3))
+    with pytest.raises(FrozenInstanceError):
+        context.repository_ranks = ((8, 1),)  # type: ignore[misc]
+    assert [entry.rank for entry in manifest.entries] == [1, 2, 3]
+    assert [entry.repository.identity.repository_id for entry in manifest.entries] == [8, 2, 9]
+    assert manifest.selection == context.selection
+    assert manifest.api_total_count == 2_500
+    assert manifest.pages_fetched == 10
+    assert manifest.result_limit == 1_000
+
+
+def test_rank_mapping_tuple_order_does_not_change_mapping_semantics() -> None:
+    context = _ranked_context(((9, 3), (8, 1), (2, 2)))
+
+    manifest = build_catalog(
+        (
+            _observation(
+                9,
+                stargazers_count=200,
+                pushed_at=NOW,
+                archived=False,
+                fork=False,
+                private=False,
+            ),
+            _observation(
+                8,
+                stargazers_count=300,
+                pushed_at=NOW,
+                archived=False,
+                fork=False,
+                private=False,
+            ),
+            _observation(
+                2,
+                stargazers_count=200,
+                pushed_at=NOW,
+                archived=False,
+                fork=False,
+                private=False,
+            ),
+        ),
+        taxonomy=load_taxonomy(TAXONOMY_PATH),
+        context=context,
+    )
+
+    assert [entry.repository.identity.repository_id for entry in manifest.entries] == [8, 2, 9]
+
+
+def test_ranked_catalog_builder_rejects_mutable_or_incomplete_rank_mapping() -> None:
+    class MutableSelection:
+        result_limit = 1_000
+
+    with pytest.raises(TypeError, match="CatalogSelectionCriteria"):
+        CatalogBuildContext(
+            selection=MutableSelection(),  # type: ignore[arg-type]
+            api_total_count=1,
+            pages_fetched=1,
+            result_limit=1_000,
+            repository_ranks=((7, 1),),
+        )
+
+    with pytest.raises(TypeError, match="immutable tuple"):
+        CatalogBuildContext(
+            selection=CatalogSelectionCriteria(
+                min_stars=100,
+                pushed_since=datetime(2025, 7, 13, tzinfo=UTC),
+                result_limit=1_000,
+            ),
+            api_total_count=1,
+            pages_fetched=1,
+            result_limit=1_000,
+            repository_ranks={7: 1},  # type: ignore[arg-type]
+        )
+
+    with pytest.raises(ValueError, match="rank mapping"):
+        build_catalog(
+            (
+                _observation(
+                    7,
+                    stargazers_count=100,
+                    pushed_at=NOW,
+                    archived=False,
+                    fork=False,
+                    private=False,
+                ),
+            ),
+            taxonomy=load_taxonomy(TAXONOMY_PATH),
+            context=_ranked_context(()),
+        )
+
+
+def test_ranked_catalog_builder_rejects_rank_mapping_that_forges_star_order() -> None:
+    observations = (
+        _observation(
+            9,
+            stargazers_count=100,
+            pushed_at=NOW,
+            archived=False,
+            fork=False,
+            private=False,
+        ),
+        _observation(
+            2,
+            stargazers_count=200,
+            pushed_at=NOW,
+            archived=False,
+            fork=False,
+            private=False,
+        ),
+    )
+
+    with pytest.raises(ValueError, match="stars descending"):
+        build_catalog(
+            observations,
+            taxonomy=load_taxonomy(TAXONOMY_PATH),
+            context=_ranked_context(((9, 1), (2, 2))),
+        )
+
+
 def test_json_yaml_and_markdown_have_equivalent_sorted_catalog_entries() -> None:
     manifest = _manifest()
     json_document = json.loads(render_catalog_json(manifest))
@@ -245,6 +434,64 @@ def test_json_yaml_and_markdown_have_equivalent_sorted_catalog_entries() -> None
     assert [item["capability_id"] for item in json_document["entries"][1]["assertions"]] == ["auth"]
     assert markdown.index("octocat/repo-2") < markdown.index("octocat/repo-9")
     assert "`auth`" in markdown and "`cli`" in markdown
+    assert "| Repository ID | Repository | Capabilities | License | Reuse status |" in markdown
+    assert "| Rank | Stars | Last push |" not in markdown
+    assert "| Repository ID | Repository | Confidence | License | Reuse status |" in (
+        render_module_page(manifest, "auth")
+    )
+
+
+def test_source_with_backticks_stays_inside_a_safe_markdown_code_span() -> None:
+    manifest = build_catalog(
+        (_observation(7),),
+        taxonomy=load_taxonomy(TAXONOMY_PATH),
+        context=replace(_context(), source="github` <img src=x>"),
+    )
+
+    markdown = render_readme(manifest)
+
+    assert "Source: `` github` <img src=x> ``; cursor:" in markdown
+    assert "Source: `github\\` <img src=x>`;" not in markdown
+
+
+def test_ranked_json_yaml_and_markdown_share_stars_desc_id_tiebreak_order() -> None:
+    manifest = _ranked_manifest()
+    json_document = json.loads(render_catalog_json(manifest))
+    yaml_document = yaml.safe_load(render_catalog_yaml(manifest))
+    markdown = render_readme(manifest)
+
+    assert json_document == yaml_document
+    assert [entry["rank"] for entry in json_document["entries"]] == [1, 2, 3]
+    assert [
+        entry["repository"]["identity"]["repository_id"] for entry in json_document["entries"]
+    ] == [8, 2, 9]
+    assert markdown.index("octocat/repo-8") < markdown.index("octocat/repo-2")
+    assert markdown.index("octocat/repo-2") < markdown.index("octocat/repo-9")
+
+
+def test_ranked_markdown_explains_selection_and_search_window_coverage() -> None:
+    manifest = _ranked_manifest()
+
+    readme = render_readme(manifest)
+    module_page = render_module_page(manifest, "auth")
+
+    assert (
+        "| Rank | Stars | Last push | Repository | Capabilities | License | Reuse status |"
+        in readme
+    )
+    assert "Minimum stars: `100`" in readme
+    assert "Pushed since: `2025-07-13T00:00:00Z`" in readme
+    assert "Archived: `false`; forks: `false`; visibility: `public`" in readme
+    assert "Order: `stars desc`" in readme
+    assert "Top `3` of `2500` matching repositories" in readme
+    assert "result limit: `1000`" in readme
+    assert "pages fetched: `10`" in readme
+    assert "cursor:" not in readme
+    assert (
+        "| Rank | Stars | Last push | Repository | Confidence | License | Reuse status |"
+        in module_page
+    )
+    assert "| 3 | 200 | 2026-07-13T00:00:00Z |" in module_page
 
 
 def test_repeated_publication_is_byte_identical_and_build_time_is_opt_in(

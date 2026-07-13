@@ -10,6 +10,7 @@ from github_module_catalog.models import (
     CapabilityAssertion,
     CatalogEntry,
     CatalogManifest,
+    CatalogSelectionCriteria,
     RepositoryObservation,
 )
 from github_module_catalog.state import StateStore
@@ -32,6 +33,48 @@ class CatalogBuildContext:
     raw_page_hashes: tuple[str, ...] = ()
     coverage_complete: bool = False
     coverage_note: str = "Bounded discovery interval; not all public GitHub repositories."
+    selection: CatalogSelectionCriteria | None = None
+    api_total_count: int | None = None
+    pages_fetched: int | None = None
+    result_limit: int | None = None
+    repository_ranks: tuple[tuple[int, int], ...] = ()
+
+    def __post_init__(self) -> None:
+        if self.selection is not None and not isinstance(self.selection, CatalogSelectionCriteria):
+            raise TypeError("selection must be an immutable CatalogSelectionCriteria")
+        if not isinstance(self.repository_ranks, tuple) or any(
+            not isinstance(item, tuple) or len(item) != 2 for item in self.repository_ranks
+        ):
+            raise TypeError("repository_ranks must be an immutable tuple of pairs")
+        if any(
+            isinstance(value, bool) or not isinstance(value, int)
+            for pair in self.repository_ranks
+            for value in pair
+        ):
+            raise TypeError("repository rank pairs must contain only strict integers")
+        repository_ids = [repository_id for repository_id, _ in self.repository_ranks]
+        ranks = [rank for _, rank in self.repository_ranks]
+        if any(repository_id <= 0 for repository_id in repository_ids):
+            raise ValueError("rank mapping repository IDs must be positive")
+        if len(repository_ids) != len(set(repository_ids)) or sorted(ranks) != list(
+            range(1, len(ranks) + 1)
+        ):
+            raise ValueError("rank mapping must contain unique contiguous ranks")
+        metadata = (self.api_total_count, self.pages_fetched, self.result_limit)
+        if self.selection is None:
+            if self.repository_ranks or any(item is not None for item in metadata):
+                raise ValueError("rank mapping and Search metadata require selection criteria")
+            return
+        if any(item is None for item in metadata):
+            raise ValueError("ranked selection metadata must be complete")
+        if any(isinstance(item, bool) or not isinstance(item, int) for item in metadata):
+            raise TypeError("ranked selection metadata must contain strict integers")
+        if self.api_total_count is not None and self.api_total_count < 0:
+            raise ValueError("api_total_count must be nonnegative")
+        if self.pages_fetched is not None and self.pages_fetched < 0:
+            raise ValueError("pages_fetched must be nonnegative")
+        if self.result_limit != self.selection.result_limit:
+            raise ValueError("result_limit must match the selection criteria")
 
 
 def build_catalog(
@@ -47,6 +90,7 @@ def build_catalog(
     """Classify validated facts, isolating a failure to its repository entry."""
 
     _validate_observations(observations)
+    rank_by_repository = _rank_mapping(observations, context)
     entries: list[CatalogEntry] = []
     failure_ids: list[int] = []
     for observation in observations:
@@ -59,13 +103,23 @@ def build_catalog(
         except Exception:
             assertions = ()
             failure_ids.append(observation.identity.repository_id)
-        entries.append(CatalogEntry(repository=observation, assertions=assertions))
+        entries.append(
+            CatalogEntry(
+                repository=observation,
+                assertions=assertions,
+                rank=rank_by_repository.get(observation.identity.repository_id),
+            )
+        )
     return CatalogManifest(
         schema_version=schema_version,
         taxonomy_version=taxonomy.version,
         classifier_version=classifier_version,
         generated_at=generated_at,
         source=context.source,
+        selection=context.selection,
+        api_total_count=context.api_total_count,
+        pages_fetched=context.pages_fetched,
+        result_limit=context.result_limit,
         cursor_start=context.cursor_start,
         cursor_end=context.cursor_end,
         discovered_count=context.discovered_count,
@@ -123,3 +177,15 @@ def _validate_observations(observations: tuple[RepositoryObservation, ...]) -> N
     repository_ids = [item.identity.repository_id for item in observations]
     if len(repository_ids) != len(set(repository_ids)):
         raise ValueError("observations must contain one latest fact set per repository")
+
+
+def _rank_mapping(
+    observations: tuple[RepositoryObservation, ...], context: CatalogBuildContext
+) -> dict[int, int]:
+    if context.selection is None:
+        return {}
+    rank_by_repository = dict(context.repository_ranks)
+    repository_ids = {observation.identity.repository_id for observation in observations}
+    if set(rank_by_repository) != repository_ids:
+        raise ValueError("rank mapping must contain exactly one rank for each observation")
+    return rank_by_repository
