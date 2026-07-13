@@ -198,6 +198,7 @@ def test_sparse_public_inventory_record_becomes_an_honest_classifiable_observati
     assert observation.archived is None
     assert observation.disabled is None
     assert observation.license_spdx is None
+    assert observation.detail_metadata_complete is False
     assertions = classify_repository(observation, load_taxonomy(TAXONOMY_PATH))
     assert [assertion.capability_id for assertion in assertions] == ["cli"]
     assert {item.value for item in assertions[0].evidence if item.source == "description"} == {

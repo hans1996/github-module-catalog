@@ -482,33 +482,75 @@ class StateStore:
     ) -> RepositoryObservationRecord:
         """Atomically bind one validated observation to its durable raw page."""
 
-        repository_id = observation.identity.repository_id
         with self._transaction() as connection:
-            page = connection.execute(
-                """
-                SELECT page.observed_at
-                FROM discovery_pages AS page
-                JOIN discovery_page_repositories AS link ON link.page_id = page.id
-                WHERE page.id = ? AND page.raw_sha256 = ? AND link.repository_id = ?
-                """,
-                (page_id, raw_sha256, repository_id),
-            ).fetchone()
-            if page is None:
-                raise StateConflictError("observation does not match its durable discovery page")
-            page_observed_at = _parse_datetime(str(page["observed_at"]))
-            if observation.observed_at != page_observed_at:
-                raise StateConflictError("observation clock does not match its discovery page")
-            record = self._insert_repository_observation(connection, observation)
-            connection.execute(
-                """
-                INSERT INTO repository_observation_bindings(
-                    page_id, repository_id, raw_sha256, observation_hash
-                ) VALUES (?, ?, ?, ?)
-                ON CONFLICT(page_id, repository_id, observation_hash) DO NOTHING
-                """,
-                (page_id, repository_id, raw_sha256, record.observation_hash),
+            return self._bind_discovery_observation(
+                connection, page_id, raw_sha256, observation
+            )
+
+    def complete_discovery_observation(
+        self,
+        page_id: int,
+        raw_sha256: str,
+        observation: RepositoryObservation,
+        *,
+        occurred_at: datetime,
+        analyzer_version: str = "inventory-v1",
+    ) -> RepositoryObservationRecord:
+        """Atomically bind complete detail facts and append their completed event."""
+
+        if not observation.detail_metadata_complete:
+            raise ValueError("completed enrichment requires complete detail metadata")
+        analyzer_version = _validated_text(analyzer_version, "analyzer_version")
+        occurred_text = _datetime_text(occurred_at)
+        with self._transaction() as connection:
+            record = self._bind_discovery_observation(
+                connection, page_id, raw_sha256, observation
+            )
+            self._insert_work_item_event(
+                connection,
+                observation.identity.repository_id,
+                "enrichment",
+                "completed",
+                occurred_text,
+                raw_sha256,
+                analyzer_version,
+                None,
             )
             return record
+
+    def _bind_discovery_observation(
+        self,
+        connection: sqlite3.Connection,
+        page_id: int,
+        raw_sha256: str,
+        observation: RepositoryObservation,
+    ) -> RepositoryObservationRecord:
+        repository_id = observation.identity.repository_id
+        page = connection.execute(
+            """
+            SELECT page.observed_at
+            FROM discovery_pages AS page
+            JOIN discovery_page_repositories AS link ON link.page_id = page.id
+            WHERE page.id = ? AND page.raw_sha256 = ? AND link.repository_id = ?
+            """,
+            (page_id, raw_sha256, repository_id),
+        ).fetchone()
+        if page is None:
+            raise StateConflictError("observation does not match its durable discovery page")
+        page_observed_at = _parse_datetime(str(page["observed_at"]))
+        if observation.observed_at != page_observed_at:
+            raise StateConflictError("observation clock does not match its discovery page")
+        record = self._insert_repository_observation(connection, observation)
+        connection.execute(
+            """
+            INSERT INTO repository_observation_bindings(
+                page_id, repository_id, raw_sha256, observation_hash
+            ) VALUES (?, ?, ?, ?)
+            ON CONFLICT(page_id, repository_id, observation_hash) DO NOTHING
+            """,
+            (page_id, repository_id, raw_sha256, record.observation_hash),
+        )
+        return record
 
     @staticmethod
     def _insert_repository_observation(
@@ -653,24 +695,46 @@ class StateStore:
         details_json = _safe_details_json(details)
         occurred_text = _datetime_text(occurred_at)
         with self._transaction() as connection:
-            result = connection.execute(
-                """
-                INSERT INTO work_item_events(
-                    repository_id, stage, event, occurred_at, source_revision,
-                    analyzer_version, details_json
-                ) VALUES (?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    repository_id,
-                    stage,
-                    event,
-                    occurred_text,
-                    source_revision,
-                    analyzer_version,
-                    details_json,
-                ),
+            return self._insert_work_item_event(
+                connection,
+                repository_id,
+                stage,
+                event,
+                occurred_text,
+                source_revision,
+                analyzer_version,
+                details_json,
             )
-            event_id = _last_row_id(result)
+
+    @staticmethod
+    def _insert_work_item_event(
+        connection: sqlite3.Connection,
+        repository_id: int,
+        stage: str,
+        event: str,
+        occurred_text: str,
+        source_revision: str | None,
+        analyzer_version: str | None,
+        details_json: str | None,
+    ) -> WorkItemEventRecord:
+        result = connection.execute(
+            """
+            INSERT INTO work_item_events(
+                repository_id, stage, event, occurred_at, source_revision,
+                analyzer_version, details_json
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                repository_id,
+                stage,
+                event,
+                occurred_text,
+                source_revision,
+                analyzer_version,
+                details_json,
+            ),
+        )
+        event_id = _last_row_id(result)
         return WorkItemEventRecord(
             event_id,
             repository_id,

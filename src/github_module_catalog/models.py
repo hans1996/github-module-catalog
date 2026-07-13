@@ -184,6 +184,21 @@ class RepositoryObservation(ImmutableModel):
             return ReuseStatus.SAFE_TO_INTEGRATE
         return ReuseStatus.DISCOVERY_ONLY
 
+    @property
+    def detail_metadata_complete(self) -> bool:
+        """Report whether required detail-endpoint facts are explicitly known."""
+
+        return all(
+            value is not None
+            for value in (
+                self.created_at,
+                self.updated_at,
+                self.archived,
+                self.disabled,
+                self.fork,
+            )
+        )
+
 
 EvidenceSource = Literal["topic", "description", "language", "lifecycle", "license"]
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sqlite3
 from dataclasses import dataclass, field, replace
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -25,7 +26,7 @@ from github_module_catalog.source import (
     RetrySource,
     UnchangedResult,
 )
-from github_module_catalog.state import StateStore
+from github_module_catalog.state import StateStore, WorkItemEventRecord
 from github_module_catalog.storage import RawObjectStore
 from github_module_catalog.taxonomy import load_taxonomy
 
@@ -110,6 +111,19 @@ def _observation(repository_id: int) -> RepositoryObservation:
         fork=False,
         license_spdx=None,
         license_name=None,
+    )
+
+
+def _sparse_observation(repository_id: int) -> RepositoryObservation:
+    return RepositoryObservation(
+        identity=RepositoryIdentity(repository_id=repository_id),
+        owner="octocat",
+        name=f"repo-{repository_id}",
+        full_name=f"octocat/repo-{repository_id}",
+        html_url=HttpUrl(f"https://github.com/octocat/repo-{repository_id}"),
+        description="A reusable CLI catalog",
+        observed_at=NOW,
+        fork=False,
     )
 
 
@@ -296,6 +310,107 @@ def test_durable_discovery_records_inventory_observation_for_classification(
     assert state.catalog_snapshot("github-public-repositories").pending_count == 0
 
 
+def test_sparse_inventory_observation_is_bound_but_enrichment_remains_pending(
+    tmp_path: Path,
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    observation = _sparse_observation(7)
+    raw_document = {
+        "id": 7,
+        "name": "repo-7",
+        "full_name": "octocat/repo-7",
+        "owner": {"login": "octocat", "id": 1},
+        "html_url": "https://github.com/octocat/repo-7",
+        "description": observation.description,
+        "fork": False,
+    }
+    raw_bytes = json.dumps([raw_document], separators=(",", ":")).encode()
+    page = replace(
+        _page(7),
+        raw_bytes=raw_bytes,
+        raw_sha256=hashlib.sha256(raw_bytes).hexdigest(),
+        next_url=None,
+        observations=(observation,),
+        observed_at=NOW,
+    )
+
+    result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
+    snapshot = state.catalog_snapshot("github-public-repositories")
+
+    assert result.observations_recorded == 1
+    assert result.observation_failures == 0
+    assert snapshot.observations == (observation,)
+    assert len(snapshot.observation_bindings) == 1
+    assert snapshot.pending_count == 1
+    assert tuple(
+        event.event for event in state.list_work_item_events(repository_id=7, stage="enrichment")
+    ) == ("queued",)
+
+
+def test_completed_event_failure_rolls_back_observation_and_allows_recovery(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    observation = _observation(7)
+    page = replace(
+        _page(7),
+        next_url=None,
+        observations=(observation,),
+        observed_at=NOW,
+    )
+    original_insert = state._insert_work_item_event
+
+    def fail_completed(
+        connection: sqlite3.Connection,
+        repository_id: int,
+        stage: str,
+        event: str,
+        occurred_text: str,
+        source_revision: str | None,
+        analyzer_version: str | None,
+        details_json: str | None,
+    ) -> WorkItemEventRecord:
+        if event == "completed":
+            raise RuntimeError("completed event insertion failed")
+        return original_insert(
+            connection,
+            repository_id,
+            stage,
+            event,
+            occurred_text,
+            source_revision,
+            analyzer_version,
+            details_json,
+        )
+
+    monkeypatch.setattr(state, "_insert_work_item_event", fail_completed)
+
+    result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
+    failed_snapshot = state.catalog_snapshot("github-public-repositories")
+
+    assert result.observations_recorded == 0
+    assert result.observation_failures == 1
+    assert failed_snapshot.observations == ()
+    assert failed_snapshot.observation_bindings == ()
+    assert failed_snapshot.retry_count == 1
+    assert tuple(
+        event.event for event in state.list_work_item_events(repository_id=7, stage="enrichment")
+    ) == ("queued", "retry")
+
+    monkeypatch.setattr(state, "_insert_work_item_event", original_insert)
+    committed_page = state.list_discovery_pages(result.crawl_run_id)[0]
+    state.complete_discovery_observation(
+        committed_page.id,
+        page.raw_sha256,
+        observation,
+        occurred_at=NOW,
+    )
+    recovered = state.catalog_snapshot("github-public-repositories")
+    assert recovered.observations == (observation,)
+    assert len(recovered.observation_bindings) == 1
+    assert (recovered.pending_count, recovered.retry_count) == (0, 0)
+
+
 def test_observation_recording_failure_isolated_after_cursor_commit(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -305,7 +420,7 @@ def test_observation_recording_failure_isolated_after_cursor_commit(
     def fail_recording(*_: object) -> None:
         raise RuntimeError("sensitive failure details")
 
-    monkeypatch.setattr(state, "record_discovery_observation", fail_recording)
+    monkeypatch.setattr(state, "complete_discovery_observation", fail_recording)
 
     result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
 

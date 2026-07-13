@@ -154,7 +154,17 @@ class DiscoveryScanner:
         failed = 0
         for observation in page.observations:
             try:
-                self._state.record_discovery_observation(record.id, page.raw_sha256, observation)
+                if observation.detail_metadata_complete:
+                    self._state.complete_discovery_observation(
+                        record.id,
+                        page.raw_sha256,
+                        observation,
+                        occurred_at=occurred_at,
+                    )
+                else:
+                    self._state.record_discovery_observation(
+                        record.id, page.raw_sha256, observation
+                    )
             except Exception as error:
                 failed += 1
                 self._try_append_observation_event(
@@ -166,10 +176,6 @@ class DiscoveryScanner:
                 )
             else:
                 recorded += 1
-                if not self._try_append_observation_event(
-                    observation.identity.repository_id, page, "completed", occurred_at
-                ):
-                    failed += 1
         return recorded, failed
 
     def _try_append_observation_event(
