@@ -5,6 +5,18 @@ The versioned source of truth is
 Stable node IDs are machine contracts; labels, aliases, examples, and rules may
 be clarified only with an explicit taxonomy version change when meaning shifts.
 
+## Selection is not classification
+
+Ranked discovery first chooses snapshot membership by popularity and maintenance:
+minimum stars, a recent `pushed_at`, public visibility, non-archived state, and
+non-fork status. These filters do not create capability labels and do not imply
+that a repository is reusable.
+
+Classification runs only after those source facts are validated. It answers a
+different question: which capabilities does each selected repository appear to
+provide, with what evidence and reuse status. Changing `min_stars` or the
+maintenance window changes catalog membership, not taxonomy semantics.
+
 ## Axes
 
 The MVP defines independent axes for artifact type, capability, domain,
@@ -28,10 +40,11 @@ The rules classifier considers only validated observation facts:
 
 Each assertion records the capability ID, taxonomy and classifier versions,
 confidence, matched evidence, source observation hash, license signal, and reuse
-status. Output order is deterministic by numeric repository ID and stable
-capability ID. Classification failure is isolated to one repository and is
-reported in `classification_failure_repository_ids`; it does not discard other
-entries.
+status. Capability assertions within one entry use stable capability-ID order.
+The scheduled catalog orders repository entries by stars descending and numeric
+repository ID for ties; the optional broad-feed catalog retains numeric-ID order.
+Classification failure is isolated to one repository and is reported in
+`classification_failure_repository_ids`; it does not discard other entries.
 
 Language is supporting evidence only. A Python repository is not classified as
 a CLI merely because it is written in Python. At least a configured topic or
@@ -53,7 +66,10 @@ not legal advice.
 3. add deterministic rule fixtures for positive, negative, lifecycle, and
    license cases;
 4. increment the taxonomy version when semantics change;
-5. run unit tests, build a catalog, and run `ghmod validate` before publishing.
+5. run unit tests, then rebuild and run `ghmod validate-output` on a ranked
+   `refresh` workspace before publishing;
+6. if the optional broad-feed path is affected, also run its `build` and
+   `ghmod validate` lifecycle.
 
 Do not classify from repository code execution, generated summaries without
 provenance, mutable global state, or unvalidated API fields. Future semantic

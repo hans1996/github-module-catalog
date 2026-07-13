@@ -1,62 +1,72 @@
 # GitHub Module Catalog
 
-Turn public GitHub repositories into a traceable catalog of reusable software
-capabilities.
+把熱門、持續維護的 GitHub repository 整理成可搜尋、可組合的 capability
+catalog。目標是在開發新專案前先找到已存在的模組，避免重複造輪子，再把合適的
+library、CLI、service、plugin 或 template 組合成更完整的系統。
 
-GitHub Module Catalog is designed to answer questions such as:
+<!-- catalog-index:begin -->
 
-- Does an existing project already provide this capability?
-- Which repositories expose reusable libraries, CLIs, services, plugins, or
-  templates for it?
-- Is the component active, licensed, and compatible with the intended use?
-- Which smaller modules could be combined into a larger system?
+## Ranked catalog index
 
-The long-term goal is broad discovery of public GitHub repositories. The
-catalog advances incrementally: it records an ordered discovery cursor,
-preserves immutable source observations, and publishes measurable coverage
-instead of claiming that a partial search is "all of GitHub."
+The first validated ranked snapshot has not been published yet. After a successful
+refresh, this managed section links directly to the tracked catalog, JSON, YAML, and
+capability pages. It is not an exhaustive mirror of GitHub.
 
-## 中文願景
+- Default discovery: `stars:>=100`, pushed within `365` days, public,
+  non-archived, non-fork repositories.
+- Ranked window: at most the top `1,000` GitHub Search results, ordered by stars.
+- Machine index: [`catalog/catalog.json`](catalog/catalog.json) after first publication.
 
-這個專案會逐步整理 GitHub 公開 repositories，將 repository 視為模組的來源容器，
-再把其中可重用的功能整理成有分類、證據、版本與授權狀態的 capability catalog。
-未來建立新專案時，可以先搜尋既有能力，避免重複造輪子，並安全地組合成更大的系統。
+<!-- catalog-index:end -->
 
-## Core principles
+## Discovery 根據什麼？
 
-1. **Repository is not module.** A repository can provide many capabilities;
-   a capability can have implementations in many repositories.
-2. **Complete discovery has a cursor.** Public repository discovery uses the
-   ordered GitHub repository feed; repository search only prioritizes deeper
-   analysis.
-3. **Every conclusion has evidence.** Classification keeps source facts,
-   analyzer version, taxonomy version, confidence, and evidence references.
-4. **Public does not mean reusable.** Unknown or incompatible licenses remain
-   discoverable but are never presented as safe to integrate.
-5. **Untrusted projects are data.** The crawler never executes repository
-   scripts, workflows, builds, or instructions.
-6. **Generated datasets do not live in Git.** The repository stores code,
-   schemas, taxonomy, fixtures, and small samples; large catalogs are published
-   as versioned artifacts.
+排程掃描不是索引所有 GitHub 專案。預設 query 是：
 
-## Implemented MVP
+```text
+stars:>=100 pushed:>=<run-start-minus-365-days> archived:false is:public
+```
 
-The current MVP provides:
+GitHub Search 以 stars 由高到低回傳結果；系統再逐筆確認：
 
-- resumable discovery through `GET /repositories?since=<repository-id>`;
-- crash-safe raw-page storage, SQLite cursors, and repository identities keyed
-  by GitHub numeric repository ID;
-- inventory-derived observations and deterministic, multi-axis capability
-  classification from validated facts;
-- conservative license and lifecycle gates plus evidence and version provenance
-  on every capability assertion;
-- JSON, YAML, and Markdown exports with byte-stable ordering;
-- `init`, `discover`, `status`, `classify`, `build`, and `validate` CLI commands;
-- unit, integration, and CLI end-to-end tests with at least 80% coverage;
-- CI and bounded scheduled discovery through GitHub Actions.
+- star 數至少 100；
+- `pushed_at` 不早於本次執行開始時間往前 365 天的 UTC cutoff；
+- repository 是 public、未 archived、不是 fork；
+- 最終順序為 stars descending，同星數再依 GitHub numeric repository ID。
 
-See [the approved architecture](docs/plans/2026-07-13-github-module-catalog-design.md)
-for the complete data flow and safety boundaries.
+`min_stars`、`active_within_days`、`max_pages` 都可由 workflow dispatch
+調整。GitHub Search 對單一 query 最多只提供 1,000 筆，因此 catalog 會明確標示為
+「top ranked window」，不會宣稱涵蓋全部符合條件的 repository。限制與 qualifier
+語意以 GitHub 官方的 [Search REST API](https://docs.github.com/en/rest/search/search)
+和 [repository search qualifiers](https://docs.github.com/en/search-github/searching-on-github/searching-for-repositories)
+為準。
+
+## 專案如何分類？
+
+Discovery 決定「哪些 repository 值得進入這次索引」；classification 才決定
+「每個 repository 提供哪些 capability」。目前 deterministic classifier 只使用經過
+驗證的 metadata：topics、description tokens、primary language、archived/disabled
+狀態及 SPDX license。每個 assertion 都保留 taxonomy 版本、classifier 版本、信心值、
+證據、來源 observation hash 與 reuse status。
+
+Repository 不等於單一 module：一個 repository 可以提供多個 capability；同一個
+capability 也可以有多個 repository 實作。Public 也不等於可直接重用；license 或
+lifecycle 不明時只標為 `discovery_only`，不會標為 `safe_to_integrate`。
+
+## Tracked index
+
+成功的排程會把驗證後結果直接 commit 到 repository，而不是只留在 GitHub Actions
+頁面底部的 Artifacts：
+
+- `catalog/README.md` — 完整人類可讀排名；
+- `catalog/catalog.json` — 主要 machine-readable index；
+- `catalog/catalog.yaml` — YAML index；
+- `catalog/manifest.json` — snapshot metadata 與每個檔案的 SHA-256；
+- `catalog/modules/*.md` — capability 對應的 repository 清單。
+
+Actions artifact 只在 read-only discovery job 與 write-capable publish job 之間暫時
+傳遞已驗證輸出，保留一天。Raw GitHub response、SQLite state 與 token 不會提交到 Git，
+也不會交給 write-capable job。
 
 ## Quick start
 
@@ -64,38 +74,37 @@ for the complete data flow and safety boundaries.
 uv sync --all-groups --locked
 uv run ghmod init --workspace .local/catalog
 export GITHUB_TOKEN="$(gh auth token)"
-uv run ghmod discover --workspace .local/catalog --max-pages 10
-uv run ghmod status --workspace .local/catalog
-uv run ghmod classify --workspace .local/catalog
-uv run ghmod build --workspace .local/catalog
-uv run ghmod validate --workspace .local/catalog
+uv run ghmod refresh \
+  --workspace .local/catalog \
+  --min-stars 100 \
+  --active-within-days 365 \
+  --max-pages 10
+uv run ghmod validate-output --workspace .local/catalog
+python3 scripts/publish_catalog.py \
+  --source .local/catalog/catalog-output \
+  --repository .
 ```
 
-The token is read only by `discover`; do not print it or commit it to a file.
-See the [operations guide](docs/operations.md) for cursor recovery, API budgets,
-scheduled runs, security boundaries, and GitHub App migration. See the
-[taxonomy guide](docs/taxonomy.md) for classification and licensing semantics.
+Token 只透過 request header 傳給 GitHub，不會寫入 catalog、raw store、log 或 command
+summary。不要輸出 token，也不要把它放進 URL 或 committed `.env`。
 
-## Status
+## Architecture and safety
 
-The MVP implements bounded public-repository discovery, durable cursors and raw
-objects, initial observations from complete inventory metadata, deterministic
-classification, JSON/YAML/Markdown publication, integrity validation, and a
-scheduled GitHub Actions workflow. Coverage is incremental and explicitly
-measured; the current catalog must not be described as all GitHub projects.
-Identity-only repositories remain queued for deferred enrichment.
+- Ranked discovery 每次都從 Search page 1 建立完整 snapshot，不跨次續抓動態排名頁。
+- 每頁 response 有大小限制、schema validation、`incomplete_results` rejection 與
+  SHA-256 raw evidence；snapshot 不完整就保留上一次 published catalog。
+- Crawler 不 clone repository，也不執行第三方 code、workflow、build 或 instruction。
+- Publisher 會重驗 manifest、digest、精確檔案集合、selection、rank、coverage、
+  symlink/path traversal 與 README marker，才更新 tracked index。
+- Discovery job 只有 `contents: read`；publish job 只有 `contents: write`，只 stage
+  `README.md` 與 `catalog/`，並使用一般 non-force push。
 
-The current implementation does not fetch full repository details in a
-separate enrichment worker, automatically retry or promote work to failed or
-dead-letter states, or process deletion, private-visibility, and DMCA
-tombstones. Sparse inventory observations may still contribute validated
-classification evidence, but without explicit license and lifecycle facts they
-remain `discovery_only`. `status` reports `cursor_end`, `discovered`,
-`observations`, `pending`, `retry`, and `dead_letter`; it does not expose
-completed or failed counters.
+原本基於 `GET /repositories?since=<id>` 的 broad repository-feed cursor 仍保留為可選的
+exhaustive-feed primitive，但不再是首頁排程 catalog 的 discovery policy。詳細操作請看
+[operations guide](docs/operations.md)，分類與授權語意請看
+[taxonomy guide](docs/taxonomy.md)。
 
 ## License
 
-The catalog software is available under the MIT License. Metadata, source
-code, names, and other material obtained from third-party repositories retain
-their original rights and licenses.
+Catalog software 採 MIT License。第三方 repository 的 metadata、名稱、程式碼及其他
+內容仍保留原權利與授權條款。

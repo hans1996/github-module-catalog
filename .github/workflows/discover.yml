@@ -1,38 +1,51 @@
-name: Bounded catalog discovery
+name: Ranked catalog discovery and publication
 
 on:
   schedule:
     - cron: "23 */6 * * *"
   workflow_dispatch:
     inputs:
+      min_stars:
+        description: Minimum GitHub stars for catalog eligibility
+        required: true
+        default: 100
+        type: number
+      active_within_days:
+        description: Require a repository push within this many days
+        required: true
+        default: 365
+        type: number
       max_pages:
-        description: Maximum public-repository pages to fetch
+        description: Maximum ranked GitHub Search pages to fetch
         required: true
         default: 10
         type: number
 
-permissions:
-  contents: read
+permissions: {}
 
 concurrency:
-  group: github-module-catalog-discovery
+  group: github-module-catalog-ranked-publication
   cancel-in-progress: false
 
 jobs:
   discover:
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
+      ACTIVE_WITHIN_DAYS: ${{ inputs.active_within_days || 365 }}
       MAX_PAGES: ${{ inputs.max_pages || 10 }}
+      MIN_STARS: ${{ inputs.min_stars || 100 }}
       WORKSPACE: catalog-workspace
     steps:
-      - name: Check out repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Check out repository without write credentials
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
 
       - name: Install uv
-        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
+        uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
           enable-cache: true
           version: "0.10.2"
@@ -43,48 +56,66 @@ jobs:
       - name: Install locked dependencies
         run: uv sync --all-groups --locked
 
-      - name: Restore durable discovery checkpoint
-        id: restore-state
-        uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-        with:
-          path: catalog-workspace/data
-          key: >-
-            ghmod-state-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            ghmod-state-${{ runner.os }}-
-
-      - name: Initialize workspace
+      - name: Initialize isolated ranked workspace
         run: uv run ghmod init --workspace "$WORKSPACE"
 
-      - name: Run bounded discovery
+      - name: Discover popular and recently maintained repositories
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: uv run ghmod discover --workspace "$WORKSPACE" --max-pages "$MAX_PAGES"
+        run: >-
+          uv run ghmod refresh
+          --workspace "$WORKSPACE"
+          --min-stars "$MIN_STARS"
+          --active-within-days "$ACTIVE_WITHIN_DAYS"
+          --max-pages "$MAX_PAGES"
 
-      - name: Classify current observations
-        run: uv run ghmod classify --workspace "$WORKSPACE"
+      - name: Validate output against raw Search evidence
+        run: uv run ghmod validate-output --workspace "$WORKSPACE"
 
-      - name: Build complete catalog publication
-        run: uv run ghmod build --workspace "$WORKSPACE"
-
-      - name: Validate publication
-        run: uv run ghmod validate --workspace "$WORKSPACE"
-
-      - name: Save durable discovery checkpoint
-        if: success()
-        uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-        with:
-          path: catalog-workspace/data
-          key: >-
-            ghmod-state-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
-
-      - name: Upload catalog and state evidence
-        if: success()
+      - name: Upload only validated catalog output
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: catalog-discovery-${{ github.run_id }}-${{ github.run_attempt }}
+          name: ranked-catalog-${{ github.run_id }}-${{ github.run_attempt }}
           if-no-files-found: error
-          retention-days: 3
-          path: |
-            catalog-workspace/catalog-output
-            catalog-workspace/data
+          retention-days: 1
+          path: catalog-workspace/catalog-output
+
+  publish:
+    if: >-
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    needs: discover
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out the exact discovery revision
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Download validated catalog output
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: ranked-catalog-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/ranked-catalog-output
+
+      - name: Revalidate and promote tracked catalog
+        run: >-
+          python3 scripts/publish_catalog.py
+          --source "${{ runner.temp }}/ranked-catalog-output"
+          --repository .
+
+      - name: Commit and non-force push the tracked index
+        shell: bash
+        run: |
+          git add -- README.md catalog/
+          if git diff --cached --quiet; then
+            echo "Ranked catalog is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh ranked catalog"
+          git push origin "HEAD:${{ github.event.repository.default_branch }}"

@@ -1,145 +1,134 @@
 # Operations guide
 
-GitHub Module Catalog advances through bounded, resumable discovery runs. It
-does not claim to have indexed all of GitHub until measured cursor coverage
-supports that claim.
+首頁 catalog 是「熱門且近期仍維護的 ranked snapshot」，不是 GitHub 全量鏡像。每次
+執行會重新從 Search page 1 建立一份完整、可驗證的 top-ranked window；任何步驟失敗
+都不會取代上一版 tracked catalog。
+
+## Ranked discovery policy
+
+預設 policy：
+
+```text
+stars:>=100 pushed:>=<run-start-minus-365-days> archived:false is:public
+```
+
+Request 使用 `sort=stars`、`order=desc`、`per_page=100`，最多 10 pages。UTC cutoff
+在 command 開始時固定，避免長時間執行期間漂移。每筆 response item 還會在本地重驗
+star 數、`pushed_at`、public visibility、archived 與 fork 狀態，再依
+`(-stargazers_count, repository_id)` 排出 deterministic rank。
+
+GitHub Search 對一個 query 最多只提供 1,000 results，因此 `api_total_count` 可能遠大於
+實際 catalog size。首頁與 manifest 會同時紀錄 API matches、ranked result limit、實際
+entries、pages、query 與 raw page hashes；它們只表示這次 top window，不代表所有 GitHub
+repository。參考 GitHub 官方 [Search REST API](https://docs.github.com/en/rest/search/search)。
 
 ## Credentials
 
-Use a short-lived or revocable GitHub credential with only the access needed to
-read public repository metadata. For a local session, obtain the credential
-from the authenticated GitHub CLI without displaying it:
+本機使用已認證的 GitHub CLI 取得可撤銷 credential，不要顯示 token：
 
 ```bash
 export GITHUB_TOKEN="$(gh auth token)"
 ```
 
-Do not use `echo`, shell tracing, command-line token flags, committed `.env`
-files, or URLs containing credentials. `GITHUB_TOKEN` is read only by the
-`discover` command and is passed directly to the GitHub adapter. The supplied
-token is never written to SQLite, raw objects, catalog output, logs, or command
-summaries.
+`refresh` 只把 token 放在 Authorization header。Token 不會寫入 raw objects、catalog、
+manifest、SQLite、logs 或 command summaries。不要使用 `echo`、shell tracing、URL token、
+committed `.env`，也不要把 credential 貼到聊天中。
 
-Raw snapshots and caches preserve exact untrusted public metadata. A public
-description can itself contain accidentally published credential-shaped text,
-so raw data is quarantined source evidence: never render it, grant the narrowest
-artifact access, and use the shortest retention compatible with recovery.
-Catalog observation storage rejects credential-shaped patterns. When such text
-appears in otherwise public inventory metadata, the exact page remains in raw
-quarantine, the derived observation is not published, and normal processing
-records a retry event without exposing the rejected text.
+GitHub Actions 使用每個 job 自動建立、repo-scoped 的 `GITHUB_TOKEN`。Discovery job 只有
+`contents: read`；publish job 只有 `contents: write`。兩個 job 不共享 credential。
 
-## Local runbook
+## Local ranked runbook
 
 ```bash
 uv sync --all-groups --locked
 uv run ghmod init --workspace .local/catalog
-uv run ghmod discover --workspace .local/catalog --max-pages 10
-uv run ghmod status --workspace .local/catalog
-uv run ghmod classify --workspace .local/catalog
-uv run ghmod build --workspace .local/catalog
-uv run ghmod validate --workspace .local/catalog
+uv run ghmod refresh \
+  --workspace .local/catalog \
+  --min-stars 100 \
+  --active-within-days 365 \
+  --max-pages 10
+uv run ghmod validate-output --workspace .local/catalog
+python3 scripts/publish_catalog.py \
+  --source .local/catalog/catalog-output \
+  --repository .
 ```
 
-`build` publishes JSON, YAML, and Markdown by default. Repeat `--format` to
-publish an exact subset, for example `--format json --format markdown`.
-`manifest.json` is always emitted and lists hashes for exactly the selected
-artifacts. Every build requires at least one machine-readable catalog (`json`
-or `yaml`), and Markdown may accompany either. When JSON and YAML are both
-selected, validation requires them to be equivalent.
+`refresh` 會先在 candidate directory 建立 JSON、YAML、Markdown、module pages 與
+`manifest.json`，再以 raw Search evidence 驗證。只有完整 snapshot 才會 atomically
+取代 `<workspace>/catalog-output`。`validate-output` 可單獨重做 raw-backed validation。
 
-`--max-pages` is required, must be between 1 and 1,000, and is the hard request
-budget for one invocation. Start with a small value. GitHub rate-limit headers
-are captured as source facts; `403` and `429` responses produce a typed retry
-decision rather than sleeping inside the adapter.
+Publisher 是第二個 trust boundary。它不需要第三方 dependency，會重驗：
 
-## Cursor and recovery semantics
+1. source tree 只有 manifest 宣告的 regular files，沒有 symlink、traversal 或額外檔案；
+2. 每個 artifact SHA-256 與 manifest 一致；
+3. JSON metadata 與 manifest 一致；
+4. selection、target count、pages、query、raw hashes、rank、stars、push cutoff、public、
+   archived、fork 與 repository ID order 一致；
+5. root README 只有一對合法 managed markers。
 
-The CLI binds discovery, status, build, and validation to the trusted source ID
-`github`. Catalog output naming any other source is rejected before a
-source-scoped state snapshot can be accepted.
+成功後 `catalog/` 是完整 replacement，舊 module pages 不會殘留；README markers 外的
+manual bytes 保持不變。
 
-Discovery uses `GET /repositories?since=<repository-id>` and follows only the
-allowlisted `rel="next"` URL returned by GitHub. The numeric cursor moves only
-after all of these steps succeed:
+## Scheduled publication
 
-1. the exact response bytes pass boundary validation;
-2. the bytes are durably stored by SHA-256;
-3. page metadata and every repository identity commit in one SQLite
-   transaction.
+`.github/workflows/discover.yml` 每六小時執行，也支援 manual dispatch 的三個 input：
 
-Metadata-to-observation processing happens after that durable discovery commit.
-A per-repository observation failure records a safe `retry` event and does not
-roll back or stall the cursor. Re-running discovery resumes from the latest
-committed source-scoped cursor. If a process stops before the page transaction
-commits, the same page is fetched again and numeric identities remain
-idempotent.
+- `min_stars`，預設 100；
+- `active_within_days`，預設 365；
+- `max_pages`，預設 10、上限 10。
 
-The scheduled workflow restores and saves `catalog-workspace/data` with a
-run-specific cache key and a stable restore prefix. It saves a new checkpoint
-only after discovery, build, and validation succeed. The output and SQLite
-state plus provenance-required raw objects are uploaded only after validation
-as a three-day workflow artifact. The uploaded `catalog-workspace/data` tree
-includes `data/raw`, so the artifact is verifiable against the publication's
-raw-page hashes but also exposes exact untrusted public metadata to anyone who
-is granted artifact access. The recovery cache carries the same quarantine
-implications and is separate from the artifact's three-day retention setting.
-Treat both as sensitive untrusted metadata even though catalog observations and
-output passed secret-pattern rejection. Generated datasets are never committed
-to Git.
+資料流分成兩個 job：
 
-Every third-party `uses:` reference is pinned to a reviewed full commit SHA.
-The workflow uses the Node 24-compatible action generations selected for the
-MVP (`actions/checkout` v6, `actions/cache` v5, and
-`actions/upload-artifact` v7), including full-SHA pinning for `setup-uv`.
+1. `discover` 以 read-only checkout 執行 `refresh` 與 `validate-output`；
+2. 它只上傳 `catalog-output`，作為保留一天的 job-transfer artifact；
+3. `publish` checkout 同一個 `github.sha`，下載指定 artifact，重新執行 safe publisher；
+4. 它只 stage `README.md` 與 `catalog/`，建立一般 commit，再 non-force push 到 default
+   branch。
 
-For local corruption recovery, preserve the failed workspace for diagnosis,
-then restore the last validated `data` artifact or initialize a new workspace.
-Never hand-edit the cursor. `ghmod validate` returns non-zero when required
-files, JSON/YAML equivalence, schema checks, artifact paths, or SHA-256 hashes
-do not match.
+Raw Search bytes、workspace state 與 SQLite 不會上傳給 write-capable job，也不會 commit
+到 Git。若 default branch 在執行期間前進，non-force push 會安全失敗，不會覆蓋人類
+變更。若內容沒有差異，job 不建立空 commit。
 
-## Coverage and deferred enrichment
+Third-party Actions 全部 pin 到完整 immutable commit SHA。目前 workflow 使用
+`actions/checkout` v7、`astral-sh/setup-uv` v8.3.2、`actions/upload-artifact` v7 及
+`actions/download-artifact` v8；uv binary 另外固定為 `0.10.2`。
 
-The public repository feed is broad but each run is intentionally bounded.
-`status`, `catalog.json`, and `manifest.json` report the cursor, discovered
-identity count, validated observation count, and pending/retry/dead-letter
-work. These figures are coverage evidence, not proof that the catalog contains
-every public repository or every reusable module.
+## Failure and recovery
 
-Inventory records with a complete metadata set become initial validated
-observations immediately. Identity-only and sparse records remain discoverable
-and enrichment-pending; the crawler does not invent missing description,
-language, topic, lifecycle, timestamp, or license facts. Sparse observations
-may contribute classification evidence from facts that are present, but without
-explicit license and lifecycle detail their reuse status remains
-`discovery_only`.
+- Search 回傳 `incomplete_results=true`、total count 漂移、short page、conflicting duplicate
+  或無法填滿 unique target window：整次 refresh 失敗。
+- Candidate validation 或 publisher validation 失敗：舊 catalog 不變。
+- README 安裝使用 atomic `os.replace`，正式 README path 不會短暫消失。
+- Catalog directory 在 portable standard library 中無法與非空舊目錄做單一原子交換；
+  publisher 會先建立/fsync recovery backup，再安裝新版。
+- Rollback 的 README、catalog、fsync 彼此獨立嘗試。若 recovery 本身也失敗，唯一舊版
+  backup 會以 `.README.md.backup-*` 或 `.catalog-backup-*` 保留，絕不由 finally 刪除。
+- Publisher 非零退出時 workflow 不會 commit 或 push，因此 GitHub 遠端仍維持上一個
+  完整 commit。
 
-There is no repository-detail enrichment worker in the MVP. The adapter returns
-typed retry decisions, but no scheduler consumes retry items or automatically
-promotes work through failed and dead-letter states. `status` exposes
-`cursor_end`, `discovered`, `observations`, `pending`, `retry`, and
-`dead_letter`; it does not expose completed or failed counters. Deletion,
-private-visibility transition, and DMCA tombstone reconciliation are deferred.
+保留失敗 workspace 供診斷；不要手動刪 recovery backup，直到確認 tracked README 與
+catalog 都已恢復。重新執行前先處理或移走殘留 recovery path。
 
-## License and execution safety
+## Classification, license, and execution safety
 
-Public visibility is not reuse permission. A missing, unknown, archived, or
-disabled license/lifecycle signal remains `discovery_only`. Only an explicitly
-recognized permissive SPDX signal can become `safe_to_integrate`; this remains
-a technical policy signal, not legal advice.
+Selection 只決定 snapshot membership，不代表 repository 可安全整合。Classifier 根據
+validated metadata 產生 capability assertions；未知、缺失、non-permissive license 或
+不明 lifecycle 仍為 `discovery_only`。`safe_to_integrate` 只是保守的技術 policy signal，
+不是法律意見。
 
-Repository content is untrusted data. Discovery never clones a repository or
-executes its code, workflows, package scripts, build files, or embedded
-instructions. Workspace and output symlinks are rejected, GitHub API hosts are
-allowlisted, response bodies are bounded, and rendered Markdown excludes
-untrusted descriptions.
+Crawler 永遠不 clone 或執行第三方 repository 的 code、workflow、package scripts、build
+files 或 instruction。Untrusted descriptions 不會出現在 root homepage managed section。
+
+## Optional broad-feed commands
+
+原 MVP 的 `discover`、`status`、`classify`、`build`、`validate` 與
+`GET /repositories?since=<repository-id>` cursor 仍保留，供 broad inventory 或研究用途。
+它有 durable SQLite/raw-page recovery semantics，但不再驅動 scheduled homepage catalog，
+也不能用來解釋目前 ranked index 的 selection basis。
 
 ## GitHub App migration
 
-The initial workflow uses the repository-scoped `secrets.GITHUB_TOKEN`. At
-larger scale, replace the CLI source factory's token input with a GitHub App
-installation-token provider. Keep token creation at the command boundary,
-request read-only metadata permissions, rotate short-lived installation tokens,
-and preserve the existing redaction, host allowlist, page budget, cursor, and
-durability contracts. Do not put App private keys in the catalog workspace.
+規模擴大後可把 token factory 換成 GitHub App installation-token provider。維持 read-only
+metadata permission、短效 token、header-only credential、host allowlist、response byte
+limit、固定 page budget、raw evidence validation 與 job privilege separation；不要把 App
+private key 放進 catalog workspace。
