@@ -7,6 +7,7 @@ import json
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import cast
 
 import pytest
 import yaml  # type: ignore[import-untyped]
@@ -119,6 +120,28 @@ def _initialize_and_discover(app: Typer, workspace: Path) -> None:
         env={"GITHUB_TOKEN": _credential_marker()},
     )
     assert discovered.exit_code == 0, discovered.output
+
+
+def _write_catalog_documents(output: Path, document: dict[str, object]) -> None:
+    (output / "catalog.json").write_text(
+        json.dumps(document, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
+    )
+    (output / "catalog.yaml").write_text(
+        yaml.safe_dump(document, allow_unicode=True, default_flow_style=False, sort_keys=True)
+    )
+
+
+def _refresh_manifest_hashes(output: Path, **updates: object) -> None:
+    manifest_path = output / "manifest.json"
+    manifest = cast(dict[str, object], json.loads(manifest_path.read_text()))
+    manifest.update(updates)
+    artifacts = cast(dict[str, str], manifest["artifacts"])
+    manifest["artifacts"] = {
+        name: hashlib.sha256((output / name).read_bytes()).hexdigest() for name in artifacts
+    }
+    manifest_path.write_text(
+        json.dumps(manifest, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
+    )
 
 
 def test_init_and_live_discover_use_injected_source_without_leaking_token(tmp_path: Path) -> None:
@@ -304,6 +327,34 @@ def test_validate_rejects_manifest_hash_or_schema_corruption(tmp_path: Path) -> 
     assert "valid" not in result.output.casefold()
 
 
+@pytest.mark.parametrize("tamper", ["counts", "reuse_status"])
+def test_validate_recomputes_catalog_semantics_after_hash_consistent_tampering(
+    tmp_path: Path, tamper: str
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
+    output = workspace / "catalog-output"
+    catalog = cast(dict[str, object], json.loads((output / "catalog.json").read_text()))
+
+    if tamper == "counts":
+        catalog["entry_count"] = 99
+        catalog["capability_count"] = 99
+        manifest_updates: dict[str, object] = {"entry_count": 99, "capability_count": 99}
+    else:
+        entries = cast(list[dict[str, object]], catalog["entries"])
+        repository = cast(dict[str, object], entries[0]["repository"])
+        repository["reuse_status"] = "safe_to_integrate"
+        manifest_updates = {}
+    _write_catalog_documents(output, catalog)
+    _refresh_manifest_hashes(output, **manifest_updates)
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+
+
 def test_init_rejects_a_workspace_with_symlinked_state_storage(tmp_path: Path) -> None:
     app, _ = _test_app()
     workspace = tmp_path / "workspace"
@@ -335,6 +386,48 @@ def test_validate_rejects_incomplete_manifest(tmp_path: Path, missing_key: str) 
     result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
 
     assert result.exit_code != 0
+
+
+@pytest.mark.parametrize(
+    ("formats", "expected_files", "validation_succeeds"),
+    [
+        (["json"], {"catalog.json", "manifest.json"}, True),
+        (["yaml"], {"catalog.yaml", "manifest.json"}, True),
+        (
+            ["markdown", "json"],
+            {"README.md", "catalog.json", "manifest.json", "modules/cli.md"},
+            True,
+        ),
+        (["markdown"], {"README.md", "manifest.json", "modules/cli.md"}, False),
+    ],
+)
+def test_build_publishes_exact_selected_format_subset(
+    tmp_path: Path,
+    formats: list[str],
+    expected_files: set[str],
+    validation_succeeds: bool,
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    arguments = ["build", "--workspace", str(workspace)]
+    for output_format in formats:
+        arguments.extend(("--format", output_format))
+
+    built = RUNNER.invoke(app, arguments)
+
+    assert built.exit_code == 0
+    output = workspace / "catalog-output"
+    actual_files = {
+        path.relative_to(output).as_posix() for path in output.rglob("*") if path.is_file()
+    }
+    assert actual_files == expected_files
+    summary = json.loads(built.stdout)
+    assert summary["formats"] == sorted(formats)
+    manifest = json.loads((output / "manifest.json").read_text())
+    assert set(manifest["artifacts"]) == expected_files - {"manifest.json"}
+    validated = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+    assert (validated.exit_code == 0) is validation_succeeds
 
 
 @pytest.mark.parametrize("formats", [["xml"], ["json", "json"]])

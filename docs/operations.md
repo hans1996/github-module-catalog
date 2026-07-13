@@ -31,6 +31,12 @@ uv run ghmod build --workspace .local/catalog
 uv run ghmod validate --workspace .local/catalog
 ```
 
+`build` publishes JSON, YAML, and Markdown by default. Repeat `--format` to
+publish an exact subset, for example `--format json --format markdown`.
+`manifest.json` is always emitted and lists hashes for exactly the selected
+artifacts. Validation requires at least one machine-readable catalog (`json` or
+`yaml`); when both are selected, they must be equivalent.
+
 `--max-pages` is required, must be between 1 and 1,000, and is the hard request
 budget for one invocation. Start with a small value. GitHub rate-limit headers
 are captured as source facts; `403` and `429` responses produce a typed retry

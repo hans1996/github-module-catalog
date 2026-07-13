@@ -19,7 +19,7 @@ import yaml  # type: ignore[import-untyped]
 from pydantic import ValidationError
 
 from github_module_catalog.catalog import Classifier, build_catalog_from_state
-from github_module_catalog.exporters import UnsafeOutputPathError, publish_catalog
+from github_module_catalog.exporters import CatalogFormat, UnsafeOutputPathError, publish_catalog
 from github_module_catalog.github import GitHubRepositorySource
 from github_module_catalog.models import CatalogManifest
 from github_module_catalog.scanner import DiscoveryScanner, ScanStatus
@@ -30,9 +30,7 @@ from github_module_catalog.taxonomy import classify_repository, load_taxonomy
 
 _SOURCE_NAME = "github-public-repositories"
 _MAX_PAGES = 1_000
-_FORMATS = frozenset({"json", "yaml", "markdown"})
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
-_REQUIRED_ARTIFACTS = frozenset({"README.md", "catalog.json", "catalog.yaml"})
 
 WorkspaceOption = Annotated[Path, typer.Option("--workspace", help="Local catalog workspace.")]
 
@@ -241,11 +239,14 @@ def _classify(path: Path, *, dependencies: CliDependencies) -> Mapping[str, obje
     }
 
 
-def _validated_formats(formats: list[str] | None) -> tuple[str, ...]:
-    selected = tuple(formats or sorted(_FORMATS))
-    if len(selected) != len(set(selected)) or any(item not in _FORMATS for item in selected):
+def _validated_formats(formats: list[str] | None) -> frozenset[CatalogFormat]:
+    requested = tuple(formats or sorted(item.value for item in CatalogFormat))
+    if len(requested) != len(set(requested)):
         raise CliOperationError("formats must be unique: json, yaml, markdown")
-    return selected
+    try:
+        return frozenset(CatalogFormat(item) for item in requested)
+    except ValueError:
+        raise CliOperationError("formats must be unique: json, yaml, markdown") from None
 
 
 def _build(
@@ -255,11 +256,11 @@ def _build(
     with _stores(path) as (workspace, _raw_store, state):
         manifest = _manifest(state, dependencies)
         output = workspace / "catalog-output"
-        artifacts = publish_catalog(manifest, output)
+        artifacts = publish_catalog(manifest, output, formats=selected)
     return {
         "artifacts": len(artifacts),
         "entries": manifest.entry_count,
-        "formats": list(selected),
+        "formats": sorted(item.value for item in selected),
         "output": str(output.resolve()),
     }
 
@@ -274,10 +275,12 @@ def _read_json_object(path: Path) -> dict[str, object]:
     return cast(dict[str, object], document)
 
 
-def _catalog_schema_input(document: dict[str, object]) -> dict[str, object]:
+def _catalog_model_input(document: dict[str, object]) -> dict[str, object]:
     schema_input = dict(document)
-    schema_input.pop("entry_count", None)
-    schema_input.pop("capability_count", None)
+    if "entry_count" not in schema_input or "capability_count" not in schema_input:
+        raise CliOperationError("catalog computed counts are missing")
+    schema_input.pop("entry_count")
+    schema_input.pop("capability_count")
     entries = schema_input.get("entries")
     if not isinstance(entries, list):
         raise CliOperationError("catalog entries could not be checked")
@@ -287,27 +290,68 @@ def _catalog_schema_input(document: dict[str, object]) -> dict[str, object]:
             raise CliOperationError("catalog entry could not be checked")
         clean_item = dict(item)
         repository = dict(cast(dict[object, object], item["repository"]))
-        repository.pop("reuse_status", None)
+        if "reuse_status" not in repository:
+            raise CliOperationError("catalog reuse status is missing")
+        repository.pop("reuse_status")
         clean_item["repository"] = repository
         clean_entries.append(clean_item)
     schema_input["entries"] = clean_entries
     return schema_input
 
 
-def _artifact_hashes(output: Path, manifest: dict[str, object], catalog: CatalogManifest) -> int:
+def _documents_match(left: object, right: object) -> bool:
+    return json.dumps(
+        left, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    ) == json.dumps(right, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+
+
+def _validate_catalog_document(document: dict[str, object]) -> CatalogManifest:
+    try:
+        catalog = CatalogManifest.model_validate(_catalog_model_input(document))
+    except ValidationError:
+        raise CliOperationError("catalog schema check failed") from None
+    canonical = catalog.model_dump(mode="json", exclude_none=True)
+    for key, expected in (
+        ("entry_count", catalog.entry_count),
+        ("capability_count", catalog.capability_count),
+    ):
+        observed = document.get(key)
+        if type(observed) is not int or observed != expected:
+            raise CliOperationError("catalog computed counts differ from validated entries")
+    if not _documents_match(canonical, document):
+        raise CliOperationError("catalog computed semantics differ from validated facts")
+    return catalog
+
+
+def _artifact_mapping(manifest: dict[str, object]) -> dict[str, str]:
     artifacts = manifest.get("artifacts")
+    if not isinstance(artifacts, dict):
+        raise CliOperationError("artifact manifest could not be checked")
+    mapping: dict[str, str] = {}
+    for raw_name, raw_digest in artifacts.items():
+        if not isinstance(raw_name, str) or not isinstance(raw_digest, str):
+            raise CliOperationError("artifact manifest could not be checked")
+        mapping[raw_name] = raw_digest
+    return mapping
+
+
+def _expected_artifacts(catalog: CatalogManifest, artifacts: dict[str, str]) -> set[str]:
+    expected = {name for name in ("catalog.json", "catalog.yaml") if name in artifacts}
+    if not expected:
+        raise CliOperationError("validation requires a JSON or YAML catalog")
     module_artifacts = {
         f"modules/{assertion.capability_id}.md"
         for entry in catalog.entries
         for assertion in entry.assertions
     }
-    required_artifacts = _REQUIRED_ARTIFACTS | module_artifacts
-    if not isinstance(artifacts, dict) or not required_artifacts.issubset(artifacts):
-        raise CliOperationError("required catalog artifacts are missing")
+    if "README.md" in artifacts:
+        expected.update({"README.md", *module_artifacts})
+    return expected
+
+
+def _artifact_hashes(output: Path, artifacts: dict[str, str]) -> int:
     checked = 0
     for raw_name, raw_digest in artifacts.items():
-        if not isinstance(raw_name, str) or not isinstance(raw_digest, str):
-            raise CliOperationError("artifact manifest could not be checked")
         relative = Path(raw_name)
         if (
             relative.is_absolute()
@@ -326,29 +370,59 @@ def _artifact_hashes(output: Path, manifest: dict[str, object], catalog: Catalog
         if observed != raw_digest:
             raise CliOperationError("catalog artifact hash differs")
         checked += 1
+    actual_files: set[str] = set()
+    for path in output.rglob("*"):
+        if path.is_symlink():
+            raise CliOperationError("catalog output contains a symbolic link")
+        if path.is_file():
+            actual_files.add(path.relative_to(output).as_posix())
+    if actual_files != set(artifacts) | {"manifest.json"}:
+        raise CliOperationError("catalog artifact list differs from output")
     return checked
 
 
-def _validate_documents(output: Path) -> tuple[CatalogManifest, int]:
-    catalog_json = _read_json_object(output / "catalog.json")
+def _read_yaml_object(path: Path) -> dict[str, object]:
     try:
-        catalog_yaml = yaml.safe_load((output / "catalog.yaml").read_text(encoding="utf-8"))
+        document = yaml.safe_load(path.read_text(encoding="utf-8"))
     except (UnicodeDecodeError, yaml.YAMLError):
         raise CliOperationError("catalog YAML could not be checked") from None
-    if catalog_yaml != catalog_json:
+    if not isinstance(document, dict):
+        raise CliOperationError("catalog YAML must contain an object")
+    return cast(dict[str, object], document)
+
+
+def _machine_catalogs(output: Path, artifacts: dict[str, str]) -> tuple[dict[str, object], ...]:
+    documents: list[dict[str, object]] = []
+    if "catalog.json" in artifacts:
+        documents.append(_read_json_object(output / "catalog.json"))
+    if "catalog.yaml" in artifacts:
+        documents.append(_read_yaml_object(output / "catalog.yaml"))
+    if not documents:
+        raise CliOperationError("validation requires a JSON or YAML catalog")
+    if len(documents) == 2 and not _documents_match(documents[0], documents[1]):
         raise CliOperationError("catalog JSON and YAML differ")
-    try:
-        validated = CatalogManifest.model_validate(_catalog_schema_input(catalog_json))
-    except ValidationError:
-        raise CliOperationError("catalog schema check failed") from None
+    return tuple(documents)
+
+
+def _validate_documents(output: Path) -> tuple[CatalogManifest, int]:
     manifest = _read_json_object(output / "manifest.json")
+    artifacts = _artifact_mapping(manifest)
+    checked = _artifact_hashes(output, artifacts)
+    documents = _machine_catalogs(output, artifacts)
+    validated_documents = tuple(_validate_catalog_document(document) for document in documents)
+    validated = validated_documents[0]
+    if any(item != validated for item in validated_documents[1:]):
+        raise CliOperationError("catalog models differ")
+    catalog_document = documents[0]
     catalog_manifest_fields = {
-        key: value for key, value in catalog_json.items() if key != "entries"
+        key: value for key, value in catalog_document.items() if key != "entries"
     }
     observed_manifest_fields = {key: value for key, value in manifest.items() if key != "artifacts"}
-    if observed_manifest_fields != catalog_manifest_fields:
+    if not _documents_match(observed_manifest_fields, catalog_manifest_fields):
         raise CliOperationError("catalog manifest differs from catalog")
-    return validated, _artifact_hashes(output, manifest, validated)
+    if set(artifacts) != _expected_artifacts(validated, artifacts):
+        raise CliOperationError("catalog artifact selection differs from manifest")
+    return validated, checked
 
 
 def _validate(path: Path) -> Mapping[str, object]:
@@ -358,9 +432,8 @@ def _validate(path: Path) -> Mapping[str, object]:
     output = workspace / "catalog-output"
     if output.is_symlink() or not output.is_dir():
         raise CliOperationError("catalog output is unsafe or missing")
-    for name in ("manifest.json", *_REQUIRED_ARTIFACTS):
-        if not (output / name).is_file():
-            raise CliOperationError("required catalog artifacts are missing")
+    if not (output / "manifest.json").is_file():
+        raise CliOperationError("catalog manifest is missing")
     manifest, checked = _validate_documents(output)
     return {"status": "valid", "artifacts_checked": checked, "entries": manifest.entry_count}
 

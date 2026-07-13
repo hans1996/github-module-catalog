@@ -18,6 +18,7 @@ from github_module_catalog.catalog import (
     build_catalog_from_state,
 )
 from github_module_catalog.exporters import (
+    CatalogFormat,
     UnsafeOutputPathError,
     publish_catalog,
     render_catalog_json,
@@ -269,6 +270,25 @@ def test_repeated_publication_is_byte_identical_and_build_time_is_opt_in(
     assert "generated_at" not in json.loads(first[Path("manifest.json")])
     timestamped = _manifest(generated_at=NOW)
     assert json.loads(render_catalog_json(timestamped))["generated_at"] == "2026-07-13T00:00:00Z"
+
+
+def test_publication_emits_only_an_immutable_selected_format_set(tmp_path: Path) -> None:
+    output = tmp_path / "output"
+
+    artifacts = publish_catalog(_manifest(), output, formats=frozenset({CatalogFormat.JSON}))
+
+    assert {path.relative_to(output).as_posix() for path in artifacts} == {
+        "catalog.json",
+        "manifest.json",
+    }
+    manifest = json.loads((output / "manifest.json").read_text())
+    assert set(manifest["artifacts"]) == {"catalog.json"}
+    with pytest.raises(TypeError, match="frozenset"):
+        publish_catalog(
+            _manifest(),
+            tmp_path / "mutable",
+            formats={CatalogFormat.JSON},  # type: ignore[arg-type]
+        )
 
 
 def test_manifest_reports_coverage_counts_versions_and_source_hashes() -> None:

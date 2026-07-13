@@ -10,6 +10,7 @@ import re
 import shutil
 import tempfile
 import uuid
+from enum import StrEnum
 from pathlib import Path
 
 import yaml  # type: ignore[import-untyped]
@@ -19,6 +20,17 @@ from github_module_catalog.models import CatalogEntry, CatalogManifest
 
 class UnsafeOutputPathError(ValueError):
     """Raised when publication could follow an unsafe output path."""
+
+
+class CatalogFormat(StrEnum):
+    """One independently selectable catalog representation."""
+
+    JSON = "json"
+    YAML = "yaml"
+    MARKDOWN = "markdown"
+
+
+ALL_CATALOG_FORMATS = frozenset(CatalogFormat)
 
 
 def render_catalog_json(manifest: CatalogManifest) -> bytes:
@@ -82,9 +94,15 @@ def render_module_page(manifest: CatalogManifest, capability_id: str) -> str:
     return _newline("\n".join(lines))
 
 
-def publish_catalog(manifest: CatalogManifest, output_dir: Path) -> tuple[Path, ...]:
+def publish_catalog(
+    manifest: CatalogManifest,
+    output_dir: Path,
+    *,
+    formats: frozenset[CatalogFormat] = ALL_CATALOG_FORMATS,
+) -> tuple[Path, ...]:
     """Publish a complete catalog directory, never an in-progress build."""
 
+    selected = _validate_formats(formats)
     output = Path(output_dir)
     if output.is_symlink():
         raise UnsafeOutputPathError("output directory must not be a symbolic link")
@@ -95,7 +113,7 @@ def publish_catalog(manifest: CatalogManifest, output_dir: Path) -> tuple[Path, 
     stage = parent / f".{output.name}.stage-{uuid.uuid4().hex}"
     stage.mkdir(mode=0o700)
     try:
-        artifacts = _publication_artifacts(manifest)
+        artifacts = _publication_artifacts(manifest, selected)
         for relative_path, content in artifacts.items():
             _atomic_write(_safe_target(stage, relative_path), content)
         _publish_directory(stage, output.resolve(strict=False))
@@ -105,23 +123,35 @@ def publish_catalog(manifest: CatalogManifest, output_dir: Path) -> tuple[Path, 
     return tuple(output / relative_path for relative_path in artifacts)
 
 
-def _publication_artifacts(manifest: CatalogManifest) -> dict[Path, bytes]:
+def _validate_formats(formats: frozenset[CatalogFormat]) -> frozenset[CatalogFormat]:
+    if not isinstance(formats, frozenset):
+        raise TypeError("formats must be an immutable frozenset")
+    if not formats or any(not isinstance(item, CatalogFormat) for item in formats):
+        raise ValueError("formats must contain at least one supported catalog format")
+    return formats
+
+
+def _publication_artifacts(
+    manifest: CatalogManifest, formats: frozenset[CatalogFormat]
+) -> dict[Path, bytes]:
     capabilities = sorted(
         {assertion.capability_id for entry in manifest.entries for assertion in entry.assertions}
     )
-    artifacts = {
-        Path("catalog.json"): render_catalog_json(manifest),
-        Path("catalog.yaml"): render_catalog_yaml(manifest),
-        Path("README.md"): render_readme(manifest).encode("utf-8"),
-    }
-    artifacts.update(
-        {
-            Path("modules") / f"{capability}.md": render_module_page(manifest, capability).encode(
-                "utf-8"
-            )
-            for capability in capabilities
-        }
-    )
+    artifacts: dict[Path, bytes] = {}
+    if CatalogFormat.JSON in formats:
+        artifacts[Path("catalog.json")] = render_catalog_json(manifest)
+    if CatalogFormat.YAML in formats:
+        artifacts[Path("catalog.yaml")] = render_catalog_yaml(manifest)
+    if CatalogFormat.MARKDOWN in formats:
+        artifacts[Path("README.md")] = render_readme(manifest).encode("utf-8")
+        artifacts.update(
+            {
+                Path("modules") / f"{capability}.md": render_module_page(
+                    manifest, capability
+                ).encode("utf-8")
+                for capability in capabilities
+            }
+        )
     artifacts[Path("manifest.json")] = _canonical_json(_manifest_document(manifest, artifacts))
     return dict(sorted(artifacts.items(), key=lambda item: item[0].as_posix()))
 
