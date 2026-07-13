@@ -32,6 +32,7 @@ from github_module_catalog.source import (
     RepositoryInventoryIdentity,
     RepositoryPage,
 )
+from github_module_catalog.storage import RawObjectStore
 from github_module_catalog.taxonomy import Taxonomy, classify_repository
 
 NOW = datetime(2026, 7, 13, 12, 0, tzinfo=UTC)
@@ -653,6 +654,44 @@ def test_init_rejects_a_workspace_with_symlinked_state_storage(tmp_path: Path) -
 
     assert result.exit_code != 0
     assert list(outside.iterdir()) == []
+
+
+def test_workspace_swap_between_validation_and_store_open_fails_closed(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    moved_workspace = tmp_path / "moved-workspace"
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    marker = outside / "keep.txt"
+    marker.write_text("keep")
+    swapped = False
+
+    def swapping_raw_store(
+        workspace_root: Path, *, workspace_fd: int | None = None
+    ) -> RawObjectStore:
+        nonlocal swapped
+        if not swapped:
+            swapped = True
+            workspace.rename(moved_workspace)
+            workspace.symlink_to(outside, target_is_directory=True)
+        if workspace_fd is None:
+            return RawObjectStore(workspace_root)
+        store = RawObjectStore(workspace_root, workspace_fd=workspace_fd)
+        store.write(b"pinned raw probe")
+        return store
+
+    monkeypatch.setattr(cli_module, "RawObjectStore", swapping_raw_store)
+
+    result = RUNNER.invoke(app, ["init", "--workspace", str(workspace)])
+
+    assert swapped is True
+    assert result.exit_code != 0
+    assert marker.read_text() == "keep"
+    assert not (outside / "data" / "state.sqlite3").exists()
+    assert not (outside / "data" / "raw").exists()
+    assert any((moved_workspace / "data" / "raw" / "sha256").rglob("*.json"))
 
 
 @pytest.mark.parametrize("missing_key", ["schema_version", "modules/cli.md"])

@@ -37,9 +37,17 @@ class RawObject:
 class RawObjectStore:
     """Write exact response bodies to deterministic SHA-256 paths."""
 
-    def __init__(self, workspace_root: Path) -> None:
-        self._workspace_root = Path(workspace_root).resolve()
+    def __init__(self, workspace_root: Path, *, workspace_fd: int | None = None) -> None:
+        self._workspace_root = Path(workspace_root).expanduser().absolute()
         self._object_root = self._workspace_root / "data" / "raw" / "sha256"
+        if workspace_fd is None:
+            self._workspace_fd = _open_directory(self._workspace_root)
+        else:
+            self._workspace_fd = os.dup(workspace_fd)
+            if not stat.S_ISDIR(os.fstat(self._workspace_fd).st_mode):
+                os.close(self._workspace_fd)
+                raise ObjectCollisionError("workspace descriptor is not a directory")
+        self._closed = False
 
     @property
     def workspace_root(self) -> Path:
@@ -47,16 +55,19 @@ class RawObjectStore:
 
         return self._workspace_root
 
+    def close(self) -> None:
+        """Close descriptors owned by this store."""
+
+        if self._closed:
+            return
+        self._closed = True
+        os.close(self._workspace_fd)
+
     def path_for(self, sha256: str) -> Path:
         """Return the only valid path for a lowercase SHA-256 digest."""
 
         _validate_digest(sha256)
         target = self._object_root / sha256[:2] / f"{sha256}.json"
-        resolved_root = self._object_root.resolve()
-        if not resolved_root.is_relative_to(self._workspace_root):
-            raise InvalidDigestError("raw object root resolves outside the workspace")
-        if not target.resolve().is_relative_to(resolved_root):
-            raise InvalidDigestError("digest resolves outside the raw object store")
         return target
 
     def write(self, raw_bytes: bytes, *, expected_sha256: str | None = None) -> RawObject:
@@ -70,8 +81,7 @@ class RawObjectStore:
             if expected_sha256 != actual_sha256:
                 raise DigestMismatchError("raw bytes do not match expected SHA-256")
         target = self.path_for(actual_sha256)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        directory_fd = _open_directory(target.parent)
+        directory_fd = self._bucket_directory(actual_sha256, create=True)
         temporary_name: str | None = None
         try:
             temporary_name, temporary_fd = _create_temporary(directory_fd, actual_sha256)
@@ -110,7 +120,7 @@ class RawObjectStore:
         """Verify a referenced object without exposing mutable store state."""
 
         target = self.path_for(sha256)
-        directory_fd = _open_directory(target.parent)
+        directory_fd = self._bucket_directory(sha256, create=False)
         try:
             observed = _read_verified_at(
                 directory_fd, target.name, sha256, expected_bytes=expected_bytes
@@ -123,11 +133,26 @@ class RawObjectStore:
         """Return an immutable copy of a verified object's bytes."""
 
         target = self.path_for(sha256)
-        directory_fd = _open_directory(target.parent)
+        directory_fd = self._bucket_directory(sha256, create=False)
         try:
             return _read_verified_at(directory_fd, target.name, sha256)
         finally:
             os.close(directory_fd)
+
+    def _bucket_directory(self, sha256: str, *, create: bool) -> int:
+        object_root_fd = _open_directory_chain(
+            self._workspace_fd,
+            ("data", "raw", "sha256"),
+            create=create,
+        )
+        try:
+            return _open_directory_chain(
+                object_root_fd,
+                (sha256[:2],),
+                create=create,
+            )
+        finally:
+            os.close(object_root_fd)
 
 
 def _validate_digest(sha256: str) -> None:
@@ -143,6 +168,47 @@ def _open_directory(directory: Path) -> int:
         raise
     except OSError as error:
         raise ObjectCollisionError("raw object directory is not a safe directory") from error
+
+
+def _open_directory_chain(
+    root_fd: int,
+    components: tuple[str, ...],
+    *,
+    create: bool,
+) -> int:
+    current_fd = os.dup(root_fd)
+    try:
+        for component in components:
+            next_fd = _open_directory_component(current_fd, component, create=create)
+            os.close(current_fd)
+            current_fd = next_fd
+        return current_fd
+    except BaseException:
+        os.close(current_fd)
+        raise
+
+
+def _open_directory_component(parent_fd: int, name: str, *, create: bool) -> int:
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    try:
+        descriptor = os.open(name, flags, dir_fd=parent_fd)
+    except FileNotFoundError:
+        if not create:
+            raise
+        try:
+            os.mkdir(name, mode=0o700, dir_fd=parent_fd)
+        except FileExistsError:
+            pass
+        try:
+            descriptor = os.open(name, flags, dir_fd=parent_fd)
+        except OSError as error:
+            raise ObjectCollisionError("raw object directory is not safe") from error
+    except OSError as error:
+        raise ObjectCollisionError("raw object directory is not safe") from error
+    if not stat.S_ISDIR(os.fstat(descriptor).st_mode):
+        os.close(descriptor)
+        raise ObjectCollisionError("raw object directory is not a directory")
+    return descriptor
 
 
 def _create_temporary(directory_fd: int, sha256: str) -> tuple[str, int]:

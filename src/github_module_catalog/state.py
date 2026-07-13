@@ -15,6 +15,7 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
 
 from github_module_catalog.models import CatalogManifest, RepositoryObservation
+from github_module_catalog.safeio import open_directory_at, open_or_create_directory_at
 from github_module_catalog.source import RepositoryInventoryIdentity, RepositoryPage
 from github_module_catalog.storage import RawObjectStore
 
@@ -177,18 +178,38 @@ class CatalogPublicationRecord:
     published_at: datetime
 
 
-def _open_state_database(path: Path) -> tuple[Path, sqlite3.Connection]:
+def _open_state_database(
+    path: Path,
+    *,
+    workspace_fd: int | None = None,
+    create_database: bool = True,
+) -> tuple[Path, sqlite3.Connection]:
     requested = Path(path).expanduser().absolute()
     if requested.name in {"", ".", ".."}:
         raise ValueError("state database must have a simple file name")
-    requested.parent.mkdir(parents=True, exist_ok=True)
-    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
     parent_fd = -1
     try:
-        parent_fd = os.open(requested.parent, flags)
+        if workspace_fd is None:
+            if create_database:
+                requested.parent.mkdir(parents=True, exist_ok=True)
+            parent_fd = os.open(
+                requested.parent,
+                os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
+            )
+        else:
+            if requested.parent.name != "data":
+                raise ValueError("trusted workspace state must be stored below data")
+            parent_fd = (
+                open_or_create_directory_at(workspace_fd, "data")
+                if create_database
+                else open_directory_at(workspace_fd, "data")
+            )
+        database_flags = os.O_RDWR | os.O_NOFOLLOW
+        if create_database:
+            database_flags |= os.O_CREAT
         database_fd = os.open(
             requested.name,
-            os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW,
+            database_flags,
             0o600,
             dir_fd=parent_fd,
         )
@@ -210,8 +231,19 @@ def _open_state_database(path: Path) -> tuple[Path, sqlite3.Connection]:
 class StateStore:
     """SQLite repository whose write methods use explicit transactions."""
 
-    def __init__(self, path: Path, raw_store: RawObjectStore) -> None:
-        self._path, self._connection = _open_state_database(path)
+    def __init__(
+        self,
+        path: Path,
+        raw_store: RawObjectStore,
+        *,
+        workspace_fd: int | None = None,
+        create_database: bool = True,
+    ) -> None:
+        self._path, self._connection = _open_state_database(
+            path,
+            workspace_fd=workspace_fd,
+            create_database=create_database,
+        )
         self._raw_store = raw_store
         self._connection.row_factory = sqlite3.Row
         self._connection.execute("PRAGMA foreign_keys = ON")

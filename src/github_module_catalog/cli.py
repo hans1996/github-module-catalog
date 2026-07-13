@@ -7,6 +7,7 @@ import json
 import os
 import re
 import sqlite3
+import stat
 from collections.abc import Callable, Iterator, Mapping
 from contextlib import contextmanager
 from dataclasses import dataclass, field
@@ -28,8 +29,10 @@ from github_module_catalog.github import GitHubRepositorySource, parse_github_in
 from github_module_catalog.models import CatalogManifest
 from github_module_catalog.safeio import (
     UnsafeOutputPathError,
+    file_identity,
     list_regular_files_at,
     open_directory,
+    open_directory_at,
     read_regular_file_at,
 )
 from github_module_catalog.scanner import DiscoveryScanner, ScanStatus
@@ -164,25 +167,62 @@ def _safe_state_path(workspace: Path) -> Path:
     return state_path
 
 
-@contextmanager
-def _stores(
-    path: Path, *, create: bool = False
-) -> Iterator[tuple[Path, RawObjectStore, StateStore]]:
-    workspace = _safe_workspace(path, create=create)
-    state_path = _safe_state_path(workspace)
-    if not create and not state_path.is_file():
-        raise CliOperationError("workspace is not initialized")
-    raw_store = RawObjectStore(workspace)
-    state = StateStore(state_path, raw_store)
+@dataclass(frozen=True, slots=True)
+class _PinnedStores:
+    """Command-scoped stores anchored to one immutable workspace descriptor."""
+
+    workspace: Path
+    workspace_fd: int
+    raw_store: RawObjectStore
+    state: StateStore
+
+
+def _verify_pinned_workspace(
+    workspace: Path, workspace_fd: int, expected_identity: tuple[int, int, int]
+) -> None:
     try:
-        yield workspace, raw_store, state
+        observed = os.stat(workspace, follow_symlinks=False)
+    except OSError:
+        raise CliOperationError("workspace changed during command execution") from None
+    if (
+        not stat.S_ISDIR(observed.st_mode)
+        or file_identity(observed) != expected_identity
+        or file_identity(os.fstat(workspace_fd)) != expected_identity
+    ):
+        raise CliOperationError("workspace changed during command execution")
+
+
+@contextmanager
+def _stores(path: Path, *, create: bool = False) -> Iterator[_PinnedStores]:
+    workspace = _safe_workspace(path, create=create)
+    state_path = _state_path(workspace)
+    workspace_fd = open_directory(workspace)
+    workspace_identity = file_identity(os.fstat(workspace_fd))
+    raw_store: RawObjectStore | None = None
+    state: StateStore | None = None
+    try:
+        _verify_pinned_workspace(workspace, workspace_fd, workspace_identity)
+        raw_store = RawObjectStore(workspace, workspace_fd=workspace_fd)
+        state = StateStore(
+            state_path,
+            raw_store,
+            workspace_fd=workspace_fd,
+            create_database=create,
+        )
+        _verify_pinned_workspace(workspace, workspace_fd, workspace_identity)
+        yield _PinnedStores(workspace, workspace_fd, raw_store, state)
+        _verify_pinned_workspace(workspace, workspace_fd, workspace_identity)
     finally:
-        state.close()
+        if state is not None:
+            state.close()
+        if raw_store is not None:
+            raw_store.close()
+        os.close(workspace_fd)
 
 
 def _initialize(path: Path) -> Mapping[str, object]:
-    with _stores(path, create=True) as (workspace, _raw_store, _state):
-        return {"status": "initialized", "workspace": str(workspace)}
+    with _stores(path, create=True) as stores:
+        return {"status": "initialized", "workspace": str(stores.workspace)}
 
 
 def _github_token() -> str:
@@ -194,13 +234,13 @@ def _github_token() -> str:
 
 def _discover(path: Path, *, max_pages: int, dependencies: CliDependencies) -> Mapping[str, object]:
     token = _github_token()
-    with _stores(path) as (_workspace, raw_store, state):
+    with _stores(path) as stores:
         source = dependencies.source_factory(token)
         try:
             outcome = DiscoveryScanner(
                 source=source,
-                raw_store=raw_store,
-                state=state,
+                raw_store=stores.raw_store,
+                state=stores.state,
                 source_name=_SOURCE_NAME,
             ).scan(max_pages=max_pages, started_at=dependencies.now())
         finally:
@@ -229,8 +269,8 @@ def _snapshot_summary(snapshot: CatalogStateSnapshot) -> Mapping[str, object]:
 
 
 def _status(path: Path) -> Mapping[str, object]:
-    with _stores(path) as (_workspace, _raw_store, state):
-        return _snapshot_summary(state.catalog_snapshot(_SOURCE_NAME))
+    with _stores(path) as stores:
+        return _snapshot_summary(stores.state.catalog_snapshot(_SOURCE_NAME))
 
 
 def _manifest(
@@ -265,8 +305,8 @@ def _manifest(
 
 
 def _classify(path: Path, *, dependencies: CliDependencies) -> Mapping[str, object]:
-    with _stores(path) as (_workspace, _raw_store, state):
-        manifest = _manifest(state, dependencies)
+    with _stores(path) as stores:
+        manifest = _manifest(stores.state, dependencies)
     return {
         "entries": manifest.entry_count,
         "capabilities": manifest.capability_count,
@@ -292,17 +332,22 @@ def _build(
     path: Path, *, formats: list[str] | None, dependencies: CliDependencies
 ) -> Mapping[str, object]:
     selected = _validated_formats(formats)
-    with _stores(path) as (workspace, raw_store, state):
+    with _stores(path) as stores:
         generated_at = dependencies.now()
         manifest = _manifest(
-            state,
+            stores.state,
             dependencies,
-            raw_store=raw_store,
+            raw_store=stores.raw_store,
             generated_at=generated_at,
         )
-        output = workspace / "catalog-output"
-        artifacts = publish_catalog(manifest, output, formats=selected)
-        output_fd = open_directory(output)
+        output = stores.workspace / "catalog-output"
+        artifacts = publish_catalog(
+            manifest,
+            output,
+            formats=selected,
+            trusted_parent_fd=stores.workspace_fd,
+        )
+        output_fd = open_directory_at(stores.workspace_fd, "catalog-output")
         try:
             manifest_bytes = read_regular_file_at(
                 output_fd,
@@ -311,7 +356,7 @@ def _build(
             )
         finally:
             os.close(output_fd)
-        state.record_catalog_publication(
+        stores.state.record_catalog_publication(
             manifest,
             artifact_manifest_sha256=hashlib.sha256(manifest_bytes).hexdigest(),
             published_at=dependencies.now(),
@@ -575,15 +620,14 @@ def _verify_snapshot_provenance(
 
 
 def _validate(path: Path, *, dependencies: CliDependencies) -> Mapping[str, object]:
-    with _stores(path) as (workspace, raw_store, state):
-        output = workspace / "catalog-output"
-        output_fd = open_directory(output)
+    with _stores(path) as stores:
+        output_fd = open_directory_at(stores.workspace_fd, "catalog-output")
         try:
             manifest, checked, manifest_bytes = _validate_documents(output_fd)
             _validate_against_state(
                 manifest,
-                state=state,
-                raw_store=raw_store,
+                state=stores.state,
+                raw_store=stores.raw_store,
                 dependencies=dependencies,
                 artifact_manifest_sha256=hashlib.sha256(manifest_bytes).hexdigest(),
             )

@@ -34,6 +34,26 @@ def open_directory(path: Path) -> int:
     return descriptor
 
 
+def open_directory_at(parent_fd: int, name: str) -> int:
+    """Open one no-follow child directory below a trusted descriptor."""
+
+    return _open_child_directory(parent_fd, name)
+
+
+def open_or_create_directory_at(
+    parent_fd: int, name: str, *, mode: int = 0o700
+) -> int:
+    """Open or safely create one child directory below a trusted descriptor."""
+
+    try:
+        return _open_child_directory(parent_fd, name)
+    except UnsafeOutputPathError:
+        if stat_entry(parent_fd, name) is not None:
+            raise
+    descriptor, _identity = make_directory_at(parent_fd, name, mode=mode)
+    return descriptor
+
+
 def simple_name(value: str, *, label: str) -> str:
     """Validate one descriptor-relative path component."""
 
@@ -226,13 +246,7 @@ def remove_tree_at(
 
 
 def _open_or_create_child(parent_fd: int, name: str) -> int:
-    try:
-        return _open_child_directory(parent_fd, name)
-    except UnsafeOutputPathError:
-        if stat_entry(parent_fd, name) is not None:
-            raise
-    child_fd, _identity = make_directory_at(parent_fd, name)
-    return child_fd
+    return open_or_create_directory_at(parent_fd, name)
 
 
 def _open_child_directory(parent_fd: int, name: str) -> int:

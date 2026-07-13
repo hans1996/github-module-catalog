@@ -107,6 +107,7 @@ def publish_catalog(
     output_dir: Path,
     *,
     formats: frozenset[CatalogFormat] = ALL_CATALOG_FORMATS,
+    trusted_parent_fd: int | None = None,
 ) -> tuple[Path, ...]:
     """Publish a complete catalog directory, never an in-progress build."""
 
@@ -115,8 +116,14 @@ def publish_catalog(
     if output.name in {"", ".", ".."}:
         raise UnsafeOutputPathError("output directory must have a simple name")
     parent = output.parent
-    parent.mkdir(parents=True, exist_ok=True)
-    parent_fd = open_directory(parent)
+    if trusted_parent_fd is None:
+        parent.mkdir(parents=True, exist_ok=True)
+        parent_fd = open_directory(parent)
+    else:
+        parent_fd = os.dup(trusted_parent_fd)
+        if not stat.S_ISDIR(os.fstat(parent_fd).st_mode):
+            os.close(parent_fd)
+            raise UnsafeOutputPathError("trusted publication parent is not a directory")
     output_details = stat_entry(parent_fd, output.name)
     if output_details is not None and not stat.S_ISDIR(output_details.st_mode):
         os.close(parent_fd)
