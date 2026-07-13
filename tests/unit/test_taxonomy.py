@@ -26,6 +26,63 @@ REQUIRED_CAPABILITIES = {
     "media",
     "security",
 }
+V2_LEAF_PARENTS: dict[str, tuple[str, ...]] = {
+    "terminal-ui": ("cli",),
+    "terminal-emulator": ("cli",),
+    "shell-tooling": ("cli",),
+    "package-manager": ("cli",),
+    "ui-component-library": ("web-ui",),
+    "dashboard-ui": ("web-ui",),
+    "static-site-generator": ("web-ui",),
+    "content-management": ("web-ui",),
+    "rest-api": ("api-backend",),
+    "graphql-api": ("api-backend",),
+    "rpc-api": ("api-backend",),
+    "realtime-api": ("api-backend",),
+    "api-gateway": ("api-backend",),
+    "oauth-oidc": ("auth",),
+    "identity-provider": ("auth",),
+    "access-control": ("auth",),
+    "multi-factor-auth": ("auth",),
+    "relational-database": ("database-storage",),
+    "document-database": ("database-storage",),
+    "cache-key-value": ("database-storage",),
+    "vector-database": ("database-storage",),
+    "object-storage": ("database-storage",),
+    "search-engine": ("database-storage",),
+    "llm-runtime": ("ai-ml",),
+    "ai-agent-framework": ("ai-ml",),
+    "rag-retrieval": ("ai-ml",),
+    "model-training": ("ai-ml",),
+    "computer-vision": ("ai-ml", "media"),
+    "speech-ai": ("ai-ml", "media"),
+    "unit-test-framework": ("testing",),
+    "browser-e2e-testing": ("testing",),
+    "api-testing": ("testing",),
+    "performance-testing": ("testing",),
+    "ci-cd": ("devops",),
+    "container-tooling": ("devops",),
+    "kubernetes-tooling": ("devops",),
+    "infrastructure-as-code": ("devops",),
+    "configuration-management": ("devops",),
+    "metrics-monitoring": ("observability",),
+    "log-management": ("observability",),
+    "distributed-tracing": ("observability",),
+    "error-tracking": ("observability",),
+    "profiling": ("observability",),
+    "image-processing": ("media",),
+    "video-processing": ("media",),
+    "audio-processing": ("media",),
+    "media-streaming": ("media",),
+    "media-downloader": ("media",),
+    "vulnerability-scanning": ("security",),
+    "penetration-testing": ("security",),
+    "cryptography": ("security",),
+    "secrets-management": ("security",),
+    "network-security": ("security",),
+    "reverse-engineering": ("security",),
+    "malware-analysis": ("security",),
+}
 
 
 def repository_fixture(**overrides: object) -> RepositoryObservation:
@@ -54,7 +111,7 @@ def repository_fixture(**overrides: object) -> RepositoryObservation:
 def test_loads_versioned_multi_axis_taxonomy_with_stable_nodes() -> None:
     taxonomy = load_taxonomy(TAXONOMY_PATH)
 
-    assert taxonomy.version == "1.0.0"
+    assert taxonomy.version == "2.0.0"
     assert {
         "artifact_type",
         "capability",
@@ -69,6 +126,88 @@ def test_loads_versioned_multi_axis_taxonomy_with_stable_nodes() -> None:
     assert REQUIRED_CAPABILITIES.issubset({node.id for node in capabilities})
     assert all(node.inclusion_examples and node.exclusion_examples for node in capabilities)
     assert all(node.aliases is not None and node.parents is not None for node in capabilities)
+
+
+def test_packaged_v2_preserves_parents_and_defines_every_leaf_rule() -> None:
+    taxonomy = load_taxonomy(TAXONOMY_PATH)
+    nodes_by_id = {node.id: node for node in taxonomy.axes["capability"]}
+    rules_by_id = {rule.capability_id: rule for rule in taxonomy.rules}
+
+    assert REQUIRED_CAPABILITIES.issubset(nodes_by_id)
+    assert set(V2_LEAF_PARENTS).issubset(nodes_by_id)
+    assert set(V2_LEAF_PARENTS).issubset(rules_by_id)
+    assert len(V2_LEAF_PARENTS) == 55
+    for capability_id, parents in V2_LEAF_PARENTS.items():
+        assert nodes_by_id[capability_id].parents == parents
+        assert rules_by_id[capability_id].topics
+
+
+@pytest.mark.parametrize("capability_id", sorted(V2_LEAF_PARENTS))
+def test_every_packaged_v2_leaf_has_a_working_topic_signal(capability_id: str) -> None:
+    taxonomy = load_taxonomy(TAXONOMY_PATH)
+    rule = next(rule for rule in taxonomy.rules if rule.capability_id == capability_id)
+    observation = repository_fixture(
+        description=None,
+        topics=[rule.topics[0]],
+        primary_language=None,
+    )
+
+    capability_ids = {
+        assertion.capability_id for assertion in classify_repository(observation, taxonomy)
+    }
+
+    assert capability_id in capability_ids
+    assert set(V2_LEAF_PARENTS[capability_id]).issubset(capability_ids)
+
+
+@pytest.mark.parametrize(
+    ("topic", "forbidden_capability"),
+    [
+        ("terminal", "terminal-emulator"),
+        ("docker", "container-tooling"),
+        ("kubernetes", "kubernetes-tooling"),
+        ("crypto", "cryptography"),
+    ],
+)
+def test_packaged_v2_avoids_ambiguous_leaf_topics(
+    topic: str,
+    forbidden_capability: str,
+) -> None:
+    taxonomy = load_taxonomy(TAXONOMY_PATH)
+    observation = repository_fixture(description=None, topics=[topic], primary_language=None)
+
+    capability_ids = {
+        assertion.capability_id for assertion in classify_repository(observation, taxonomy)
+    }
+
+    assert forbidden_capability not in capability_ids
+
+
+@pytest.mark.parametrize(
+    ("signal_topic", "noise_topic", "forbidden_capability"),
+    [
+        ("ai-agent", "awesome-list", "ai-agent-framework"),
+        ("postgresql", "tutorials", "relational-database"),
+        ("penetration-testing", "course", "penetration-testing"),
+    ],
+)
+def test_packaged_v2_rejects_resource_only_projects(
+    signal_topic: str,
+    noise_topic: str,
+    forbidden_capability: str,
+) -> None:
+    taxonomy = load_taxonomy(TAXONOMY_PATH)
+    observation = repository_fixture(
+        description=None,
+        topics=[signal_topic, noise_topic],
+        primary_language=None,
+    )
+
+    capability_ids = {
+        assertion.capability_id for assertion in classify_repository(observation, taxonomy)
+    }
+
+    assert forbidden_capability not in capability_ids
 
 
 def test_taxonomy_rejects_unknown_configuration_fields(tmp_path: Path) -> None:
@@ -145,10 +284,11 @@ def test_classifier_returns_deterministic_multi_label_assertions_with_provenance
         "api-backend",
         "auth",
         "cli",
+        "rest-api",
         "security",
     ]
     assert all(assertion.repository_id == 42 for assertion in assertions)
-    assert all(assertion.taxonomy_version == "1.0.0" for assertion in assertions)
+    assert all(assertion.taxonomy_version == "2.0.0" for assertion in assertions)
     assert all(assertion.classifier_version == "rules-v2" for assertion in assertions)
     assert all(
         assertion.source_observation_hash == observation.stable_hash() for assertion in assertions
@@ -158,6 +298,11 @@ def test_classifier_returns_deterministic_multi_label_assertions_with_provenance
     assert all(assertion.reuse_status == ReuseStatus.SAFE_TO_INTEGRATE for assertion in assertions)
     assert any(
         evidence.source == "language" for assertion in assertions for evidence in assertion.evidence
+    )
+    security = next(assertion for assertion in assertions if assertion.capability_id == "security")
+    assert any(
+        evidence.source == "taxonomy" and evidence.value == "derived-from:auth"
+        for evidence in security.evidence
     )
 
 

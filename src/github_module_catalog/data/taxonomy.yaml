@@ -1,4 +1,4 @@
-version: "1.0.0"
+version: "2.0.0"
 
 axes:
   artifact_type:
@@ -21,66 +21,396 @@ axes:
       parents: []
       inclusion_examples: [a documented executable command]
       exclusion_examples: [a library with no executable interface]
+    - id: terminal-ui
+      label: Terminal user interface
+      aliases: [tui]
+      parents: [cli]
+      inclusion_examples: [an interactive full-screen terminal interface]
+      exclusion_examples: [a command that only prints text]
+    - id: terminal-emulator
+      label: Terminal emulator
+      aliases: [terminal application]
+      parents: [cli]
+      inclusion_examples: [a program that emulates a terminal]
+      exclusion_examples: [a shell command executed in an existing terminal]
+    - id: shell-tooling
+      label: Shell tooling
+      aliases: [shell utility]
+      parents: [cli]
+      inclusion_examples: [reusable Bash Zsh Fish or PowerShell tooling]
+      exclusion_examples: [a repository that only contains a setup shell script]
+    - id: package-manager
+      label: Package and dependency manager
+      aliases: [dependency manager]
+      parents: [cli]
+      inclusion_examples: [a tool that resolves or installs software packages]
+      exclusion_examples: [a package published through an external package manager]
     - id: web-ui
       label: Web user interface
       aliases: [frontend, webapp]
       parents: []
       inclusion_examples: [an interactive browser interface]
       exclusion_examples: [a headless HTTP API]
+    - id: ui-component-library
+      label: UI component library
+      aliases: [design system, ui kit]
+      parents: [web-ui]
+      inclusion_examples: [reusable visual components for web applications]
+      exclusion_examples: [a single finished website]
+    - id: dashboard-ui
+      label: Dashboard and admin UI
+      aliases: [admin panel]
+      parents: [web-ui]
+      inclusion_examples: [a reusable dashboard or administration interface]
+      exclusion_examples: [a backend that only exposes dashboard metrics]
+    - id: static-site-generator
+      label: Static site generator
+      aliases: [ssg]
+      parents: [web-ui]
+      inclusion_examples: [a tool that builds static websites from source content]
+      exclusion_examples: [an already generated static website]
+    - id: content-management
+      label: Content management system
+      aliases: [cms, headless cms]
+      parents: [web-ui]
+      inclusion_examples: [a reusable system for authoring and publishing content]
+      exclusion_examples: [a repository containing only articles]
     - id: api-backend
       label: API backend
       aliases: [rest api, graphql server]
       parents: []
       inclusion_examples: [a reusable HTTP service]
       exclusion_examples: [a client-only SDK]
+    - id: rest-api
+      label: REST API server
+      aliases: [restful api]
+      parents: [api-backend]
+      inclusion_examples: [a server that exposes REST endpoints]
+      exclusion_examples: [a client SDK for an external REST API]
+    - id: graphql-api
+      label: GraphQL API server
+      aliases: [graphql service]
+      parents: [api-backend]
+      inclusion_examples: [a server that exposes a GraphQL schema]
+      exclusion_examples: [a GraphQL client library]
+    - id: rpc-api
+      label: RPC API server
+      aliases: [grpc, json rpc]
+      parents: [api-backend]
+      inclusion_examples: [a reusable RPC or gRPC service framework]
+      exclusion_examples: [generated RPC client bindings only]
+    - id: realtime-api
+      label: Realtime API
+      aliases: [websocket service]
+      parents: [api-backend]
+      inclusion_examples: [a server that provides bidirectional realtime communication]
+      exclusion_examples: [a polling-only HTTP client]
+    - id: api-gateway
+      label: API gateway and management
+      aliases: [api management]
+      parents: [api-backend]
+      inclusion_examples: [a gateway that routes secures or manages APIs]
+      exclusion_examples: [an individual application API]
     - id: auth
       label: Authentication and authorization
       aliases: [oauth, identity]
       parents: [security]
       inclusion_examples: [login or access-control components]
       exclusion_examples: [unrelated user profile rendering]
+    - id: oauth-oidc
+      label: OAuth and OpenID Connect
+      aliases: [oauth2, oidc]
+      parents: [auth]
+      inclusion_examples: [an OAuth 2 or OpenID Connect implementation]
+      exclusion_examples: [an application that merely uses social login]
+    - id: identity-provider
+      label: Identity provider
+      aliases: [iam, sso]
+      parents: [auth]
+      inclusion_examples: [a reusable identity or single sign-on server]
+      exclusion_examples: [an unrelated user directory UI]
+    - id: access-control
+      label: Access control
+      aliases: [rbac, abac]
+      parents: [auth]
+      inclusion_examples: [a reusable authorization or policy engine]
+      exclusion_examples: [hard-coded permissions inside one application]
+    - id: multi-factor-auth
+      label: Multi-factor authentication
+      aliases: [2fa, mfa, passkeys]
+      parents: [auth]
+      inclusion_examples: [a reusable TOTP WebAuthn or passkey component]
+      exclusion_examples: [documentation that recommends enabling MFA]
     - id: database-storage
       label: Database and storage
       aliases: [database, persistence]
       parents: []
       inclusion_examples: [durable data persistence]
       exclusion_examples: [in-memory variables only]
+    - id: relational-database
+      label: Relational database
+      aliases: [sql database]
+      parents: [database-storage]
+      inclusion_examples: [a relational database engine or embedded SQL store]
+      exclusion_examples: [an application that merely uses SQL]
+    - id: document-database
+      label: Document and NoSQL database
+      aliases: [document store, nosql]
+      parents: [database-storage]
+      inclusion_examples: [a reusable document-oriented or NoSQL data store]
+      exclusion_examples: [a database tutorial or sample dataset]
+    - id: cache-key-value
+      label: Cache and key-value store
+      aliases: [key value database]
+      parents: [database-storage]
+      inclusion_examples: [a reusable cache or key-value storage engine]
+      exclusion_examples: [an application with an internal dictionary cache]
+    - id: vector-database
+      label: Vector database
+      aliases: [vector store]
+      parents: [database-storage]
+      inclusion_examples: [a reusable vector index or similarity search store]
+      exclusion_examples: [a tutorial that embeds vectors in memory]
+    - id: object-storage
+      label: Object and blob storage
+      aliases: [blob store]
+      parents: [database-storage]
+      inclusion_examples: [a reusable object or blob storage service]
+      exclusion_examples: [an application that uploads files to an external service]
+    - id: search-engine
+      label: Search engine
+      aliases: [full text search]
+      parents: [database-storage]
+      inclusion_examples: [a reusable indexing and search engine]
+      exclusion_examples: [a web page with a local search box]
     - id: ai-ml
       label: Artificial intelligence and machine learning
       aliases: [machine learning, llm]
       parents: []
       inclusion_examples: [model inference or training]
       exclusion_examples: [ordinary deterministic algorithms]
+    - id: llm-runtime
+      label: LLM inference runtime
+      aliases: [llm serving, model server]
+      parents: [ai-ml]
+      inclusion_examples: [a runtime that serves or executes language models]
+      exclusion_examples: [a list of language-model links]
+    - id: ai-agent-framework
+      label: AI agent framework
+      aliases: [agentic framework]
+      parents: [ai-ml]
+      inclusion_examples: [reusable orchestration for AI agents or multi-agent systems]
+      exclusion_examples: [a collection of agent prompts or tutorials]
+    - id: rag-retrieval
+      label: Retrieval-augmented generation
+      aliases: [rag, graphrag]
+      parents: [ai-ml]
+      inclusion_examples: [reusable retrieval components for grounded generation]
+      exclusion_examples: [a conceptual RAG tutorial]
+    - id: model-training
+      label: Model training and fine-tuning
+      aliases: [fine tuning]
+      parents: [ai-ml]
+      inclusion_examples: [a framework or pipeline for training machine-learning models]
+      exclusion_examples: [pretrained model weights without training code]
+    - id: computer-vision
+      label: Computer vision
+      aliases: [ocr, object detection]
+      parents: [ai-ml, media]
+      inclusion_examples: [reusable image understanding detection or OCR components]
+      exclusion_examples: [ordinary image resizing without learned models]
+    - id: speech-ai
+      label: Speech AI
+      aliases: [asr, text to speech, tts]
+      parents: [ai-ml, media]
+      inclusion_examples: [speech recognition synthesis or learned audio components]
+      exclusion_examples: [ordinary audio playback]
     - id: testing
       label: Testing
       aliases: [test framework, quality assurance]
       parents: []
       inclusion_examples: [automated test utilities]
       exclusion_examples: [a repository that merely has its own tests]
+    - id: unit-test-framework
+      label: Unit test framework
+      aliases: [testing library]
+      parents: [testing]
+      inclusion_examples: [a reusable unit-test runner assertion or fixture framework]
+      exclusion_examples: [unit tests for one application]
+    - id: browser-e2e-testing
+      label: Browser end-to-end testing
+      aliases: [browser automation, e2e testing]
+      parents: [testing]
+      inclusion_examples: [a reusable browser automation or end-to-end test framework]
+      exclusion_examples: [one product's private end-to-end test suite]
+    - id: api-testing
+      label: API testing
+      aliases: [http testing]
+      parents: [testing]
+      inclusion_examples: [reusable utilities for testing HTTP or RPC APIs]
+      exclusion_examples: [an API repository that includes ordinary unit tests]
+    - id: performance-testing
+      label: Performance and load testing
+      aliases: [benchmarking, load testing]
+      parents: [testing]
+      inclusion_examples: [a reusable load generator or performance test framework]
+      exclusion_examples: [a single benchmark result]
     - id: devops
       label: DevOps and delivery
       aliases: [ci cd, infrastructure]
       parents: []
       inclusion_examples: [deployment or infrastructure automation]
       exclusion_examples: [an application with a basic build script]
+    - id: ci-cd
+      label: Continuous integration and delivery
+      aliases: [cicd]
+      parents: [devops]
+      inclusion_examples: [reusable continuous integration or delivery automation]
+      exclusion_examples: [a repository that only has its own CI workflow]
+    - id: container-tooling
+      label: Container tooling
+      aliases: [container runtime]
+      parents: [devops]
+      inclusion_examples: [a reusable container engine runtime or orchestration utility]
+      exclusion_examples: [an application that only includes a Dockerfile]
+    - id: kubernetes-tooling
+      label: Kubernetes tooling
+      aliases: [kubernetes operator, helm]
+      parents: [devops]
+      inclusion_examples: [a reusable Kubernetes controller operator chart tool or client]
+      exclusion_examples: [an application that is merely deployed to Kubernetes]
+    - id: infrastructure-as-code
+      label: Infrastructure as code
+      aliases: [iac]
+      parents: [devops]
+      inclusion_examples: [a reusable infrastructure provisioning engine or module system]
+      exclusion_examples: [one application's deployment configuration]
+    - id: configuration-management
+      label: Configuration management
+      aliases: [configuration automation]
+      parents: [devops]
+      inclusion_examples: [a reusable host or service configuration-management system]
+      exclusion_examples: [a single application configuration file]
     - id: observability
       label: Observability
       aliases: [monitoring, tracing]
       parents: [devops]
       inclusion_examples: [metrics logs or distributed tracing tools]
       exclusion_examples: [ad-hoc print debugging]
+    - id: metrics-monitoring
+      label: Metrics and monitoring
+      aliases: [metrics, uptime monitoring]
+      parents: [observability]
+      inclusion_examples: [a reusable metrics collector monitor or alerting system]
+      exclusion_examples: [an application that only exposes one health endpoint]
+    - id: log-management
+      label: Logging and log management
+      aliases: [structured logging]
+      parents: [observability]
+      inclusion_examples: [a reusable logging library collector or log-analysis system]
+      exclusion_examples: [ordinary application log statements]
+    - id: distributed-tracing
+      label: Distributed tracing
+      aliases: [opentelemetry, tracing]
+      parents: [observability]
+      inclusion_examples: [a reusable distributed trace collector library or backend]
+      exclusion_examples: [a single debug trace file]
+    - id: error-tracking
+      label: Error tracking
+      aliases: [error monitoring]
+      parents: [observability]
+      inclusion_examples: [a reusable exception aggregation or error-monitoring system]
+      exclusion_examples: [an application's issue tracker]
+    - id: profiling
+      label: Profiling and APM
+      aliases: [apm, profiler]
+      parents: [observability]
+      inclusion_examples: [a reusable runtime profiler or application performance monitor]
+      exclusion_examples: [a one-time performance report]
     - id: media
       label: Media processing
       aliases: [audio, video, image]
       parents: []
       inclusion_examples: [reusable image audio or video processing]
       exclusion_examples: [a repository containing only screenshots]
+    - id: image-processing
+      label: Image processing
+      aliases: [image editing]
+      parents: [media]
+      inclusion_examples: [reusable image transformation analysis or editing]
+      exclusion_examples: [a repository that only stores images]
+    - id: video-processing
+      label: Video processing
+      aliases: [video editing, transcoding]
+      parents: [media]
+      inclusion_examples: [reusable video editing encoding or transformation]
+      exclusion_examples: [a repository that only stores video files]
+    - id: audio-processing
+      label: Audio processing
+      aliases: [dsp, audio editing]
+      parents: [media]
+      inclusion_examples: [reusable audio analysis editing or signal processing]
+      exclusion_examples: [a repository that only stores music files]
+    - id: media-streaming
+      label: Media streaming
+      aliases: [live streaming, media server]
+      parents: [media]
+      inclusion_examples: [a reusable audio or video streaming server or protocol stack]
+      exclusion_examples: [a static video player page]
+    - id: media-downloader
+      label: Media downloader
+      aliases: [video downloader]
+      parents: [media]
+      inclusion_examples: [a reusable tool for retrieving online audio or video]
+      exclusion_examples: [a repository containing download links]
     - id: security
       label: Security
       aliases: [security scanner, cryptography]
       parents: []
       inclusion_examples: [vulnerability scanning or security controls]
       exclusion_examples: [generic claims that a project is secure]
+    - id: vulnerability-scanning
+      label: Vulnerability scanning
+      aliases: [sast, security scanner]
+      parents: [security]
+      inclusion_examples: [a reusable vulnerability dependency or source-code scanner]
+      exclusion_examples: [a vulnerability disclosure for one project]
+    - id: penetration-testing
+      label: Penetration testing
+      aliases: [pentest, offensive security]
+      parents: [security]
+      inclusion_examples: [a reusable penetration-testing or red-team tool]
+      exclusion_examples: [a penetration-testing course]
+    - id: cryptography
+      label: Cryptography
+      aliases: [encryption, tls]
+      parents: [security]
+      inclusion_examples: [a reusable cryptographic library protocol or implementation]
+      exclusion_examples: [cryptocurrency trading software]
+    - id: secrets-management
+      label: Secrets management
+      aliases: [secret scanning]
+      parents: [security]
+      inclusion_examples: [a reusable secret vault rotation or detection system]
+      exclusion_examples: [an example environment file]
+    - id: network-security
+      label: Network security
+      aliases: [firewall, waf, zero trust]
+      parents: [security]
+      inclusion_examples: [a reusable firewall network policy or zero-trust component]
+      exclusion_examples: [a general-purpose networking library]
+    - id: reverse-engineering
+      label: Reverse engineering
+      aliases: [decompiler, disassembler]
+      parents: [security]
+      inclusion_examples: [a reusable decompiler disassembler or binary-analysis tool]
+      exclusion_examples: [source-code browsing without binary analysis]
+    - id: malware-analysis
+      label: Malware analysis
+      aliases: [antivirus]
+      parents: [security]
+      inclusion_examples: [a reusable malware-analysis detection or antivirus system]
+      exclusion_examples: [a repository that distributes malware samples only]
   domain:
     - id: developer-tools
       label: Developer tools
@@ -154,53 +484,356 @@ rules:
     description_tokens: [cli, command-line, terminal]
     language_hints: [go, python, rust]
     exclude_tokens: [client-only]
+    exclude_topics: &resource_only
+      [awesome, awesome-list, book, course, courses, curated-list, interview-questions, roadmap, tutorial, tutorials]
   - capability_id: web-ui
     topics: [frontend, ui, web-ui, webapp]
     description_tokens: [frontend, dashboard, webapp]
     language_hints: [javascript, typescript]
     exclude_tokens: [headless]
+    exclude_topics: *resource_only
   - capability_id: api-backend
     topics: [api, backend, graphql, rest-api]
     description_tokens: [api, backend, graphql, rest]
     language_hints: [go, java, python, rust, typescript]
     exclude_tokens: [client-only]
+    exclude_topics: *resource_only
   - capability_id: auth
     topics: [auth, authentication, authorization, oauth]
     description_tokens: [auth, authentication, authorization, oauth]
     language_hints: [go, java, python, typescript]
     exclude_tokens: [theme]
+    exclude_topics: *resource_only
   - capability_id: database-storage
     topics: [database, persistence, storage]
     description_tokens: [database, persistence, storage]
     language_hints: [go, java, python, rust, typescript]
     exclude_tokens: [screenshot]
+    exclude_topics: *resource_only
   - capability_id: ai-ml
     topics: [ai, llm, machine-learning, ml]
     description_tokens: [ai, inference, llm, machine-learning]
     language_hints: [cpp, cuda, python]
     exclude_tokens: [curated-list]
+    exclude_topics: *resource_only
   - capability_id: testing
     topics: [e2e-testing, test-framework, testing]
     description_tokens: [assertion, test-framework, testing]
     language_hints: [go, java, javascript, python, typescript]
     exclude_tokens: [tutorial]
+    exclude_topics: *resource_only
   - capability_id: devops
     topics: [ci-cd, deployment, devops, infrastructure]
     description_tokens: [deployment, devops, infrastructure]
     language_hints: [go, hcl, python, shell]
     exclude_tokens: [demo]
+    exclude_topics: *resource_only
   - capability_id: observability
     topics: [logging, metrics, monitoring, observability, tracing]
     description_tokens: [metrics, monitoring, observability, tracing]
     language_hints: [go, java, python, rust]
     exclude_tokens: [example-only]
+    exclude_topics: *resource_only
   - capability_id: media
     topics: [audio, image-processing, media, video]
     description_tokens: [audio, image, media, video]
     language_hints: [cpp, javascript, python, rust]
     exclude_tokens: [wallpaper]
+    exclude_topics: *resource_only
   - capability_id: security
     topics: [cryptography, security, vulnerability-scanner]
     description_tokens: [cryptography, security, vulnerability]
     language_hints: [go, python, rust]
     exclude_tokens: [claim-only]
+    exclude_topics: *resource_only
+
+  - capability_id: terminal-ui
+    topics: [terminal-ui, terminal-user-interface, tui]
+    description_phrases: [terminal ui, terminal user interface]
+    language_hints: [go, python, rust, typescript]
+    exclude_topics: *resource_only
+  - capability_id: terminal-emulator
+    topics: [kitty-terminal, terminal-emulator, terminal-emulators, windows-terminal]
+    description_phrases: [terminal emulator]
+    language_hints: [c++, go, rust]
+    exclude_topics: *resource_only
+  - capability_id: shell-tooling
+    topics: [bash, fish-shell, nushell, powershell, shell, zsh]
+    description_tokens: [bash, nushell, powershell, zsh]
+    description_phrases: [fish shell, shell toolkit]
+    language_hints: [go, python, rust, shell]
+    exclude_topics: *resource_only
+  - capability_id: package-manager
+    topics: [dependency-manager, package-manager]
+    description_phrases: [dependency manager, package manager]
+    language_hints: [go, javascript, python, rust, typescript]
+    exclude_topics: *resource_only
+
+  - capability_id: ui-component-library
+    topics: [component-library, design-system, design-systems, ui-components, ui-kit, ui-library, uikit]
+    description_phrases: [component library, design system, ui component library, ui kit]
+    language_hints: [javascript, typescript]
+    exclude_topics: *resource_only
+  - capability_id: dashboard-ui
+    topics: [admin-dashboard, admin-panel, admin-ui, dashboard-ui]
+    description_phrases: [admin dashboard, admin panel, dashboard ui]
+    language_hints: [javascript, typescript]
+    exclude_topics: *resource_only
+  - capability_id: static-site-generator
+    topics: [static-site-generator, static-site-generators]
+    description_phrases: [static site generator]
+    language_hints: [go, javascript, python, ruby, rust, typescript]
+    exclude_topics: *resource_only
+  - capability_id: content-management
+    topics: [cms, content-management-system, headless-cms]
+    description_phrases: [content management system, headless cms]
+    language_hints: [javascript, php, python, ruby, typescript]
+    exclude_topics: *resource_only
+
+  - capability_id: rest-api
+    topics: [api-rest, rest-api, restful-api]
+    description_phrases: [rest api, restful api]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_tokens: [client, sdk]
+    exclude_topics: *resource_only
+  - capability_id: graphql-api
+    topics: [graphql-api, graphql-server, graphql-service]
+    description_phrases: [graphql api, graphql server, graphql service]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_tokens: [client, sdk]
+    exclude_topics: *resource_only
+  - capability_id: rpc-api
+    topics: [grpc, json-rpc, rpc-framework]
+    description_phrases: [grpc server, json rpc, rpc framework]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_tokens: [client-only]
+    exclude_topics: *resource_only
+  - capability_id: realtime-api
+    topics: [realtime-api, socket-io, websocket, websockets]
+    description_phrases: [realtime api, websocket server]
+    language_hints: [go, java, javascript, python, rust, typescript]
+    exclude_tokens: [client-only]
+    exclude_topics: *resource_only
+  - capability_id: api-gateway
+    topics: [api-gateway, api-management, llm-gateway]
+    description_phrases: [api gateway, api management, llm gateway]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_topics: *resource_only
+
+  - capability_id: oauth-oidc
+    topics: [oauth, oauth2, oidc, openid-connect]
+    description_phrases: [oauth 2, openid connect]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_topics: *resource_only
+  - capability_id: identity-provider
+    topics: [iam, identity-provider, single-sign-on, sso]
+    description_phrases: [identity provider, single sign on]
+    language_hints: [go, java, python, typescript]
+    exclude_topics: *resource_only
+  - capability_id: access-control
+    topics: [abac, access-control, authorization, policy-engine, rbac]
+    description_phrases: [access control, authorization engine, policy engine]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_topics: *resource_only
+  - capability_id: multi-factor-auth
+    topics: [2fa, mfa, passkeys, totp, webauthn]
+    description_phrases: [multi factor authentication, two factor authentication]
+    language_hints: [go, java, python, rust, typescript]
+    exclude_topics: *resource_only
+
+  - capability_id: relational-database
+    topics: [mariadb, mssql, mysql, postgresql, relational-database, sql-server, sqlite]
+    description_phrases: [relational database, sql database]
+    language_hints: [c, c++, go, java, rust]
+    exclude_topics: *resource_only
+  - capability_id: document-database
+    topics: [cassandra, couchdb, document-database, mongodb, nosql-database]
+    description_phrases: [document database, document store, nosql database]
+    language_hints: [c++, go, java, rust]
+    exclude_topics: *resource_only
+  - capability_id: cache-key-value
+    topics: [in-memory-database, key-value, key-value-store, redis]
+    description_phrases: [in memory database, key value store]
+    language_hints: [c, c++, go, java, rust]
+    exclude_topics: *resource_only
+  - capability_id: vector-database
+    topics: [vector-database, vector-search, vector-store, vectorstore]
+    description_phrases: [vector database, vector search, vector store]
+    language_hints: [c++, go, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: object-storage
+    topics: [blob-storage, cloud-storage, object-storage]
+    description_phrases: [blob storage, object storage]
+    language_hints: [go, java, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: search-engine
+    topics: [elasticsearch, full-text-search, opensearch, search-engine]
+    description_phrases: [full text search, search engine]
+    language_hints: [c++, go, java, rust]
+    exclude_topics: *resource_only
+
+  - capability_id: llm-runtime
+    topics: [inference-engine, llm-inference, llm-serving, local-llm, model-serving]
+    description_phrases: [inference engine, llm inference, llm serving, model server]
+    language_hints: [c++, cuda, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: ai-agent-framework
+    topics: [agent-framework, agentic-framework, ai-agent, ai-agents, autonomous-agents, multi-agent-systems]
+    description_phrases: [agent framework, agentic framework, multi agent system]
+    language_hints: [javascript, python, typescript]
+    exclude_topics: *resource_only
+  - capability_id: rag-retrieval
+    topics: [agentic-rag, graphrag, rag, retrieval-augmented-generation]
+    description_phrases: [retrieval augmented generation]
+    language_hints: [javascript, python, typescript]
+    exclude_topics: *resource_only
+  - capability_id: model-training
+    topics: [fine-tuning, finetuning, model-training]
+    description_phrases: [fine tuning, model training]
+    language_hints: [cuda, python]
+    exclude_topics: *resource_only
+  - capability_id: computer-vision
+    topics: [computer-vision, image-classification, object-detection, ocr, segmentation]
+    description_phrases: [computer vision, image classification, object detection, optical character recognition]
+    language_hints: [c++, cuda, python]
+    exclude_topics: *resource_only
+  - capability_id: speech-ai
+    topics: [asr, speech-recognition, speech-synthesis, text-to-speech, tts]
+    description_phrases: [speech recognition, speech synthesis, text to speech]
+    language_hints: [c++, cuda, python]
+    exclude_topics: *resource_only
+
+  - capability_id: unit-test-framework
+    topics: [test-framework, testing-framework, testing-library, unit-testing]
+    description_phrases: [test framework, testing library, unit testing framework]
+    language_hints: [go, java, javascript, python, rust, typescript]
+    exclude_topics: *resource_only
+  - capability_id: browser-e2e-testing
+    topics: [browser-automation, cypress, e2e-testing, end-to-end-testing, playwright, selenium]
+    description_phrases: [browser automation, end to end testing]
+    language_hints: [javascript, python, typescript]
+    exclude_topics: *resource_only
+  - capability_id: api-testing
+    topics: [api-testing, http-testing]
+    description_phrases: [api testing, http testing]
+    language_hints: [go, java, javascript, python, typescript]
+    exclude_topics: *resource_only
+  - capability_id: performance-testing
+    topics: [benchmarking, load-testing, performance-testing]
+    description_phrases: [load testing, performance testing]
+    language_hints: [go, java, javascript, python, rust]
+    exclude_topics: *resource_only
+
+  - capability_id: ci-cd
+    topics: [ci-cd, cicd, continuous-delivery, continuous-integration, github-actions]
+    description_phrases: [continuous delivery, continuous integration]
+    language_hints: [go, javascript, python, shell, typescript]
+    exclude_topics: *resource_only
+  - capability_id: container-tooling
+    topics: [container-engine, container-runtime, containerd, docker-compose, docker-swarm]
+    description_phrases: [container engine, container runtime]
+    language_hints: [go, rust]
+    exclude_topics: *resource_only
+  - capability_id: kubernetes-tooling
+    topics: [helm, kubernetes-cli, kubernetes-controller, kubernetes-operator]
+    description_phrases: [kubernetes controller, kubernetes operator]
+    language_hints: [go, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: infrastructure-as-code
+    topics: [infrastructure-as-code, opentofu, pulumi, terraform]
+    description_phrases: [infrastructure as code]
+    language_hints: [go, hcl, python, typescript]
+    exclude_topics: *resource_only
+  - capability_id: configuration-management
+    topics: [ansible, chef, configuration-management, puppet]
+    description_phrases: [configuration management]
+    language_hints: [go, python, ruby]
+    exclude_topics: *resource_only
+
+  - capability_id: metrics-monitoring
+    topics: [metrics, monitoring, prometheus, uptime-monitoring]
+    description_phrases: [metrics monitoring, uptime monitoring]
+    language_hints: [go, java, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: log-management
+    topics: [log-management, logging, logging-library, structured-logging]
+    description_phrases: [log management, logging library, structured logging]
+    language_hints: [go, java, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: distributed-tracing
+    topics: [distributed-tracing, opentelemetry, tracing]
+    description_phrases: [distributed tracing]
+    language_hints: [go, java, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: error-tracking
+    topics: [error-monitoring, error-tracking, sentry]
+    description_phrases: [error monitoring, error tracking]
+    language_hints: [go, javascript, python, ruby, typescript]
+    exclude_topics: *resource_only
+  - capability_id: profiling
+    topics: [apm, application-performance-monitoring, profiler, profiling]
+    description_phrases: [application performance monitoring, runtime profiler]
+    language_hints: [c++, go, java, python, rust]
+    exclude_topics: *resource_only
+
+  - capability_id: image-processing
+    topics: [image-editing, image-manipulation, image-processing]
+    description_phrases: [image editing, image processing]
+    language_hints: [c++, javascript, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: video-processing
+    topics: [ffmpeg, transcoding, video-editing, video-processing]
+    description_phrases: [video editing, video processing, video transcoding]
+    language_hints: [c++, javascript, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: audio-processing
+    topics: [audio-editing, audio-processing, dsp, speech-processing]
+    description_phrases: [audio editing, audio processing, digital signal processing]
+    language_hints: [c++, javascript, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: media-streaming
+    topics: [audio-streaming, hls, live-streaming, media-server, video-streaming]
+    description_phrases: [audio streaming, live streaming, media server, video streaming]
+    language_hints: [c++, go, javascript, rust]
+    exclude_topics: *resource_only
+  - capability_id: media-downloader
+    topics: [media-downloader, video-downloader, youtube-downloader]
+    description_phrases: [media downloader, video downloader]
+    language_hints: [go, javascript, python, rust]
+    exclude_topics: *resource_only
+
+  - capability_id: vulnerability-scanning
+    topics: [dependency-scanning, sast, security-scanner, vulnerability-detection, vulnerability-scanner, vulnerability-scanning]
+    description_phrases: [security scanner, vulnerability scanner, vulnerability scanning]
+    language_hints: [go, java, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: penetration-testing
+    topics: [offensive-security, penetration-testing, pentest, pentesting, red-team]
+    description_phrases: [offensive security, penetration testing, red team]
+    language_hints: [go, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: cryptography
+    topics: [cryptography, crypto-library, encryption, tls]
+    description_phrases: [cryptographic library, cryptography library]
+    language_hints: [c, c++, go, java, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: secrets-management
+    topics: [secret-scanning, secrets, secrets-management]
+    description_phrases: [secret scanning, secrets management]
+    language_hints: [go, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: network-security
+    topics: [firewall, network-security, waf, zero-trust]
+    description_phrases: [network security, web application firewall, zero trust]
+    language_hints: [c, c++, go, rust]
+    exclude_topics: *resource_only
+  - capability_id: reverse-engineering
+    topics: [binary-analysis, decompiler, disassembler, reverse-engineering]
+    description_phrases: [binary analysis, reverse engineering]
+    language_hints: [c, c++, python, rust]
+    exclude_topics: *resource_only
+  - capability_id: malware-analysis
+    topics: [antivirus, malware, malware-analysis]
+    description_phrases: [malware analysis]
+    language_hints: [c, c++, go, python, rust]
+    exclude_topics: *resource_only

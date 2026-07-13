@@ -161,7 +161,7 @@ def _manifest(
         or (_observation(9, topic="auth", description="Auth service"), _observation(2)),
         taxonomy=load_taxonomy(TAXONOMY_PATH),
         context=_context(),
-        classifier_version="rules-v1",
+        classifier_version="rules-v2",
         generated_at=generated_at,
     )
 
@@ -581,8 +581,8 @@ def test_manifest_reports_coverage_counts_versions_and_source_hashes() -> None:
     assert (manifest.discovered_count, manifest.validated_observation_count) == (4, 2)
     assert (manifest.pending_count, manifest.retry_count, manifest.dead_letter_count) == (2, 1, 1)
     assert manifest.schema_version == "1.1.0"
-    assert manifest.taxonomy_version == "1.0.0"
-    assert manifest.classifier_version == "rules-v1"
+    assert manifest.taxonomy_version == "2.0.0"
+    assert manifest.classifier_version == "rules-v2"
     assert manifest.raw_page_hashes == ("a" * 64, "b" * 64)
     assert manifest.source_hashes == tuple(
         sorted(entry.repository.stable_hash() for entry in manifest.entries)
