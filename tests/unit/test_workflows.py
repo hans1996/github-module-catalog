@@ -44,6 +44,7 @@ def test_workflows_use_reviewed_full_node24_action_pins() -> None:
 
 def test_discovery_defaults_to_popular_repositories_active_within_one_year() -> None:
     workflow = _discovery_workflow()
+    assert workflow["on"]["schedule"] == [{"cron": "23 */6 * * *"}]
     inputs = workflow["on"]["workflow_dispatch"]["inputs"]
     assert set(inputs) == {"min_stars", "active_within_days", "max_pages"}
     assert inputs["min_stars"]["default"] == "100"
@@ -117,14 +118,25 @@ def test_publish_job_promotes_tracked_catalog_with_restricted_non_force_push() -
 def test_homepage_defines_ranked_discovery_and_a_tracked_catalog_section() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
+    assert readme.startswith("# GitHub Module Catalog\n")
+    assert "A ranked, machine-readable catalog" in readme
+    assert "actions/workflows/ci.yml/badge.svg" in readme
+    assert "actions/workflows/discover.yml/badge.svg" in readme
     assert readme.count("<!-- catalog-index:begin -->") == 1
     assert readme.count("<!-- catalog-index:end -->") == 1
-    assert "stars:>=100" in readme
-    assert "365" in readme
+    assert "## Live catalog" in readme
+    assert "Scheduled every 6 hours" in readme
+    assert "rebuilds and replaces" in readme
+    assert "100+ stars" in readme
     assert "1,000" in readme
     assert "not an exhaustive" in readme
     assert "catalog/catalog.json" in readme
+    assert "docs/operations.md" in readme
+    assert "docs/taxonomy.md" in readme
+    assert "## Quick start" not in readme
+    assert "## Architecture and safety" not in readme
     assert "Generated datasets do not live in Git" not in readme
+    assert len(readme.splitlines()) <= 100
 
 
 def test_ci_scans_current_tree_for_strong_secret_shapes() -> None:

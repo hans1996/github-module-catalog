@@ -207,12 +207,16 @@ def test_publish_updates_homepage_and_complete_catalog_idempotently(tmp_path: Pa
     assert readme.startswith(manual_prefix)
     assert readme.endswith(manual_suffix)
     rendered = readme.decode()
-    assert "Minimum stars: **100**" in rendered
-    assert "2 unique repositories" in rendered
-    assert "2,500 GitHub matches" in rendered
-    assert "[Full ranked catalog](catalog/README.md)" in rendered
+    assert "## Live catalog" in rendered
+    assert "| Indexed repositories | GitHub Search matches | Last refresh |" in rendered
+    assert "| **2** | **2,500** | **2026-07-13 12:00 UTC** |" in rendered
+    assert "**100+ stars**" in rendered
+    assert "pushed since **2025-07-13**" in rendered
+    assert "[Browse the full catalog](catalog/README.md)" in rendered
+    assert "Capability groups overlap" in rendered
     assert "[`ai-ml`](catalog/modules/ai-ml.md) — 1" in rendered
     assert "[`cli`](catalog/modules/cli.md) — 2" in rendered
+    assert "Ranked catalog index" not in rendered
     assert "<script>" not in rendered
     assert "javascript:" not in rendered
     assert "<img" not in rendered

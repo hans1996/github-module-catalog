@@ -297,28 +297,33 @@ def _render_homepage(catalog: dict[str, object], capability_counts: dict[str, in
     if not isinstance(selection, dict):  # pragma: no cover - validated by the caller
         raise PublicationError("catalog selection policy is missing")
     min_stars = _strict_int(selection["min_stars"], minimum=0, name="min_stars")
-    result_limit = _strict_int(catalog["result_limit"], minimum=1, name="result_limit")
     entry_count = _strict_int(catalog["entry_count"], minimum=0, name="entry_count")
     api_total = _strict_int(catalog["api_total_count"], minimum=0, name="api_total_count")
-    pages = _strict_int(catalog["pages_fetched"], minimum=1, name="pages_fetched")
-    pushed_since = _utc_timestamp(selection["pushed_since"], "pushed_since")
-    generated_at = _utc_timestamp(catalog["generated_at"], "generated_at")
+    pushed_since = (
+        _parse_utc_timestamp(selection["pushed_since"], "pushed_since").date().isoformat()
+    )
+    generated_at = _parse_utc_timestamp(catalog["generated_at"], "generated_at").strftime(
+        "%Y-%m-%d %H:%M UTC"
+    )
     lines = [
-        "## Ranked catalog index",
+        "## Live catalog",
         "",
-        "This is the validated, repository-tracked index. It is refreshed from GitHub "
-        "Search and is not an exhaustive mirror of GitHub.",
+        "| Indexed repositories | GitHub Search matches | Last refresh |",
+        "| ---: | ---: | --- |",
+        f"| **{entry_count:,}** | **{api_total:,}** | **{generated_at}** |",
         "",
-        f"- Policy: Minimum stars: **{min_stars:,}**; pushed since **{pushed_since}**; "
-        "public, non-archived, non-fork repositories only.",
-        f"- Coverage: **{entry_count:,} unique repositories** from **{api_total:,} GitHub "
-        f"matches**; ranked result limit **{result_limit:,}** across **{pages} page(s)**.",
-        f"- Generated: **{generated_at}**; order: **stars descending**, then repository ID.",
+        f"**Selection:** **{min_stars:,}+ stars** · pushed since **{pushed_since}** · public · "
+        "non-archived · non-fork",
         "",
-        "[Full ranked catalog](catalog/README.md) · "
+        "**Ranking:** stars descending, then repository ID. This is a top-ranked window, "
+        "not an exhaustive index of GitHub.",
+        "",
+        "[Browse the full catalog](catalog/README.md) · "
         "[JSON](catalog/catalog.json) · [YAML](catalog/catalog.yaml)",
         "",
-        "### Capability index",
+        "### Browse by capability",
+        "",
+        "Capability groups overlap; one repository may appear in more than one group.",
         "",
     ]
     if capability_counts:
