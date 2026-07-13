@@ -35,6 +35,9 @@ from .filesystem import (
 from .model import PublicationError, ValidatedPublication
 from .rendering import canonical_markdown_artifacts
 
+CapabilityReference = tuple[str, int]
+CapabilityFamily = tuple[str, int, tuple[CapabilityReference, ...]]
+
 
 def _validate_source(source: Path) -> ValidatedPublication:
     source_fd = _open_directory(source, "catalog source")
@@ -132,7 +135,7 @@ def _safe_artifact_name(value: str) -> str:
 
 def _validate_catalog_metadata(
     catalog: dict[str, object], artifact_names: set[str]
-) -> tuple[int, dict[str, int], tuple[tuple[str, int, int], ...]]:
+) -> tuple[int, dict[str, int], tuple[CapabilityFamily, ...]]:
     if catalog.get("source") != "github-search-repositories":
         raise PublicationError("catalog source is not the ranked GitHub Search source")
     for key in ("schema_version", "taxonomy_version", "classifier_version"):
@@ -224,7 +227,7 @@ def _validate_capability_hierarchy(
     *,
     entries: list[object],
     capability_counts: dict[str, int],
-) -> tuple[tuple[str, int, int], ...]:
+) -> tuple[CapabilityFamily, ...]:
     raw_definitions = catalog.get("capability_definitions")
     if (
         not isinstance(raw_definitions, list)
@@ -315,10 +318,24 @@ def _validate_capability_hierarchy(
         if any(not ancestors[capability_id].issubset(asserted) for capability_id in asserted):
             raise PublicationError("catalog capability hierarchy ancestors are incomplete")
 
+    roots = tuple(capability_id for capability_id in ordered_ids if not definitions[capability_id])
     return tuple(
-        (capability_id, capability_counts.get(capability_id, 0), len(children[capability_id]))
-        for capability_id in ordered_ids
-        if not definitions[capability_id]
+        (
+            root_id,
+            capability_counts.get(root_id, 0),
+            tuple(
+                (capability_id, capability_counts.get(capability_id, 0))
+                for capability_id in sorted(
+                    (
+                        candidate_id
+                        for candidate_id in ordered_ids
+                        if root_id in ancestors[candidate_id]
+                    ),
+                    key=lambda candidate_id: (depths[candidate_id], candidate_id),
+                )
+            ),
+        )
+        for root_id in roots
     )
 
 
@@ -420,7 +437,7 @@ def _validate_ranked_provenance(
 
 
 def _render_homepage(
-    catalog: dict[str, object], capability_families: tuple[tuple[str, int, int], ...]
+    catalog: dict[str, object], capability_families: tuple[CapabilityFamily, ...]
 ) -> bytes:
     selection = catalog["selection"]
     if not isinstance(selection, dict):  # pragma: no cover - validated by the caller
@@ -455,18 +472,28 @@ def _render_homepage(
         "",
         "Capability families overlap; one repository may appear in more than one family.",
         "",
-        "| Family | Repositories | Direct subcategories |",
-        "| --- | ---: | ---: |",
+        "| Family | Repositories | Fine-grained capability index |",
+        "| --- | ---: | --- |",
     ]
     if capability_families:
-        for capability, count, children in capability_families:
-            reference = f"`{capability}`"
-            if count:
-                reference = f"[{reference}](catalog/modules/{capability}.md)"
-            lines.append(f"| {reference} | {count:,} | {children:,} |")
+        for capability, count, descendants in capability_families:
+            reference = _homepage_capability_reference(capability, count)
+            detail_index = " · ".join(
+                f"{_homepage_capability_reference(descendant, descendant_count)} "
+                f"({descendant_count:,})"
+                for descendant, descendant_count in descendants
+            )
+            lines.append(f"| {reference} | {count:,} | {detail_index or '—'} |")
     else:
-        lines.append("| No capability families were published. | 0 | 0 |")
+        lines.append("| No capability families were published. | 0 | — |")
     return ("\n".join(lines).rstrip("\n") + "\n").encode("utf-8")
+
+
+def _homepage_capability_reference(capability: str, count: int) -> str:
+    reference = f"`{capability}`"
+    if count:
+        return f"[{reference}](catalog/modules/{capability}.md)"
+    return reference
 
 
 def _replace_managed_section(readme: bytes, homepage: bytes) -> bytes:

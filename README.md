@@ -29,17 +29,17 @@ CLIs, services, plugins, and templates for larger systems.
 
 Capability families overlap; one repository may appear in more than one family.
 
-| Family | Repositories | Direct subcategories |
-| --- | ---: | ---: |
-| [`ai-ml`](catalog/modules/ai-ml.md) | 211 | 6 |
-| [`api-backend`](catalog/modules/api-backend.md) | 58 | 5 |
-| [`cli`](catalog/modules/cli.md) | 95 | 4 |
-| [`database-storage`](catalog/modules/database-storage.md) | 43 | 6 |
-| [`devops`](catalog/modules/devops.md) | 46 | 6 |
-| [`media`](catalog/modules/media.md) | 62 | 7 |
-| [`security`](catalog/modules/security.md) | 41 | 8 |
-| [`testing`](catalog/modules/testing.md) | 11 | 4 |
-| [`web-ui`](catalog/modules/web-ui.md) | 62 | 4 |
+| Family | Repositories | Fine-grained capability index |
+| --- | ---: | --- |
+| [`ai-ml`](catalog/modules/ai-ml.md) | 211 | [`ai-agent-framework`](catalog/modules/ai-agent-framework.md) (5) · [`computer-vision`](catalog/modules/computer-vision.md) (19) · [`llm-runtime`](catalog/modules/llm-runtime.md) (3) · [`model-training`](catalog/modules/model-training.md) (3) · [`rag-retrieval`](catalog/modules/rag-retrieval.md) (25) · [`speech-ai`](catalog/modules/speech-ai.md) (12) |
+| [`api-backend`](catalog/modules/api-backend.md) | 58 | [`api-gateway`](catalog/modules/api-gateway.md) (5) · [`graphql-api`](catalog/modules/graphql-api.md) (1) · [`realtime-api`](catalog/modules/realtime-api.md) (1) · [`rest-api`](catalog/modules/rest-api.md) (7) · [`rpc-api`](catalog/modules/rpc-api.md) (2) |
+| [`cli`](catalog/modules/cli.md) | 95 | [`package-manager`](catalog/modules/package-manager.md) (6) · [`shell-tooling`](catalog/modules/shell-tooling.md) (23) · [`terminal-emulator`](catalog/modules/terminal-emulator.md) (7) · [`terminal-ui`](catalog/modules/terminal-ui.md) (9) |
+| [`database-storage`](catalog/modules/database-storage.md) | 43 | [`cache-key-value`](catalog/modules/cache-key-value.md) (4) · [`document-database`](catalog/modules/document-database.md) (1) · [`object-storage`](catalog/modules/object-storage.md) (2) · [`relational-database`](catalog/modules/relational-database.md) (2) · [`search-engine`](catalog/modules/search-engine.md) (5) · [`vector-database`](catalog/modules/vector-database.md) (8) |
+| [`devops`](catalog/modules/devops.md) | 46 | [`ci-cd`](catalog/modules/ci-cd.md) (3) · [`configuration-management`](catalog/modules/configuration-management.md) (3) · [`container-tooling`](catalog/modules/container-tooling.md) (4) · [`infrastructure-as-code`](catalog/modules/infrastructure-as-code.md) (1) · [`kubernetes-tooling`](catalog/modules/kubernetes-tooling.md) (2) · [`observability`](catalog/modules/observability.md) (17) · `distributed-tracing` (0) · [`error-tracking`](catalog/modules/error-tracking.md) (2) · `log-management` (0) · `metrics-monitoring` (0) · [`profiling`](catalog/modules/profiling.md) (1) |
+| [`media`](catalog/modules/media.md) | 62 | [`audio-processing`](catalog/modules/audio-processing.md) (2) · [`computer-vision`](catalog/modules/computer-vision.md) (19) · [`image-processing`](catalog/modules/image-processing.md) (6) · [`media-downloader`](catalog/modules/media-downloader.md) (2) · [`media-streaming`](catalog/modules/media-streaming.md) (3) · [`speech-ai`](catalog/modules/speech-ai.md) (12) · [`video-processing`](catalog/modules/video-processing.md) (9) |
+| [`security`](catalog/modules/security.md) | 41 | [`auth`](catalog/modules/auth.md) (9) · [`cryptography`](catalog/modules/cryptography.md) (3) · [`malware-analysis`](catalog/modules/malware-analysis.md) (1) · [`network-security`](catalog/modules/network-security.md) (1) · [`penetration-testing`](catalog/modules/penetration-testing.md) (7) · [`reverse-engineering`](catalog/modules/reverse-engineering.md) (5) · [`secrets-management`](catalog/modules/secrets-management.md) (1) · [`vulnerability-scanning`](catalog/modules/vulnerability-scanning.md) (2) · [`access-control`](catalog/modules/access-control.md) (1) · [`identity-provider`](catalog/modules/identity-provider.md) (1) · `multi-factor-auth` (0) · `oauth-oidc` (0) |
+| [`testing`](catalog/modules/testing.md) | 11 | [`api-testing`](catalog/modules/api-testing.md) (2) · [`browser-e2e-testing`](catalog/modules/browser-e2e-testing.md) (2) · [`performance-testing`](catalog/modules/performance-testing.md) (1) · [`unit-test-framework`](catalog/modules/unit-test-framework.md) (1) |
+| [`web-ui`](catalog/modules/web-ui.md) | 62 | [`content-management`](catalog/modules/content-management.md) (7) · [`dashboard-ui`](catalog/modules/dashboard-ui.md) (6) · [`static-site-generator`](catalog/modules/static-site-generator.md) (7) · [`ui-component-library`](catalog/modules/ui-component-library.md) (15) |
 <!-- catalog-index:end -->
 
 ## How it works

@@ -262,14 +262,62 @@ def test_publish_updates_homepage_and_complete_catalog_idempotently(tmp_path: Pa
     assert "[Browse the full catalog](catalog/README.md)" in rendered
     assert "[Explore Taxonomy v2](catalog/taxonomy.md)" in rendered
     assert "Capability families overlap" in rendered
-    assert "| Family | Repositories | Direct subcategories |" in rendered
-    assert "| [`ai-ml`](catalog/modules/ai-ml.md) | 1 | 1 |" in rendered
-    assert "| [`cli`](catalog/modules/cli.md) | 2 | 0 |" in rendered
-    assert "ai-agent-framework" not in rendered
+    assert "| Family | Repositories | Fine-grained capability index |" in rendered
+    assert "| --- | ---: | --- |" in rendered
+    assert "| [`ai-ml`](catalog/modules/ai-ml.md) | 1 | `ai-agent-framework` (0) |" in rendered
+    assert "| [`cli`](catalog/modules/cli.md) | 2 | — |" in rendered
     assert "Ranked catalog index" not in rendered
     assert "<script>" not in rendered
     assert "javascript:" not in rendered
     assert "<img" not in rendered
+
+
+def test_homepage_links_every_asserted_descendant_capability(tmp_path: Path) -> None:
+    catalog = _catalog_document()
+    definitions = [
+        *catalog["capability_definitions"],
+        {"id": "agent-tooling", "label": "Agent tooling", "parents": ["ai-agent-framework"]},
+    ]
+    first_entry = catalog["entries"][0]
+    assertions = [
+        *first_entry["assertions"],
+        {
+            "capability_id": "ai-agent-framework",
+            "confidence": 0.95,
+            "reuse_status": "discovery_only",
+        },
+        {
+            "capability_id": "agent-tooling",
+            "confidence": 0.90,
+            "reuse_status": "discovery_only",
+        },
+    ]
+    entries = [
+        {
+            **first_entry,
+            "assertions": sorted(assertions, key=lambda item: item["capability_id"]),
+        },
+        *catalog["entries"][1:],
+    ]
+    source = _write_catalog_source(
+        tmp_path,
+        {
+            **catalog,
+            "capability_definitions": sorted(definitions, key=lambda item: item["id"]),
+            "entries": entries,
+            "capability_count": 4,
+        },
+    )
+    repository = _repository(tmp_path)
+
+    publisher.publish_to_repository(source, repository)
+
+    rendered = (repository / "README.md").read_text()
+    direct = "[`ai-agent-framework`](catalog/modules/ai-agent-framework.md) (1)"
+    nested = "[`agent-tooling`](catalog/modules/agent-tooling.md) (1)"
+    assert direct in rendered
+    assert nested in rendered
+    assert rendered.index(direct) < rendered.index(nested)
 
 
 def test_publish_renders_zero_count_root_without_missing_module_link(tmp_path: Path) -> None:
@@ -289,7 +337,7 @@ def test_publish_renders_zero_count_root_without_missing_module_link(tmp_path: P
     publisher.publish_to_repository(source, repository)
 
     rendered = (repository / "README.md").read_text()
-    assert "| `unused-family` | 0 | 0 |" in rendered
+    assert "| `unused-family` | 0 | — |" in rendered
     assert "catalog/modules/unused-family.md" not in rendered
 
 
