@@ -11,9 +11,7 @@ from pathlib import Path
 import pytest
 
 PROJECT_ROOT = Path(__file__).parents[2]
-_SENSITIVE_ENVIRONMENT_NAME = re.compile(
-    r"(?i)(?:token|secret|password|authorization|api[_-]?key)"
-)
+_SENSITIVE_ENVIRONMENT_NAME = re.compile(r"(?i)(?:token|secret|password|authorization|api[_-]?key)")
 _STRONG_SECRET_SHAPE = re.compile(
     r"AKIA[A-Z0-9]{16}|"
     r"sk-[A-Za-z0-9_-]{20,}|"
