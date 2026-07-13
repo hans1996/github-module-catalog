@@ -8,15 +8,27 @@ library、CLI、service、plugin 或 template 組合成更完整的系統。
 
 ## Ranked catalog index
 
-The first validated ranked snapshot has not been published yet. After a successful
-refresh, this managed section links directly to the tracked catalog, JSON, YAML, and
-capability pages. It is not an exhaustive mirror of GitHub.
+This is the validated, repository-tracked index. It is refreshed from GitHub Search and is not an exhaustive mirror of GitHub.
 
-- Default discovery: `stars:>=100`, pushed within `365` days, public,
-  non-archived, non-fork repositories.
-- Ranked window: at most the top `1,000` GitHub Search results, ordered by stars.
-- Machine index: [`catalog/catalog.json`](catalog/catalog.json) after first publication.
+- Policy: Minimum stars: **100**; pushed since **2025-07-13T00:00:00Z**; public, non-archived, non-fork repositories only.
+- Coverage: **1,000 unique repositories** from **181,447 GitHub matches**; ranked result limit **1,000** across **10 page(s)**.
+- Generated: **2026-07-13T06:37:09.007780Z**; order: **stars descending**, then repository ID.
 
+[Full ranked catalog](catalog/README.md) · [JSON](catalog/catalog.json) · [YAML](catalog/catalog.yaml)
+
+### Capability index
+
+- [`ai-ml`](catalog/modules/ai-ml.md) — 230
+- [`api-backend`](catalog/modules/api-backend.md) — 65
+- [`auth`](catalog/modules/auth.md) — 7
+- [`cli`](catalog/modules/cli.md) — 76
+- [`database-storage`](catalog/modules/database-storage.md) — 41
+- [`devops`](catalog/modules/devops.md) — 30
+- [`media`](catalog/modules/media.md) — 43
+- [`observability`](catalog/modules/observability.md) — 17
+- [`security`](catalog/modules/security.md) — 25
+- [`testing`](catalog/modules/testing.md) — 12
+- [`web-ui`](catalog/modules/web-ui.md) — 42
 <!-- catalog-index:end -->
 
 ## Discovery 根據什麼？
