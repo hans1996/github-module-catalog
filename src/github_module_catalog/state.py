@@ -31,6 +31,7 @@ _SENSITIVE_KEYS = frozenset(
     }
 )
 _NORMALIZED_SENSITIVE_KEYS = frozenset(key.replace("-", "_") for key in _SENSITIVE_KEYS)
+_DISCOVERY_MAPPING_MIGRATION = "2026-07-13-complete-discovery-page-mappings-v1"
 
 
 class StateConflictError(RuntimeError):
@@ -262,11 +263,7 @@ class StateStore:
             if existing is not None:
                 if existing["raw_sha256"] != page.raw_sha256:
                     raise StateConflictError("cursor already committed with different raw bytes")
-                self._link_page_repositories(
-                    connection,
-                    int(existing["id"]),
-                    _repository_ids_from_raw_page(page.raw_bytes),
-                )
+                self._verify_complete_page_mapping(connection, int(existing["id"]), page.raw_bytes)
                 return _page_record(existing)
 
             cursor_row = connection.execute(
@@ -309,6 +306,7 @@ class StateStore:
                         "inventory-v1",
                         committed_text,
                     )
+            self._verify_complete_page_mapping(connection, page_id, page.raw_bytes)
             updated = connection.execute(
                 """
                 UPDATE crawl_runs SET discovery_cursor = ?
@@ -724,6 +722,33 @@ class StateStore:
                 (page_id, repository_id),
             )
 
+    @classmethod
+    def _verify_complete_page_mapping(
+        cls, connection: sqlite3.Connection, page_id: int, raw_bytes: bytes
+    ) -> None:
+        raw_ids = frozenset(_repository_ids_from_raw_page(raw_bytes))
+        identity_ids = frozenset(
+            repository_id
+            for repository_id in raw_ids
+            if connection.execute(
+                "SELECT 1 FROM repository_identities WHERE repository_id = ?",
+                (repository_id,),
+            ).fetchone()
+            is not None
+        )
+        missing_identities = sorted(raw_ids - identity_ids)
+        if missing_identities:
+            raise StateConflictError(
+                f"raw discovery page has missing repository identities: {missing_identities}"
+            )
+        linked_ids = _linked_repository_ids(connection, page_id)
+        extra_links = sorted(linked_ids - raw_ids)
+        if extra_links:
+            raise StateConflictError(f"discovery page has extra repository links: {extra_links}")
+        cls._link_page_repositories(connection, page_id, raw_ids - linked_ids)
+        if _linked_repository_ids(connection, page_id) != raw_ids:
+            raise StateConflictError("discovery page repository links are incomplete")
+
     @contextmanager
     def _transaction(self) -> Iterator[sqlite3.Connection]:
         self._connection.execute("BEGIN IMMEDIATE")
@@ -749,23 +774,25 @@ class StateStore:
     def _initialize_schema(self) -> None:
         self._connection.executescript(_SCHEMA)
         with self._transaction() as connection:
+            applied = connection.execute(
+                "SELECT 1 FROM schema_migrations WHERE version = ?",
+                (_DISCOVERY_MAPPING_MIGRATION,),
+            ).fetchone()
+            if applied is not None:
+                return
             pages = connection.execute(
                 """
                 SELECT page.id, page.raw_sha256 FROM discovery_pages AS page
-                WHERE NOT EXISTS (
-                    SELECT 1 FROM discovery_page_repositories AS link
-                    WHERE link.page_id = page.id
-                )
                 ORDER BY page.id
                 """
             ).fetchall()
             for page in pages:
                 raw_bytes = self._raw_store.read(str(page["raw_sha256"]))
-                self._link_page_repositories(
-                    connection,
-                    int(page["id"]),
-                    _repository_ids_from_raw_page(raw_bytes),
-                )
+                self._verify_complete_page_mapping(connection, int(page["id"]), raw_bytes)
+            connection.execute(
+                "INSERT INTO schema_migrations(version) VALUES (?)",
+                (_DISCOVERY_MAPPING_MIGRATION,),
+            )
 
 
 def _cursor_after(cursor_before: int, page: RepositoryPage) -> int:
@@ -870,8 +897,21 @@ def _repository_ids_from_raw_page(raw_bytes: bytes) -> tuple[int, ...]:
             raise StateConflictError("raw discovery page repository IDs must be integers")
         if repository_id <= 0:
             raise StateConflictError("raw discovery page repository IDs must be positive")
+        if repository_id in repository_ids:
+            raise StateConflictError("raw discovery page repository IDs must be unique")
         repository_ids.add(repository_id)
     return tuple(sorted(repository_ids))
+
+
+def _linked_repository_ids(connection: sqlite3.Connection, page_id: int) -> frozenset[int]:
+    rows = connection.execute(
+        """
+        SELECT repository_id FROM discovery_page_repositories
+        WHERE page_id = ? ORDER BY repository_id
+        """,
+        (page_id,),
+    ).fetchall()
+    return frozenset(int(row["repository_id"]) for row in rows)
 
 
 def _source_discovered_count(connection: sqlite3.Connection, source: str) -> int:
@@ -1044,6 +1084,10 @@ CREATE TABLE IF NOT EXISTS crawl_runs (
     started_at TEXT NOT NULL,
     completed_at TEXT,
     discovery_cursor INTEGER NOT NULL CHECK(discovery_cursor >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS schema_migrations (
+    version TEXT PRIMARY KEY
 );
 
 CREATE TABLE IF NOT EXISTS discovery_pages (

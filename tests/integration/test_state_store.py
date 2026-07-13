@@ -19,7 +19,7 @@ from github_module_catalog.source import (
     RepositoryInventoryIdentity,
     RepositoryPage,
 )
-from github_module_catalog.state import SensitiveStateError, StateStore
+from github_module_catalog.state import SensitiveStateError, StateConflictError, StateStore
 from github_module_catalog.storage import (
     DigestMismatchError,
     InvalidDigestError,
@@ -61,9 +61,40 @@ def _page(
     )
 
 
+def _page_for_ids(*repository_ids: int) -> RepositoryPage:
+    raw_bytes = json.dumps(
+        [{"id": repository_id} for repository_id in repository_ids],
+        separators=(",", ":"),
+    ).encode()
+    return RepositoryPage(
+        raw_bytes=raw_bytes,
+        raw_sha256=hashlib.sha256(raw_bytes).hexdigest(),
+        etag=None,
+        next_url=None,
+        next_cursor=max(repository_ids),
+        rate_limit=RateLimitFacts(),
+        identities=tuple(
+            RepositoryInventoryIdentity(
+                repository_id=repository_id,
+                name=f"repo-{repository_id}",
+                full_name=f"octocat/repo-{repository_id}",
+                owner_login="octocat",
+                owner_id=100 + repository_id,
+                html_url=f"https://github.com/octocat/repo-{repository_id}",
+            )
+            for repository_id in repository_ids
+        ),
+    )
+
+
 def _stores(tmp_path: Path) -> tuple[RawObjectStore, StateStore]:
     raw_store = RawObjectStore(tmp_path)
     return raw_store, StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
+
+
+def _mark_mapping_migration_pending(database_path: Path) -> None:
+    with sqlite3.connect(database_path) as connection:
+        connection.execute("DROP TABLE IF EXISTS schema_migrations")
 
 
 def test_raw_write_is_content_addressed_fsynced_and_atomically_replaced(
@@ -398,6 +429,7 @@ def test_state_rejects_credential_material_and_has_all_required_schema_tables(
         "discovery_page_repositories",
         "repository_identities",
         "repository_observations",
+        "schema_migrations",
         "work_item_events",
         "work_items",
         "stage_checkpoints",
@@ -418,6 +450,7 @@ def test_legacy_database_backfills_source_links_from_verified_raw_pages(tmp_path
     state.close()
     with sqlite3.connect(tmp_path / "data" / "state.sqlite3") as connection:
         connection.execute("DROP TABLE discovery_page_repositories")
+    _mark_mapping_migration_pending(tmp_path / "data" / "state.sqlite3")
 
     reopened = StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
     snapshot = reopened.catalog_snapshot("github")
@@ -444,6 +477,7 @@ def test_legacy_backfill_fails_closed_when_raw_page_is_missing_or_corrupt(
     state.close()
     with sqlite3.connect(tmp_path / "data" / "state.sqlite3") as connection:
         connection.execute("DROP TABLE discovery_page_repositories")
+    _mark_mapping_migration_pending(tmp_path / "data" / "state.sqlite3")
     if damage == "missing":
         stored.path.unlink()
     else:
@@ -451,6 +485,84 @@ def test_legacy_backfill_fails_closed_when_raw_page_is_missing_or_corrupt(
 
     with pytest.raises(error_type):
         StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
+
+
+def test_mapping_migration_rejects_raw_repository_without_identity(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    committed = state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    state.close()
+    legacy_raw = json.dumps([{"id": 7}, {"id": 8}], separators=(",", ":")).encode()
+    legacy_object = raw_store.write(legacy_raw)
+    with sqlite3.connect(tmp_path / "data" / "state.sqlite3") as connection:
+        connection.execute(
+            "UPDATE discovery_pages SET raw_sha256 = ?, raw_size_bytes = ? WHERE id = ?",
+            (legacy_object.sha256, len(legacy_raw), committed.id),
+        )
+    _mark_mapping_migration_pending(tmp_path / "data" / "state.sqlite3")
+
+    with pytest.raises(StateConflictError, match="missing repository identities"):
+        StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
+
+
+def test_mapping_migration_repairs_partially_linked_page_exactly(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page_for_ids(7, 8)
+    raw_store.write(page.raw_bytes)
+    committed = state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    state.close()
+    with sqlite3.connect(tmp_path / "data" / "state.sqlite3") as connection:
+        connection.execute(
+            "DELETE FROM discovery_page_repositories WHERE page_id = ? AND repository_id = ?",
+            (committed.id, 8),
+        )
+    _mark_mapping_migration_pending(tmp_path / "data" / "state.sqlite3")
+
+    reopened = StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
+
+    assert reopened.catalog_snapshot("github").discovered_count == 2
+    with sqlite3.connect(reopened.path) as connection:
+        linked = connection.execute(
+            "SELECT repository_id FROM discovery_page_repositories WHERE page_id = ? "
+            "ORDER BY repository_id",
+            (committed.id,),
+        ).fetchall()
+    assert linked == [(7,), (8,)]
+
+
+def test_existing_page_replay_rejects_extra_repository_link(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    first_run = state.create_crawl_run("github", started_at=NOW)
+    first_page = _page(7)
+    raw_store.write(first_page.raw_bytes)
+    first = state.commit_discovery_page(
+        first_run.id, cursor_before=0, page=first_page, committed_at=NOW
+    )
+    second_run = state.create_crawl_run("github", started_at=NOW)
+    second_page = _page(8, next_cursor=8)
+    raw_store.write(second_page.raw_bytes)
+    state.commit_discovery_page(
+        second_run.id,
+        cursor_before=second_run.discovery_cursor,
+        page=second_page,
+        committed_at=NOW,
+    )
+    with sqlite3.connect(state.path) as connection:
+        connection.execute(
+            "INSERT INTO discovery_page_repositories(page_id, repository_id) VALUES (?, ?)",
+            (first.id, 8),
+        )
+
+    with pytest.raises(StateConflictError, match="extra repository links"):
+        state.commit_discovery_page(
+            first_run.id,
+            cursor_before=0,
+            page=first_page,
+            committed_at=NOW,
+        )
 
 
 def test_existing_page_replay_repairs_missing_repository_links(tmp_path: Path) -> None:
