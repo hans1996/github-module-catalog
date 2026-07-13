@@ -195,11 +195,13 @@ def _description_tokens(description: str | None) -> frozenset[str]:
 
 
 def _lifecycle_value(observation: RepositoryObservation) -> str:
-    if observation.disabled:
+    if observation.disabled is True:
         return "disabled"
-    if observation.archived:
+    if observation.archived is True:
         return "archived"
-    return "active"
+    if observation.disabled is False and observation.archived is False:
+        return "active"
+    return "unknown"
 
 
 def _evidence_and_confidence(

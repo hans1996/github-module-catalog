@@ -89,14 +89,14 @@ class _GitHubLicense(BaseModel):
 
 
 class _GitHubEnrichedInventoryRecord(_GitHubInventoryRecord):
-    description: str | None = Field(max_length=10_000)
-    language: str | None = Field(min_length=1, max_length=100)
-    created_at: datetime
-    updated_at: datetime
-    pushed_at: datetime | None
-    archived: bool = Field(strict=True)
-    disabled: bool = Field(strict=True)
-    fork: bool = Field(strict=True)
+    description: str | None = Field(default=None, max_length=10_000)
+    language: str | None = Field(default=None, min_length=1, max_length=100)
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
+    pushed_at: datetime | None = None
+    archived: bool | None = Field(default=None, strict=True)
+    disabled: bool | None = Field(default=None, strict=True)
+    fork: bool | None = Field(default=None, strict=True)
     topics: tuple[str, ...] = ()
     license: _GitHubLicense | None = None
 

@@ -144,6 +144,67 @@ def test_permissive_license_is_only_a_reuse_signal_for_active_repositories() -> 
     assert disabled.reuse_status == ReuseStatus.DISCOVERY_ONLY
 
 
+@pytest.mark.parametrize(
+    ("archived", "disabled"),
+    [(None, None), (None, False), (False, None)],
+)
+def test_permissive_license_with_unknown_lifecycle_is_discovery_only(
+    archived: bool | None, disabled: bool | None
+) -> None:
+    observation = repository_fixture(
+        license_spdx="MIT",
+        archived=archived,
+        disabled=disabled,
+    )
+
+    assert observation.reuse_status == ReuseStatus.DISCOVERY_ONLY
+
+
+def test_sparse_observation_serializes_unknown_facts_deterministically() -> None:
+    first = repository_fixture(
+        created_at=None,
+        updated_at=None,
+        pushed_at=None,
+        archived=None,
+        disabled=None,
+        fork=None,
+        topics=[],
+        primary_language=None,
+        license_spdx=None,
+        license_name=None,
+    )
+    second = RepositoryObservation.model_validate_json(first.stable_json())
+
+    assert first == second
+    assert first.stable_hash() == second.stable_hash()
+    assert '"archived":null' in first.stable_json()
+    assert '"created_at":null' in first.stable_json()
+    assert first.reuse_status == ReuseStatus.DISCOVERY_ONLY
+
+
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {
+            "created_at": datetime(2024, 3, 1, tzinfo=UTC),
+            "updated_at": None,
+            "pushed_at": None,
+            "observed_at": datetime(2024, 2, 2, tzinfo=UTC),
+        },
+        {
+            "created_at": None,
+            "updated_at": datetime(2024, 3, 1, tzinfo=UTC),
+            "observed_at": datetime(2024, 2, 2, tzinfo=UTC),
+        },
+    ],
+)
+def test_sparse_observation_rejects_future_timestamp_when_comparable(
+    overrides: dict[str, object],
+) -> None:
+    with pytest.raises(ValidationError, match="observed_at"):
+        repository_fixture(**overrides)
+
+
 def test_observation_has_byte_stable_serialization_and_hashing() -> None:
     first = repository_fixture(topics=["python", "cli"])
     second = repository_fixture(topics=["CLI", "Python", "cli"])

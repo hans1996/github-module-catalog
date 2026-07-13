@@ -6,6 +6,7 @@ from collections.abc import Iterator
 from dataclasses import FrozenInstanceError
 from datetime import UTC, datetime
 from email.utils import format_datetime
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -25,8 +26,10 @@ from github_module_catalog.source import (
     RetrySource,
     UnchangedResult,
 )
+from github_module_catalog.taxonomy import classify_repository, load_taxonomy
 
 NOW = datetime(2026, 7, 13, 8, 0, tzinfo=UTC)
+TAXONOMY_PATH = Path(__file__).parents[2] / "config" / "taxonomy.yaml"
 
 
 class ChunkedStream(httpx.SyncByteStream):
@@ -47,6 +50,22 @@ def inventory_record(**updates: Any) -> dict[str, Any]:
         "full_name": "octocat/module-catalog",
         "owner": {"login": "octocat", "id": 1},
         "html_url": "https://github.com/octocat/module-catalog",
+    }
+    record.update(updates)
+    return record
+
+
+def sparse_inventory_record(**updates: Any) -> dict[str, Any]:
+    """Match the sparse fact shape returned for repository id=1."""
+
+    record: dict[str, Any] = {
+        "id": 1,
+        "name": "grit",
+        "full_name": "mojombo/grit",
+        "owner": {"login": "mojombo", "id": 1},
+        "html_url": "https://github.com/mojombo/grit",
+        "description": "A command-line interface for Git repositories",
+        "fork": False,
     }
     record.update(updates)
     return record
@@ -154,6 +173,36 @@ def test_complete_inventory_metadata_becomes_a_validated_observation() -> None:
     assert observation.observed_at == NOW
 
 
+def test_sparse_public_inventory_record_becomes_an_honest_classifiable_observation() -> None:
+    sparse = sparse_inventory_record()
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=[sparse])
+
+    result = GitHubRepositorySource(
+        transport=httpx.MockTransport(handler), now=lambda: NOW
+    ).fetch_page(0)
+
+    assert isinstance(result, PageResult)
+    assert result.page.identities[0].repository_id == 1
+    observation = result.page.observations[0]
+    assert observation.description == sparse["description"]
+    assert observation.fork is False
+    assert observation.created_at is None
+    assert observation.updated_at is None
+    assert observation.pushed_at is None
+    assert observation.primary_language is None
+    assert observation.topics == ()
+    assert observation.archived is None
+    assert observation.disabled is None
+    assert observation.license_spdx is None
+    assertions = classify_repository(observation, load_taxonomy(TAXONOMY_PATH))
+    assert [assertion.capability_id for assertion in assertions] == ["cli"]
+    assert {item.value for item in assertions[0].evidence if item.source == "description"} == {
+        "command-line"
+    }
+
+
 def test_pure_inventory_parser_is_bounded_and_rederives_observation() -> None:
     record = inventory_record(
         description="A reusable CLI catalog",
@@ -180,7 +229,9 @@ def test_pure_inventory_parser_is_bounded_and_rederives_observation() -> None:
 @pytest.mark.parametrize(
     "updates",
     [
-        {"description": "partial metadata must not be ignored"},
+        {"description": 123},
+        {"created_at": "not-a-timestamp"},
+        {"topics": None},
         {
             "description": "invalid lifecycle flag",
             "language": "Python",

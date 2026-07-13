@@ -104,13 +104,13 @@ class RepositoryObservation(ImmutableModel):
     description: str | None = Field(default=None, max_length=10_000)
     topics: tuple[str, ...] = ()
     primary_language: str | None = Field(default=None, min_length=1, max_length=100)
-    created_at: AwareDatetime
-    updated_at: AwareDatetime
+    created_at: AwareDatetime | None = None
+    updated_at: AwareDatetime | None = None
     pushed_at: AwareDatetime | None = None
     observed_at: AwareDatetime
-    archived: StrictBool = False
-    disabled: StrictBool = False
-    fork: StrictBool = False
+    archived: StrictBool | None = None
+    disabled: StrictBool | None = None
+    fork: StrictBool | None = None
     license_spdx: str | None = None
     license_name: str | None = Field(default=None, min_length=1, max_length=500)
 
@@ -152,14 +152,25 @@ class RepositoryObservation(ImmutableModel):
         observed_path = (self.html_url.path or "").rstrip("/")
         if observed_path != expected_path:
             raise ValueError(f"html_url path must equal {expected_path!r}")
-        if self.updated_at < self.created_at:
+        if (
+            self.created_at is not None
+            and self.updated_at is not None
+            and self.updated_at < self.created_at
+        ):
             raise ValueError("updated_at cannot precede created_at")
-        if self.pushed_at is not None and self.pushed_at < self.created_at:
+        if (
+            self.created_at is not None
+            and self.pushed_at is not None
+            and self.pushed_at < self.created_at
+        ):
             raise ValueError("pushed_at cannot precede created_at")
-        if self.observed_at < self.updated_at:
-            raise ValueError("observed_at cannot precede updated_at")
-        if self.pushed_at is not None and self.observed_at < self.pushed_at:
-            raise ValueError("observed_at cannot precede pushed_at")
+        for field_name, timestamp in (
+            ("created_at", self.created_at),
+            ("updated_at", self.updated_at),
+            ("pushed_at", self.pushed_at),
+        ):
+            if timestamp is not None and self.observed_at < timestamp:
+                raise ValueError(f"observed_at cannot precede {field_name}")
         return self
 
     @computed_field  # type: ignore[prop-decorator]
@@ -167,7 +178,7 @@ class RepositoryObservation(ImmutableModel):
     def reuse_status(self) -> ReuseStatus:
         """Return a conservative reuse signal, never a legal conclusion."""
 
-        if self.archived or self.disabled:
+        if self.archived is not False or self.disabled is not False:
             return ReuseStatus.DISCOVERY_ONLY
         if self.license_spdx in _PERMISSIVE_LICENSES:
             return ReuseStatus.SAFE_TO_INTEGRATE
