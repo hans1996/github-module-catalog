@@ -28,9 +28,7 @@ def test_workflows_use_reviewed_full_node24_action_pins() -> None:
 
 
 def test_discovery_uploads_complete_provenance_only_after_success() -> None:
-    workflow = (ROOT / ".github" / "workflows" / "discover.yml").read_text(
-        encoding="utf-8"
-    )
+    workflow = (ROOT / ".github" / "workflows" / "discover.yml").read_text(encoding="utf-8")
 
     assert "if: always()" not in workflow
     assert "if: success()" in workflow

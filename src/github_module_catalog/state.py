@@ -483,9 +483,7 @@ class StateStore:
         """Atomically bind one validated observation to its durable raw page."""
 
         with self._transaction() as connection:
-            return self._bind_discovery_observation(
-                connection, page_id, raw_sha256, observation
-            )
+            return self._bind_discovery_observation(connection, page_id, raw_sha256, observation)
 
     def complete_discovery_observation(
         self,
@@ -503,9 +501,7 @@ class StateStore:
         analyzer_version = _validated_text(analyzer_version, "analyzer_version")
         occurred_text = _datetime_text(occurred_at)
         with self._transaction() as connection:
-            record = self._bind_discovery_observation(
-                connection, page_id, raw_sha256, observation
-            )
+            record = self._bind_discovery_observation(connection, page_id, raw_sha256, observation)
             self._insert_work_item_event(
                 connection,
                 observation.identity.repository_id,

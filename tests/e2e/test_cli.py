@@ -805,9 +805,7 @@ def test_rebuild_rejects_conflicting_format_set_before_replacing_valid_output(
     assert first.exit_code == 0
     output = workspace / "catalog-output"
     before = {
-        path.relative_to(output): path.read_bytes()
-        for path in output.rglob("*")
-        if path.is_file()
+        path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()
     }
 
     conflicting = RUNNER.invoke(
@@ -816,9 +814,7 @@ def test_rebuild_rejects_conflicting_format_set_before_replacing_valid_output(
     )
 
     after = {
-        path.relative_to(output): path.read_bytes()
-        for path in output.rglob("*")
-        if path.is_file()
+        path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()
     }
     assert conflicting.exit_code != 0
     assert after == before
