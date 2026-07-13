@@ -74,7 +74,10 @@ _RANKED_COVERAGE_NOTE = "Top ranked GitHub Search window; not all public reposit
 _MAX_ARTIFACT_BYTES = 32 * 1024 * 1024
 _MAX_ARTIFACT_TOTAL_BYTES = 256 * 1024 * 1024
 _MAX_ARTIFACTS = 10_000
-_MAX_YAML_NODES = 10_000
+# A full 1,000-entry ranked snapshot is roughly 82,000 nodes. Keep bounded
+# headroom for legitimate topic and capability variation without removing the
+# parser's structural denial-of-service guard.
+_MAX_YAML_NODES = 128_000
 _MAX_YAML_DEPTH = 100
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 

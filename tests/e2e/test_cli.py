@@ -59,16 +59,31 @@ def test_yaml_alias_dag_is_rejected_before_object_construction() -> None:
         _read_yaml_object(payload)
 
 
-@pytest.mark.parametrize(
-    ("payload", "message"),
-    [
-        (("root: " + "[" * 101 + "x" + "]" * 101).encode(), "nesting"),
-        (("root:\n" + "  - x\n" * 10_001).encode(), "node"),
-    ],
-)
-def test_yaml_structure_bounds_apply_before_conversion(payload: bytes, message: str) -> None:
-    with pytest.raises(CliOperationError, match=message):
+def test_yaml_nesting_bound_applies_before_conversion() -> None:
+    payload = ("root: " + "[" * 101 + "x" + "]" * 101).encode()
+
+    with pytest.raises(CliOperationError, match="nesting"):
         _read_yaml_object(payload)
+
+
+def test_yaml_node_bound_applies_before_conversion(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(cli_module, "_MAX_YAML_NODES", 10_000)
+
+    with pytest.raises(CliOperationError, match="node"):
+        _read_yaml_object(("root:\n" + "  - x\n" * 10_001).encode())
+
+
+def test_yaml_node_budget_accepts_a_thousand_ranked_entries() -> None:
+    document = {
+        "entries": [
+            {"repository": {f"field_{field}": field for field in range(40)}} for _ in range(1_000)
+        ]
+    }
+    payload = yaml.safe_dump(document, sort_keys=True).encode()
+
+    observed = _read_yaml_object(payload)
+
+    assert len(cast(list[object], observed["entries"])) == 1_000
 
 
 def _credential_marker() -> str:
