@@ -75,7 +75,7 @@ The scheduled workflow restores and saves `catalog-workspace/data` with a
 run-specific cache key and a stable restore prefix. It saves a new checkpoint
 only after discovery, build, and validation succeed. The output and SQLite
 state plus provenance-required raw objects are uploaded only after validation
-as short-retention workflow artifacts. Treat workspace caches and artifacts as
+as three-day workflow artifacts. Treat workspace caches and artifacts as
 sensitive untrusted metadata even though catalog output passed secret-shape
 rejection. Generated datasets are never committed to Git.
 
