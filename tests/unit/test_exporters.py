@@ -166,6 +166,20 @@ def _manifest(
     )
 
 
+def test_catalog_build_publishes_sorted_capability_hierarchy_contract() -> None:
+    manifest = _manifest()
+
+    assert manifest.schema_version == "1.1.0"
+    assert [definition.id for definition in manifest.capability_definitions] == sorted(
+        node.id for node in load_taxonomy(TAXONOMY_PATH).axes["capability"]
+    )
+    auth = next(
+        definition for definition in manifest.capability_definitions if definition.id == "auth"
+    )
+    assert auth.label == "Authentication and authorization"
+    assert auth.parents == ("security",)
+
+
 def _commit_page(
     state: StateStore,
     raw_store: RawObjectStore,
@@ -562,7 +576,7 @@ def test_manifest_reports_coverage_counts_versions_and_source_hashes() -> None:
     assert (manifest.cursor_start, manifest.cursor_end) == (0, 9)
     assert (manifest.discovered_count, manifest.validated_observation_count) == (4, 2)
     assert (manifest.pending_count, manifest.retry_count, manifest.dead_letter_count) == (2, 1, 1)
-    assert manifest.schema_version == "1.0.0"
+    assert manifest.schema_version == "1.1.0"
     assert manifest.taxonomy_version == "1.0.0"
     assert manifest.classifier_version == "rules-v1"
     assert manifest.raw_page_hashes == ("a" * 64, "b" * 64)

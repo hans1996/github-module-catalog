@@ -8,6 +8,7 @@ from datetime import datetime
 
 from github_module_catalog.models import (
     CapabilityAssertion,
+    CapabilityDefinition,
     CatalogEntry,
     CatalogManifest,
     CatalogSearchPageEvidence,
@@ -97,7 +98,7 @@ def build_catalog(
     classifier_version: str = "rules-v1",
     generated_at: datetime | None = None,
     classifier: Classifier = classify_repository,
-    schema_version: str = "1.0.0",
+    schema_version: str = "1.1.0",
 ) -> CatalogManifest:
     """Classify validated facts, isolating a failure to its repository entry."""
 
@@ -145,6 +146,10 @@ def build_catalog(
         classification_failure_repository_ids=tuple(failure_ids),
         coverage_complete=context.coverage_complete,
         coverage_note=context.coverage_note,
+        capability_definitions=tuple(
+            CapabilityDefinition(id=node.id, label=node.label, parents=node.parents)
+            for node in taxonomy.axes.get("capability", ())
+        ),
         entries=tuple(entries),
     )
 
@@ -157,7 +162,7 @@ def build_catalog_from_state(
     classifier_version: str = "rules-v1",
     generated_at: datetime | None = None,
     classifier: Classifier = classify_repository,
-    schema_version: str = "1.0.0",
+    schema_version: str = "1.1.0",
 ) -> CatalogManifest:
     """Build from the state's latest hash-verified observations."""
 

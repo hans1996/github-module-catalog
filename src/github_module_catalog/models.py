@@ -29,6 +29,7 @@ _SPDX_PATTERN = re.compile(
     r"(?:\s+(?:AND|OR|WITH)\s+[A-Za-z0-9][A-Za-z0-9.+-]*)*$"
 )
 _SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
+_CAPABILITY_ID_PATTERN = r"^[a-z0-9][a-z0-9-]*$"
 _PERMISSIVE_LICENSES = frozenset(
     {
         "0BSD",
@@ -276,7 +277,11 @@ class CapabilityAssertion(ImmutableModel):
     """Versioned, traceable claim that a repository provides a capability."""
 
     repository_id: int = Field(gt=0)
-    capability_id: str = Field(min_length=1, max_length=100, pattern=r"^[a-z0-9][a-z0-9-]*$")
+    capability_id: str = Field(
+        min_length=1,
+        max_length=100,
+        pattern=_CAPABILITY_ID_PATTERN,
+    )
     taxonomy_version: NonEmptyStr = Field(max_length=100)
     classifier_version: NonEmptyStr = Field(max_length=100)
     confidence: float = Field(ge=0.0, le=1.0)
@@ -301,6 +306,27 @@ class CapabilityAssertion(ImmutableModel):
     @classmethod
     def canonicalize_evidence(cls, value: tuple[Evidence, ...]) -> tuple[Evidence, ...]:
         return tuple(sorted(set(value), key=lambda item: (item.source, item.value)))
+
+
+class CapabilityDefinition(ImmutableModel):
+    """Published capability identity and its direct taxonomy parents."""
+
+    id: str = Field(min_length=1, max_length=100, pattern=_CAPABILITY_ID_PATTERN)
+    label: NonEmptyStr = Field(max_length=200)
+    parents: tuple[str, ...] = ()
+
+    @field_validator("parents")
+    @classmethod
+    def canonicalize_parents(cls, value: tuple[str, ...]) -> tuple[str, ...]:
+        normalized = tuple(sorted(set(value)))
+        if any(
+            not parent
+            or len(parent) > 100
+            or re.fullmatch(_CAPABILITY_ID_PATTERN, parent) is None
+            for parent in normalized
+        ):
+            raise ValueError("capability parents must contain safe capability IDs")
+        return normalized
 
 
 class CatalogEntry(ImmutableModel):
@@ -361,7 +387,20 @@ class CatalogManifest(ImmutableModel):
     classification_failure_repository_ids: tuple[int, ...] = ()
     coverage_complete: StrictBool = False
     coverage_note: NonEmptyStr = "Bounded discovery interval; not all public GitHub repositories."
+    capability_definitions: tuple[CapabilityDefinition, ...] = ()
     entries: tuple[CatalogEntry, ...] = ()
+
+    @field_validator("capability_definitions")
+    @classmethod
+    def canonicalize_capability_definitions(
+        cls, value: tuple[CapabilityDefinition, ...]
+    ) -> tuple[CapabilityDefinition, ...]:
+        definition_ids = [definition.id for definition in value]
+        if len(definition_ids) != len(set(definition_ids)):
+            raise ValueError("duplicate capability definition ID")
+        definitions = tuple(sorted(value, key=lambda definition: definition.id))
+        _validate_capability_definition_graph(definitions)
+        return definitions
 
     @field_validator("source_hashes", "raw_page_hashes")
     @classmethod
@@ -410,6 +449,21 @@ class CatalogManifest(ImmutableModel):
             self.entries
         ):
             raise ValueError("validated observation count cannot be smaller than entry count")
+        if self.capability_definitions:
+            definition_ids = {definition.id for definition in self.capability_definitions}
+            missing_targets = sorted(
+                {
+                    assertion.capability_id
+                    for entry in self.entries
+                    for assertion in entry.assertions
+                    if assertion.capability_id not in definition_ids
+                }
+            )
+            if missing_targets:
+                raise ValueError(
+                    "assertion targets missing capability definitions: "
+                    f"{missing_targets}"
+                )
         self._validate_ranked_selection()
         return self
 
@@ -478,3 +532,35 @@ class CatalogManifest(ImmutableModel):
         return len(
             {assertion.capability_id for entry in self.entries for assertion in entry.assertions}
         )
+
+
+def _validate_capability_definition_graph(
+    definitions: tuple[CapabilityDefinition, ...],
+) -> None:
+    definition_ids = {definition.id for definition in definitions}
+    missing_parents = sorted(
+        (definition.id, parent)
+        for definition in definitions
+        for parent in definition.parents
+        if parent not in definition_ids
+    )
+    if missing_parents:
+        raise ValueError(f"missing parent in capability definitions: {missing_parents}")
+
+    parents_by_id = {definition.id: definition.parents for definition in definitions}
+    visiting: set[str] = set()
+    visited: set[str] = set()
+
+    def visit(capability_id: str) -> None:
+        if capability_id in visiting:
+            raise ValueError(f"parent cycle in capability definitions involving {capability_id!r}")
+        if capability_id in visited:
+            return
+        visiting.add(capability_id)
+        for parent in parents_by_id[capability_id]:
+            visit(parent)
+        visiting.remove(capability_id)
+        visited.add(capability_id)
+
+    for capability_id in sorted(definition_ids):
+        visit(capability_id)

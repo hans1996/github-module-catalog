@@ -59,6 +59,18 @@ def assertion_fixture(observation: RepositoryObservation, **overrides: Any) -> C
     return CapabilityAssertion(**(values | overrides))
 
 
+def capability_definition(
+    capability_id: str,
+    *,
+    parents: tuple[str, ...] = (),
+) -> models.CapabilityDefinition:
+    return models.CapabilityDefinition(
+        id=capability_id,
+        label=capability_id.replace("-", " ").title(),
+        parents=parents,
+    )
+
+
 def ranked_manifest(entries: tuple[CatalogEntry, ...], **overrides: Any) -> CatalogManifest:
     values: dict[str, Any] = {
         "schema_version": "1.0.0",
@@ -396,6 +408,74 @@ def test_catalog_entry_rejects_duplicate_capability_ids() -> None:
 
     with pytest.raises(ValidationError, match="duplicate capability_id"):
         CatalogEntry(repository=observation, assertions=(first, second))
+
+
+def test_capability_definitions_are_immutable_and_canonical() -> None:
+    child = capability_definition("terminal-ui", parents=("cli", "cli"))
+    root = capability_definition("cli")
+
+    manifest = CatalogManifest(
+        schema_version="1.1.0",
+        taxonomy_version="2.0.0",
+        classifier_version="rules-v2",
+        capability_definitions=(child, root),
+    )
+
+    assert [definition.id for definition in manifest.capability_definitions] == [
+        "cli",
+        "terminal-ui",
+    ]
+    assert manifest.capability_definitions[1].parents == ("cli",)
+    with pytest.raises(ValidationError):
+        manifest.capability_definitions[0].label = "Changed"
+
+
+@pytest.mark.parametrize(
+    ("definitions", "message"),
+    [
+        (
+            (capability_definition("cli"), capability_definition("cli")),
+            "duplicate capability definition",
+        ),
+        ((capability_definition("terminal-ui", parents=("cli",)),), "missing parent"),
+        ((capability_definition("cli", parents=("cli",)),), "parent cycle"),
+        (
+            (
+                capability_definition("first", parents=("second",)),
+                capability_definition("second", parents=("first",)),
+            ),
+            "parent cycle",
+        ),
+    ],
+)
+def test_catalog_manifest_rejects_invalid_capability_hierarchy(
+    definitions: tuple[models.CapabilityDefinition, ...],
+    message: str,
+) -> None:
+    with pytest.raises(ValidationError, match=message):
+        CatalogManifest(
+            schema_version="1.1.0",
+            taxonomy_version="2.0.0",
+            classifier_version="rules-v2",
+            capability_definitions=definitions,
+        )
+
+
+def test_catalog_manifest_rejects_assertion_outside_published_hierarchy() -> None:
+    observation = repository_fixture()
+    entry = CatalogEntry(
+        repository=observation,
+        assertions=(assertion_fixture(observation, capability_id="cli"),),
+    )
+
+    with pytest.raises(ValidationError, match="assertion targets missing capability definitions"):
+        CatalogManifest(
+            schema_version="1.1.0",
+            taxonomy_version="2.0.0",
+            classifier_version="rules-v2",
+            capability_definitions=(capability_definition("auth"),),
+            entries=(entry,),
+        )
 
 
 def test_ranked_manifest_canonicalizes_entries_by_contiguous_rank() -> None:
