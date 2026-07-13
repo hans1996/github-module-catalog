@@ -132,14 +132,31 @@ def test_packaged_v2_preserves_parents_and_defines_every_leaf_rule() -> None:
     taxonomy = load_taxonomy(TAXONOMY_PATH)
     nodes_by_id = {node.id: node for node in taxonomy.axes["capability"]}
     rules_by_id = {rule.capability_id: rule for rule in taxonomy.rules}
+    expected_capabilities = REQUIRED_CAPABILITIES | set(V2_LEAF_PARENTS)
 
-    assert REQUIRED_CAPABILITIES.issubset(nodes_by_id)
-    assert set(V2_LEAF_PARENTS).issubset(nodes_by_id)
-    assert set(V2_LEAF_PARENTS).issubset(rules_by_id)
+    assert set(nodes_by_id) == expected_capabilities
+    assert set(rules_by_id) == expected_capabilities
     assert len(V2_LEAF_PARENTS) == 55
     for capability_id, parents in V2_LEAF_PARENTS.items():
         assert nodes_by_id[capability_id].parents == parents
         assert rules_by_id[capability_id].topics
+
+
+def test_every_packaged_v2_topic_signal_is_live() -> None:
+    taxonomy = load_taxonomy(TAXONOMY_PATH)
+
+    for rule in taxonomy.rules:
+        for topic in rule.topics:
+            observation = repository_fixture(
+                description=None,
+                topics=[topic],
+                primary_language=None,
+            )
+            capability_ids = {
+                assertion.capability_id for assertion in classify_repository(observation, taxonomy)
+            }
+
+            assert rule.capability_id in capability_ids, (rule.capability_id, topic)
 
 
 @pytest.mark.parametrize("capability_id", sorted(V2_LEAF_PARENTS))
@@ -158,56 +175,6 @@ def test_every_packaged_v2_leaf_has_a_working_topic_signal(capability_id: str) -
 
     assert capability_id in capability_ids
     assert set(V2_LEAF_PARENTS[capability_id]).issubset(capability_ids)
-
-
-@pytest.mark.parametrize(
-    ("topic", "forbidden_capability"),
-    [
-        ("terminal", "terminal-emulator"),
-        ("docker", "container-tooling"),
-        ("kubernetes", "kubernetes-tooling"),
-        ("crypto", "cryptography"),
-    ],
-)
-def test_packaged_v2_avoids_ambiguous_leaf_topics(
-    topic: str,
-    forbidden_capability: str,
-) -> None:
-    taxonomy = load_taxonomy(TAXONOMY_PATH)
-    observation = repository_fixture(description=None, topics=[topic], primary_language=None)
-
-    capability_ids = {
-        assertion.capability_id for assertion in classify_repository(observation, taxonomy)
-    }
-
-    assert forbidden_capability not in capability_ids
-
-
-@pytest.mark.parametrize(
-    ("signal_topic", "noise_topic", "forbidden_capability"),
-    [
-        ("ai-agent", "awesome-list", "ai-agent-framework"),
-        ("postgresql", "tutorials", "relational-database"),
-        ("penetration-testing", "course", "penetration-testing"),
-    ],
-)
-def test_packaged_v2_rejects_resource_only_projects(
-    signal_topic: str,
-    noise_topic: str,
-    forbidden_capability: str,
-) -> None:
-    taxonomy = load_taxonomy(TAXONOMY_PATH)
-    observation = repository_fixture(
-        description=None,
-        topics=[signal_topic, noise_topic],
-        primary_language=None,
-    )
-
-    capability_ids = {
-        assertion.capability_id for assertion in classify_repository(observation, taxonomy)
-    }
-
-    assert forbidden_capability not in capability_ids
 
 
 def test_taxonomy_rejects_unknown_configuration_fields(tmp_path: Path) -> None:

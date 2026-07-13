@@ -26,6 +26,7 @@ from github_module_catalog.exporters import (
     render_catalog_yaml,
     render_module_page,
     render_readme,
+    render_taxonomy_page,
 )
 from github_module_catalog.models import (
     CapabilityAssertion,
@@ -460,6 +461,23 @@ def test_json_yaml_and_markdown_have_equivalent_sorted_catalog_entries() -> None
     )
 
 
+def test_taxonomy_markdown_renders_nested_hierarchy_counts_and_catalog_link() -> None:
+    manifest = _manifest()
+
+    taxonomy_page = render_taxonomy_page(manifest)
+    readme = render_readme(manifest)
+
+    assert "# Capability taxonomy" in taxonomy_page
+    assert "Taxonomy version: `2.0.0`" in taxonomy_page
+    assert "Classifier: `rules-v2`" in taxonomy_page
+    assert "- [`security`](modules/security.md) — Security — 1" in taxonomy_page
+    assert "  - [`auth`](modules/auth.md) — Authentication and authorization — 1" in taxonomy_page
+    assert "    - `oauth-oidc` — OAuth and OpenID Connect — 0" in taxonomy_page
+    assert taxonomy_page.index("`security`") < taxonomy_page.index("`auth`")
+    assert taxonomy_page.index("`auth`") < taxonomy_page.index("`oauth-oidc`")
+    assert "[Capability taxonomy](taxonomy.md)" in readme
+
+
 def test_source_with_backticks_stays_inside_a_safe_markdown_code_span() -> None:
     manifest = build_catalog(
         (_observation(7),),
@@ -469,7 +487,8 @@ def test_source_with_backticks_stays_inside_a_safe_markdown_code_span() -> None:
 
     markdown = render_readme(manifest)
 
-    assert "Source: `` github` <img src=x> ``; cursor:" in markdown
+    assert "Source: `` github` &lt;img src=x&gt; ``; cursor:" in markdown
+    assert "<img" not in markdown
     assert "Source: `github\\` <img src=x>`;" not in markdown
 
 
@@ -548,6 +567,7 @@ def test_repeated_publication_is_byte_identical_and_build_time_is_opt_in(
         Path("modules/auth.md"),
         Path("modules/cli.md"),
         Path("modules/security.md"),
+        Path("taxonomy.md"),
     }
     assert "generated_at" not in json.loads(first[Path("manifest.json")])
     timestamped = _manifest(generated_at=NOW)

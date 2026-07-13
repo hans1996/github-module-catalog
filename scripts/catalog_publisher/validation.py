@@ -3,16 +3,22 @@
 from __future__ import annotations
 
 import hashlib
+import heapq
 import json
 import os
 from datetime import datetime
 from pathlib import Path, PurePosixPath
+from typing import NoReturn
 
 from .constants import (
     BEGIN_MARKER,
     CAPABILITY_PATTERN,
     END_MARKER,
     MAX_ARTIFACTS,
+    MAX_CAPABILITY_DEFINITIONS,
+    MAX_CAPABILITY_DEPTH,
+    MAX_CAPABILITY_EDGES,
+    MAX_CAPABILITY_PARENTS,
     MAX_MANIFEST_BYTES,
     MAX_TOTAL_BYTES,
     MODULE_PATH_PATTERN,
@@ -27,6 +33,7 @@ from .filesystem import (
     _tree_entries,
 )
 from .model import PublicationError, ValidatedPublication
+from .rendering import canonical_markdown_artifacts
 
 
 def _validate_source(source: Path) -> ValidatedPublication:
@@ -38,6 +45,8 @@ def _validate_source(source: Path) -> ValidatedPublication:
             max_bytes=MAX_MANIFEST_BYTES,
         )
         manifest = _json_object(manifest_bytes, "artifact manifest")
+        if manifest_bytes != _canonical_json(manifest):
+            raise PublicationError("artifact manifest is not canonical JSON")
         artifacts = _artifact_mapping(manifest)
         expected_files = set(artifacts) | {"manifest.json"}
         actual_files, actual_directories = _tree_entries(source_fd)
@@ -61,12 +70,21 @@ def _validate_source(source: Path) -> ValidatedPublication:
             contents[name] = content
 
         catalog = _json_object(contents["catalog.json"], "catalog JSON")
+        if contents["catalog.json"] != _canonical_json(catalog):
+            raise PublicationError("catalog JSON is not canonical JSON")
+        if contents["catalog.yaml"] != _canonical_pretty_json(catalog):
+            raise PublicationError("catalog YAML differs from canonical YAML rendering")
         manifest_fields = {key: value for key, value in manifest.items() if key != "artifacts"}
         catalog_fields = {key: value for key, value in catalog.items() if key != "entries"}
         if _canonical_json(manifest_fields) != _canonical_json(catalog_fields):
             raise PublicationError("catalog manifest metadata differs from catalog JSON")
-        entries, capability_counts = _validate_catalog_metadata(catalog, set(artifacts))
-        homepage = _render_homepage(catalog, capability_counts)
+        entries, capability_counts, capability_families = _validate_catalog_metadata(
+            catalog, set(artifacts)
+        )
+        expected_markdown = canonical_markdown_artifacts(catalog)
+        if any(contents.get(name) != content for name, content in expected_markdown.items()):
+            raise PublicationError("catalog artifact differs from canonical Markdown rendering")
+        homepage = _render_homepage(catalog, capability_families)
         return ValidatedPublication(
             contents=dict(sorted(contents.items())),
             homepage=homepage,
@@ -89,7 +107,7 @@ def _artifact_mapping(manifest: dict[str, object]) -> dict[str, str]:
         if name == "manifest.json" or SHA256_PATTERN.fullmatch(raw_digest) is None:
             raise PublicationError("artifact manifest contains an unsafe entry")
         artifacts[name] = raw_digest
-    required = {"README.md", "catalog.json", "catalog.yaml"}
+    required = {"README.md", "catalog.json", "catalog.yaml", "taxonomy.md"}
     if not required.issubset(artifacts):
         raise PublicationError("ranked publication requires Markdown, JSON, and YAML catalogs")
     return artifacts
@@ -104,7 +122,7 @@ def _safe_artifact_name(value: str) -> str:
         or value != path.as_posix()
         or any(part in {"", ".", ".."} for part in path.parts)
         or (
-            value not in {"README.md", "catalog.json", "catalog.yaml"}
+            value not in {"README.md", "catalog.json", "catalog.yaml", "taxonomy.md"}
             and MODULE_PATH_PATTERN.fullmatch(value) is None
         )
     ):
@@ -114,7 +132,7 @@ def _safe_artifact_name(value: str) -> str:
 
 def _validate_catalog_metadata(
     catalog: dict[str, object], artifact_names: set[str]
-) -> tuple[int, dict[str, int]]:
+) -> tuple[int, dict[str, int], tuple[tuple[str, int, int], ...]]:
     if catalog.get("source") != "github-search-repositories":
         raise PublicationError("catalog source is not the ranked GitHub Search source")
     for key in ("schema_version", "taxonomy_version", "classifier_version"):
@@ -192,7 +210,116 @@ def _validate_catalog_metadata(
     observed_modules = {name for name in artifact_names if name.startswith("modules/")}
     if expected_modules != observed_modules:
         raise PublicationError("catalog module pages differ from capability assertions")
-    return entry_count, dict(sorted(capability_counts.items()))
+    ordered_counts = dict(sorted(capability_counts.items()))
+    capability_families = _validate_capability_hierarchy(
+        catalog,
+        entries=entries_value,
+        capability_counts=ordered_counts,
+    )
+    return entry_count, ordered_counts, capability_families
+
+
+def _validate_capability_hierarchy(
+    catalog: dict[str, object],
+    *,
+    entries: list[object],
+    capability_counts: dict[str, int],
+) -> tuple[tuple[str, int, int], ...]:
+    raw_definitions = catalog.get("capability_definitions")
+    if (
+        not isinstance(raw_definitions, list)
+        or not raw_definitions
+        or len(raw_definitions) > MAX_CAPABILITY_DEFINITIONS
+    ):
+        raise PublicationError("catalog capability hierarchy is missing")
+
+    definitions: dict[str, tuple[str, ...]] = {}
+    ordered_ids: list[str] = []
+    for raw_definition in raw_definitions:
+        if not isinstance(raw_definition, dict) or set(raw_definition) != {
+            "id",
+            "label",
+            "parents",
+        }:
+            raise PublicationError("catalog capability hierarchy definition is invalid")
+        capability_id = raw_definition.get("id")
+        label = raw_definition.get("label")
+        raw_parents = raw_definition.get("parents")
+        if (
+            not isinstance(capability_id, str)
+            or CAPABILITY_PATTERN.fullmatch(capability_id) is None
+            or not isinstance(label, str)
+            or not label.strip()
+            or len(label) > 200
+            or not isinstance(raw_parents, list)
+            or len(raw_parents) > MAX_CAPABILITY_PARENTS
+            or any(
+                not isinstance(parent, str) or CAPABILITY_PATTERN.fullmatch(parent) is None
+                for parent in raw_parents
+            )
+            or raw_parents != sorted(set(raw_parents))
+        ):
+            raise PublicationError("catalog capability hierarchy definition is invalid")
+        ordered_ids.append(capability_id)
+        definitions[capability_id] = tuple(raw_parents)
+
+    if ordered_ids != sorted(set(ordered_ids)) or set(capability_counts) - set(definitions):
+        raise PublicationError("catalog capability hierarchy identities are invalid")
+    if any(parent not in definitions for parents in definitions.values() for parent in parents):
+        raise PublicationError("catalog capability hierarchy has a missing parent")
+    if sum(len(parents) for parents in definitions.values()) > MAX_CAPABILITY_EDGES:
+        raise PublicationError("catalog capability hierarchy has too many edges")
+
+    mutable_children: dict[str, list[str]] = {capability_id: [] for capability_id in ordered_ids}
+    for child_id, parents in definitions.items():
+        for parent_id in parents:
+            mutable_children[parent_id].append(child_id)
+    children = {
+        capability_id: tuple(sorted(child_ids))
+        for capability_id, child_ids in mutable_children.items()
+    }
+    in_degree = {capability_id: len(parents) for capability_id, parents in definitions.items()}
+    ready = [capability_id for capability_id in ordered_ids if in_degree[capability_id] == 0]
+    heapq.heapify(ready)
+    visited: list[str] = []
+    while ready:
+        capability_id = heapq.heappop(ready)
+        visited.append(capability_id)
+        for child_id in children[capability_id]:
+            in_degree[child_id] -= 1
+            if in_degree[child_id] == 0:
+                heapq.heappush(ready, child_id)
+    if len(visited) != len(definitions):
+        raise PublicationError("catalog capability hierarchy contains a cycle")
+
+    ancestors: dict[str, frozenset[str]] = {}
+    depths: dict[str, int] = {}
+    for capability_id in visited:
+        parents = definitions[capability_id]
+        inherited = set(parents)
+        for parent_id in parents:
+            inherited.update(ancestors[parent_id])
+        ancestors[capability_id] = frozenset(inherited)
+        depth = max((depths[parent_id] + 1 for parent_id in parents), default=0)
+        if depth > MAX_CAPABILITY_DEPTH:
+            raise PublicationError("catalog capability hierarchy exceeds the depth limit")
+        depths[capability_id] = depth
+    for entry in entries:
+        if not isinstance(entry, dict) or not isinstance(entry.get("assertions"), list):
+            raise PublicationError("catalog entry assertions are invalid")
+        asserted = {
+            assertion["capability_id"]
+            for assertion in entry["assertions"]
+            if isinstance(assertion, dict) and isinstance(assertion.get("capability_id"), str)
+        }
+        if any(not ancestors[capability_id].issubset(asserted) for capability_id in asserted):
+            raise PublicationError("catalog capability hierarchy ancestors are incomplete")
+
+    return tuple(
+        (capability_id, capability_counts.get(capability_id, 0), len(children[capability_id]))
+        for capability_id in ordered_ids
+        if not definitions[capability_id]
+    )
 
 
 def _validate_search_page_evidence(
@@ -292,7 +419,9 @@ def _validate_ranked_provenance(
         raise PublicationError("catalog classification failures differ from ranked repositories")
 
 
-def _render_homepage(catalog: dict[str, object], capability_counts: dict[str, int]) -> bytes:
+def _render_homepage(
+    catalog: dict[str, object], capability_families: tuple[tuple[str, int, int], ...]
+) -> bytes:
     selection = catalog["selection"]
     if not isinstance(selection, dict):  # pragma: no cover - validated by the caller
         raise PublicationError("catalog selection policy is missing")
@@ -319,20 +448,24 @@ def _render_homepage(catalog: dict[str, object], capability_counts: dict[str, in
         "not an exhaustive index of GitHub.",
         "",
         "[Browse the full catalog](catalog/README.md) · "
+        "[Explore Taxonomy v2](catalog/taxonomy.md) · "
         "[JSON](catalog/catalog.json) · [YAML](catalog/catalog.yaml)",
         "",
-        "### Browse by capability",
+        "### Capability families",
         "",
-        "Capability groups overlap; one repository may appear in more than one group.",
+        "Capability families overlap; one repository may appear in more than one family.",
         "",
+        "| Family | Repositories | Direct subcategories |",
+        "| --- | ---: | ---: |",
     ]
-    if capability_counts:
-        lines.extend(
-            f"- [`{capability}`](catalog/modules/{capability}.md) — {count:,}"
-            for capability, count in capability_counts.items()
-        )
+    if capability_families:
+        for capability, count, children in capability_families:
+            reference = f"`{capability}`"
+            if count:
+                reference = f"[{reference}](catalog/modules/{capability}.md)"
+            lines.append(f"| {reference} | {count:,} | {children:,} |")
     else:
-        lines.append("No capability assertions were produced for this snapshot.")
+        lines.append("| No capability families were published. | 0 | 0 |")
     return ("\n".join(lines).rstrip("\n") + "\n").encode("utf-8")
 
 
@@ -357,16 +490,65 @@ def _replace_managed_section(readme: bytes, homepage: bytes) -> bytes:
 
 def _json_object(content: bytes, label: str) -> dict[str, object]:
     try:
-        document = json.loads(content.decode("utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError):
+        document: object = json.loads(
+            content.decode("utf-8"),
+            object_pairs_hook=_unique_json_object,
+            parse_constant=_reject_nonfinite_json_constant,
+        )
+    except _DuplicateJsonKey:
+        raise PublicationError(f"{label} is not valid UTF-8 JSON: duplicate object key") from None
+    except (UnicodeDecodeError, json.JSONDecodeError, _NonFiniteJsonConstant):
         raise PublicationError(f"{label} is not valid UTF-8 JSON") from None
     if not isinstance(document, dict):
         raise PublicationError(f"{label} must contain an object")
     return document
 
 
-def _canonical_json(document: object) -> str:
-    return json.dumps(document, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+class _DuplicateJsonKey(ValueError):
+    """Raised when strict JSON parsing observes a repeated object key."""
+
+
+class _NonFiniteJsonConstant(ValueError):
+    """Raised when strict JSON parsing observes NaN or infinity."""
+
+
+def _unique_json_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    document: dict[str, object] = {}
+    for key, value in pairs:
+        if key in document:
+            raise _DuplicateJsonKey(key)
+        document[key] = value
+    return document
+
+
+def _reject_nonfinite_json_constant(value: str) -> NoReturn:
+    raise _NonFiniteJsonConstant(value)
+
+
+def _canonical_json(document: object) -> bytes:
+    return (
+        json.dumps(
+            document,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n"
+    ).encode("utf-8")
+
+
+def _canonical_pretty_json(document: object) -> bytes:
+    return (
+        json.dumps(
+            document,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n"
+    ).encode("utf-8")
 
 
 def _strict_int(value: object, *, minimum: int, name: str) -> int:

@@ -592,9 +592,9 @@ def test_validate_requires_latest_matching_publication_ledger_record(tmp_path: P
         assert record[:5] == (
             "github",
             "2026-07-13T12:00:00Z",
-            "1.0.0",
-            "1.0.0",
-            "rules-v1",
+            "1.1.0",
+            "2.0.0",
+            "rules-v2",
         )
         assert all(len(str(item)) == 64 for item in record[5:])
         connection.execute("DELETE FROM catalog_publications")
@@ -762,7 +762,13 @@ def test_validate_rejects_incomplete_manifest(tmp_path: Path, missing_key: str) 
         (["yaml"], {"catalog.yaml", "manifest.json"}, True),
         (
             ["markdown", "json"],
-            {"README.md", "catalog.json", "manifest.json", "modules/cli.md"},
+            {
+                "README.md",
+                "catalog.json",
+                "manifest.json",
+                "modules/cli.md",
+                "taxonomy.md",
+            },
             True,
         ),
     ],

@@ -204,6 +204,7 @@ def test_ranked_refresh_publishes_tracked_shape_and_validates_from_raw_evidence(
         "catalog.yaml",
         "manifest.json",
         "modules/cli.md",
+        "taxonomy.md",
     }
     catalog = json.loads((output / "catalog.json").read_text())
     assert catalog["source"] == "github-search-repositories"

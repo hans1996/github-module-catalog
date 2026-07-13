@@ -39,7 +39,7 @@ select = ["B", "E", "F", "I", "UP"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-files = ["src", "tests"]
+files = ["src", "tests", "scripts/catalog_publisher"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

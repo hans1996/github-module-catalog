@@ -13,9 +13,7 @@ from datetime import UTC, datetime
 from enum import StrEnum
 from pathlib import Path
 
-import yaml  # type: ignore[import-untyped]
-
-from github_module_catalog.models import CatalogEntry, CatalogManifest
+from github_module_catalog.models import CapabilityDefinition, CatalogEntry, CatalogManifest
 from github_module_catalog.safeio import (
     FileIdentity,
     file_identity,
@@ -49,15 +47,9 @@ def render_catalog_json(manifest: CatalogManifest) -> bytes:
 
 
 def render_catalog_yaml(manifest: CatalogManifest) -> bytes:
-    """Render stable UTF-8 YAML equivalent to the JSON catalog."""
+    """Render canonical pretty JSON, a YAML 1.2-compatible catalog representation."""
 
-    rendered = yaml.safe_dump(
-        _catalog_document(manifest),
-        allow_unicode=True,
-        default_flow_style=False,
-        sort_keys=True,
-    )
-    return _newline(rendered).encode("utf-8")
+    return _canonical_pretty_json(_catalog_document(manifest))
 
 
 def render_readme(manifest: CatalogManifest) -> str:
@@ -67,6 +59,8 @@ def render_readme(manifest: CatalogManifest) -> str:
         "# GitHub Module Catalog",
         "",
         _untrusted_markdown_inline(manifest.coverage_note),
+        "",
+        "[Capability taxonomy](taxonomy.md)",
         "",
     ]
     if manifest.selection is not None:
@@ -94,6 +88,51 @@ def render_readme(manifest: CatalogManifest) -> str:
     return _newline("\n".join(lines))
 
 
+def render_taxonomy_page(manifest: CatalogManifest) -> str:
+    """Render a deterministic nested capability map with repository counts."""
+
+    definitions = {definition.id: definition for definition in manifest.capability_definitions}
+    children = {
+        capability_id: tuple(
+            sorted(
+                definition.id
+                for definition in manifest.capability_definitions
+                if capability_id in definition.parents
+            )
+        )
+        for capability_id in definitions
+    }
+    counts = _capability_counts(manifest)
+    roots = tuple(
+        definition.id for definition in manifest.capability_definitions if not definition.parents
+    )
+    lines = [
+        "# Capability taxonomy",
+        "",
+        f"Taxonomy version: {_markdown_code_span(manifest.taxonomy_version)}. "
+        f"Classifier: {_markdown_code_span(manifest.classifier_version)}.",
+        "",
+        "Repositories can appear in multiple capability branches. Parent counts include "
+        "repositories assigned to descendant capabilities.",
+        "",
+        "## Capability map",
+        "",
+    ]
+    for capability_id in roots:
+        lines.extend(
+            _taxonomy_branch_lines(
+                capability_id,
+                depth=0,
+                definitions=definitions,
+                children=children,
+                counts=counts,
+            )
+        )
+    if not roots:
+        lines.append("No capability definitions were published for this snapshot.")
+    return _newline("\n".join(lines))
+
+
 def render_module_page(manifest: CatalogManifest, capability_id: str) -> str:
     """Render one capability-specific Markdown page."""
 
@@ -103,7 +142,7 @@ def render_module_page(manifest: CatalogManifest, capability_id: str) -> str:
         for assertion in entry.assertions
         if assertion.capability_id == capability_id
     )
-    lines = [f"# `{_markdown_text(capability_id)}` modules", ""]
+    lines = [f"# {_markdown_code_span(capability_id)} modules", ""]
     if manifest.selection is not None:
         lines.extend(_selection_summary(manifest))
     if manifest.selection is None:
@@ -224,6 +263,7 @@ def _publication_artifacts(
         artifacts[Path("catalog.yaml")] = render_catalog_yaml(manifest)
     if CatalogFormat.MARKDOWN in formats:
         artifacts[Path("README.md")] = render_readme(manifest).encode("utf-8")
+        artifacts[Path("taxonomy.md")] = render_taxonomy_page(manifest).encode("utf-8")
         artifacts.update(
             {
                 Path("modules") / f"{capability}.md": render_module_page(
@@ -234,6 +274,48 @@ def _publication_artifacts(
         )
     artifacts[Path("manifest.json")] = _canonical_json(_manifest_document(manifest, artifacts))
     return dict(sorted(artifacts.items(), key=lambda item: item[0].as_posix()))
+
+
+def _capability_counts(manifest: CatalogManifest) -> dict[str, int]:
+    capability_ids = sorted(
+        {assertion.capability_id for entry in manifest.entries for assertion in entry.assertions}
+    )
+    return {
+        capability_id: sum(
+            assertion.capability_id == capability_id
+            for entry in manifest.entries
+            for assertion in entry.assertions
+        )
+        for capability_id in capability_ids
+    }
+
+
+def _taxonomy_branch_lines(
+    capability_id: str,
+    *,
+    depth: int,
+    definitions: dict[str, CapabilityDefinition],
+    children: dict[str, tuple[str, ...]],
+    counts: dict[str, int],
+) -> list[str]:
+    definition = definitions[capability_id]
+    label = _markdown_text(definition.label)
+    count = counts.get(capability_id, 0)
+    reference = _markdown_code_span(capability_id)
+    if count:
+        reference = f"[{reference}](modules/{capability_id}.md)"
+    lines = [f"{'  ' * depth}- {reference} — {label} — {count:,}"]
+    for child_id in children[capability_id]:
+        lines.extend(
+            _taxonomy_branch_lines(
+                child_id,
+                depth=depth + 1,
+                definitions=definitions,
+                children=children,
+                counts=counts,
+            )
+        )
+    return lines
 
 
 def _catalog_document(manifest: CatalogManifest) -> dict[str, object]:
@@ -317,10 +399,11 @@ def _repository_link(entry: CatalogEntry) -> str:
 
 
 def _license(entry: CatalogEntry) -> str:
-    return f"`{_markdown_text(entry.repository.license_spdx or 'unknown')}`"
+    return _markdown_code_span(entry.repository.license_spdx or "unknown")
 
 
 def _markdown_text(value: str) -> str:
+    value = html.escape(value, quote=True)
     return (
         value.replace("\\", "\\\\")
         .replace("|", "\\|")
@@ -333,7 +416,7 @@ def _markdown_text(value: str) -> str:
 
 
 def _markdown_code_span(value: str) -> str:
-    collapsed = re.sub(r"[\r\n]+", " ", value)
+    collapsed = html.escape(re.sub(r"[\r\n]+", " ", value), quote=True)
     longest_run = max((len(run) for run in re.findall(r"`+", collapsed)), default=0)
     delimiter = "`" * (longest_run + 1)
     if longest_run == 0 and not collapsed.startswith(" ") and not collapsed.endswith(" "):
@@ -349,7 +432,27 @@ def _untrusted_markdown_inline(value: str) -> str:
 
 def _canonical_json(document: object) -> bytes:
     return (
-        json.dumps(document, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
+        json.dumps(
+            document,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n"
+    ).encode("utf-8")
+
+
+def _canonical_pretty_json(document: object) -> bytes:
+    return (
+        json.dumps(
+            document,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n"
     ).encode("utf-8")
 
 

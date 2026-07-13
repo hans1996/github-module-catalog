@@ -158,8 +158,26 @@ class Taxonomy(ImmutableModel):
     """Validated taxonomy document loaded from versioned YAML."""
 
     version: NonEmptyStr
+    resource_exclusion_topics: tuple[str, ...] = ()
+    resource_exclusion_name_prefixes: tuple[str, ...] = ()
+    resource_exclusion_phrases: tuple[str, ...] = ()
     axis_definitions: tuple[TaxonomyAxis, ...] = Field(validation_alias="axes")
     rules: tuple[ClassificationRule, ...]
+
+    @field_validator("resource_exclusion_topics", mode="before")
+    @classmethod
+    def normalize_resource_exclusion_topics(cls, value: object) -> tuple[str, ...]:
+        return _canonical_strings(value, casefold=True)
+
+    @field_validator("resource_exclusion_name_prefixes", mode="before")
+    @classmethod
+    def normalize_resource_exclusion_name_prefixes(cls, value: object) -> tuple[str, ...]:
+        return _canonical_phrases(value)
+
+    @field_validator("resource_exclusion_phrases", mode="before")
+    @classmethod
+    def normalize_resource_exclusion_phrases(cls, value: object) -> tuple[str, ...]:
+        return _canonical_phrases(value)
 
     @field_validator("axis_definitions", mode="before")
     @classmethod
@@ -236,6 +254,22 @@ def _lifecycle_value(observation: RepositoryObservation) -> str:
     return "unknown"
 
 
+def _is_resource_only(observation: RepositoryObservation, taxonomy: Taxonomy) -> bool:
+    if frozenset(observation.topics).intersection(taxonomy.resource_exclusion_topics):
+        return True
+    normalized_name = _normalized_phrase(observation.name)
+    if any(
+        normalized_name == prefix or normalized_name.startswith(f"{prefix} ")
+        for prefix in taxonomy.resource_exclusion_name_prefixes
+    ):
+        return True
+    description = _normalized_phrase(observation.description or "")
+    padded_description = f" {description} "
+    return any(
+        f" {phrase} " in padded_description for phrase in taxonomy.resource_exclusion_phrases
+    )
+
+
 def _evidence_and_confidence(
     observation: RepositoryObservation,
     rule: ClassificationRule,
@@ -293,6 +327,8 @@ def _resolved_capability_matches(
     observation: RepositoryObservation,
     taxonomy: Taxonomy,
 ) -> dict[str, tuple[tuple[Evidence, ...], float]]:
+    if _is_resource_only(observation, taxonomy):
+        return {}
     direct: dict[str, tuple[tuple[Evidence, ...], float]] = {}
     for rule in taxonomy.rules:
         result = _evidence_and_confidence(observation, rule)

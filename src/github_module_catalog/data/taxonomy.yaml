@@ -1,5 +1,11 @@
 version: "2.0.0"
 
+resource_exclusion_topics: &resource_only
+  [awesome, awesome-list, boilerplate, book, books, checklist, course, course-materials, coursera, courses, curated-list, curriculum, deep-learning-tutorial, education, for-beginners, internship, internships, interview, interview-questions, learning-path, learning-resources, roadmap, sample-code, sample-project, starter-kit, study-plan, tutorial, tutorial-code, tutorial-exercises, tutorials]
+resource_exclusion_name_prefixes: [awesome]
+resource_exclusion_phrases:
+  [boilerplate, course materials, courses with video lectures, curated list, examples and guides, for beginners, guides papers lessons notebooks and resources, in depth tutorials, interview guide, interview questions, learning in public, learning map, lessons to get started, list of, sample project, starter kit, step by step, study plan, tutorial repository]
+
 axes:
   artifact_type:
     - id: library
@@ -484,8 +490,7 @@ rules:
     description_tokens: [cli, command-line, terminal]
     language_hints: [go, python, rust]
     exclude_tokens: [client-only]
-    exclude_topics: &resource_only
-      [awesome, awesome-list, book, course, courses, curated-list, interview-questions, roadmap, tutorial, tutorials]
+    exclude_topics: *resource_only
   - capability_id: web-ui
     topics: [frontend, ui, web-ui, webapp]
     description_tokens: [frontend, dashboard, webapp]
@@ -496,8 +501,8 @@ rules:
     topics: [api, backend, graphql, rest-api]
     description_tokens: [api, backend, graphql, rest]
     language_hints: [go, java, python, rust, typescript]
-    exclude_tokens: [client-only]
-    exclude_topics: *resource_only
+    exclude_tokens: [client, client-only, sdk]
+    exclude_topics: [api-client, graphql-client, http-client, rest-client, sdk]
   - capability_id: auth
     topics: [auth, authentication, authorization, oauth]
     description_tokens: [auth, authentication, authorization, oauth]
@@ -509,7 +514,7 @@ rules:
     description_tokens: [database, persistence, storage]
     language_hints: [go, java, python, rust, typescript]
     exclude_tokens: [screenshot]
-    exclude_topics: *resource_only
+    exclude_topics: [api-client, client-only, http-client, sdk]
   - capability_id: ai-ml
     topics: [ai, llm, machine-learning, ml]
     description_tokens: [ai, inference, llm, machine-learning]
@@ -594,26 +599,26 @@ rules:
     topics: [api-rest, rest-api, restful-api]
     description_phrases: [rest api, restful api]
     language_hints: [go, java, python, rust, typescript]
-    exclude_tokens: [client, sdk]
-    exclude_topics: *resource_only
+    exclude_tokens: [client, client-only, sdk]
+    exclude_topics: [api-client, http-client, rest-api-client, rest-client, sdk]
   - capability_id: graphql-api
     topics: [graphql-api, graphql-server, graphql-service]
     description_phrases: [graphql api, graphql server, graphql service]
     language_hints: [go, java, python, rust, typescript]
-    exclude_tokens: [client, sdk]
-    exclude_topics: *resource_only
+    exclude_tokens: [client, client-only, sdk]
+    exclude_topics: [api-client, graphql-client, graphql-sdk, sdk]
   - capability_id: rpc-api
-    topics: [grpc, json-rpc, rpc-framework]
-    description_phrases: [grpc server, json rpc, rpc framework]
+    topics: [grpc-server, json-rpc-server, rpc-framework, rpc-server]
+    description_phrases: [grpc server, json rpc server, rpc and microservice framework, rpc framework]
     language_hints: [go, java, python, rust, typescript]
-    exclude_tokens: [client-only]
-    exclude_topics: *resource_only
+    exclude_tokens: [client, client-only, sdk]
+    exclude_topics: [api-client, grpc-client, http-client, json-rpc-client, rpc-client, sdk]
   - capability_id: realtime-api
-    topics: [realtime-api, socket-io, websocket, websockets]
-    description_phrases: [realtime api, websocket server]
+    topics: [realtime-api, realtime-server, socket-io-server, websocket-server, websocket-service]
+    description_phrases: [bidirectional and low-latency communication for every platform, realtime api, websocket server]
     language_hints: [go, java, javascript, python, rust, typescript]
-    exclude_tokens: [client-only]
-    exclude_topics: *resource_only
+    exclude_tokens: [client, client-only, sdk]
+    exclude_topics: [api-client, client, socket-io-client, websocket-client]
   - capability_id: api-gateway
     topics: [api-gateway, api-management, llm-gateway]
     description_phrases: [api gateway, api management, llm gateway]
@@ -621,53 +626,53 @@ rules:
     exclude_topics: *resource_only
 
   - capability_id: oauth-oidc
-    topics: [oauth, oauth2, oidc, openid-connect]
-    description_phrases: [oauth 2, openid connect]
+    topics: [oauth-provider, oauth-server, oidc-provider, openid-connect-provider]
+    description_phrases: [oauth implementation, oauth provider, oauth server, openid connect provider]
     language_hints: [go, java, python, rust, typescript]
     exclude_topics: *resource_only
   - capability_id: identity-provider
-    topics: [iam, identity-provider, single-sign-on, sso]
-    description_phrases: [identity provider, single sign on]
+    topics: [identity-and-access-management, identity-provider, identity-provider-server]
+    description_phrases: [identity and access management, identity provider, identity provider server]
     language_hints: [go, java, python, typescript]
-    exclude_topics: *resource_only
+    exclude_topics: [vpn, vpn-client, vpn-server]
   - capability_id: access-control
     topics: [abac, access-control, authorization, policy-engine, rbac]
     description_phrases: [access control, authorization engine, policy engine]
     language_hints: [go, java, python, rust, typescript]
     exclude_topics: *resource_only
   - capability_id: multi-factor-auth
-    topics: [2fa, mfa, passkeys, totp, webauthn]
+    topics: [mfa-library, mfa-server, passkeys, totp, webauthn]
     description_phrases: [multi factor authentication, two factor authentication]
     language_hints: [go, java, python, rust, typescript]
     exclude_topics: *resource_only
 
   - capability_id: relational-database
-    topics: [mariadb, mssql, mysql, postgresql, relational-database, sql-server, sqlite]
+    topics: [relational-database, relational-database-engine, sql-database-engine]
     description_phrases: [relational database, sql database]
     language_hints: [c, c++, go, java, rust]
     exclude_topics: *resource_only
   - capability_id: document-database
-    topics: [cassandra, couchdb, document-database, mongodb, nosql-database]
+    topics: [document-database, document-store, nosql-database]
     description_phrases: [document database, document store, nosql database]
     language_hints: [c++, go, java, rust]
     exclude_topics: *resource_only
   - capability_id: cache-key-value
-    topics: [in-memory-database, key-value, key-value-store, redis]
+    topics: [in-memory-database, key-value-database, key-value-store]
     description_phrases: [in memory database, key value store]
     language_hints: [c, c++, go, java, rust]
     exclude_topics: *resource_only
   - capability_id: vector-database
-    topics: [vector-database, vector-search, vector-store, vectorstore]
+    topics: [vector-database, vector-store, vectorstore]
     description_phrases: [vector database, vector search, vector store]
     language_hints: [c++, go, python, rust]
     exclude_topics: *resource_only
   - capability_id: object-storage
-    topics: [blob-storage, cloud-storage, object-storage]
+    topics: [blob-storage, object-storage]
     description_phrases: [blob storage, object storage]
     language_hints: [go, java, python, rust]
     exclude_topics: *resource_only
   - capability_id: search-engine
-    topics: [elasticsearch, full-text-search, opensearch, search-engine]
+    topics: [full-text-search-engine, search-engine]
     description_phrases: [full text search, search engine]
     language_hints: [c++, go, java, rust]
     exclude_topics: *resource_only
@@ -678,8 +683,8 @@ rules:
     language_hints: [c++, cuda, python, rust]
     exclude_topics: *resource_only
   - capability_id: ai-agent-framework
-    topics: [agent-framework, agentic-framework, ai-agent, ai-agents, autonomous-agents, multi-agent-systems]
-    description_phrases: [agent framework, agentic framework, multi agent system]
+    topics: [agent-framework, agentic-framework, ai-agent-framework, multi-agent-framework]
+    description_phrases: [agent framework, agentic framework, multi agent framework]
     language_hints: [javascript, python, typescript]
     exclude_topics: *resource_only
   - capability_id: rag-retrieval
@@ -709,8 +714,8 @@ rules:
     language_hints: [go, java, javascript, python, rust, typescript]
     exclude_topics: *resource_only
   - capability_id: browser-e2e-testing
-    topics: [browser-automation, cypress, e2e-testing, end-to-end-testing, playwright, selenium]
-    description_phrases: [browser automation, end to end testing]
+    topics: [browser-e2e-testing, e2e-test-framework, e2e-testing, end-to-end-testing]
+    description_phrases: [browser testing framework, end to end testing framework]
     language_hints: [javascript, python, typescript]
     exclude_topics: *resource_only
   - capability_id: api-testing
@@ -740,19 +745,19 @@ rules:
     language_hints: [go, python, rust]
     exclude_topics: *resource_only
   - capability_id: infrastructure-as-code
-    topics: [infrastructure-as-code, opentofu, pulumi, terraform]
+    topics: [infrastructure-as-code]
     description_phrases: [infrastructure as code]
     language_hints: [go, hcl, python, typescript]
-    exclude_topics: *resource_only
+    exclude_topics: [devsecops, misconfiguration, security-scanner, security-tools, vulnerability-detection, vulnerability-scanner, vulnerability-scanners]
   - capability_id: configuration-management
-    topics: [ansible, chef, configuration-management, puppet]
-    description_phrases: [configuration management]
+    topics: [configuration-automation, configuration-management, it-automation]
+    description_phrases: [configuration management, it automation platform]
     language_hints: [go, python, ruby]
-    exclude_topics: *resource_only
+    exclude_topics: [vpn, vpn-client, vpn-server]
 
   - capability_id: metrics-monitoring
-    topics: [metrics, monitoring, prometheus, uptime-monitoring]
-    description_phrases: [metrics monitoring, uptime monitoring]
+    topics: [metrics-monitoring, monitoring-platform, observability-platform]
+    description_phrases: [metrics monitoring, monitoring platform]
     language_hints: [go, java, python, rust]
     exclude_topics: *resource_only
   - capability_id: log-management
@@ -813,7 +818,7 @@ rules:
     language_hints: [go, python, rust]
     exclude_topics: *resource_only
   - capability_id: cryptography
-    topics: [cryptography, crypto-library, encryption, tls]
+    topics: [cryptographic-library, cryptography, crypto-library]
     description_phrases: [cryptographic library, cryptography library]
     language_hints: [c, c++, go, java, python, rust]
     exclude_topics: *resource_only
@@ -833,7 +838,7 @@ rules:
     language_hints: [c, c++, python, rust]
     exclude_topics: *resource_only
   - capability_id: malware-analysis
-    topics: [antivirus, malware, malware-analysis]
+    topics: [antivirus, malware-analysis]
     description_phrases: [malware analysis]
     language_hints: [c, c++, go, python, rust]
-    exclude_topics: *resource_only
+    exclude_topics: [blocklist, hosts-file, malware-dataset, malware-samples, sample-collection]

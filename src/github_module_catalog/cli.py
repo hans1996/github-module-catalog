@@ -64,8 +64,8 @@ from github_module_catalog.taxonomy import classify_repository, load_taxonomy
 
 _SOURCE_NAME = "github"
 _RANKED_SOURCE_NAME = "github-search-repositories"
-_SCHEMA_VERSION = "1.0.0"
-_CLASSIFIER_VERSION = "rules-v1"
+_SCHEMA_VERSION = "1.1.0"
+_CLASSIFIER_VERSION = "rules-v2"
 _MAX_PAGES = 1_000
 _MAX_SEARCH_PAGES = 10
 _MAX_ACTIVE_WITHIN_DAYS = 3_650
@@ -734,7 +734,7 @@ def _expected_artifacts(catalog: CatalogManifest, artifacts: dict[str, str]) -> 
         for assertion in entry.assertions
     }
     if "README.md" in artifacts:
-        expected.update({"README.md", *module_artifacts})
+        expected.update({"README.md", "taxonomy.md", *module_artifacts})
     return expected
 
 

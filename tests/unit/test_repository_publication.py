@@ -25,11 +25,32 @@ package = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = package
 SPEC.loader.exec_module(package)
 publisher: Any = importlib.import_module(f"{SPEC.name}.publication")
+markdown_renderer: Any = importlib.import_module(f"{SPEC.name}.rendering")
 
 
 def _canonical_json(document: object) -> bytes:
     return (
-        json.dumps(document, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n"
+        json.dumps(
+            document,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n"
+    ).encode()
+
+
+def _canonical_pretty_json(document: object) -> bytes:
+    return (
+        json.dumps(
+            document,
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+            allow_nan=False,
+        )
+        + "\n"
     ).encode()
 
 
@@ -55,15 +76,16 @@ def _repository_document(
         "disabled": False,
         "fork": False,
         "private": False,
+        "reuse_status": "discovery_only",
     }
 
 
 def _catalog_document() -> dict[str, Any]:
     raw_hash = "a" * 64
     return {
-        "schema_version": "1.0.0",
-        "taxonomy_version": "1.0.0",
-        "classifier_version": "rules-v1",
+        "schema_version": "1.1.0",
+        "taxonomy_version": "2.0.0",
+        "classifier_version": "rules-v2",
         "generated_at": "2026-07-13T12:00:00Z",
         "source": "github-search-repositories",
         "selection": {
@@ -96,6 +118,15 @@ def _catalog_document() -> dict[str, Any]:
         "source_hashes": ["b" * 64, "c" * 64],
         "raw_page_hashes": [raw_hash],
         "classification_failure_repository_ids": [],
+        "capability_definitions": [
+            {"id": "ai-agent-framework", "label": "AI agent framework", "parents": ["ai-ml"]},
+            {
+                "id": "ai-ml",
+                "label": "Artificial intelligence and machine learning",
+                "parents": [],
+            },
+            {"id": "cli", "label": "Command-line interface", "parents": []},
+        ],
         "coverage_complete": False,
         "coverage_note": "<img src=x onerror=alert(1)> [bad](javascript:alert(1))",
         "entries": [
@@ -107,7 +138,18 @@ def _catalog_document() -> dict[str, Any]:
                     stars=500,
                     description="<script>alert(1)</script>",
                 ),
-                "assertions": [{"capability_id": "cli"}, {"capability_id": "ai-ml"}],
+                "assertions": [
+                    {
+                        "capability_id": "ai-ml",
+                        "confidence": 0.95,
+                        "reuse_status": "discovery_only",
+                    },
+                    {
+                        "capability_id": "cli",
+                        "confidence": 0.90,
+                        "reuse_status": "discovery_only",
+                    },
+                ],
             },
             {
                 "rank": 2,
@@ -117,7 +159,13 @@ def _catalog_document() -> dict[str, Any]:
                     stars=400,
                     description="![x](javascript:bad)",
                 ),
-                "assertions": [{"capability_id": "cli"}],
+                "assertions": [
+                    {
+                        "capability_id": "cli",
+                        "confidence": 0.80,
+                        "reuse_status": "discovery_only",
+                    }
+                ],
             },
         ],
         "entry_count": 2,
@@ -129,11 +177,9 @@ def _write_catalog_source(root: Path, catalog: dict[str, Any]) -> Path:
     source = root / "catalog-output"
     (source / "modules").mkdir(parents=True)
     artifacts: dict[str, bytes] = {
-        "README.md": b"# Full ranked catalog\n",
+        **markdown_renderer.canonical_markdown_artifacts(catalog),
         "catalog.json": _canonical_json(catalog),
-        "catalog.yaml": b"source: github-search-repositories\n",
-        "modules/ai-ml.md": b"# ai-ml\n",
-        "modules/cli.md": b"# cli\n",
+        "catalog.yaml": _canonical_pretty_json(catalog),
     }
     for name, content in artifacts.items():
         path = source / name
@@ -191,7 +237,7 @@ def test_publish_updates_homepage_and_complete_catalog_idempotently(tmp_path: Pa
     assert first == second
     assert first.entries == 2
     assert first.capabilities == 2
-    assert first.catalog_files == 6
+    assert first.catalog_files == 7
     assert first_bytes == second_bytes
     assert not stale.exists()
     assert set(first_bytes) == {
@@ -202,6 +248,7 @@ def test_publish_updates_homepage_and_complete_catalog_idempotently(tmp_path: Pa
         Path("catalog/manifest.json"),
         Path("catalog/modules/ai-ml.md"),
         Path("catalog/modules/cli.md"),
+        Path("catalog/taxonomy.md"),
     }
     readme = (repository / "README.md").read_bytes()
     assert readme.startswith(manual_prefix)
@@ -213,13 +260,64 @@ def test_publish_updates_homepage_and_complete_catalog_idempotently(tmp_path: Pa
     assert "**100+ stars**" in rendered
     assert "pushed since **2025-07-13**" in rendered
     assert "[Browse the full catalog](catalog/README.md)" in rendered
-    assert "Capability groups overlap" in rendered
-    assert "[`ai-ml`](catalog/modules/ai-ml.md) — 1" in rendered
-    assert "[`cli`](catalog/modules/cli.md) — 2" in rendered
+    assert "[Explore Taxonomy v2](catalog/taxonomy.md)" in rendered
+    assert "Capability families overlap" in rendered
+    assert "| Family | Repositories | Direct subcategories |" in rendered
+    assert "| [`ai-ml`](catalog/modules/ai-ml.md) | 1 | 1 |" in rendered
+    assert "| [`cli`](catalog/modules/cli.md) | 2 | 0 |" in rendered
+    assert "ai-agent-framework" not in rendered
     assert "Ranked catalog index" not in rendered
     assert "<script>" not in rendered
     assert "javascript:" not in rendered
     assert "<img" not in rendered
+
+
+def test_publish_renders_zero_count_root_without_missing_module_link(tmp_path: Path) -> None:
+    catalog = _catalog_document()
+    definitions = [
+        *catalog["capability_definitions"],
+        {"id": "unused-family", "label": "Unused family", "parents": []},
+    ]
+    source = _write_source(
+        tmp_path,
+        catalog_updates={
+            "capability_definitions": sorted(definitions, key=lambda item: item["id"])
+        },
+    )
+    repository = _repository(tmp_path)
+
+    publisher.publish_to_repository(source, repository)
+
+    rendered = (repository / "README.md").read_text()
+    assert "| `unused-family` | 0 | 0 |" in rendered
+    assert "catalog/modules/unused-family.md" not in rendered
+
+
+@pytest.mark.parametrize(
+    "definitions",
+    [
+        [
+            {"id": "ai-ml", "label": "AI", "parents": ["missing"]},
+            {"id": "cli", "label": "CLI", "parents": []},
+        ],
+        [
+            {"id": "ai-ml", "label": "AI", "parents": ["cli"]},
+            {"id": "cli", "label": "CLI", "parents": ["ai-ml"]},
+        ],
+    ],
+)
+def test_publish_rejects_invalid_capability_hierarchy_before_mutation(
+    tmp_path: Path,
+    definitions: list[dict[str, object]],
+) -> None:
+    source = _write_source(tmp_path, catalog_updates={"capability_definitions": definitions})
+    repository = _repository(tmp_path)
+    before = _tree_bytes(repository)
+
+    with pytest.raises(publisher.PublicationError, match="capability hierarchy"):
+        publisher.publish_to_repository(source, repository)
+
+    assert _tree_bytes(repository) == before
 
 
 @pytest.mark.parametrize("failure", ["digest", "extra", "missing"])
