@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from dataclasses import FrozenInstanceError, replace
 from datetime import UTC, datetime
 from pathlib import Path
@@ -361,3 +362,90 @@ def test_output_path_symlinks_are_rejected(tmp_path: Path) -> None:
     with pytest.raises(UnsafeOutputPathError):
         publish_catalog(_manifest(), output)
     assert list(outside.iterdir()) == []
+
+
+def test_publication_rejects_output_inode_swap_without_touching_external_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    output = tmp_path / "output"
+    publish_catalog(_manifest(), output)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    marker = outside / "keep.txt"
+    marker.write_text("keep")
+    real_rename = os.rename
+    swapped = False
+
+    def swapping_rename(
+        source: str,
+        target: str,
+        *,
+        src_dir_fd: int | None = None,
+        dst_dir_fd: int | None = None,
+    ) -> None:
+        nonlocal swapped
+        if not swapped and source == "output" and ".backup-" in target:
+            swapped = True
+            real_rename(
+                source,
+                "stolen-output",
+                src_dir_fd=src_dir_fd,
+                dst_dir_fd=dst_dir_fd,
+            )
+            os.symlink(outside, source, dir_fd=src_dir_fd, target_is_directory=True)
+        real_rename(
+            source,
+            target,
+            src_dir_fd=src_dir_fd,
+            dst_dir_fd=dst_dir_fd,
+        )
+
+    monkeypatch.setattr(os, "rename", swapping_rename)
+
+    with pytest.raises(UnsafeOutputPathError, match="changed during publication"):
+        publish_catalog(_manifest(), output)
+
+    assert marker.read_text() == "keep"
+
+
+def test_publication_rejects_staging_inode_swap_without_following_symlink(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    output = tmp_path / "output"
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    marker = outside / "keep.txt"
+    marker.write_text("keep")
+    real_rename = os.rename
+    swapped = False
+
+    def swapping_rename(
+        source: str,
+        target: str,
+        *,
+        src_dir_fd: int | None = None,
+        dst_dir_fd: int | None = None,
+    ) -> None:
+        nonlocal swapped
+        if not swapped and ".stage-" in source and target == "output":
+            swapped = True
+            real_rename(
+                source,
+                "stolen-stage",
+                src_dir_fd=src_dir_fd,
+                dst_dir_fd=dst_dir_fd,
+            )
+            os.symlink(outside, source, dir_fd=src_dir_fd, target_is_directory=True)
+        real_rename(
+            source,
+            target,
+            src_dir_fd=src_dir_fd,
+            dst_dir_fd=dst_dir_fd,
+        )
+
+    monkeypatch.setattr(os, "rename", swapping_rename)
+
+    with pytest.raises(UnsafeOutputPathError, match="changed during publication"):
+        publish_catalog(_manifest(), output)
+
+    assert marker.read_text() == "keep"

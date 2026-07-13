@@ -22,11 +22,16 @@ from github_module_catalog.catalog import (
     CatalogBuildContext,
     Classifier,
     build_catalog,
-    build_catalog_from_state,
 )
-from github_module_catalog.exporters import CatalogFormat, UnsafeOutputPathError, publish_catalog
-from github_module_catalog.github import GitHubRepositorySource
+from github_module_catalog.exporters import CatalogFormat, publish_catalog
+from github_module_catalog.github import GitHubRepositorySource, parse_github_inventory
 from github_module_catalog.models import CatalogManifest
+from github_module_catalog.safeio import (
+    UnsafeOutputPathError,
+    list_regular_files_at,
+    open_directory,
+    read_regular_file_at,
+)
 from github_module_catalog.scanner import DiscoveryScanner, ScanStatus
 from github_module_catalog.source import RepositorySource
 from github_module_catalog.state import CatalogStateSnapshot, StateStore
@@ -34,7 +39,12 @@ from github_module_catalog.storage import RawObjectStore
 from github_module_catalog.taxonomy import classify_repository, load_taxonomy
 
 _SOURCE_NAME = "github"
+_SCHEMA_VERSION = "1.0.0"
+_CLASSIFIER_VERSION = "rules-v1"
 _MAX_PAGES = 1_000
+_MAX_ARTIFACT_BYTES = 32 * 1024 * 1024
+_MAX_ARTIFACT_TOTAL_BYTES = 256 * 1024 * 1024
+_MAX_ARTIFACTS = 10_000
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 WorkspaceOption = Annotated[Path, typer.Option("--workspace", help="Local catalog workspace.")]
@@ -223,13 +233,34 @@ def _status(path: Path) -> Mapping[str, object]:
         return _snapshot_summary(state.catalog_snapshot(_SOURCE_NAME))
 
 
-def _manifest(state: StateStore, dependencies: CliDependencies) -> CatalogManifest:
+def _manifest(
+    state: StateStore,
+    dependencies: CliDependencies,
+    *,
+    raw_store: RawObjectStore | None = None,
+    generated_at: datetime | None = None,
+) -> CatalogManifest:
     taxonomy = load_taxonomy(dependencies.taxonomy_path)
-    return build_catalog_from_state(
-        state,
+    snapshot = state.catalog_snapshot(_SOURCE_NAME)
+    if raw_store is not None:
+        _verify_snapshot_provenance(snapshot, raw_store)
+    return build_catalog(
+        snapshot.observations,
         taxonomy=taxonomy,
-        source=_SOURCE_NAME,
+        context=CatalogBuildContext(
+            source=snapshot.source,
+            cursor_start=snapshot.cursor_start,
+            cursor_end=snapshot.cursor_end,
+            discovered_count=snapshot.discovered_count,
+            pending_count=snapshot.pending_count,
+            retry_count=snapshot.retry_count,
+            dead_letter_count=snapshot.dead_letter_count,
+            raw_page_hashes=snapshot.raw_page_hashes,
+        ),
+        classifier_version=_CLASSIFIER_VERSION,
+        generated_at=generated_at,
         classifier=dependencies.classifier,
+        schema_version=_SCHEMA_VERSION,
     )
 
 
@@ -261,10 +292,30 @@ def _build(
     path: Path, *, formats: list[str] | None, dependencies: CliDependencies
 ) -> Mapping[str, object]:
     selected = _validated_formats(formats)
-    with _stores(path) as (workspace, _raw_store, state):
-        manifest = _manifest(state, dependencies)
+    with _stores(path) as (workspace, raw_store, state):
+        generated_at = dependencies.now()
+        manifest = _manifest(
+            state,
+            dependencies,
+            raw_store=raw_store,
+            generated_at=generated_at,
+        )
         output = workspace / "catalog-output"
         artifacts = publish_catalog(manifest, output, formats=selected)
+        output_fd = open_directory(output)
+        try:
+            manifest_bytes = read_regular_file_at(
+                output_fd,
+                "manifest.json",
+                max_bytes=_MAX_ARTIFACT_BYTES,
+            )
+        finally:
+            os.close(output_fd)
+        state.record_catalog_publication(
+            manifest,
+            artifact_manifest_sha256=hashlib.sha256(manifest_bytes).hexdigest(),
+            published_at=dependencies.now(),
+        )
     return {
         "artifacts": len(artifacts),
         "entries": manifest.entry_count,
@@ -273,9 +324,9 @@ def _build(
     }
 
 
-def _read_json_object(path: Path) -> dict[str, object]:
+def _read_json_object(content: bytes) -> dict[str, object]:
     try:
-        document = json.loads(path.read_text(encoding="utf-8"))
+        document = json.loads(content.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError):
         raise CliOperationError("catalog JSON could not be checked") from None
     if not isinstance(document, dict):
@@ -335,6 +386,8 @@ def _artifact_mapping(manifest: dict[str, object]) -> dict[str, str]:
     artifacts = manifest.get("artifacts")
     if not isinstance(artifacts, dict):
         raise CliOperationError("artifact manifest could not be checked")
+    if len(artifacts) > _MAX_ARTIFACTS:
+        raise CliOperationError("artifact manifest exceeds the entry limit")
     mapping: dict[str, str] = {}
     for raw_name, raw_digest in artifacts.items():
         if not isinstance(raw_name, str) or not isinstance(raw_digest, str):
@@ -357,41 +410,33 @@ def _expected_artifacts(catalog: CatalogManifest, artifacts: dict[str, str]) -> 
     return expected
 
 
-def _artifact_hashes(output: Path, artifacts: dict[str, str]) -> int:
-    checked = 0
+def _artifact_contents(output_fd: int, artifacts: dict[str, str]) -> dict[str, bytes]:
+    contents: dict[str, bytes] = {}
+    total_bytes = 0
     for raw_name, raw_digest in artifacts.items():
-        relative = Path(raw_name)
-        if (
-            relative.is_absolute()
-            or ".." in relative.parts
-            or _SHA256.fullmatch(raw_digest) is None
-        ):
+        if _SHA256.fullmatch(raw_digest) is None:
             raise CliOperationError("artifact manifest contains an unsafe entry")
-        target = output / relative
-        if (
-            target.is_symlink()
-            or not target.is_file()
-            or not target.resolve().is_relative_to(output)
-        ):
-            raise CliOperationError("required catalog artifact is unsafe or missing")
-        observed = hashlib.sha256(target.read_bytes()).hexdigest()
+        content = read_regular_file_at(
+            output_fd,
+            raw_name,
+            max_bytes=_MAX_ARTIFACT_BYTES,
+        )
+        total_bytes += len(content)
+        if total_bytes > _MAX_ARTIFACT_TOTAL_BYTES:
+            raise CliOperationError("catalog artifacts exceed the total size limit")
+        observed = hashlib.sha256(content).hexdigest()
         if observed != raw_digest:
             raise CliOperationError("catalog artifact hash differs")
-        checked += 1
-    actual_files: set[str] = set()
-    for path in output.rglob("*"):
-        if path.is_symlink():
-            raise CliOperationError("catalog output contains a symbolic link")
-        if path.is_file():
-            actual_files.add(path.relative_to(output).as_posix())
+        contents[raw_name] = content
+    actual_files = list_regular_files_at(output_fd)
     if actual_files != set(artifacts) | {"manifest.json"}:
         raise CliOperationError("catalog artifact list differs from output")
-    return checked
+    return contents
 
 
-def _read_yaml_object(path: Path) -> dict[str, object]:
+def _read_yaml_object(content: bytes) -> dict[str, object]:
     try:
-        document = yaml.safe_load(path.read_text(encoding="utf-8"))
+        document = yaml.safe_load(content.decode("utf-8"))
     except (UnicodeDecodeError, yaml.YAMLError):
         raise CliOperationError("catalog YAML could not be checked") from None
     if not isinstance(document, dict):
@@ -399,12 +444,14 @@ def _read_yaml_object(path: Path) -> dict[str, object]:
     return cast(dict[str, object], document)
 
 
-def _machine_catalogs(output: Path, artifacts: dict[str, str]) -> tuple[dict[str, object], ...]:
+def _machine_catalogs(
+    contents: dict[str, bytes], artifacts: dict[str, str]
+) -> tuple[dict[str, object], ...]:
     documents: list[dict[str, object]] = []
     if "catalog.json" in artifacts:
-        documents.append(_read_json_object(output / "catalog.json"))
+        documents.append(_read_json_object(contents["catalog.json"]))
     if "catalog.yaml" in artifacts:
-        documents.append(_read_yaml_object(output / "catalog.yaml"))
+        documents.append(_read_yaml_object(contents["catalog.yaml"]))
     if not documents:
         raise CliOperationError("validation requires a JSON or YAML catalog")
     if len(documents) == 2 and not _documents_match(documents[0], documents[1]):
@@ -412,11 +459,16 @@ def _machine_catalogs(output: Path, artifacts: dict[str, str]) -> tuple[dict[str
     return tuple(documents)
 
 
-def _validate_documents(output: Path) -> tuple[CatalogManifest, int]:
-    manifest = _read_json_object(output / "manifest.json")
+def _validate_documents(output_fd: int) -> tuple[CatalogManifest, int, bytes]:
+    manifest_bytes = read_regular_file_at(
+        output_fd,
+        "manifest.json",
+        max_bytes=_MAX_ARTIFACT_BYTES,
+    )
+    manifest = _read_json_object(manifest_bytes)
     artifacts = _artifact_mapping(manifest)
-    checked = _artifact_hashes(output, artifacts)
-    documents = _machine_catalogs(output, artifacts)
+    contents = _artifact_contents(output_fd, artifacts)
+    documents = _machine_catalogs(contents, artifacts)
     validated_documents = tuple(_validate_catalog_document(document) for document in documents)
     validated = validated_documents[0]
     if any(item != validated for item in validated_documents[1:]):
@@ -430,7 +482,7 @@ def _validate_documents(output: Path) -> tuple[CatalogManifest, int]:
         raise CliOperationError("catalog manifest differs from catalog")
     if set(artifacts) != _expected_artifacts(validated, artifacts):
         raise CliOperationError("catalog artifact selection differs from manifest")
-    return validated, checked
+    return validated, len(contents), manifest_bytes
 
 
 def _validate_against_state(
@@ -439,15 +491,27 @@ def _validate_against_state(
     state: StateStore,
     raw_store: RawObjectStore,
     dependencies: CliDependencies,
+    artifact_manifest_sha256: str,
 ) -> None:
     if observed.source != _SOURCE_NAME:
         raise CliOperationError("catalog source is not trusted")
+    if observed.schema_version != _SCHEMA_VERSION:
+        raise CliOperationError("catalog schema version is not trusted")
+    if observed.classifier_version != _CLASSIFIER_VERSION:
+        raise CliOperationError("catalog classifier version is not trusted")
     taxonomy = load_taxonomy(dependencies.taxonomy_path)
     if taxonomy.version != observed.taxonomy_version:
         raise CliOperationError("catalog taxonomy version differs from configured taxonomy")
+    publication = state.latest_catalog_publication(_SOURCE_NAME)
+    if (
+        publication is None
+        or publication.manifest != observed
+        or publication.manifest_sha256 != observed.stable_hash()
+        or publication.artifact_manifest_sha256 != artifact_manifest_sha256
+    ):
+        raise CliOperationError("catalog does not match the latest publication ledger record")
     snapshot = state.catalog_snapshot(_SOURCE_NAME)
-    for raw_hash in snapshot.raw_page_hashes:
-        raw_store.verify(raw_hash)
+    _verify_snapshot_provenance(snapshot, raw_store)
     expected = build_catalog(
         snapshot.observations,
         taxonomy=taxonomy,
@@ -461,10 +525,10 @@ def _validate_against_state(
             dead_letter_count=snapshot.dead_letter_count,
             raw_page_hashes=snapshot.raw_page_hashes,
         ),
-        classifier_version=observed.classifier_version,
+        classifier_version=_CLASSIFIER_VERSION,
         generated_at=observed.generated_at,
         classifier=dependencies.classifier,
-        schema_version=observed.schema_version,
+        schema_version=_SCHEMA_VERSION,
     )
     expected_document = expected.model_dump(mode="json", exclude_none=True)
     observed_document = observed.model_dump(mode="json", exclude_none=True)
@@ -472,20 +536,59 @@ def _validate_against_state(
         raise CliOperationError("catalog differs from durable state")
 
 
+def _verify_snapshot_provenance(
+    snapshot: CatalogStateSnapshot, raw_store: RawObjectStore
+) -> None:
+    observations = {
+        (item.identity.repository_id, item.stable_hash()): item for item in snapshot.observations
+    }
+    bindings_by_page = {
+        page.page_id: tuple(
+            binding
+            for binding in snapshot.observation_bindings
+            if binding.page_id == page.page_id
+        )
+        for page in snapshot.pages
+    }
+    bound_observations: set[tuple[int, str]] = set()
+    for page in snapshot.pages:
+        raw_bytes = raw_store.read(page.raw_sha256)
+        parsed = parse_github_inventory(raw_bytes, observed_at=page.observed_at)
+        parsed_ids = tuple(sorted(identity.repository_id for identity in parsed.identities))
+        if parsed_ids != page.repository_ids:
+            raise CliOperationError("raw repository identities differ from durable page bindings")
+        derived = {item.identity.repository_id: item for item in parsed.observations}
+        for binding in bindings_by_page[page.page_id]:
+            item = derived.get(binding.repository_id)
+            key = (binding.repository_id, binding.observation_hash)
+            if (
+                binding.raw_sha256 != page.raw_sha256
+                or binding.observed_at != page.observed_at
+                or item is None
+                or item.stable_hash() != binding.observation_hash
+                or observations.get(key) != item
+            ):
+                raise CliOperationError("observation is not derivable from its bound raw page")
+            bound_observations.add(key)
+    if set(observations) != bound_observations:
+        raise CliOperationError("catalog observations are missing raw page provenance")
+
+
 def _validate(path: Path, *, dependencies: CliDependencies) -> Mapping[str, object]:
     with _stores(path) as (workspace, raw_store, state):
         output = workspace / "catalog-output"
-        if output.is_symlink() or not output.is_dir():
-            raise CliOperationError("catalog output is unsafe or missing")
-        if not (output / "manifest.json").is_file():
-            raise CliOperationError("catalog manifest is missing")
-        manifest, checked = _validate_documents(output)
-        _validate_against_state(
-            manifest,
-            state=state,
-            raw_store=raw_store,
-            dependencies=dependencies,
-        )
+        output_fd = open_directory(output)
+        try:
+            manifest, checked, manifest_bytes = _validate_documents(output_fd)
+            _validate_against_state(
+                manifest,
+                state=state,
+                raw_store=raw_store,
+                dependencies=dependencies,
+                artifact_manifest_sha256=hashlib.sha256(manifest_bytes).hexdigest(),
+            )
+        finally:
+            os.close(output_fd)
     return {"status": "valid", "artifacts_checked": checked, "entries": manifest.entry_count}
 
 

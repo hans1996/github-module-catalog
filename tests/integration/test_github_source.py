@@ -17,6 +17,7 @@ from github_module_catalog.github import (
     GitHubSourceError,
     InvalidGitHubResponse,
     UnsafeGitHubUrl,
+    parse_github_inventory,
 )
 from github_module_catalog.source import (
     PageResult,
@@ -151,6 +152,33 @@ def test_complete_inventory_metadata_becomes_a_validated_observation() -> None:
     assert observation.license_spdx == "MIT"
     assert observation.license_name == "MIT License"
     assert observation.observed_at == NOW
+
+
+def test_pure_inventory_parser_is_bounded_and_rederives_observation() -> None:
+    record = inventory_record(
+        description="A reusable CLI catalog",
+        language="Python",
+        created_at="2026-07-01T08:00:00Z",
+        updated_at="2026-07-11T08:00:00Z",
+        pushed_at="2026-07-12T08:00:00Z",
+        archived=False,
+        disabled=False,
+        fork=False,
+        topics=["cli"],
+        license=None,
+    )
+    raw_bytes = json.dumps([record], separators=(",", ":")).encode()
+
+    parsed = parse_github_inventory(
+        raw_bytes, observed_at=NOW, max_response_bytes=len(raw_bytes)
+    )
+
+    assert parsed.identities[0].repository_id == 42
+    assert parsed.observations[0].stable_hash()
+    with pytest.raises(InvalidGitHubResponse, match="byte limit"):
+        parse_github_inventory(
+            raw_bytes, observed_at=NOW, max_response_bytes=len(raw_bytes) - 1
+        )
 
 
 @pytest.mark.parametrize(

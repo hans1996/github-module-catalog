@@ -87,7 +87,9 @@ class DiscoveryScanner:
             if isinstance(fetched, ScanOutcome):
                 return fetched
             recorded, failed = self._record_observations(
-                fetched.result.page, occurred_at=started_at
+                fetched.result.page,
+                fetched.record,
+                occurred_at=started_at,
             )
             progress = _ScanProgress(
                 run_id=progress.run_id,
@@ -142,13 +144,19 @@ class DiscoveryScanner:
             )
 
     def _record_observations(
-        self, page: RepositoryPage, *, occurred_at: datetime
+        self,
+        page: RepositoryPage,
+        record: DiscoveryPageRecord,
+        *,
+        occurred_at: datetime,
     ) -> tuple[int, int]:
         recorded = 0
         failed = 0
         for observation in page.observations:
             try:
-                self._state.record_repository_observation(observation)
+                self._state.record_discovery_observation(
+                    record.id, page.raw_sha256, observation
+                )
             except Exception as error:
                 failed += 1
                 self._try_append_observation_event(

@@ -44,6 +44,7 @@ class RepositoryPage:
     rate_limit: RateLimitFacts
     identities: tuple[RepositoryInventoryIdentity, ...]
     observations: tuple[RepositoryObservation, ...] = ()
+    observed_at: datetime | None = None
 
 
 @dataclass(frozen=True, slots=True)

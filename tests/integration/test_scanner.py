@@ -283,6 +283,11 @@ def test_durable_discovery_records_inventory_observation_for_classification(
     assert result.observations_recorded == 1
     assert result.observation_failures == 0
     assert state.list_latest_repository_observations() == (observation,)
+    binding = state.catalog_snapshot("github-public-repositories").observation_bindings[0]
+    assert binding.repository_id == 7
+    assert binding.observation_hash == observation.stable_hash()
+    assert binding.raw_sha256 == page.raw_sha256
+    assert binding.observed_at == observation.observed_at
     assert manifest.validated_observation_count == 1
     assert manifest.entries[0].assertions[0].capability_id == "cli"
     assert manifest.entries[0].repository.reuse_status is ReuseStatus.DISCOVERY_ONLY
@@ -295,10 +300,10 @@ def test_observation_recording_failure_isolated_after_cursor_commit(
     raw_store, state = _stores(tmp_path)
     page = replace(_page(7), next_url=None, observations=(_observation(7),))
 
-    def fail_recording(_: RepositoryObservation) -> None:
+    def fail_recording(*_: object) -> None:
         raise RuntimeError("sensitive failure details")
 
-    monkeypatch.setattr(state, "record_repository_observation", fail_recording)
+    monkeypatch.setattr(state, "record_discovery_observation", fail_recording)
 
     result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
 

@@ -7,8 +7,7 @@ import html
 import json
 import os
 import re
-import shutil
-import tempfile
+import stat
 import uuid
 from enum import StrEnum
 from pathlib import Path
@@ -16,10 +15,19 @@ from pathlib import Path
 import yaml  # type: ignore[import-untyped]
 
 from github_module_catalog.models import CatalogEntry, CatalogManifest
-
-
-class UnsafeOutputPathError(ValueError):
-    """Raised when publication could follow an unsafe output path."""
+from github_module_catalog.safeio import (
+    FileIdentity,
+    file_identity,
+    make_directory_at,
+    open_directory,
+    remove_tree_at,
+    require_identity,
+    stat_entry,
+    write_regular_file_at,
+)
+from github_module_catalog.safeio import (
+    UnsafeOutputPathError as UnsafeOutputPathError,
+)
 
 
 class CatalogFormat(StrEnum):
@@ -103,23 +111,42 @@ def publish_catalog(
     """Publish a complete catalog directory, never an in-progress build."""
 
     selected = _validate_formats(formats)
-    output = Path(output_dir)
-    if output.is_symlink():
-        raise UnsafeOutputPathError("output directory must not be a symbolic link")
-    parent = output.parent.resolve()
+    output = Path(output_dir).expanduser().absolute()
+    if output.name in {"", ".", ".."}:
+        raise UnsafeOutputPathError("output directory must have a simple name")
+    parent = output.parent
     parent.mkdir(parents=True, exist_ok=True)
-    if output.exists() and not output.is_dir():
+    parent_fd = open_directory(parent)
+    output_details = stat_entry(parent_fd, output.name)
+    if output_details is not None and not stat.S_ISDIR(output_details.st_mode):
+        os.close(parent_fd)
         raise UnsafeOutputPathError("output path must be a directory")
-    stage = parent / f".{output.name}.stage-{uuid.uuid4().hex}"
-    stage.mkdir(mode=0o700)
+    output_identity = (
+        None if output_details is None else file_identity(output_details)
+    )
+    stage_name = f".{output.name}.stage-{uuid.uuid4().hex}"
+    stage_fd, stage_identity = make_directory_at(parent_fd, stage_name)
     try:
         artifacts = _publication_artifacts(manifest, selected)
         for relative_path, content in artifacts.items():
-            _atomic_write(_safe_target(stage, relative_path), content)
-        _publish_directory(stage, output.resolve(strict=False))
+            write_regular_file_at(stage_fd, relative_path, content)
+        os.fsync(stage_fd)
+        os.close(stage_fd)
+        stage_fd = -1
+        _publish_directory_at(
+            parent_fd,
+            stage_name=stage_name,
+            stage_identity=stage_identity,
+            output_name=output.name,
+            output_identity=output_identity,
+        )
     finally:
-        if stage.exists():
-            shutil.rmtree(stage)
+        if stage_fd >= 0:
+            os.close(stage_fd)
+        remaining_stage = stat_entry(parent_fd, stage_name)
+        if remaining_stage is not None and file_identity(remaining_stage) == stage_identity:
+            remove_tree_at(parent_fd, stage_name, expected=stage_identity)
+        os.close(parent_fd)
     return tuple(output / relative_path for relative_path in artifacts)
 
 
@@ -220,40 +247,71 @@ def _newline(value: str) -> str:
     return value.rstrip("\n") + "\n"
 
 
-def _safe_target(root: Path, relative_path: Path) -> Path:
-    if relative_path.is_absolute() or ".." in relative_path.parts:
-        raise UnsafeOutputPathError("artifact path must remain inside the publication root")
-    target = root / relative_path
-    target.parent.mkdir(parents=True, exist_ok=True)
-    if not target.resolve(strict=False).is_relative_to(root.resolve()):
-        raise UnsafeOutputPathError("artifact path resolves outside the publication root")
-    return target
-
-
-def _atomic_write(target: Path, content: bytes) -> None:
-    file_descriptor, temporary_name = tempfile.mkstemp(prefix=f".{target.name}.", dir=target.parent)
+def _publish_directory_at(
+    parent_fd: int,
+    *,
+    stage_name: str,
+    stage_identity: FileIdentity,
+    output_name: str,
+    output_identity: FileIdentity | None,
+) -> None:
+    backup_name: str | None = None
+    backup_identity: FileIdentity | None = None
+    if output_identity is not None:
+        require_identity(
+            stat_entry(parent_fd, output_name),
+            output_identity,
+            message="output changed during publication",
+        )
+        backup_name = f".{output_name}.backup-{uuid.uuid4().hex}"
+        os.rename(
+            output_name,
+            backup_name,
+            src_dir_fd=parent_fd,
+            dst_dir_fd=parent_fd,
+        )
+        require_identity(
+            stat_entry(parent_fd, backup_name),
+            output_identity,
+            message="output changed during publication",
+        )
+        backup_identity = output_identity
+    require_identity(
+        stat_entry(parent_fd, stage_name),
+        stage_identity,
+        message="staging directory changed during publication",
+    )
     try:
-        with os.fdopen(file_descriptor, "wb") as temporary_file:
-            temporary_file.write(content)
-            temporary_file.flush()
-            os.fsync(temporary_file.fileno())
-        os.replace(temporary_name, target)
-    finally:
-        try:
-            os.unlink(temporary_name)
-        except FileNotFoundError:
-            pass
-
-
-def _publish_directory(stage: Path, output: Path) -> None:
-    if not output.exists():
-        os.replace(stage, output)
-        return
-    backup = output.parent / f".{output.name}.backup-{uuid.uuid4().hex}"
-    os.replace(output, backup)
-    try:
-        os.replace(stage, output)
+        os.rename(
+            stage_name,
+            output_name,
+            src_dir_fd=parent_fd,
+            dst_dir_fd=parent_fd,
+        )
+        require_identity(
+            stat_entry(parent_fd, output_name),
+            stage_identity,
+            message="staging directory changed during publication",
+        )
     except Exception:
-        os.replace(backup, output)
+        if (
+            backup_name is not None
+            and backup_identity is not None
+            and stat_entry(parent_fd, output_name) is None
+        ):
+            require_identity(
+                stat_entry(parent_fd, backup_name),
+                backup_identity,
+                message="backup changed during publication rollback",
+            )
+            os.rename(
+                backup_name,
+                output_name,
+                src_dir_fd=parent_fd,
+                dst_dir_fd=parent_fd,
+            )
         raise
-    shutil.rmtree(backup)
+    os.fsync(parent_fd)
+    if backup_name is not None and backup_identity is not None:
+        remove_tree_at(parent_fd, backup_name, expected=backup_identity)
+        os.fsync(parent_fd)

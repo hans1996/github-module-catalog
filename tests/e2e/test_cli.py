@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import sqlite3
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -15,6 +17,7 @@ from pydantic import HttpUrl
 from typer import Typer
 from typer.testing import CliRunner
 
+import github_module_catalog.cli as cli_module
 from github_module_catalog.catalog import Classifier
 from github_module_catalog.cli import CliDependencies, create_app
 from github_module_catalog.models import (
@@ -71,7 +74,28 @@ def _observation() -> RepositoryObservation:
 
 
 def _page() -> RepositoryPage:
-    raw_bytes = json.dumps([{"id": 7}], separators=(",", ":")).encode()
+    raw_bytes = json.dumps(
+        [
+            {
+                "id": 7,
+                "name": "module-catalog",
+                "full_name": "octocat/module-catalog",
+                "owner": {"login": "octocat", "id": 1},
+                "html_url": "https://github.com/octocat/module-catalog",
+                "description": "A reusable CLI catalog",
+                "language": "Python",
+                "created_at": "2026-07-01T00:00:00Z",
+                "updated_at": "2026-07-11T00:00:00Z",
+                "pushed_at": "2026-07-12T00:00:00Z",
+                "archived": False,
+                "disabled": False,
+                "fork": False,
+                "topics": ["cli"],
+                "license": None,
+            }
+        ],
+        separators=(",", ":"),
+    ).encode()
     return RepositoryPage(
         raw_bytes=raw_bytes,
         raw_sha256=hashlib.sha256(raw_bytes).hexdigest(),
@@ -90,6 +114,7 @@ def _page() -> RepositoryPage:
             ),
         ),
         observations=(_observation(),),
+        observed_at=NOW,
     )
 
 
@@ -377,6 +402,51 @@ def test_validate_rejects_manifest_hash_or_schema_corruption(tmp_path: Path) -> 
     assert "valid" not in result.output.casefold()
 
 
+def test_validate_rejects_artifact_swap_at_descriptor_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
+    outside = tmp_path / "outside.json"
+    outside.write_text("{}\n")
+    real_open = os.open
+    swapped = False
+
+    def swapping_open(
+        path: str | bytes | os.PathLike[str] | os.PathLike[bytes],
+        flags: int,
+        mode: int = 0o777,
+        *,
+        dir_fd: int | None = None,
+    ) -> int:
+        nonlocal swapped
+        if (
+            not swapped
+            and path == "catalog.json"
+            and dir_fd is not None
+            and flags & os.O_NOFOLLOW
+        ):
+            swapped = True
+            os.rename(
+                "catalog.json",
+                "stolen-catalog.json",
+                src_dir_fd=dir_fd,
+                dst_dir_fd=dir_fd,
+            )
+            os.symlink(outside, "catalog.json", dir_fd=dir_fd)
+        return real_open(path, flags, mode, dir_fd=dir_fd)
+
+    monkeypatch.setattr(os, "open", swapping_open)
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert swapped is True
+    assert result.exit_code != 0
+    assert outside.read_text() == "{}\n"
+
+
 @pytest.mark.parametrize("tamper", ["counts", "reuse_status"])
 def test_validate_recomputes_catalog_semantics_after_hash_consistent_tampering(
     tmp_path: Path, tamper: str
@@ -445,6 +515,88 @@ def test_validate_rejects_an_empty_catalog_from_an_unknown_source(tmp_path: Path
     assert result.exit_code != 0
 
 
+def test_validate_rejects_untrusted_schema_version_even_when_documents_match(
+    tmp_path: Path,
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
+    output = workspace / "catalog-output"
+    catalog = cast(dict[str, object], json.loads((output / "catalog.json").read_text()))
+    catalog["schema_version"] = "attacker-v9"
+    _write_catalog_documents(output, catalog)
+    _refresh_manifest_hashes(output, schema_version="attacker-v9")
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+
+
+def test_validate_requires_latest_matching_publication_ledger_record(tmp_path: Path) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
+    state_path = workspace / "data" / "state.sqlite3"
+    with sqlite3.connect(state_path) as connection:
+        record = connection.execute(
+            "SELECT source, generated_at, schema_version, taxonomy_version, "
+            "classifier_version, manifest_sha256, artifact_manifest_sha256 "
+            "FROM catalog_publications"
+        ).fetchone()
+        assert record is not None
+        assert record[:5] == (
+            "github",
+            "2026-07-13T12:00:00Z",
+            "1.0.0",
+            "1.0.0",
+            "rules-v1",
+        )
+        assert all(len(str(item)) == 64 for item in record[5:])
+        connection.execute("DELETE FROM catalog_publications")
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+
+
+def test_validate_rejects_tampered_latest_publication_ledger_record(tmp_path: Path) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
+    with sqlite3.connect(workspace / "data" / "state.sqlite3") as connection:
+        connection.execute(
+            "UPDATE catalog_publications SET artifact_manifest_sha256 = ?",
+            ("0" * 64,),
+        )
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+
+
+def test_failed_publication_never_creates_a_ledger_record(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+
+    def fail_publication(*_args: object, **_kwargs: object) -> tuple[Path, ...]:
+        raise OSError("simulated publication failure")
+
+    monkeypatch.setattr(cli_module, "publish_catalog", fail_publication)
+
+    result = RUNNER.invoke(app, ["build", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+    with sqlite3.connect(workspace / "data" / "state.sqlite3") as connection:
+        count = connection.execute("SELECT COUNT(*) FROM catalog_publications").fetchone()
+    assert count == (0,)
+
+
 @pytest.mark.parametrize("state_mode", ["missing", "corrupt"])
 def test_validate_fails_closed_without_valid_durable_state(tmp_path: Path, state_mode: str) -> None:
     app, _ = _test_app()
@@ -460,6 +612,33 @@ def test_validate_fails_closed_without_valid_durable_state(tmp_path: Path, state
     result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
 
     assert result.exit_code != 0
+
+
+def test_build_rejects_state_observation_not_derivable_from_bound_raw_page(
+    tmp_path: Path,
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    state_path = workspace / "data" / "state.sqlite3"
+    with sqlite3.connect(state_path) as connection:
+        row = connection.execute(
+            "SELECT id, observation_json FROM repository_observations WHERE repository_id = 7"
+        ).fetchone()
+        forged_document = cast(dict[str, object], json.loads(str(row[1])))
+        forged_document["license_spdx"] = "MIT"
+        forged_document["license_name"] = "MIT License"
+        forged = RepositoryObservation.model_validate(forged_document)
+        connection.execute(
+            "UPDATE repository_observations SET observation_hash = ?, observation_json = ? "
+            "WHERE id = ?",
+            (forged.stable_hash(), forged.stable_json(), int(row[0])),
+        )
+
+    result = RUNNER.invoke(app, ["build", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+    assert not (workspace / "catalog-output").exists()
 
 
 def test_init_rejects_a_workspace_with_symlinked_state_storage(tmp_path: Path) -> None:

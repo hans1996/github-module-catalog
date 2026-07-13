@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import re
 from collections.abc import Callable
+from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from email.utils import parsedate_to_datetime
 from math import ceil
@@ -117,6 +118,14 @@ _OBSERVATION_METADATA_FIELDS = frozenset(
 )
 
 
+@dataclass(frozen=True, slots=True)
+class ParsedGitHubInventory:
+    """Pure validated facts re-derived from one bounded raw inventory page."""
+
+    identities: tuple[RepositoryInventoryIdentity, ...]
+    observations: tuple[RepositoryObservation, ...]
+
+
 class GitHubRepositorySource:
     """Fetch sequential pages from GitHub's public repository inventory."""
 
@@ -216,7 +225,12 @@ class GitHubRepositorySource:
             raise GitHubSourceError(f"GitHub returned unexpected status {response.status_code}")
 
         raw_bytes = _read_bounded_body(response, self._max_response_bytes)
-        identities, observations = _parse_inventory(raw_bytes, observed_at=self._now())
+        observed_at = self._now()
+        inventory = parse_github_inventory(
+            raw_bytes,
+            observed_at=observed_at,
+            max_response_bytes=self._max_response_bytes,
+        )
         next_url, next_cursor = _parse_next_link(response)
         return PageResult(
             page=RepositoryPage(
@@ -226,8 +240,9 @@ class GitHubRepositorySource:
                 next_url=next_url,
                 next_cursor=next_cursor,
                 rate_limit=rate_limit,
-                identities=identities,
-                observations=observations,
+                identities=inventory.identities,
+                observations=inventory.observations,
+                observed_at=observed_at,
             )
         )
 
@@ -294,9 +309,20 @@ def _ensure_allowed_api_url(url: httpx.URL) -> None:
         raise UnsafeGitHubUrl("GitHub API URL is not allowed")
 
 
-def _parse_inventory(
-    raw_bytes: bytes, *, observed_at: datetime
-) -> tuple[tuple[RepositoryInventoryIdentity, ...], tuple[RepositoryObservation, ...]]:
+def parse_github_inventory(
+    raw_bytes: bytes,
+    *,
+    observed_at: datetime,
+    max_response_bytes: int = _DEFAULT_MAX_RESPONSE_BYTES,
+) -> ParsedGitHubInventory:
+    """Purely parse one bounded raw inventory response with a trusted source clock."""
+
+    if not isinstance(raw_bytes, bytes):
+        raise TypeError("raw_bytes must be bytes")
+    if type(max_response_bytes) is not int or max_response_bytes <= 0:
+        raise ValueError("max_response_bytes must be a positive integer")
+    if len(raw_bytes) > max_response_bytes:
+        raise InvalidGitHubResponse("GitHub response exceeds byte limit")
     try:
         documents = _INVENTORY_DOCUMENT_ADAPTER.validate_json(raw_bytes)
         records = tuple(_GitHubInventoryRecord.model_validate(document) for document in documents)
@@ -319,7 +345,7 @@ def _parse_inventory(
         )
         for record in records
     )
-    return identities, observations
+    return ParsedGitHubInventory(identities, observations)
 
 
 def _observation_from_inventory(

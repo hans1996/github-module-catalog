@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sqlite3
+import stat
 from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -12,7 +14,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
 
-from github_module_catalog.models import RepositoryObservation
+from github_module_catalog.models import CatalogManifest, RepositoryObservation
 from github_module_catalog.source import RepositoryInventoryIdentity, RepositoryPage
 from github_module_catalog.storage import RawObjectStore
 
@@ -62,6 +64,7 @@ class DiscoveryPageRecord:
     cursor_after: int
     raw_sha256: str
     raw_size_bytes: int
+    observed_at: datetime
     committed_at: datetime
     newly_committed: bool
 
@@ -85,6 +88,27 @@ class RepositoryObservationRecord:
     repository_id: int
     observation_hash: str
     observation_json: str
+    observed_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
+class SourcePageBinding:
+    """One source page bound to its raw bytes, source clock, and repository IDs."""
+
+    page_id: int
+    raw_sha256: str
+    observed_at: datetime
+    repository_ids: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class RepositoryObservationBinding:
+    """A derived observation bound to one durable discovery page."""
+
+    page_id: int
+    repository_id: int
+    raw_sha256: str
+    observation_hash: str
     observed_at: datetime
 
 
@@ -136,17 +160,59 @@ class CatalogStateSnapshot:
     retry_count: int
     dead_letter_count: int
     raw_page_hashes: tuple[str, ...]
+    pages: tuple[SourcePageBinding, ...]
+    observation_bindings: tuple[RepositoryObservationBinding, ...]
     observations: tuple[RepositoryObservation, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class CatalogPublicationRecord:
+    """One safely published manifest bound to its exact artifact manifest bytes."""
+
+    id: int
+    source: str
+    manifest_sha256: str
+    artifact_manifest_sha256: str
+    manifest: CatalogManifest
+    published_at: datetime
+
+
+def _open_state_database(path: Path) -> tuple[Path, sqlite3.Connection]:
+    requested = Path(path).expanduser().absolute()
+    if requested.name in {"", ".", ".."}:
+        raise ValueError("state database must have a simple file name")
+    requested.parent.mkdir(parents=True, exist_ok=True)
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    parent_fd = -1
+    try:
+        parent_fd = os.open(requested.parent, flags)
+        database_fd = os.open(
+            requested.name,
+            os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW,
+            0o600,
+            dir_fd=parent_fd,
+        )
+    except OSError:
+        if parent_fd >= 0:
+            os.close(parent_fd)
+        raise sqlite3.OperationalError("state database path is not safe") from None
+    try:
+        if not stat.S_ISREG(os.fstat(database_fd).st_mode):
+            raise sqlite3.OperationalError("state database must be a regular file")
+        database_uri = f"file:/proc/self/fd/{database_fd}?mode=rw&nofollow=1"
+        connection = sqlite3.connect(database_uri, isolation_level=None, uri=True)
+    finally:
+        os.close(database_fd)
+        os.close(parent_fd)
+    return requested, connection
 
 
 class StateStore:
     """SQLite repository whose write methods use explicit transactions."""
 
     def __init__(self, path: Path, raw_store: RawObjectStore) -> None:
-        self._path = Path(path).resolve()
-        self._path.parent.mkdir(parents=True, exist_ok=True)
+        self._path, self._connection = _open_state_database(path)
         self._raw_store = raw_store
-        self._connection = sqlite3.connect(self._path, isolation_level=None)
         self._connection.row_factory = sqlite3.Row
         self._connection.execute("PRAGMA foreign_keys = ON")
         journal_row = self._connection.execute("PRAGMA journal_mode = WAL").fetchone()
@@ -239,6 +305,7 @@ class StateStore:
         _validate_repository_page_state(page)
         cursor_after = _cursor_after(cursor_before, page)
         committed_text = _datetime_text(committed_at)
+        observed_text = _datetime_text(page.observed_at or committed_at)
         rate_limit_json = json.dumps(
             {
                 "limit": page.rate_limit.limit,
@@ -254,7 +321,7 @@ class StateStore:
             existing = connection.execute(
                 """
                 SELECT id, crawl_run_id, cursor_before, cursor_after, raw_sha256,
-                       raw_size_bytes, committed_at
+                       raw_size_bytes, observed_at, committed_at
                 FROM discovery_pages
                 WHERE crawl_run_id = ? AND cursor_before = ?
                 """,
@@ -278,8 +345,9 @@ class StateStore:
                 """
                 INSERT INTO discovery_pages(
                     crawl_run_id, cursor_before, cursor_after, raw_sha256,
-                    raw_size_bytes, etag, next_url, rate_limit_json, committed_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    raw_size_bytes, etag, next_url, rate_limit_json, observed_at,
+                    committed_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     crawl_run_id,
@@ -290,6 +358,7 @@ class StateStore:
                     page.etag,
                     page.next_url,
                     rate_limit_json,
+                    observed_text,
                     committed_text,
                 ),
             )
@@ -326,6 +395,7 @@ class StateStore:
             cursor_after,
             page.raw_sha256,
             raw_object.size_bytes,
+            _parse_datetime(observed_text),
             _parse_datetime(committed_text),
             True,
         )
@@ -336,7 +406,7 @@ class StateStore:
         rows = self._connection.execute(
             """
             SELECT id, crawl_run_id, cursor_before, cursor_after, raw_sha256,
-                   raw_size_bytes, committed_at
+                   raw_size_bytes, observed_at, committed_at
             FROM discovery_pages WHERE crawl_run_id = ? ORDER BY cursor_before, id
             """,
             (crawl_run_id,),
@@ -369,45 +439,87 @@ class StateStore:
     ) -> RepositoryObservationRecord:
         """Persist validated facts and explicitly update mutable identity names."""
 
+        with self._transaction() as connection:
+            return self._insert_repository_observation(connection, observation)
+
+    def record_discovery_observation(
+        self,
+        page_id: int,
+        raw_sha256: str,
+        observation: RepositoryObservation,
+    ) -> RepositoryObservationRecord:
+        """Atomically bind one validated observation to its durable raw page."""
+
+        repository_id = observation.identity.repository_id
+        with self._transaction() as connection:
+            page = connection.execute(
+                """
+                SELECT page.observed_at
+                FROM discovery_pages AS page
+                JOIN discovery_page_repositories AS link ON link.page_id = page.id
+                WHERE page.id = ? AND page.raw_sha256 = ? AND link.repository_id = ?
+                """,
+                (page_id, raw_sha256, repository_id),
+            ).fetchone()
+            if page is None:
+                raise StateConflictError("observation does not match its durable discovery page")
+            page_observed_at = _parse_datetime(str(page["observed_at"]))
+            if observation.observed_at != page_observed_at:
+                raise StateConflictError("observation clock does not match its discovery page")
+            record = self._insert_repository_observation(connection, observation)
+            connection.execute(
+                """
+                INSERT INTO repository_observation_bindings(
+                    page_id, repository_id, raw_sha256, observation_hash
+                ) VALUES (?, ?, ?, ?)
+                ON CONFLICT(page_id, repository_id, observation_hash) DO NOTHING
+                """,
+                (page_id, repository_id, raw_sha256, record.observation_hash),
+            )
+            return record
+
+    @staticmethod
+    def _insert_repository_observation(
+        connection: sqlite3.Connection, observation: RepositoryObservation
+    ) -> RepositoryObservationRecord:
         observation_json = observation.stable_json()
         _reject_credential_text(observation_json)
         observation_hash = observation.stable_hash()
         observed_text = _datetime_text(observation.observed_at)
         repository_id = observation.identity.repository_id
-        with self._transaction() as connection:
-            connection.execute(
-                """
-                INSERT INTO repository_identities(
-                    repository_id, owner_login, name, full_name, owner_id, html_url,
-                    first_seen_at, last_observed_at
-                ) VALUES (?, ?, ?, ?, NULL, ?, ?, ?)
-                ON CONFLICT(repository_id) DO UPDATE SET
-                    owner_login = excluded.owner_login,
-                    name = excluded.name,
-                    full_name = excluded.full_name,
-                    html_url = excluded.html_url,
-                    last_observed_at = excluded.last_observed_at
-                WHERE excluded.last_observed_at >= repository_identities.last_observed_at
-                """,
-                (
-                    repository_id,
-                    observation.owner,
-                    observation.name,
-                    observation.full_name,
-                    str(observation.html_url),
-                    observed_text,
-                    observed_text,
-                ),
-            )
-            connection.execute(
-                """
-                INSERT INTO repository_observations(
-                    repository_id, observation_hash, observation_json, observed_at
-                ) VALUES (?, ?, ?, ?)
-                ON CONFLICT(repository_id, observation_hash) DO NOTHING
-                """,
-                (repository_id, observation_hash, observation_json, observed_text),
-            )
+        connection.execute(
+            """
+            INSERT INTO repository_identities(
+                repository_id, owner_login, name, full_name, owner_id, html_url,
+                first_seen_at, last_observed_at
+            ) VALUES (?, ?, ?, ?, NULL, ?, ?, ?)
+            ON CONFLICT(repository_id) DO UPDATE SET
+                owner_login = excluded.owner_login,
+                name = excluded.name,
+                full_name = excluded.full_name,
+                html_url = excluded.html_url,
+                last_observed_at = excluded.last_observed_at
+            WHERE excluded.last_observed_at >= repository_identities.last_observed_at
+            """,
+            (
+                repository_id,
+                observation.owner,
+                observation.name,
+                observation.full_name,
+                str(observation.html_url),
+                observed_text,
+                observed_text,
+            ),
+        )
+        connection.execute(
+            """
+            INSERT INTO repository_observations(
+                repository_id, observation_hash, observation_json, observed_at
+            ) VALUES (?, ?, ?, ?)
+            ON CONFLICT(repository_id, observation_hash) DO NOTHING
+            """,
+            (repository_id, observation_hash, observation_json, observed_text),
+        )
         return RepositoryObservationRecord(
             repository_id, observation_hash, observation_json, _parse_datetime(observed_text)
         )
@@ -467,7 +579,9 @@ class StateStore:
         with self._read_transaction() as connection:
             cursor_start, cursor_end = _source_cursors(connection, source)
             raw_page_hashes = _source_raw_hashes(connection, source)
+            pages = _source_pages(connection, source)
             observations = _source_observations(connection, source)
+            observation_bindings = _source_observation_bindings(connection, source)
             discovered_count = _source_discovered_count(connection, source)
             pending_count, retry_count, dead_letter_count = _source_work_counts(connection, source)
             return CatalogStateSnapshot(
@@ -480,6 +594,8 @@ class StateStore:
                 retry_count=retry_count,
                 dead_letter_count=dead_letter_count,
                 raw_page_hashes=raw_page_hashes,
+                pages=pages,
+                observation_bindings=observation_bindings,
                 observations=observations,
             )
 
@@ -647,6 +763,74 @@ class StateStore:
             _parse_datetime(str(row["updated_at"])),
         )
 
+    def record_catalog_publication(
+        self,
+        manifest: CatalogManifest,
+        *,
+        artifact_manifest_sha256: str,
+        published_at: datetime,
+    ) -> CatalogPublicationRecord:
+        """Record a publication only after its directory has been safely installed."""
+
+        if manifest.generated_at is None:
+            raise ValueError("published catalog manifests require generated_at")
+        if re.fullmatch(r"[0-9a-f]{64}", artifact_manifest_sha256) is None:
+            raise ValueError("artifact_manifest_sha256 must be a SHA-256 digest")
+        manifest_json = manifest.stable_json()
+        _reject_credential_text(manifest_json)
+        manifest_sha256 = manifest.stable_hash()
+        published_text = _datetime_text(published_at)
+        with self._transaction() as connection:
+            connection.execute(
+                """
+                INSERT INTO catalog_publications(
+                    source, manifest_sha256, manifest_json, generated_at,
+                    schema_version, taxonomy_version, classifier_version,
+                    artifact_manifest_sha256, published_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(manifest_sha256) DO NOTHING
+                """,
+                (
+                    manifest.source,
+                    manifest_sha256,
+                    manifest_json,
+                    _datetime_text(manifest.generated_at),
+                    manifest.schema_version,
+                    manifest.taxonomy_version,
+                    manifest.classifier_version,
+                    artifact_manifest_sha256,
+                    published_text,
+                ),
+            )
+            row = connection.execute(
+                """
+                SELECT id, source, manifest_sha256, manifest_json,
+                       generated_at, schema_version, taxonomy_version,
+                       classifier_version, artifact_manifest_sha256, published_at
+                FROM catalog_publications WHERE manifest_sha256 = ?
+                """,
+                (manifest_sha256,),
+            ).fetchone()
+        if row is None:
+            raise StateConflictError("catalog publication could not be recorded")
+        return _publication_record(row)
+
+    def latest_catalog_publication(self, source: str) -> CatalogPublicationRecord | None:
+        """Return the latest hash-verified publication for one trusted source."""
+
+        source = _validated_text(source, "source")
+        row = self._connection.execute(
+            """
+            SELECT id, source, manifest_sha256, manifest_json,
+                   generated_at, schema_version, taxonomy_version,
+                   classifier_version, artifact_manifest_sha256, published_at
+            FROM catalog_publications
+            WHERE source = ? ORDER BY id DESC LIMIT 1
+            """,
+            (source,),
+        ).fetchone()
+        return None if row is None else _publication_record(row)
+
     def _insert_discovered_identity(
         self,
         connection: sqlite3.Connection,
@@ -773,6 +957,33 @@ class StateStore:
 
     def _initialize_schema(self) -> None:
         self._connection.executescript(_SCHEMA)
+        page_columns = {
+            str(row["name"])
+            for row in self._connection.execute("PRAGMA table_info(discovery_pages)").fetchall()
+        }
+        if "observed_at" not in page_columns:
+            self._connection.execute("ALTER TABLE discovery_pages ADD COLUMN observed_at TEXT")
+            self._connection.execute(
+                "UPDATE discovery_pages SET observed_at = committed_at WHERE observed_at IS NULL"
+            )
+        publication_columns = {
+            str(row["name"])
+            for row in self._connection.execute(
+                "PRAGMA table_info(catalog_publications)"
+            ).fetchall()
+        }
+        for column, declaration in (
+            ("source", "TEXT"),
+            ("generated_at", "TEXT"),
+            ("schema_version", "TEXT"),
+            ("taxonomy_version", "TEXT"),
+            ("classifier_version", "TEXT"),
+            ("artifact_manifest_sha256", "TEXT"),
+        ):
+            if column not in publication_columns:
+                self._connection.execute(
+                    f"ALTER TABLE catalog_publications ADD COLUMN {column} {declaration}"
+                )
         with self._transaction() as connection:
             applied = connection.execute(
                 "SELECT 1 FROM schema_migrations WHERE version = ?",
@@ -805,6 +1016,32 @@ def _cursor_after(cursor_before: int, page: RepositoryPage) -> int:
     if cursor_after < cursor_before:
         raise ValueError("page cursor cannot move backwards")
     return cursor_after
+
+
+def _publication_record(row: sqlite3.Row) -> CatalogPublicationRecord:
+    manifest = CatalogManifest.model_validate_json(str(row["manifest_json"]))
+    generated_at = manifest.generated_at
+    stored_generated_at = row["generated_at"]
+    if (
+        manifest.stable_hash() != str(row["manifest_sha256"])
+        or manifest.source != str(row["source"])
+        or generated_at is None
+        or stored_generated_at is None
+        or generated_at != _parse_datetime(str(stored_generated_at))
+        or manifest.schema_version != str(row["schema_version"])
+        or manifest.taxonomy_version != str(row["taxonomy_version"])
+        or manifest.classifier_version != str(row["classifier_version"])
+        or re.fullmatch(r"[0-9a-f]{64}", str(row["artifact_manifest_sha256"])) is None
+    ):
+        raise StateConflictError("catalog publication ledger is inconsistent")
+    return CatalogPublicationRecord(
+        id=int(row["id"]),
+        source=manifest.source,
+        manifest_sha256=manifest.stable_hash(),
+        artifact_manifest_sha256=str(row["artifact_manifest_sha256"]),
+        manifest=manifest,
+        published_at=_parse_datetime(str(row["published_at"])),
+    )
 
 
 def _source_cursors(connection: sqlite3.Connection, source: str) -> tuple[int, int]:
@@ -840,6 +1077,63 @@ def _source_raw_hashes(connection: sqlite3.Connection, source: str) -> tuple[str
         (source,),
     ).fetchall()
     return tuple(str(row["raw_sha256"]) for row in rows)
+
+
+def _source_pages(
+    connection: sqlite3.Connection, source: str
+) -> tuple[SourcePageBinding, ...]:
+    rows = connection.execute(
+        """
+        SELECT page.id, page.raw_sha256, page.observed_at
+        FROM discovery_pages AS page
+        JOIN crawl_runs AS run ON run.id = page.crawl_run_id
+        WHERE run.source = ? ORDER BY page.id
+        """,
+        (source,),
+    ).fetchall()
+    return tuple(
+        SourcePageBinding(
+            page_id=int(row["id"]),
+            raw_sha256=str(row["raw_sha256"]),
+            observed_at=_parse_datetime(str(row["observed_at"])),
+            repository_ids=tuple(sorted(_linked_repository_ids(connection, int(row["id"])))),
+        )
+        for row in rows
+    )
+
+
+def _source_observation_bindings(
+    connection: sqlite3.Connection, source: str
+) -> tuple[RepositoryObservationBinding, ...]:
+    rows = connection.execute(
+        """
+        SELECT binding.page_id, binding.repository_id, binding.raw_sha256,
+               binding.observation_hash, page.observed_at
+        FROM repository_observation_bindings AS binding
+        JOIN discovery_pages AS page ON page.id = binding.page_id
+        JOIN crawl_runs AS run ON run.id = page.crawl_run_id
+        JOIN repository_observations AS observed
+          ON observed.repository_id = binding.repository_id
+         AND observed.observation_hash = binding.observation_hash
+        WHERE run.source = ? AND observed.id = (
+            SELECT candidate.id FROM repository_observations AS candidate
+            WHERE candidate.repository_id = observed.repository_id
+            ORDER BY candidate.observed_at DESC, candidate.id DESC LIMIT 1
+        )
+        ORDER BY binding.page_id, binding.repository_id, binding.observation_hash
+        """,
+        (source,),
+    ).fetchall()
+    return tuple(
+        RepositoryObservationBinding(
+            page_id=int(row["page_id"]),
+            repository_id=int(row["repository_id"]),
+            raw_sha256=str(row["raw_sha256"]),
+            observation_hash=str(row["observation_hash"]),
+            observed_at=_parse_datetime(str(row["observed_at"])),
+        )
+        for row in rows
+    )
 
 
 def _source_observations(
@@ -973,6 +1267,7 @@ def _page_record(row: sqlite3.Row) -> DiscoveryPageRecord:
         int(row["cursor_after"]),
         str(row["raw_sha256"]),
         int(row["raw_size_bytes"]),
+        _parse_datetime(str(row["observed_at"])),
         _parse_datetime(str(row["committed_at"])),
         False,
     )
@@ -1100,6 +1395,7 @@ CREATE TABLE IF NOT EXISTS discovery_pages (
     etag TEXT,
     next_url TEXT,
     rate_limit_json TEXT NOT NULL,
+    observed_at TEXT NOT NULL,
     committed_at TEXT NOT NULL,
     UNIQUE(crawl_run_id, cursor_before)
 );
@@ -1128,6 +1424,16 @@ CREATE TABLE IF NOT EXISTS repository_observations (
     observation_json TEXT NOT NULL CHECK(json_valid(observation_json)),
     observed_at TEXT NOT NULL,
     UNIQUE(repository_id, observation_hash)
+);
+
+CREATE TABLE IF NOT EXISTS repository_observation_bindings (
+    page_id INTEGER NOT NULL REFERENCES discovery_pages(id),
+    repository_id INTEGER NOT NULL REFERENCES repository_identities(repository_id),
+    raw_sha256 TEXT NOT NULL CHECK(length(raw_sha256) = 64),
+    observation_hash TEXT NOT NULL CHECK(length(observation_hash) = 64),
+    PRIMARY KEY(page_id, repository_id, observation_hash),
+    FOREIGN KEY(repository_id, observation_hash)
+        REFERENCES repository_observations(repository_id, observation_hash)
 );
 
 CREATE TABLE IF NOT EXISTS work_item_events (
@@ -1172,8 +1478,15 @@ CREATE TABLE IF NOT EXISTS stage_checkpoints (
 
 CREATE TABLE IF NOT EXISTS catalog_publications (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    source TEXT NOT NULL,
     manifest_sha256 TEXT NOT NULL CHECK(length(manifest_sha256) = 64),
     manifest_json TEXT NOT NULL CHECK(json_valid(manifest_json)),
+    generated_at TEXT NOT NULL,
+    schema_version TEXT NOT NULL,
+    taxonomy_version TEXT NOT NULL,
+    classifier_version TEXT NOT NULL,
+    artifact_manifest_sha256 TEXT NOT NULL
+        CHECK(length(artifact_manifest_sha256) = 64),
     published_at TEXT NOT NULL,
     UNIQUE(manifest_sha256)
 );

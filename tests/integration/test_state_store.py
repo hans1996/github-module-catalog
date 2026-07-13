@@ -92,6 +92,54 @@ def _stores(tmp_path: Path) -> tuple[RawObjectStore, StateStore]:
     return raw_store, StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
 
 
+def test_state_database_symlink_is_rejected_without_modifying_target(tmp_path: Path) -> None:
+    external = tmp_path / "external.sqlite3"
+    with sqlite3.connect(external) as connection:
+        connection.execute("CREATE TABLE sentinel(value TEXT NOT NULL)")
+        connection.execute("INSERT INTO sentinel(value) VALUES ('unchanged')")
+    original = external.read_bytes()
+    workspace = tmp_path / "workspace"
+    (workspace / "data").mkdir(parents=True)
+    (workspace / "data" / "state.sqlite3").symlink_to(external)
+
+    with pytest.raises(sqlite3.OperationalError):
+        StateStore(workspace / "data" / "state.sqlite3", RawObjectStore(workspace))
+
+    assert external.read_bytes() == original
+
+
+def test_state_parent_swap_cannot_redirect_sqlite_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    workspace = tmp_path / "workspace"
+    data = workspace / "data"
+    data.mkdir(parents=True)
+    moved_data = workspace / "trusted-data"
+    external = tmp_path / "external"
+    external.mkdir()
+    real_connect = sqlite3.connect
+    swapped = False
+
+    def swapping_connect(
+        database: str, *, isolation_level: None = None, uri: bool = False
+    ) -> sqlite3.Connection:
+        nonlocal swapped
+        del isolation_level
+        if not swapped:
+            swapped = True
+            data.rename(moved_data)
+            data.symlink_to(external, target_is_directory=True)
+        return real_connect(database, isolation_level=None, uri=uri)
+
+    monkeypatch.setattr(sqlite3, "connect", swapping_connect)
+
+    state = StateStore(data / "state.sqlite3", RawObjectStore(workspace))
+    state.close()
+
+    assert not (external / "state.sqlite3").exists()
+    assert (moved_data / "state.sqlite3").is_file()
+
+
 def _mark_mapping_migration_pending(database_path: Path) -> None:
     with sqlite3.connect(database_path) as connection:
         connection.execute("DROP TABLE IF EXISTS schema_migrations")
