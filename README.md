@@ -39,18 +39,21 @@ instead of claiming that a partial search is "all of GitHub."
    schemas, taxonomy, fixtures, and small samples; large catalogs are published
    as versioned artifacts.
 
-## MVP
+## Implemented MVP
 
-The first release will provide:
+The current MVP provides:
 
 - resumable discovery through `GET /repositories?since=<repository-id>`;
-- immutable repository observations keyed by GitHub numeric repository ID;
-- deterministic, multi-axis capability classification;
-- license and provenance fields on every reusable-module assertion;
+- crash-safe raw-page storage, SQLite cursors, and repository identities keyed
+  by GitHub numeric repository ID;
+- inventory-derived observations and deterministic, multi-axis capability
+  classification from validated facts;
+- conservative license and lifecycle gates plus evidence and version provenance
+  on every capability assertion;
 - JSON, YAML, and Markdown exports with byte-stable ordering;
-- a CLI for discovery, status, classification, validation, and export;
+- `init`, `discover`, `status`, `classify`, `build`, and `validate` CLI commands;
 - unit, integration, and CLI end-to-end tests with at least 80% coverage;
-- GitHub Actions for CI and bounded scheduled discovery.
+- CI and bounded scheduled discovery through GitHub Actions.
 
 See [the approved architecture](docs/plans/2026-07-13-github-module-catalog-design.md)
 for the complete data flow and safety boundaries.
@@ -81,6 +84,15 @@ classification, JSON/YAML/Markdown publication, integrity validation, and a
 scheduled GitHub Actions workflow. Coverage is incremental and explicitly
 measured; the current catalog must not be described as all GitHub projects.
 Identity-only repositories remain queued for deferred enrichment.
+
+The current implementation does not fetch full repository details in a
+separate enrichment worker, automatically retry or promote work to failed or
+dead-letter states, or process deletion, private-visibility, and DMCA
+tombstones. Sparse inventory observations may still contribute validated
+classification evidence, but without explicit license and lifecycle facts they
+remain `discovery_only`. `status` reports `cursor_end`, `discovered`,
+`observations`, `pending`, `retry`, and `dead_letter`; it does not expose
+completed or failed counters.
 
 ## License
 

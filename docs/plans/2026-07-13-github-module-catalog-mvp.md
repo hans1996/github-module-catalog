@@ -30,7 +30,7 @@ def test_package_exposes_version() -> None:
 
 **Step 2: Run test to verify RED**
 
-Run: `uv run pytest tests/test_package.py -q`  
+Run: `uv run pytest tests/test_package.py -q`
 Expected: collection fails because `github_module_catalog` does not exist.
 
 **Step 3: Add the minimal package and configuration**
@@ -45,8 +45,8 @@ tests.
 
 **Step 4: Run GREEN and quality checks**
 
-Run: `uv sync --all-groups`  
-Run: `uv run pytest tests/test_package.py -q`  
+Run: `uv sync --all-groups`
+Run: `uv run pytest tests/test_package.py -q`
 Expected: one passing test.
 
 **Step 5: Commit**
@@ -87,7 +87,7 @@ output is stable.
 
 **Step 2: Run tests to verify RED**
 
-Run: `uv run pytest tests/unit/test_models.py tests/unit/test_taxonomy.py -q`  
+Run: `uv run pytest tests/unit/test_models.py tests/unit/test_taxonomy.py -q`
 Expected: import failure for missing model and taxonomy modules.
 
 **Step 3: Implement minimal immutable models**
@@ -114,7 +114,7 @@ assertions per repository are allowed. At minimum include `cli`, `web-ui`,
 
 **Step 4: Run GREEN and full unit tests**
 
-Run: `uv run pytest tests/unit/test_models.py tests/unit/test_taxonomy.py -q`  
+Run: `uv run pytest tests/unit/test_models.py tests/unit/test_taxonomy.py -q`
 Expected: all tests pass.
 
 **Step 5: Commit**
@@ -147,7 +147,7 @@ Use `httpx.MockTransport`, not a live API. Verify:
 
 **Step 2: Run tests to verify RED**
 
-Run: `uv run pytest tests/integration/test_github_source.py -q`  
+Run: `uv run pytest tests/integration/test_github_source.py -q`
 Expected: import failure for the missing GitHub source.
 
 **Step 3: Implement the source protocol and adapter**
@@ -164,7 +164,7 @@ or scheduler owns waiting. Never log request headers.
 
 **Step 4: Run GREEN**
 
-Run: `uv run pytest tests/integration/test_github_source.py -q`  
+Run: `uv run pytest tests/integration/test_github_source.py -q`
 Expected: all HTTP adapter tests pass.
 
 **Step 5: Commit**
@@ -197,7 +197,7 @@ Verify:
 
 **Step 2: Run tests to verify RED**
 
-Run: `uv run pytest tests/integration/test_state_store.py -q`  
+Run: `uv run pytest tests/integration/test_state_store.py -q`
 Expected: import failure for missing storage/state modules.
 
 **Step 3: Implement minimal stores**
@@ -212,7 +212,7 @@ results. Never return mutable internal state.
 
 **Step 4: Run GREEN**
 
-Run: `uv run pytest tests/integration/test_state_store.py -q`  
+Run: `uv run pytest tests/integration/test_state_store.py -q`
 Expected: all durability and idempotency tests pass.
 
 **Step 5: Commit**
@@ -248,7 +248,7 @@ Verify:
 
 **Step 2: Run tests to verify RED**
 
-Run: `uv run pytest tests/integration/test_scanner.py tests/unit/test_exporters.py -q`  
+Run: `uv run pytest tests/integration/test_scanner.py tests/unit/test_exporters.py -q`
 Expected: imports fail for missing pipeline/export modules.
 
 **Step 3: Implement the pipeline**
@@ -261,7 +261,7 @@ run time appears in the manifest only when explicitly supplied by the caller.
 
 **Step 4: Run GREEN**
 
-Run: `uv run pytest tests/integration/test_scanner.py tests/unit/test_exporters.py -q`  
+Run: `uv run pytest tests/integration/test_scanner.py tests/unit/test_exporters.py -q`
 Expected: all pipeline and deterministic export tests pass.
 
 **Step 5: Commit**
@@ -299,7 +299,7 @@ network.
 
 **Step 2: Run tests to verify RED**
 
-Run: `uv run pytest tests/e2e/test_cli.py -q`  
+Run: `uv run pytest tests/e2e/test_cli.py -q`
 Expected: import failure or missing CLI commands.
 
 **Step 3: Implement CLI and workflows**
@@ -315,11 +315,11 @@ token.
 
 **Step 4: Run GREEN and all quality gates**
 
-Run: `uv run pytest -q --cov=github_module_catalog --cov-report=term-missing --cov-fail-under=80`  
-Run: `uv run ruff format --check .`  
-Run: `uv run ruff check .`  
-Run: `uv run mypy src tests`  
-Run: `uv run pip-audit`  
+Run: `uv run pytest -q --cov=github_module_catalog --cov-report=term-missing --cov-fail-under=80`
+Run: `uv run ruff format --check .`
+Run: `uv run ruff check .`
+Run: `uv run mypy src tests`
+Run: `uv run pip-audit`
 Expected: all commands pass without warnings or leaked credentials.
 
 **Step 5: Commit**

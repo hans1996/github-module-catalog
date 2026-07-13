@@ -1,7 +1,7 @@
 # GitHub Module Catalog Design
 
-**Date:** 2026-07-13  
-**Status:** Approved for MVP implementation
+**Date:** 2026-07-13
+**Status:** Implemented MVP with deferred capabilities documented below
 
 ## Purpose and honest scope
 
@@ -12,9 +12,9 @@ libraries, services, plugins, templates, or command-line tools, while one
 capability may have many competing implementations.
 
 "All GitHub" is a long-running coverage objective, not a one-shot API query.
-The system must always report what repository-ID interval it has discovered,
-what items remain queued for enrichment, what failed, and which catalog build
-was produced from which source observations. Search results, stars, and topics
+The system reports what repository-ID interval it has discovered, what items
+remain pending, retrying, or dead-lettered, and which catalog build was
+produced from which source observations. Search results, stars, and topics
 are useful for prioritization but cannot prove discovery completeness.
 
 The MVP therefore separates broad, inexpensive discovery from bounded, more
@@ -36,9 +36,10 @@ The system is a Python 3.12 CLI with strict layers:
 3. **State store:** SQLite tracks crawl runs, page commits, stage checkpoints,
    work-item events, retry state, and publication manifests. The cursor advances
    only after the raw page and queued repository identities are committed.
-4. **Enrichment:** selected repositories receive additional metadata such as
-   topics, license, lifecycle flags, default branch, and later manifest or
-   README evidence. No downloaded code is executed.
+4. **Enrichment boundary:** inventory fields can form a validated observation;
+   sparse observations remain pending for a future full-detail worker. That
+   worker, including manifest or README evidence collection, is not implemented.
+   No downloaded code is executed.
 5. **Classifier:** deterministic rules produce multi-axis capability
    assertions. Assertions record confidence, evidence, taxonomy version,
    classifier version, and the source observation used.
@@ -77,19 +78,17 @@ page. The response is validated, hashed, written atomically, and then inserted
 into the state transaction. New repository identities create idempotent work
 items. Only after both operations succeed does the durable cursor advance.
 
-Enrichment workers partition work by stable numeric repository ID, not mutable
-owner, name, stars, or update time. Each stage has an independent checkpoint so
-one broken repository cannot stop global discovery. Retryable failures honor
-`Retry-After` and rate-limit reset headers with bounded exponential backoff and
-jitter. Permanent deletion, transfer, rename, archival, or transition away from
-public visibility creates an observation or tombstone rather than deleting
-history.
+Future enrichment workers will partition work by stable numeric repository ID,
+not mutable owner, name, stars, or update time. The current adapter returns
+typed retry timing from `Retry-After` or rate-limit reset headers, but no worker
+automatically retries items or promotes them through failed and dead-letter
+states. The state schema can retain append-only work events and stage
+checkpoints; `status` currently surfaces pending, retry, and dead-letter counts,
+not completed or failed counts.
 
-The state machine is append-oriented: `discovered`, `queued`, `enriched`,
-`classified`, `published`, `retry`, or `dead_letter`. A unique processing key
-of repository ID, stage, source revision, and analyzer version makes restarts
-idempotent. Status output distinguishes completed, pending, retrying, failed,
-and dead-letter counts; no command silently labels partial coverage complete.
+Deletion, transfer, rename, archival, private-visibility transition, and DMCA
+takedown reconciliation are also deferred. The intended future behavior is to
+append an observation or tombstone rather than erase historical provenance.
 
 ## Security, licensing, and privacy
 
@@ -107,9 +106,19 @@ gate. Repository-level licensing is not assumed to override package-level
 licenses. The catalog presents provenance and compatibility signals, not legal
 advice.
 
-The project stores public technical metadata only. Generated catalogs must
-support deletion/tombstone processing for repositories that are removed,
-restricted, or subject to a takedown.
+The project stores public technical metadata only. Raw snapshots and recovery
+caches preserve exact, untrusted public API bytes and are quarantine evidence,
+not presentation content. Public descriptions can contain sensitive-looking
+text. Human-readable catalog output never renders descriptions, and catalog
+observation storage rejects credential-shaped patterns; rejected content can
+remain only in the quarantined raw page and its work item can be retried.
+
+The scheduled workflow uploads `catalog-workspace/data`, including `data/raw`,
+with catalog output as a three-day artifact. Access to that artifact and the
+recovery cache therefore grants access to exact raw public metadata and must be
+kept narrow. All workflow actions use reviewed Node 24-compatible major lines
+and full commit-SHA pins. Deletion and tombstone processing for removed,
+restricted, or takedown repositories remains deferred.
 
 ## Testing and success criteria
 
@@ -139,3 +148,6 @@ LLM for every repository, perform complete vulnerability scanning, or
 automatically assemble and publish a new product. Later phases may add
 manifest-level extraction for selected ecosystems, DuckDB/Parquet datasets,
 semantic retrieval, license-aware composition planning, and a static web UI.
+They must also add the full-detail enrichment worker, automatic retry and
+dead-letter policy, and deletion/private/DMCA tombstone reconciliation described
+above.

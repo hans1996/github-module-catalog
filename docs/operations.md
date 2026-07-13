@@ -24,6 +24,10 @@ Raw snapshots and caches preserve exact untrusted public metadata. A public
 description can itself contain accidentally published credential-shaped text,
 so raw data is quarantined source evidence: never render it, grant the narrowest
 artifact access, and use the shortest retention compatible with recovery.
+Catalog observation storage rejects credential-shaped patterns. When such text
+appears in otherwise public inventory metadata, the exact page remains in raw
+quarantine, the derived observation is not published, and normal processing
+records a retry event without exposing the rejected text.
 
 ## Local runbook
 
@@ -75,9 +79,19 @@ The scheduled workflow restores and saves `catalog-workspace/data` with a
 run-specific cache key and a stable restore prefix. It saves a new checkpoint
 only after discovery, build, and validation succeed. The output and SQLite
 state plus provenance-required raw objects are uploaded only after validation
-as three-day workflow artifacts. Treat workspace caches and artifacts as
-sensitive untrusted metadata even though catalog output passed secret-shape
-rejection. Generated datasets are never committed to Git.
+as a three-day workflow artifact. The uploaded `catalog-workspace/data` tree
+includes `data/raw`, so the artifact is verifiable against the publication's
+raw-page hashes but also exposes exact untrusted public metadata to anyone who
+is granted artifact access. The recovery cache carries the same quarantine
+implications and is separate from the artifact's three-day retention setting.
+Treat both as sensitive untrusted metadata even though catalog observations and
+output passed secret-pattern rejection. Generated datasets are never committed
+to Git.
+
+Every third-party `uses:` reference is pinned to a reviewed full commit SHA.
+The workflow uses the Node 24-compatible action generations selected for the
+MVP (`actions/checkout` v6, `actions/cache` v5, and
+`actions/upload-artifact` v7), including full-SHA pinning for `setup-uv`.
 
 For local corruption recovery, preserve the failed workspace for diagnosis,
 then restore the last validated `data` artifact or initialize a new workspace.
@@ -94,10 +108,19 @@ work. These figures are coverage evidence, not proof that the catalog contains
 every public repository or every reusable module.
 
 Inventory records with a complete metadata set become initial validated
-observations immediately. Identity-only records remain discoverable and queued
-for deferred enrichment; the crawler does not invent missing description,
-language, topic, lifecycle, timestamp, or license facts. Future enrichment may
-use repository-detail endpoints under separate rate budgets and checkpoints.
+observations immediately. Identity-only and sparse records remain discoverable
+and enrichment-pending; the crawler does not invent missing description,
+language, topic, lifecycle, timestamp, or license facts. Sparse observations
+may contribute classification evidence from facts that are present, but without
+explicit license and lifecycle detail their reuse status remains
+`discovery_only`.
+
+There is no repository-detail enrichment worker in the MVP. The adapter returns
+typed retry decisions, but no scheduler consumes retry items or automatically
+promotes work through failed and dead-letter states. `status` exposes
+`cursor_end`, `discovered`, `observations`, `pending`, `retry`, and
+`dead_letter`; it does not expose completed or failed counters. Deletion,
+private-visibility transition, and DMCA tombstone reconciliation are deferred.
 
 ## License and execution safety
 
