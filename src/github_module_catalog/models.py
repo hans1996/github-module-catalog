@@ -97,7 +97,11 @@ class RepositoryObservation(ImmutableModel):
     """Validated source facts observed for a public GitHub repository."""
 
     identity: RepositoryIdentity
-    owner: str = Field(min_length=1, max_length=39, pattern=r"^[A-Za-z0-9][A-Za-z0-9-]*$")
+    owner: str = Field(
+        min_length=1,
+        max_length=39,
+        pattern=r"^[A-Za-z0-9][A-Za-z0-9_-]*$",
+    )
     name: str = Field(min_length=1, max_length=100, pattern=r"^[A-Za-z0-9._-]+$")
     full_name: str = Field(min_length=3, max_length=140)
     html_url: HttpUrl

@@ -206,6 +206,23 @@ def test_sparse_public_inventory_record_becomes_an_honest_classifiable_observati
     }
 
 
+def test_official_shaped_page_accepts_legacy_owner_login_with_underscores() -> None:
+    record = sparse_inventory_record(
+        id=119,
+        name="repo-119",
+        full_name="up_the_irons/repo-119",
+        owner={"login": "up_the_irons", "id": 101},
+        html_url="https://github.com/up_the_irons/repo-119",
+    )
+    raw_bytes = json.dumps([record], separators=(",", ":")).encode()
+
+    parsed = parse_github_inventory(raw_bytes, observed_at=NOW)
+
+    assert parsed.identities[0].owner_login == "up_the_irons"
+    assert parsed.observations[0].owner == "up_the_irons"
+    assert parsed.observations[0].full_name == "up_the_irons/repo-119"
+
+
 def test_pure_inventory_parser_is_bounded_and_rederives_observation() -> None:
     record = inventory_record(
         description="A reusable CLI catalog",
@@ -255,6 +272,16 @@ def test_present_but_invalid_inventory_metadata_fails_closed(updates: dict[str, 
 
     with pytest.raises(InvalidGitHubResponse, match="invalid GitHub repository response"):
         source.fetch_page(0)
+
+
+@pytest.mark.parametrize("login", ["_leading", "bad owner", "bad/name", "bad!"])
+def test_inventory_owner_login_still_rejects_unsafe_characters(login: str) -> None:
+    raw_bytes = json.dumps(
+        [inventory_record(owner={"login": login, "id": 1})], separators=(",", ":")
+    ).encode()
+
+    with pytest.raises(InvalidGitHubResponse):
+        parse_github_inventory(raw_bytes, observed_at=NOW)
 
 
 @pytest.mark.parametrize("headers", [{}, {"Content-Length": "1"}])

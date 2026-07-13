@@ -121,6 +121,26 @@ def test_repository_observation_allows_normalized_trailing_url_slash() -> None:
     assert observation.identity.repository_id == 42
 
 
+def test_repository_observation_accepts_legacy_owner_login_with_underscores() -> None:
+    observation = repository_fixture(
+        owner="up_the_irons",
+        full_name="up_the_irons/hello-world",
+        html_url="https://github.com/up_the_irons/hello-world",
+    )
+
+    assert observation.owner == "up_the_irons"
+
+
+@pytest.mark.parametrize("owner", ["_leading", "bad owner", "bad/name", "bad!"])
+def test_repository_observation_rejects_unsafe_owner_login_characters(owner: str) -> None:
+    with pytest.raises(ValidationError, match="owner"):
+        repository_fixture(
+            owner=owner,
+            full_name=f"{owner}/hello-world",
+            html_url=f"https://github.com/{owner}/hello-world",
+        )
+
+
 def test_repository_identity_is_the_numeric_github_id() -> None:
     before_rename = RepositoryIdentity(repository_id=42)
     after_rename = RepositoryIdentity(repository_id=42)

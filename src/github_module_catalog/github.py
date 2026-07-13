@@ -57,7 +57,12 @@ class UnsafeGitHubUrl(GitHubSourceError):
 class _GitHubOwner(BaseModel):
     model_config = ConfigDict(frozen=True, extra="ignore")
 
-    login: str = Field(strict=True, min_length=1)
+    login: str = Field(
+        strict=True,
+        min_length=1,
+        max_length=39,
+        pattern=r"^[A-Za-z0-9][A-Za-z0-9_-]*$",
+    )
     id: int = Field(strict=True, gt=0)
 
 
