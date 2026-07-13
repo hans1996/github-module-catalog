@@ -12,7 +12,7 @@ This is the validated, repository-tracked index. It is refreshed from GitHub Sea
 
 - Policy: Minimum stars: **100**; pushed since **2025-07-13T00:00:00Z**; public, non-archived, non-fork repositories only.
 - Coverage: **1,000 unique repositories** from **181,447 GitHub matches**; ranked result limit **1,000** across **10 page(s)**.
-- Generated: **2026-07-13T06:37:09.007780Z**; order: **stars descending**, then repository ID.
+- Generated: **2026-07-13T06:43:41.195255Z**; order: **stars descending**, then repository ID.
 
 [Full ranked catalog](catalog/README.md) · [JSON](catalog/catalog.json) · [YAML](catalog/catalog.yaml)
 
