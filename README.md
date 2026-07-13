@@ -9,7 +9,7 @@
 Discover existing building blocks before rebuilding them. Use the catalog to shortlist libraries,
 CLIs, services, plugins, and templates for larger systems.
 
-[Browse the catalog](catalog/README.md) · [Explore capabilities](#browse-by-capability) · [Use the JSON index](catalog/catalog.json)
+[Browse the catalog](catalog/README.md) · [Explore Taxonomy v2](catalog/taxonomy.md) · [Use the JSON index](catalog/catalog.json)
 
 <!-- catalog-index:begin -->
 
@@ -17,29 +17,29 @@ CLIs, services, plugins, and templates for larger systems.
 
 | Indexed repositories | GitHub Search matches | Last refresh |
 | ---: | ---: | --- |
-| **1,000** | **181,459** | **2026-07-13 09:50 UTC** |
+| **1,000** | **181,459** | **2026-07-13 11:29 UTC** |
 
 **Selection:** **100+ stars** · pushed since **2025-07-13** · public · non-archived · non-fork
 
 **Ranking:** stars descending, then repository ID. This is a top-ranked window, not an exhaustive index of GitHub.
 
-[Browse the full catalog](catalog/README.md) · [JSON](catalog/catalog.json) · [YAML](catalog/catalog.yaml)
+[Browse the full catalog](catalog/README.md) · [Explore Taxonomy v2](catalog/taxonomy.md) · [JSON](catalog/catalog.json) · [YAML](catalog/catalog.yaml)
 
-### Browse by capability
+### Capability families
 
-Capability groups overlap; one repository may appear in more than one group.
+Capability families overlap; one repository may appear in more than one family.
 
-- [`ai-ml`](catalog/modules/ai-ml.md) — 229
-- [`api-backend`](catalog/modules/api-backend.md) — 65
-- [`auth`](catalog/modules/auth.md) — 7
-- [`cli`](catalog/modules/cli.md) — 76
-- [`database-storage`](catalog/modules/database-storage.md) — 41
-- [`devops`](catalog/modules/devops.md) — 30
-- [`media`](catalog/modules/media.md) — 43
-- [`observability`](catalog/modules/observability.md) — 17
-- [`security`](catalog/modules/security.md) — 25
-- [`testing`](catalog/modules/testing.md) — 12
-- [`web-ui`](catalog/modules/web-ui.md) — 42
+| Family | Repositories | Direct subcategories |
+| --- | ---: | ---: |
+| [`ai-ml`](catalog/modules/ai-ml.md) | 211 | 6 |
+| [`api-backend`](catalog/modules/api-backend.md) | 58 | 5 |
+| [`cli`](catalog/modules/cli.md) | 95 | 4 |
+| [`database-storage`](catalog/modules/database-storage.md) | 43 | 6 |
+| [`devops`](catalog/modules/devops.md) | 46 | 6 |
+| [`media`](catalog/modules/media.md) | 62 | 7 |
+| [`security`](catalog/modules/security.md) | 41 | 8 |
+| [`testing`](catalog/modules/testing.md) | 11 | 4 |
+| [`web-ui`](catalog/modules/web-ui.md) | 62 | 4 |
 <!-- catalog-index:end -->
 
 ## How it works
@@ -68,6 +68,7 @@ top-ranked window instead of accumulating another 1,000 repositories. See the
 ## Use the data
 
 - **Browse:** [`catalog/README.md`](catalog/README.md)
+- **Explore the hierarchy:** [`catalog/taxonomy.md`](catalog/taxonomy.md)
 - **Build tools:** [`catalog/catalog.json`](catalog/catalog.json) or [`catalog/catalog.yaml`](catalog/catalog.yaml)
 - **Find candidates by capability:** [`catalog/modules/`](catalog/modules/)
 

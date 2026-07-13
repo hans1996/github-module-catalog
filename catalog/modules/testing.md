@@ -18,5 +18,4 @@ Top `1000` of `181459` matching repositories; result limit: `1000`; pages fetche
 | 488 | 45543 | 2026-07-12T18:47:29Z | [jestjs/jest](https://github.com/jestjs/jest) | 0.99 | `MIT` | `safe_to_integrate` |
 | 585 | 41010 | 2026-07-13T03:44:09Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
 | 639 | 38804 | 2026-07-12T04:38:28Z | [google/googletest](https://github.com/google/googletest) | 0.75 | `BSD-3-Clause` | `safe_to_integrate` |
-| 721 | 36360 | 2025-08-11T12:00:01Z | [mouredev/Hello-Python](https://github.com/mouredev/Hello-Python) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
 | 935 | 31001 | 2026-07-13T09:02:30Z | [grafana/k6](https://github.com/grafana/k6) | 0.77 | `AGPL-3.0` | `discovery_only` |

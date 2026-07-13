@@ -9,7 +9,6 @@ Top `1000` of `181459` matching repositories; result limit: `1000`; pages fetche
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
 | 135 | 89065 | 2026-07-13T07:35:40Z | [louislam/uptime-kuma](https://github.com/louislam/uptime-kuma) | 0.97 | `MIT` | `safe_to_integrate` |
-| 170 | 80341 | 2026-07-13T07:15:34Z | [ruvnet/RuView](https://github.com/ruvnet/RuView) | 0.99 | `MIT` | `safe_to_integrate` |
 | 175 | 79627 | 2026-07-13T09:46:09Z | [netdata/netdata](https://github.com/netdata/netdata) | 0.99 | `GPL-3.0` | `discovery_only` |
 | 193 | 75573 | 2026-07-13T09:48:56Z | [grafana/grafana](https://github.com/grafana/grafana) | 0.97 | `AGPL-3.0` | `discovery_only` |
 | 262 | 65178 | 2026-07-13T09:14:12Z | [prometheus/prometheus](https://github.com/prometheus/prometheus) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
@@ -20,6 +19,7 @@ Top `1000` of `181459` matching repositories; result limit: `1000`; pages fetche
 | 540 | 43231 | 2026-07-02T10:09:15Z | [Unitech/pm2](https://github.com/Unitech/pm2) | 0.95 | `NOASSERTION` | `discovery_only` |
 | 542 | 43197 | 2026-07-13T09:46:38Z | [juspay/hyperswitch](https://github.com/juspay/hyperswitch) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
 | 739 | 35721 | 2026-05-30T20:36:29Z | [glanceapp/glance](https://github.com/glanceapp/glance) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 753 | 35453 | 2026-07-13T09:49:56Z | [PostHog/posthog](https://github.com/PostHog/posthog) | 0.77 | `NOASSERTION` | `discovery_only` |
 | 842 | 33085 | 2026-07-13T07:11:35Z | [nicolargo/glances](https://github.com/nicolargo/glances) | 0.97 | `NOASSERTION` | `discovery_only` |
 | 868 | 32298 | 2026-07-13T09:25:45Z | [dgtlmoon/changedetection.io](https://github.com/dgtlmoon/changedetection.io) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
 | 900 | 31636 | 2026-07-10T17:12:14Z | [influxdata/influxdb](https://github.com/influxdata/influxdb) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
