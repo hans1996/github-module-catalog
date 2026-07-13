@@ -144,6 +144,31 @@ def _refresh_manifest_hashes(output: Path, **updates: object) -> None:
     )
 
 
+def _forge_permissive_license_catalog(output: Path) -> None:
+    catalog = cast(dict[str, object], json.loads((output / "catalog.json").read_text()))
+    entries = cast(list[dict[str, object]], catalog["entries"])
+    repository = cast(dict[str, object], entries[0]["repository"])
+    repository["license_spdx"] = "MIT"
+    repository["license_name"] = "MIT License"
+    repository["reuse_status"] = "safe_to_integrate"
+    repository_input = dict(repository)
+    repository_input.pop("reuse_status")
+    observation_hash = RepositoryObservation.model_validate(repository_input).stable_hash()
+    assertions = cast(list[dict[str, object]], entries[0]["assertions"])
+    for assertion in assertions:
+        assertion["license_spdx"] = "MIT"
+        assertion["reuse_status"] = "safe_to_integrate"
+        assertion["source_observation_hash"] = observation_hash
+        evidence = cast(list[dict[str, object]], assertion["evidence"])
+        for item in evidence:
+            if item["source"] == "license":
+                item["value"] = "MIT"
+    catalog["source_hashes"] = [observation_hash]
+    _write_catalog_documents(output, catalog)
+    manifest_fields = {key: value for key, value in catalog.items() if key != "entries"}
+    _refresh_manifest_hashes(output, **manifest_fields)
+
+
 def test_init_and_live_discover_use_injected_source_without_leaking_token(tmp_path: Path) -> None:
     app, received_tokens = _test_app()
     workspace = tmp_path / "workspace"
@@ -355,6 +380,38 @@ def test_validate_recomputes_catalog_semantics_after_hash_consistent_tampering(
     assert result.exit_code != 0
 
 
+def test_validate_rejects_a_consistent_license_forgery_that_differs_from_state(
+    tmp_path: Path,
+) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
+    output = workspace / "catalog-output"
+    _forge_permissive_license_catalog(output)
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+
+
+@pytest.mark.parametrize("state_mode", ["missing", "corrupt"])
+def test_validate_fails_closed_without_valid_durable_state(tmp_path: Path, state_mode: str) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+    assert RUNNER.invoke(app, ["build", "--workspace", str(workspace)]).exit_code == 0
+    state_path = workspace / "data" / "state.sqlite3"
+    if state_mode == "missing":
+        state_path.unlink()
+    else:
+        state_path.write_bytes(b"not sqlite")
+
+    result = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
+
+    assert result.exit_code != 0
+
+
 def test_init_rejects_a_workspace_with_symlinked_state_storage(tmp_path: Path) -> None:
     app, _ = _test_app()
     workspace = tmp_path / "workspace"
@@ -398,7 +455,6 @@ def test_validate_rejects_incomplete_manifest(tmp_path: Path, missing_key: str) 
             {"README.md", "catalog.json", "manifest.json", "modules/cli.md"},
             True,
         ),
-        (["markdown"], {"README.md", "manifest.json", "modules/cli.md"}, False),
     ],
 )
 def test_build_publishes_exact_selected_format_subset(
@@ -428,6 +484,17 @@ def test_build_publishes_exact_selected_format_subset(
     assert set(manifest["artifacts"]) == expected_files - {"manifest.json"}
     validated = RUNNER.invoke(app, ["validate", "--workspace", str(workspace)])
     assert (validated.exit_code == 0) is validation_succeeds
+
+
+def test_build_rejects_markdown_only_before_publication(tmp_path: Path) -> None:
+    app, _ = _test_app()
+    workspace = tmp_path / "workspace"
+    _initialize_and_discover(app, workspace)
+
+    result = RUNNER.invoke(app, ["build", "--workspace", str(workspace), "--format", "markdown"])
+
+    assert result.exit_code != 0
+    assert not (workspace / "catalog-output").exists()
 
 
 @pytest.mark.parametrize("formats", [["xml"], ["json", "json"]])

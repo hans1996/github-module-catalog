@@ -18,7 +18,12 @@ import typer
 import yaml  # type: ignore[import-untyped]
 from pydantic import ValidationError
 
-from github_module_catalog.catalog import Classifier, build_catalog_from_state
+from github_module_catalog.catalog import (
+    CatalogBuildContext,
+    Classifier,
+    build_catalog,
+    build_catalog_from_state,
+)
 from github_module_catalog.exporters import CatalogFormat, UnsafeOutputPathError, publish_catalog
 from github_module_catalog.github import GitHubRepositorySource
 from github_module_catalog.models import CatalogManifest
@@ -99,7 +104,7 @@ def create_app(dependencies: CliDependencies | None = None) -> typer.Typer:
 
     @cli.command()
     def validate(workspace: WorkspaceOption) -> None:
-        _command(lambda: _validate(workspace))
+        _command(lambda: _validate(workspace, dependencies=deps))
 
     return cli
 
@@ -244,9 +249,12 @@ def _validated_formats(formats: list[str] | None) -> frozenset[CatalogFormat]:
     if len(requested) != len(set(requested)):
         raise CliOperationError("formats must be unique: json, yaml, markdown")
     try:
-        return frozenset(CatalogFormat(item) for item in requested)
+        selected = frozenset(CatalogFormat(item) for item in requested)
     except ValueError:
         raise CliOperationError("formats must be unique: json, yaml, markdown") from None
+    if not selected.intersection({CatalogFormat.JSON, CatalogFormat.YAML}):
+        raise CliOperationError("build requires at least one of: json, yaml")
+    return selected
 
 
 def _build(
@@ -425,16 +433,57 @@ def _validate_documents(output: Path) -> tuple[CatalogManifest, int]:
     return validated, checked
 
 
-def _validate(path: Path) -> Mapping[str, object]:
-    workspace = _safe_workspace(path)
-    if not _state_path(workspace).is_file():
-        raise CliOperationError("workspace is not initialized")
-    output = workspace / "catalog-output"
-    if output.is_symlink() or not output.is_dir():
-        raise CliOperationError("catalog output is unsafe or missing")
-    if not (output / "manifest.json").is_file():
-        raise CliOperationError("catalog manifest is missing")
-    manifest, checked = _validate_documents(output)
+def _validate_against_state(
+    observed: CatalogManifest,
+    *,
+    state: StateStore,
+    raw_store: RawObjectStore,
+    dependencies: CliDependencies,
+) -> None:
+    taxonomy = load_taxonomy(dependencies.taxonomy_path)
+    if taxonomy.version != observed.taxonomy_version:
+        raise CliOperationError("catalog taxonomy version differs from configured taxonomy")
+    snapshot = state.catalog_snapshot(observed.source)
+    for raw_hash in snapshot.raw_page_hashes:
+        raw_store.verify(raw_hash)
+    expected = build_catalog(
+        snapshot.observations,
+        taxonomy=taxonomy,
+        context=CatalogBuildContext(
+            source=snapshot.source,
+            cursor_start=snapshot.cursor_start,
+            cursor_end=snapshot.cursor_end,
+            discovered_count=snapshot.discovered_count,
+            pending_count=snapshot.pending_count,
+            retry_count=snapshot.retry_count,
+            dead_letter_count=snapshot.dead_letter_count,
+            raw_page_hashes=snapshot.raw_page_hashes,
+        ),
+        classifier_version=observed.classifier_version,
+        generated_at=observed.generated_at,
+        classifier=dependencies.classifier,
+        schema_version=observed.schema_version,
+    )
+    expected_document = expected.model_dump(mode="json", exclude_none=True)
+    observed_document = observed.model_dump(mode="json", exclude_none=True)
+    if not _documents_match(expected_document, observed_document):
+        raise CliOperationError("catalog differs from durable state")
+
+
+def _validate(path: Path, *, dependencies: CliDependencies) -> Mapping[str, object]:
+    with _stores(path) as (workspace, raw_store, state):
+        output = workspace / "catalog-output"
+        if output.is_symlink() or not output.is_dir():
+            raise CliOperationError("catalog output is unsafe or missing")
+        if not (output / "manifest.json").is_file():
+            raise CliOperationError("catalog manifest is missing")
+        manifest, checked = _validate_documents(output)
+        _validate_against_state(
+            manifest,
+            state=state,
+            raw_store=raw_store,
+            dependencies=dependencies,
+        )
     return {"status": "valid", "artifacts_checked": checked, "entries": manifest.entry_count}
 
 
