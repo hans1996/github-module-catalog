@@ -44,5 +44,11 @@ def test_ci_scans_current_tree_for_strong_secret_shapes() -> None:
 
     assert "Scan current tree for strong secret patterns" in workflow
     assert "git grep" in workflow
+    assert "git grep -qE" in workflow
     assert "AKIA[A-Z0-9]" in workflow
     assert "BEGIN [A-Z ]*PRIVATE KEY" in workflow
+    assert "gh[pousr]_[A-Za-z0-9]{20,}" in workflow
+    assert "github_pat_[A-Za-z0-9_]{20,}" in workflow
+    assert "scan_status=$?" in workflow
+    assert 'case "$scan_status" in' in workflow
+    assert "Scanner execution failed" in workflow
