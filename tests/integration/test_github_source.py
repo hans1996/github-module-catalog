@@ -378,9 +378,7 @@ def test_inventory_link_cursor_must_equal_maximum_page_repository_id(
             200,
             json=[inventory_record(id=7)],
             headers={
-                "Link": (
-                    f'<https://api.github.com/repositories?since={linked_cursor}>; rel="next"'
-                )
+                "Link": (f'<https://api.github.com/repositories?since={linked_cursor}>; rel="next"')
             },
         )
 
