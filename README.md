@@ -17,7 +17,7 @@ CLIs, services, plugins, and templates for larger systems.
 
 | Indexed repositories | GitHub Search matches | Last refresh |
 | ---: | ---: | --- |
-| **1,000** | **181,452** | **2026-07-13 07:15 UTC** |
+| **1,000** | **181,459** | **2026-07-13 09:50 UTC** |
 
 **Selection:** **100+ stars** · pushed since **2025-07-13** · public · non-archived · non-fork
 
@@ -29,7 +29,7 @@ CLIs, services, plugins, and templates for larger systems.
 
 Capability groups overlap; one repository may appear in more than one group.
 
-- [`ai-ml`](catalog/modules/ai-ml.md) — 230
+- [`ai-ml`](catalog/modules/ai-ml.md) — 229
 - [`api-backend`](catalog/modules/api-backend.md) — 65
 - [`auth`](catalog/modules/auth.md) — 7
 - [`cli`](catalog/modules/cli.md) — 76
