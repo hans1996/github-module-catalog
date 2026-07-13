@@ -57,7 +57,6 @@ def test_installed_wheel_contains_taxonomy_and_runs_catalog_lifecycle(tmp_path: 
         "uv",
         "pip",
         "install",
-        "--offline",
         "--python",
         str(child_python),
         str(wheel),
