@@ -1111,9 +1111,7 @@ def _source_raw_hashes(connection: sqlite3.Connection, source: str) -> tuple[str
     return tuple(str(row["raw_sha256"]) for row in rows)
 
 
-def _source_pages(
-    connection: sqlite3.Connection, source: str
-) -> tuple[SourcePageBinding, ...]:
+def _source_pages(connection: sqlite3.Connection, source: str) -> tuple[SourcePageBinding, ...]:
     rows = connection.execute(
         """
         SELECT page.id, page.raw_sha256, page.observed_at

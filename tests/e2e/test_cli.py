@@ -423,12 +423,7 @@ def test_validate_rejects_artifact_swap_at_descriptor_open(
         dir_fd: int | None = None,
     ) -> int:
         nonlocal swapped
-        if (
-            not swapped
-            and path == "catalog.json"
-            and dir_fd is not None
-            and flags & os.O_NOFOLLOW
-        ):
+        if not swapped and path == "catalog.json" and dir_fd is not None and flags & os.O_NOFOLLOW:
             swapped = True
             os.rename(
                 "catalog.json",

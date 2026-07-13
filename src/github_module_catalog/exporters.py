@@ -128,9 +128,7 @@ def publish_catalog(
     if output_details is not None and not stat.S_ISDIR(output_details.st_mode):
         os.close(parent_fd)
         raise UnsafeOutputPathError("output path must be a directory")
-    output_identity = (
-        None if output_details is None else file_identity(output_details)
-    )
+    output_identity = None if output_details is None else file_identity(output_details)
     stage_name = f".{output.name}.stage-{uuid.uuid4().hex}"
     stage_fd, stage_identity = make_directory_at(parent_fd, stage_name)
     try:

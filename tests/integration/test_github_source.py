@@ -169,16 +169,12 @@ def test_pure_inventory_parser_is_bounded_and_rederives_observation() -> None:
     )
     raw_bytes = json.dumps([record], separators=(",", ":")).encode()
 
-    parsed = parse_github_inventory(
-        raw_bytes, observed_at=NOW, max_response_bytes=len(raw_bytes)
-    )
+    parsed = parse_github_inventory(raw_bytes, observed_at=NOW, max_response_bytes=len(raw_bytes))
 
     assert parsed.identities[0].repository_id == 42
     assert parsed.observations[0].stable_hash()
     with pytest.raises(InvalidGitHubResponse, match="byte limit"):
-        parse_github_inventory(
-            raw_bytes, observed_at=NOW, max_response_bytes=len(raw_bytes) - 1
-        )
+        parse_github_inventory(raw_bytes, observed_at=NOW, max_response_bytes=len(raw_bytes) - 1)
 
 
 @pytest.mark.parametrize(

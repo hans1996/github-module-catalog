@@ -40,9 +40,7 @@ def open_directory_at(parent_fd: int, name: str) -> int:
     return _open_child_directory(parent_fd, name)
 
 
-def open_or_create_directory_at(
-    parent_fd: int, name: str, *, mode: int = 0o700
-) -> int:
+def open_or_create_directory_at(parent_fd: int, name: str, *, mode: int = 0o700) -> int:
     """Open or safely create one child directory below a trusted descriptor."""
 
     try:
@@ -70,8 +68,7 @@ def relative_components(value: str | Path) -> tuple[str, ...]:
     if candidate.is_absolute() or not candidate.parts:
         raise UnsafeOutputPathError("artifact path must remain inside the publication root")
     components = tuple(
-        simple_name(component, label="artifact path component")
-        for component in candidate.parts
+        simple_name(component, label="artifact path component") for component in candidate.parts
     )
     if candidate.as_posix() != raw:
         raise UnsafeOutputPathError("artifact path is not canonical")
@@ -274,9 +271,7 @@ def _write_all(file_fd: int, content: bytes) -> None:
         view = view[written:]
 
 
-def _collect_regular_files(
-    directory_fd: int, prefix: tuple[str, ...], result: set[str]
-) -> None:
+def _collect_regular_files(directory_fd: int, prefix: tuple[str, ...], result: set[str]) -> None:
     for name in os.listdir(directory_fd):
         simple_name(name, label="catalog entry")
         details = stat_entry(directory_fd, name)

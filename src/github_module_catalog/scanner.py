@@ -154,9 +154,7 @@ class DiscoveryScanner:
         failed = 0
         for observation in page.observations:
             try:
-                self._state.record_discovery_observation(
-                    record.id, page.raw_sha256, observation
-                )
+                self._state.record_discovery_observation(record.id, page.raw_sha256, observation)
             except Exception as error:
                 failed += 1
                 self._try_append_observation_event(

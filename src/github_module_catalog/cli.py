@@ -581,17 +581,13 @@ def _validate_against_state(
         raise CliOperationError("catalog differs from durable state")
 
 
-def _verify_snapshot_provenance(
-    snapshot: CatalogStateSnapshot, raw_store: RawObjectStore
-) -> None:
+def _verify_snapshot_provenance(snapshot: CatalogStateSnapshot, raw_store: RawObjectStore) -> None:
     observations = {
         (item.identity.repository_id, item.stable_hash()): item for item in snapshot.observations
     }
     bindings_by_page = {
         page.page_id: tuple(
-            binding
-            for binding in snapshot.observation_bindings
-            if binding.page_id == page.page_id
+            binding for binding in snapshot.observation_bindings if binding.page_id == page.page_id
         )
         for page in snapshot.pages
     }
