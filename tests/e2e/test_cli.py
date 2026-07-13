@@ -19,7 +19,12 @@ from typer.testing import CliRunner
 
 import github_module_catalog.cli as cli_module
 from github_module_catalog.catalog import Classifier
-from github_module_catalog.cli import CliDependencies, create_app
+from github_module_catalog.cli import (
+    CliDependencies,
+    CliOperationError,
+    _read_yaml_object,
+    create_app,
+)
 from github_module_catalog.models import (
     CapabilityAssertion,
     RepositoryIdentity,
@@ -37,6 +42,33 @@ from github_module_catalog.taxonomy import Taxonomy, classify_repository
 
 NOW = datetime(2026, 7, 13, 12, 0, tzinfo=UTC)
 RUNNER = CliRunner()
+
+
+def test_yaml_alias_dag_is_rejected_before_object_construction() -> None:
+    lines = ["root: &a [x, x]"]
+    previous = "a"
+    for index in range(10):
+        current = chr(ord("b") + index)
+        lines.append(f"{current}: &{current} [*{previous}, *{previous}]")
+        previous = current
+    payload = ("\n".join(lines) + "\n").encode()
+    payload += b"#" + b"p" * (288 - len(payload))
+    assert len(payload) == 289
+
+    with pytest.raises(CliOperationError, match="aliases"):
+        _read_yaml_object(payload)
+
+
+@pytest.mark.parametrize(
+    ("payload", "message"),
+    [
+        (("root: " + "[" * 101 + "x" + "]" * 101).encode(), "nesting"),
+        (("root:\n" + "  - x\n" * 10_001).encode(), "node"),
+    ],
+)
+def test_yaml_structure_bounds_apply_before_conversion(payload: bytes, message: str) -> None:
+    with pytest.raises(CliOperationError, match=message):
+        _read_yaml_object(payload)
 
 
 def _credential_marker() -> str:

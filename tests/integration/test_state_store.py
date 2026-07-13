@@ -24,6 +24,7 @@ from github_module_catalog.storage import (
     DigestMismatchError,
     InvalidDigestError,
     ObjectCollisionError,
+    ObjectSizeLimitError,
     RawObjectStore,
 )
 
@@ -238,6 +239,18 @@ def test_raw_write_is_idempotent_and_does_not_replace_an_existing_object(tmp_pat
 
     assert second == first
     assert second.path.stat().st_mtime_ns == first_stat.st_mtime_ns
+
+
+def test_raw_object_store_enforces_write_and_forged_inode_size_limits(tmp_path: Path) -> None:
+    store = RawObjectStore(tmp_path, max_object_bytes=8)
+
+    with pytest.raises(ObjectSizeLimitError, match="size limit"):
+        store.write(b"123456789")
+
+    stored = store.write(b"x")
+    stored.path.write_bytes(b"123456789")
+    with pytest.raises(ObjectSizeLimitError, match="size limit"):
+        store.read(stored.sha256)
 
 
 def test_raw_write_rejects_digest_mismatch_collision_and_path_traversal(tmp_path: Path) -> None:
@@ -752,6 +765,13 @@ def test_latest_observation_uses_insertion_id_to_break_timestamp_ties(tmp_path: 
         "Bearer secret-value",
         "gh" + "p_abcdefghijklmnopqrstuvwxyz123456",
         "github_" + "pat_abcdefghijklmnopqrstuvwxyz123456",
+        "AKIA" + "ABCDEFGHIJKLMNOP",
+        "sk-" + "abcdefghijklmnopqrstuvwxyz123456",
+        "eyJ" + "hbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0.signature123",
+        "-----BEGIN " + "PRIVATE KEY-----",
+        "glpat-" + "abcdefghijklmnopqrstuvwxyz",
+        "xoxb-" + "1234567890-abcdefghijklmnop",
+        "sk_live_" + "abcdefghijklmnop1234",
         "https://user:password@example.com/private",
     ],
 )

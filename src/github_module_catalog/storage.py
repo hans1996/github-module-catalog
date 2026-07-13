@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 _SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
+DEFAULT_MAX_OBJECT_BYTES = 10 * 1024 * 1024
 
 
 class InvalidDigestError(ValueError):
@@ -25,6 +26,10 @@ class ObjectCollisionError(RuntimeError):
     """Raised when an immutable object path already contains different bytes."""
 
 
+class ObjectSizeLimitError(ValueError):
+    """Raised before a raw object can exceed the configured memory boundary."""
+
+
 @dataclass(frozen=True, slots=True)
 class RawObject:
     """A verified immutable raw object."""
@@ -37,9 +42,18 @@ class RawObject:
 class RawObjectStore:
     """Write exact response bodies to deterministic SHA-256 paths."""
 
-    def __init__(self, workspace_root: Path, *, workspace_fd: int | None = None) -> None:
+    def __init__(
+        self,
+        workspace_root: Path,
+        *,
+        workspace_fd: int | None = None,
+        max_object_bytes: int = DEFAULT_MAX_OBJECT_BYTES,
+    ) -> None:
+        if type(max_object_bytes) is not int or max_object_bytes <= 0:
+            raise ValueError("max_object_bytes must be a positive integer")
         self._workspace_root = Path(workspace_root).expanduser().absolute()
         self._object_root = self._workspace_root / "data" / "raw" / "sha256"
+        self._max_object_bytes = max_object_bytes
         if workspace_fd is None:
             self._workspace_fd = _open_directory(self._workspace_root)
         else:
@@ -75,6 +89,8 @@ class RawObjectStore:
 
         if not isinstance(raw_bytes, bytes):
             raise TypeError("raw_bytes must be bytes")
+        if len(raw_bytes) > self._max_object_bytes:
+            raise ObjectSizeLimitError("raw object exceeds size limit")
         actual_sha256 = hashlib.sha256(raw_bytes).hexdigest()
         if expected_sha256 is not None:
             _validate_digest(expected_sha256)
@@ -105,7 +121,11 @@ class RawObjectStore:
                 os.fsync(directory_fd)
 
             observed = _read_verified_at(
-                directory_fd, target.name, actual_sha256, expected_bytes=raw_bytes
+                directory_fd,
+                target.name,
+                actual_sha256,
+                max_object_bytes=self._max_object_bytes,
+                expected_bytes=raw_bytes,
             )
             return RawObject(actual_sha256, target, len(observed))
         finally:
@@ -123,7 +143,11 @@ class RawObjectStore:
         directory_fd = self._bucket_directory(sha256, create=False)
         try:
             observed = _read_verified_at(
-                directory_fd, target.name, sha256, expected_bytes=expected_bytes
+                directory_fd,
+                target.name,
+                sha256,
+                max_object_bytes=self._max_object_bytes,
+                expected_bytes=expected_bytes,
             )
             return RawObject(sha256, target, len(observed))
         finally:
@@ -135,7 +159,12 @@ class RawObjectStore:
         target = self.path_for(sha256)
         directory_fd = self._bucket_directory(sha256, create=False)
         try:
-            return _read_verified_at(directory_fd, target.name, sha256)
+            return _read_verified_at(
+                directory_fd,
+                target.name,
+                sha256,
+                max_object_bytes=self._max_object_bytes,
+            )
         finally:
             os.close(directory_fd)
 
@@ -233,6 +262,7 @@ def _read_verified_at(
     name: str,
     sha256: str,
     *,
+    max_object_bytes: int,
     expected_bytes: bytes | None = None,
 ) -> bytes:
     try:
@@ -242,14 +272,22 @@ def _read_verified_at(
     except OSError as error:
         raise ObjectCollisionError(f"raw object is not a safe regular file: {sha256}") from error
     try:
-        if not stat.S_ISREG(os.fstat(descriptor).st_mode):
+        details = os.fstat(descriptor)
+        if not stat.S_ISREG(details.st_mode):
             raise ObjectCollisionError(f"raw object is not a regular file: {sha256}")
-        chunks: list[bytes] = []
-        while chunk := os.read(descriptor, 1024 * 1024):
-            chunks.append(chunk)
+        if details.st_size > max_object_bytes:
+            raise ObjectSizeLimitError("raw object exceeds size limit")
+        observed_buffer = bytearray()
+        while chunk := os.read(
+            descriptor,
+            min(1024 * 1024, max_object_bytes + 1 - len(observed_buffer)),
+        ):
+            observed_buffer.extend(chunk)
+            if len(observed_buffer) > max_object_bytes:
+                raise ObjectSizeLimitError("raw object exceeds size limit")
     finally:
         os.close(descriptor)
-    observed = b"".join(chunks)
+    observed = bytes(observed_buffer)
     if hashlib.sha256(observed).hexdigest() != sha256:
         raise ObjectCollisionError(f"raw object failed digest verification: {sha256}")
     if expected_bytes is not None and observed != expected_bytes:

@@ -433,3 +433,33 @@ def test_observation_recording_failure_isolated_after_cursor_commit(
     assert tuple(event.event for event in events) == ("queued", "retry")
     assert "sensitive failure details" not in repr(events)
     assert state.catalog_snapshot("github-public-repositories").retry_count == 1
+
+
+def test_secret_shaped_public_description_is_quarantined_raw_and_retried(
+    tmp_path: Path,
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    credential = "AKIA" + "ABCDEFGHIJKLMNOP"
+    observation = _observation(7).model_copy(
+        update={"description": f"accidentally published {credential}"}
+    )
+    raw_bytes = json.dumps(
+        [{"id": 7, "description": observation.description}], separators=(",", ":")
+    ).encode()
+    page = replace(
+        _page(7),
+        raw_bytes=raw_bytes,
+        raw_sha256=hashlib.sha256(raw_bytes).hexdigest(),
+        next_url=None,
+        observations=(observation,),
+        observed_at=NOW,
+    )
+
+    result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
+
+    assert result.observations_recorded == 0
+    assert result.observation_failures == 1
+    assert state.list_latest_repository_observations() == ()
+    assert state.catalog_snapshot("github-public-repositories").retry_count == 1
+    assert credential.encode() in raw_store.read(page.raw_sha256)
+    assert credential.encode() not in state.path.read_bytes()

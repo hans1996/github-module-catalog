@@ -148,6 +148,14 @@ class RepositoryObservation(ImmutableModel):
             "www.github.com",
         }:
             raise ValueError("html_url must be an HTTPS github.com URL")
+        if (
+            self.html_url.username is not None
+            or self.html_url.password is not None
+            or self.html_url.query is not None
+            or self.html_url.fragment is not None
+            or self.html_url.port not in {None, 443}
+        ):
+            raise ValueError("html_url must not contain credentials, suffixes, or custom ports")
         expected_path = f"/{self.owner}/{self.name}"
         observed_path = (self.html_url.path or "").rstrip("/")
         if observed_path != expected_path:

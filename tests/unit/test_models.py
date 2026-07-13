@@ -98,6 +98,10 @@ def test_repository_observation_validates_source_facts(
     "overrides",
     [
         {"html_url": "https://github.com/other/repository"},
+        {"html_url": "https://user:pass@github.com/octocat/hello-world"},
+        {"html_url": "https://github.com/octocat/hello-world?download=1"},
+        {"html_url": "https://github.com/octocat/hello-world#)![track](https://evil.test)"},
+        {"html_url": "https://github.com:8443/octocat/hello-world"},
         {"observed_at": datetime(2024, 1, 15, tzinfo=UTC)},
         {"pushed_at": datetime(2024, 3, 1, tzinfo=UTC)},
     ],

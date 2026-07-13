@@ -54,6 +54,8 @@ _MAX_PAGES = 1_000
 _MAX_ARTIFACT_BYTES = 32 * 1024 * 1024
 _MAX_ARTIFACT_TOTAL_BYTES = 256 * 1024 * 1024
 _MAX_ARTIFACTS = 10_000
+_MAX_YAML_NODES = 10_000
+_MAX_YAML_DEPTH = 100
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 WorkspaceOption = Annotated[Path, typer.Option("--workspace", help="Local catalog workspace.")]
@@ -497,12 +499,45 @@ def _artifact_contents(output_fd: int, artifacts: dict[str, str]) -> dict[str, b
 
 def _read_yaml_object(content: bytes) -> dict[str, object]:
     try:
-        document = yaml.safe_load(content.decode("utf-8"))
+        decoded = content.decode("utf-8")
+        _validate_yaml_structure(decoded)
+        document = yaml.safe_load(decoded)
     except (UnicodeDecodeError, yaml.YAMLError):
         raise CliOperationError("catalog YAML could not be checked") from None
     if not isinstance(document, dict):
         raise CliOperationError("catalog YAML must contain an object")
     return cast(dict[str, object], document)
+
+
+def _validate_yaml_structure(document: str) -> None:
+    node_count = 0
+    depth = 0
+    for event in yaml.parse(document):
+        if isinstance(event, yaml.events.AliasEvent):
+            raise CliOperationError("catalog YAML aliases are not allowed")
+        if isinstance(
+            event,
+            (
+                yaml.events.MappingStartEvent,
+                yaml.events.SequenceStartEvent,
+                yaml.events.ScalarEvent,
+            ),
+        ):
+            node_count += 1
+            if node_count > _MAX_YAML_NODES:
+                raise CliOperationError("catalog YAML exceeds the node limit")
+        if isinstance(
+            event,
+            (yaml.events.MappingStartEvent, yaml.events.SequenceStartEvent),
+        ):
+            depth += 1
+            if depth > _MAX_YAML_DEPTH:
+                raise CliOperationError("catalog YAML exceeds the nesting limit")
+        elif isinstance(
+            event,
+            (yaml.events.MappingEndEvent, yaml.events.SequenceEndEvent),
+        ):
+            depth -= 1
 
 
 def _machine_catalogs(

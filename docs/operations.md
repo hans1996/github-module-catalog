@@ -16,8 +16,14 @@ export GITHUB_TOKEN="$(gh auth token)"
 
 Do not use `echo`, shell tracing, command-line token flags, committed `.env`
 files, or URLs containing credentials. `GITHUB_TOKEN` is read only by the
-`discover` command and is passed directly to the GitHub adapter. It is never
-written to SQLite, raw objects, catalog output, logs, or command summaries.
+`discover` command and is passed directly to the GitHub adapter. The supplied
+token is never written to SQLite, raw objects, catalog output, logs, or command
+summaries.
+
+Raw snapshots and caches preserve exact untrusted public metadata. A public
+description can itself contain accidentally published credential-shaped text,
+so raw data is quarantined source evidence: never render it, grant the narrowest
+artifact access, and use the shortest retention compatible with recovery.
 
 ## Local runbook
 
@@ -68,8 +74,10 @@ idempotent.
 The scheduled workflow restores and saves `catalog-workspace/data` with a
 run-specific cache key and a stable restore prefix. It saves a new checkpoint
 only after discovery, build, and validation succeed. The output and SQLite
-state are also uploaded as short-retention workflow artifacts. Generated
-datasets are never committed to Git.
+state plus provenance-required raw objects are uploaded only after validation
+as short-retention workflow artifacts. Treat workspace caches and artifacts as
+sensitive untrusted metadata even though catalog output passed secret-shape
+rejection. Generated datasets are never committed to Git.
 
 For local corruption recovery, preserve the failed workspace for diagnosis,
 then restore the last validated `data` artifact or initialize a new workspace.
