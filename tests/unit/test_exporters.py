@@ -436,6 +436,8 @@ def test_json_yaml_and_markdown_have_equivalent_sorted_catalog_entries() -> None
     assert "`auth`" in markdown and "`cli`" in markdown
     assert "| Repository ID | Repository | Capabilities | License | Reuse status |" in markdown
     assert "| Rank | Stars | Last push |" not in markdown
+    source_line = next(line for line in markdown.splitlines() if line.startswith("Source:"))
+    assert source_line == "Source: `github-public-repositories`; cursor: `0` through `9`."
     assert "| Repository ID | Repository | Confidence | License | Reuse status |" in (
         render_module_page(manifest, "auth")
     )
@@ -487,6 +489,18 @@ def test_ranked_markdown_explains_selection_and_search_window_coverage() -> None
     assert "result limit: `1000`" in readme
     assert "pages fetched: `10`" in readme
     assert "cursor:" not in readme
+    for selection_fact in (
+        "## Selection",
+        "Minimum stars: `100`",
+        "Pushed since: `2025-07-13T00:00:00Z`",
+        "Archived: `false`; forks: `false`; visibility: `public`",
+        "Order: `stars desc`",
+        "Top `3` of `2500` matching repositories",
+        "result limit: `1000`",
+        "pages fetched: `10`",
+    ):
+        assert selection_fact in module_page
+    assert module_page.index("## Selection") < module_page.index("| Rank | Stars |")
     assert (
         "| Rank | Stars | Last push | Repository | Confidence | License | Reuse status |"
         in module_page

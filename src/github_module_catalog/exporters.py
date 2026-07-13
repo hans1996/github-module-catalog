@@ -104,6 +104,8 @@ def render_module_page(manifest: CatalogManifest, capability_id: str) -> str:
         if assertion.capability_id == capability_id
     )
     lines = [f"# `{_markdown_text(capability_id)}` modules", ""]
+    if manifest.selection is not None:
+        lines.extend(_selection_summary(manifest))
     if manifest.selection is None:
         lines.extend(
             [
@@ -334,6 +336,8 @@ def _markdown_code_span(value: str) -> str:
     collapsed = re.sub(r"[\r\n]+", " ", value)
     longest_run = max((len(run) for run in re.findall(r"`+", collapsed)), default=0)
     delimiter = "`" * (longest_run + 1)
+    if longest_run == 0 and not collapsed.startswith(" ") and not collapsed.endswith(" "):
+        return f"{delimiter}{collapsed}{delimiter}"
     return f"{delimiter} {collapsed} {delimiter}"
 
 
