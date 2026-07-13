@@ -1,0 +1,90 @@
+name: Bounded catalog discovery
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      max_pages:
+        description: Maximum public-repository pages to fetch
+        required: true
+        default: 10
+        type: number
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-module-catalog-discovery
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      MAX_PAGES: ${{ inputs.max_pages || 10 }}
+      WORKSPACE: catalog-workspace
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with:
+          enable-cache: true
+          version: "0.10.2"
+
+      - name: Install Python
+        run: uv python install 3.12
+
+      - name: Install locked dependencies
+        run: uv sync --all-groups --locked
+
+      - name: Restore durable discovery checkpoint
+        id: restore-state
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: catalog-workspace/data
+          key: >-
+            ghmod-state-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ghmod-state-${{ runner.os }}-
+
+      - name: Initialize workspace
+        run: uv run ghmod init --workspace "$WORKSPACE"
+
+      - name: Run bounded discovery
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: uv run ghmod discover --workspace "$WORKSPACE" --max-pages "$MAX_PAGES"
+
+      - name: Classify current observations
+        run: uv run ghmod classify --workspace "$WORKSPACE"
+
+      - name: Build complete catalog publication
+        run: uv run ghmod build --workspace "$WORKSPACE"
+
+      - name: Validate publication
+        run: uv run ghmod validate --workspace "$WORKSPACE"
+
+      - name: Save durable discovery checkpoint
+        if: success()
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: catalog-workspace/data
+          key: >-
+            ghmod-state-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Upload catalog and state evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: catalog-discovery-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            catalog-workspace/catalog-output
+            catalog-workspace/data/state.sqlite3*

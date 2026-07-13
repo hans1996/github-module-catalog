@@ -6,4 +6,8 @@ __version__: Final = "0.1.0"
 
 
 def main() -> None:
-    """Provide the console-script placeholder until the CLI is implemented."""
+    """Run the package command-line interface."""
+
+    from github_module_catalog.cli import main as cli_main
+
+    cli_main()

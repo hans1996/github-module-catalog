@@ -9,7 +9,10 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
+from pydantic import HttpUrl
 
+from github_module_catalog.catalog import build_catalog_from_state
+from github_module_catalog.models import RepositoryIdentity, RepositoryObservation, ReuseStatus
 from github_module_catalog.scanner import DiscoveryScanner, ScanOutcome, ScanStatus
 from github_module_catalog.source import (
     PageResult,
@@ -24,6 +27,7 @@ from github_module_catalog.source import (
 )
 from github_module_catalog.state import StateStore
 from github_module_catalog.storage import RawObjectStore
+from github_module_catalog.taxonomy import load_taxonomy
 
 NOW = datetime(2026, 7, 13, tzinfo=UTC)
 
@@ -84,6 +88,28 @@ def _empty_page() -> RepositoryPage:
         next_cursor=None,
         rate_limit=RateLimitFacts(remaining=50),
         identities=(),
+    )
+
+
+def _observation(repository_id: int) -> RepositoryObservation:
+    return RepositoryObservation(
+        identity=RepositoryIdentity(repository_id=repository_id),
+        owner="octocat",
+        name=f"repo-{repository_id}",
+        full_name=f"octocat/repo-{repository_id}",
+        html_url=HttpUrl(f"https://github.com/octocat/repo-{repository_id}"),
+        description="A reusable CLI catalog",
+        topics=("cli",),
+        primary_language="Python",
+        created_at=NOW - timedelta(days=10),
+        updated_at=NOW - timedelta(days=2),
+        pushed_at=NOW - timedelta(days=1),
+        observed_at=NOW,
+        archived=False,
+        disabled=False,
+        fork=False,
+        license_spdx=None,
+        license_name=None,
     )
 
 
@@ -237,3 +263,51 @@ def test_source_error_is_typed_and_enrichment_failures_do_not_block_discovery(
     assert "secret upstream detail" not in repr(error)
     assert continued.cursor_end == 8
     assert [item.repository_id for item in state.list_repository_identities()] == [7, 8]
+
+
+def test_durable_discovery_records_inventory_observation_for_classification(
+    tmp_path: Path,
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    observation = _observation(7)
+    page = replace(_page(7), next_url=None, observations=(observation,))
+
+    result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
+    manifest = build_catalog_from_state(
+        state,
+        taxonomy=load_taxonomy(Path("config/taxonomy.yaml")),
+        source="github-public-repositories",
+    )
+
+    assert result.status == ScanStatus.COMPLETED
+    assert result.observations_recorded == 1
+    assert result.observation_failures == 0
+    assert state.list_latest_repository_observations() == (observation,)
+    assert manifest.validated_observation_count == 1
+    assert manifest.entries[0].assertions[0].capability_id == "cli"
+    assert manifest.entries[0].repository.reuse_status is ReuseStatus.DISCOVERY_ONLY
+    assert state.catalog_snapshot("github-public-repositories").pending_count == 0
+
+
+def test_observation_recording_failure_isolated_after_cursor_commit(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    page = replace(_page(7), next_url=None, observations=(_observation(7),))
+
+    def fail_recording(_: RepositoryObservation) -> None:
+        raise RuntimeError("sensitive failure details")
+
+    monkeypatch.setattr(state, "record_repository_observation", fail_recording)
+
+    result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
+
+    assert result.status == ScanStatus.COMPLETED
+    assert result.cursor_end == 7
+    assert result.observations_recorded == 0
+    assert result.observation_failures == 1
+    assert state.list_latest_repository_observations() == ()
+    events = state.list_work_item_events(repository_id=7, stage="enrichment")
+    assert tuple(event.event for event in events) == ("queued", "retry")
+    assert "sensitive failure details" not in repr(events)
+    assert state.catalog_snapshot("github-public-repositories").retry_count == 1

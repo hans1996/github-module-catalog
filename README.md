@@ -55,13 +55,35 @@ The first release will provide:
 See [the approved architecture](docs/plans/2026-07-13-github-module-catalog-design.md)
 for the complete data flow and safety boundaries.
 
+## Quick start
+
+```bash
+uv sync --all-groups --locked
+uv run ghmod init --workspace .local/catalog
+export GITHUB_TOKEN="$(gh auth token)"
+uv run ghmod discover --workspace .local/catalog --max-pages 10
+uv run ghmod status --workspace .local/catalog
+uv run ghmod classify --workspace .local/catalog
+uv run ghmod build --workspace .local/catalog
+uv run ghmod validate --workspace .local/catalog
+```
+
+The token is read only by `discover`; do not print it or commit it to a file.
+See the [operations guide](docs/operations.md) for cursor recovery, API budgets,
+scheduled runs, security boundaries, and GitHub App migration. See the
+[taxonomy guide](docs/taxonomy.md) for classification and licensing semantics.
+
 ## Status
 
-Initial implementation is in progress.
+The MVP implements bounded public-repository discovery, durable cursors and raw
+objects, initial observations from complete inventory metadata, deterministic
+classification, JSON/YAML/Markdown publication, integrity validation, and a
+scheduled GitHub Actions workflow. Coverage is incremental and explicitly
+measured; the current catalog must not be described as all GitHub projects.
+Identity-only repositories remain queued for deferred enrichment.
 
 ## License
 
 The catalog software is available under the MIT License. Metadata, source
 code, names, and other material obtained from third-party repositories retain
 their original rights and licenses.
-

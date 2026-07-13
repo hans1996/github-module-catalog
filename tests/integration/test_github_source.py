@@ -117,6 +117,66 @@ def test_inventory_records_may_omit_enrichment_only_topics_and_license() -> None
 
     assert isinstance(result, PageResult)
     assert len(result.page.identities) == 1
+    assert result.page.observations == ()
+
+
+def test_complete_inventory_metadata_becomes_a_validated_observation() -> None:
+    record = inventory_record(
+        description="A reusable CLI catalog",
+        language="Python",
+        created_at="2026-07-01T08:00:00Z",
+        updated_at="2026-07-11T08:00:00Z",
+        pushed_at="2026-07-12T08:00:00Z",
+        archived=False,
+        disabled=False,
+        fork=False,
+        topics=["CLI", "catalog"],
+        license={"spdx_id": "MIT", "name": "MIT License"},
+    )
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=[record])
+
+    result = GitHubRepositorySource(
+        transport=httpx.MockTransport(handler), now=lambda: NOW
+    ).fetch_page(0)
+
+    assert isinstance(result, PageResult)
+    assert len(result.page.observations) == 1
+    observation = result.page.observations[0]
+    assert observation.identity.repository_id == 42
+    assert observation.description == "A reusable CLI catalog"
+    assert observation.primary_language == "Python"
+    assert observation.topics == ("catalog", "cli")
+    assert observation.license_spdx == "MIT"
+    assert observation.license_name == "MIT License"
+    assert observation.observed_at == NOW
+
+
+@pytest.mark.parametrize(
+    "updates",
+    [
+        {"description": "partial metadata must not be ignored"},
+        {
+            "description": "invalid lifecycle flag",
+            "language": "Python",
+            "created_at": "2026-07-01T08:00:00Z",
+            "updated_at": "2026-07-11T08:00:00Z",
+            "pushed_at": None,
+            "archived": "false",
+            "disabled": False,
+            "fork": False,
+        },
+    ],
+)
+def test_present_but_invalid_inventory_metadata_fails_closed(updates: dict[str, Any]) -> None:
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=[inventory_record(**updates)])
+
+    source = GitHubRepositorySource(transport=httpx.MockTransport(handler), now=lambda: NOW)
+
+    with pytest.raises(InvalidGitHubResponse, match="invalid GitHub repository response"):
+        source.fetch_page(0)
 
 
 @pytest.mark.parametrize("headers", [{}, {"Content-Length": "1"}])

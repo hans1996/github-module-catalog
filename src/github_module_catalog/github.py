@@ -21,6 +21,7 @@ from pydantic import (
     field_validator,
 )
 
+from github_module_catalog.models import RepositoryIdentity, RepositoryObservation
 from github_module_catalog.source import (
     PageResult,
     RateLimitFacts,
@@ -79,7 +80,41 @@ class _GitHubInventoryRecord(BaseModel):
         return value
 
 
-_INVENTORY_ADAPTER = TypeAdapter(list[_GitHubInventoryRecord])
+class _GitHubLicense(BaseModel):
+    model_config = ConfigDict(frozen=True, extra="ignore")
+
+    spdx_id: str = Field(strict=True, min_length=1)
+    name: str = Field(strict=True, min_length=1)
+
+
+class _GitHubEnrichedInventoryRecord(_GitHubInventoryRecord):
+    description: str | None = Field(max_length=10_000)
+    language: str | None = Field(min_length=1, max_length=100)
+    created_at: datetime
+    updated_at: datetime
+    pushed_at: datetime | None
+    archived: bool = Field(strict=True)
+    disabled: bool = Field(strict=True)
+    fork: bool = Field(strict=True)
+    topics: tuple[str, ...] = ()
+    license: _GitHubLicense | None = None
+
+
+_INVENTORY_DOCUMENT_ADAPTER = TypeAdapter(list[dict[str, object]])
+_OBSERVATION_METADATA_FIELDS = frozenset(
+    {
+        "description",
+        "language",
+        "created_at",
+        "updated_at",
+        "pushed_at",
+        "archived",
+        "disabled",
+        "fork",
+        "topics",
+        "license",
+    }
+)
 
 
 class GitHubRepositorySource:
@@ -181,7 +216,7 @@ class GitHubRepositorySource:
             raise GitHubSourceError(f"GitHub returned unexpected status {response.status_code}")
 
         raw_bytes = _read_bounded_body(response, self._max_response_bytes)
-        identities = _parse_identities(raw_bytes)
+        identities, observations = _parse_inventory(raw_bytes, observed_at=self._now())
         next_url, next_cursor = _parse_next_link(response)
         return PageResult(
             page=RepositoryPage(
@@ -192,6 +227,7 @@ class GitHubRepositorySource:
                 next_cursor=next_cursor,
                 rate_limit=rate_limit,
                 identities=identities,
+                observations=observations,
             )
         )
 
@@ -258,13 +294,21 @@ def _ensure_allowed_api_url(url: httpx.URL) -> None:
         raise UnsafeGitHubUrl("GitHub API URL is not allowed")
 
 
-def _parse_identities(raw_bytes: bytes) -> tuple[RepositoryInventoryIdentity, ...]:
+def _parse_inventory(
+    raw_bytes: bytes, *, observed_at: datetime
+) -> tuple[tuple[RepositoryInventoryIdentity, ...], tuple[RepositoryObservation, ...]]:
     try:
-        records = _INVENTORY_ADAPTER.validate_json(raw_bytes)
-    except ValidationError:
+        documents = _INVENTORY_DOCUMENT_ADAPTER.validate_json(raw_bytes)
+        records = tuple(_GitHubInventoryRecord.model_validate(document) for document in documents)
+        observations = tuple(
+            _observation_from_inventory(document, record, observed_at=observed_at)
+            for document, record in zip(documents, records, strict=True)
+            if _OBSERVATION_METADATA_FIELDS.intersection(document)
+        )
+    except (TypeError, ValueError, ValidationError):
         raise InvalidGitHubResponse("invalid GitHub repository response") from None
 
-    return tuple(
+    identities = tuple(
         RepositoryInventoryIdentity(
             repository_id=record.id,
             name=record.name,
@@ -274,6 +318,37 @@ def _parse_identities(raw_bytes: bytes) -> tuple[RepositoryInventoryIdentity, ..
             html_url=str(record.html_url),
         )
         for record in records
+    )
+    return identities, observations
+
+
+def _observation_from_inventory(
+    document: dict[str, object],
+    identity: _GitHubInventoryRecord,
+    *,
+    observed_at: datetime,
+) -> RepositoryObservation:
+    record = _GitHubEnrichedInventoryRecord.model_validate(document)
+    license_spdx = record.license.spdx_id if record.license is not None else None
+    license_name = record.license.name if record.license is not None else None
+    return RepositoryObservation(
+        identity=RepositoryIdentity(repository_id=record.id),
+        owner=record.owner.login,
+        name=record.name,
+        full_name=record.full_name,
+        html_url=identity.html_url,
+        description=record.description,
+        topics=record.topics,
+        primary_language=record.language,
+        created_at=record.created_at,
+        updated_at=record.updated_at,
+        pushed_at=record.pushed_at,
+        observed_at=observed_at,
+        archived=record.archived,
+        disabled=record.disabled,
+        fork=record.fork,
+        license_spdx=license_spdx,
+        license_name=license_name,
     )
 
 

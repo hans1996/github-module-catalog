@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-ghmod = "github_module_catalog:main"
+ghmod = "github_module_catalog.cli:main"
 
 [dependency-groups]
 dev = [

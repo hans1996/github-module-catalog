@@ -7,6 +7,8 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Protocol, runtime_checkable
 
+from github_module_catalog.models import RepositoryObservation
+
 
 @dataclass(frozen=True, slots=True)
 class RepositoryInventoryIdentity:
@@ -41,6 +43,7 @@ class RepositoryPage:
     next_cursor: int | None
     rate_limit: RateLimitFacts
     identities: tuple[RepositoryInventoryIdentity, ...]
+    observations: tuple[RepositoryObservation, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
