@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import os
+import re
 import shutil
 import tempfile
 import uuid
@@ -43,7 +45,7 @@ def render_readme(manifest: CatalogManifest) -> str:
     lines = [
         "# GitHub Module Catalog",
         "",
-        manifest.coverage_note,
+        _untrusted_markdown_inline(manifest.coverage_note),
         "",
         f"Source: `{_markdown_text(manifest.source)}`; cursor: "
         f"`{manifest.cursor_start}` through `{manifest.cursor_end}`.",
@@ -170,6 +172,12 @@ def _markdown_text(value: str) -> str:
         .replace("\r", " ")
         .replace("\n", " ")
     )
+
+
+def _untrusted_markdown_inline(value: str) -> str:
+    collapsed = re.sub(r"[\r\n]+", " ", value)
+    html_safe = html.escape(collapsed, quote=True)
+    return re.sub(r"([\\`*_{}\[\]()#+.!|~\-])", r"\\\1", html_safe)
 
 
 def _canonical_json(document: object) -> bytes:

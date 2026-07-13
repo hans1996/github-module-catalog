@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -74,6 +74,19 @@ def _page(*repository_ids: int) -> RepositoryPage:
     )
 
 
+def _empty_page() -> RepositoryPage:
+    raw_bytes = b"[]"
+    return RepositoryPage(
+        raw_bytes=raw_bytes,
+        raw_sha256=hashlib.sha256(raw_bytes).hexdigest(),
+        etag=None,
+        next_url=None,
+        next_cursor=None,
+        rate_limit=RateLimitFacts(remaining=50),
+        identities=(),
+    )
+
+
 def _stores(tmp_path: Path) -> tuple[RawObjectStore, StateStore]:
     raw_store = RawObjectStore(tmp_path)
     return raw_store, StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
@@ -112,6 +125,44 @@ def test_scan_resumes_at_source_scoped_committed_cursor_and_honors_page_limit(
     assert [item.repository_id for item in state.list_repository_identities()] == [2, 7, 9, 11]
     with pytest.raises(ValueError, match="max_pages"):
         _scan(FakeSource([]), raw_store, state, max_pages=0)
+
+
+def test_empty_and_terminal_pages_return_completed_without_refetching(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    empty_source = FakeSource([PageResult(_empty_page()), PageResult(_empty_page())])
+
+    empty = _scan(empty_source, raw_store, state, max_pages=3)
+    polled_again = _scan(empty_source, raw_store, state, max_pages=3)
+    terminal = _scan(
+        FakeSource([PageResult(replace(_page(7), next_url=None))]),
+        raw_store,
+        state,
+        max_pages=3,
+    )
+
+    assert empty.status == ScanStatus.COMPLETED
+    assert (empty.cursor_start, empty.cursor_end, empty.pages_committed) == (0, 0, 1)
+    assert polled_again.status == ScanStatus.COMPLETED
+    assert (polled_again.cursor_start, polled_again.cursor_end) == (0, 0)
+    assert empty_source.cursors == [0, 0]
+    assert terminal.status == ScanStatus.COMPLETED
+    assert (terminal.cursor_start, terminal.cursor_end, terminal.pages_committed) == (0, 7, 1)
+
+
+def test_existing_page_replay_does_not_increment_committed_page_count(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    page = replace(_page(7), next_url=None)
+    run = state.create_crawl_run("github-public-repositories", started_at=NOW)
+    raw_store.write(page.raw_bytes, expected_sha256=page.raw_sha256)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    monkeypatch.setattr(state, "create_crawl_run", lambda *_args, **_kwargs: run)
+
+    result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
+
+    assert result.status == ScanStatus.COMPLETED
+    assert (result.cursor_start, result.cursor_end, result.pages_committed) == (0, 7, 0)
 
 
 def test_interrupted_page_is_refetched_without_duplicate_identities(

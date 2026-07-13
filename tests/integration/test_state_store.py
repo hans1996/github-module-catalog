@@ -7,7 +7,7 @@ import json
 import os
 import sqlite3
 from dataclasses import FrozenInstanceError
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -395,6 +395,7 @@ def test_state_rejects_credential_material_and_has_all_required_schema_tables(
     assert {
         "crawl_runs",
         "discovery_pages",
+        "discovery_page_repositories",
         "repository_identities",
         "repository_observations",
         "work_item_events",
@@ -406,6 +407,142 @@ def test_state_rejects_credential_material_and_has_all_required_schema_tables(
     assert b"secret-token" not in state.path.read_bytes()
     assert state.foreign_keys_enabled is True
     assert state.journal_mode in {"wal", "memory"}
+
+
+def test_legacy_database_backfills_source_links_from_verified_raw_pages(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    state.close()
+    with sqlite3.connect(tmp_path / "data" / "state.sqlite3") as connection:
+        connection.execute("DROP TABLE discovery_page_repositories")
+
+    reopened = StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
+    snapshot = reopened.catalog_snapshot("github")
+
+    assert snapshot.discovered_count == 1
+    assert snapshot.raw_page_hashes == (page.raw_sha256,)
+    assert snapshot.pending_count == 1
+
+
+@pytest.mark.parametrize(
+    ("damage", "error_type"),
+    [("missing", FileNotFoundError), ("corrupt", ObjectCollisionError)],
+)
+def test_legacy_backfill_fails_closed_when_raw_page_is_missing_or_corrupt(
+    tmp_path: Path,
+    damage: str,
+    error_type: type[Exception],
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    stored = raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    state.close()
+    with sqlite3.connect(tmp_path / "data" / "state.sqlite3") as connection:
+        connection.execute("DROP TABLE discovery_page_repositories")
+    if damage == "missing":
+        stored.path.unlink()
+    else:
+        stored.path.write_bytes(b"corrupt")
+
+    with pytest.raises(error_type):
+        StateStore(tmp_path / "data" / "state.sqlite3", raw_store)
+
+
+def test_existing_page_replay_repairs_missing_repository_links(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    with sqlite3.connect(state.path) as connection:
+        connection.execute("DELETE FROM discovery_page_repositories")
+
+    replay = state.commit_discovery_page(
+        run.id,
+        cursor_before=0,
+        page=page,
+        committed_at=NOW,
+    )
+
+    assert replay.newly_committed is False
+    assert state.catalog_snapshot("github").discovered_count == 1
+
+
+def test_delayed_observation_does_not_regress_identity_or_latest_catalog_fact(
+    tmp_path: Path,
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    newer = RepositoryObservation(
+        identity=RepositoryIdentity(repository_id=7),
+        owner="new-owner",
+        name="new-name",
+        full_name="new-owner/new-name",
+        html_url=HttpUrl("https://github.com/new-owner/new-name"),
+        topics=(),
+        created_at=NOW,
+        updated_at=NOW,
+        observed_at=NOW + timedelta(days=2),
+        license_spdx="MIT",
+    )
+    older = newer.model_copy(
+        update={
+            "owner": "old-owner",
+            "name": "old-name",
+            "full_name": "old-owner/old-name",
+            "html_url": HttpUrl("https://github.com/old-owner/old-name"),
+            "observed_at": NOW + timedelta(days=1),
+        }
+    )
+
+    state.record_repository_observation(newer)
+    state.record_repository_observation(older)
+
+    identity = state.list_repository_identities()[0]
+    assert (identity.owner_login, identity.name) == ("new-owner", "new-name")
+    assert state.list_latest_repository_observations() == (newer,)
+    assert state.catalog_snapshot("github").observations == (newer,)
+
+
+def test_latest_observation_uses_insertion_id_to_break_timestamp_ties(tmp_path: Path) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page()
+    raw_store.write(page.raw_bytes)
+    state.commit_discovery_page(run.id, cursor_before=0, page=page, committed_at=NOW)
+    first = RepositoryObservation(
+        identity=RepositoryIdentity(repository_id=7),
+        owner="first-owner",
+        name="first-name",
+        full_name="first-owner/first-name",
+        html_url=HttpUrl("https://github.com/first-owner/first-name"),
+        topics=(),
+        created_at=NOW,
+        updated_at=NOW,
+        observed_at=NOW,
+    )
+    second = first.model_copy(
+        update={
+            "owner": "second-owner",
+            "name": "second-name",
+            "full_name": "second-owner/second-name",
+            "html_url": HttpUrl("https://github.com/second-owner/second-name"),
+        }
+    )
+
+    state.record_repository_observation(first)
+    state.record_repository_observation(second)
+
+    assert state.list_latest_repository_observations() == (second,)
+    assert state.catalog_snapshot("github").observations == (second,)
 
 
 @pytest.mark.parametrize(

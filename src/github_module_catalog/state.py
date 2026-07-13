@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
-from collections.abc import Callable, Iterator, Mapping, Sequence
+from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -62,6 +62,7 @@ class DiscoveryPageRecord:
     raw_sha256: str
     raw_size_bytes: int
     committed_at: datetime
+    newly_committed: bool
 
 
 @dataclass(frozen=True, slots=True)
@@ -261,6 +262,11 @@ class StateStore:
             if existing is not None:
                 if existing["raw_sha256"] != page.raw_sha256:
                     raise StateConflictError("cursor already committed with different raw bytes")
+                self._link_page_repositories(
+                    connection,
+                    int(existing["id"]),
+                    _repository_ids_from_raw_page(page.raw_bytes),
+                )
                 return _page_record(existing)
 
             cursor_row = connection.execute(
@@ -293,13 +299,7 @@ class StateStore:
             page_id = _last_row_id(result)
             for identity in page.identities:
                 is_new = self._insert_discovered_identity(connection, identity, committed_text)
-                connection.execute(
-                    """
-                    INSERT INTO discovery_page_repositories(page_id, repository_id)
-                    VALUES (?, ?) ON CONFLICT(page_id, repository_id) DO NOTHING
-                    """,
-                    (page_id, identity.repository_id),
-                )
+                self._link_page_repositories(connection, page_id, (identity.repository_id,))
                 if is_new:
                     self._insert_work_item(
                         connection,
@@ -329,6 +329,7 @@ class StateStore:
             page.raw_sha256,
             raw_object.size_bytes,
             _parse_datetime(committed_text),
+            True,
         )
 
     def list_discovery_pages(self, crawl_run_id: int) -> tuple[DiscoveryPageRecord, ...]:
@@ -388,6 +389,7 @@ class StateStore:
                     full_name = excluded.full_name,
                     html_url = excluded.html_url,
                     last_observed_at = excluded.last_observed_at
+                WHERE excluded.last_observed_at >= repository_identities.last_observed_at
                 """,
                 (
                     repository_id,
@@ -443,8 +445,9 @@ class StateStore:
                    observed.observation_json
             FROM repository_observations AS observed
             WHERE observed.id = (
-                SELECT MAX(candidate.id) FROM repository_observations AS candidate
+                SELECT candidate.id FROM repository_observations AS candidate
                 WHERE candidate.repository_id = observed.repository_id
+                ORDER BY candidate.observed_at DESC, candidate.id DESC LIMIT 1
             )
             ORDER BY observed.repository_id
             """
@@ -705,6 +708,22 @@ class StateStore:
         )
         return True
 
+    @staticmethod
+    def _link_page_repositories(
+        connection: sqlite3.Connection,
+        page_id: int,
+        repository_ids: Iterable[int],
+    ) -> None:
+        for repository_id in repository_ids:
+            connection.execute(
+                """
+                INSERT INTO discovery_page_repositories(page_id, repository_id)
+                SELECT ?, repository_id FROM repository_identities WHERE repository_id = ?
+                ON CONFLICT(page_id, repository_id) DO NOTHING
+                """,
+                (page_id, repository_id),
+            )
+
     @contextmanager
     def _transaction(self) -> Iterator[sqlite3.Connection]:
         self._connection.execute("BEGIN IMMEDIATE")
@@ -729,6 +748,24 @@ class StateStore:
 
     def _initialize_schema(self) -> None:
         self._connection.executescript(_SCHEMA)
+        with self._transaction() as connection:
+            pages = connection.execute(
+                """
+                SELECT page.id, page.raw_sha256 FROM discovery_pages AS page
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM discovery_page_repositories AS link
+                    WHERE link.page_id = page.id
+                )
+                ORDER BY page.id
+                """
+            ).fetchall()
+            for page in pages:
+                raw_bytes = self._raw_store.read(str(page["raw_sha256"]))
+                self._link_page_repositories(
+                    connection,
+                    int(page["id"]),
+                    _repository_ids_from_raw_page(raw_bytes),
+                )
 
 
 def _cursor_after(cursor_before: int, page: RepositoryPage) -> int:
@@ -794,8 +831,9 @@ def _source_observations(
         FROM repository_observations AS observed
         JOIN source_repositories AS source ON source.repository_id = observed.repository_id
         WHERE observed.id = (
-            SELECT MAX(candidate.id) FROM repository_observations AS candidate
+            SELECT candidate.id FROM repository_observations AS candidate
             WHERE candidate.repository_id = observed.repository_id
+            ORDER BY candidate.observed_at DESC, candidate.id DESC LIMIT 1
         )
         ORDER BY observed.repository_id
         """,
@@ -814,6 +852,26 @@ def _validated_observations(rows: Sequence[sqlite3.Row]) -> tuple[RepositoryObse
             raise StateConflictError("observation hash does not match validated content")
         observations.append(observation)
     return tuple(observations)
+
+
+def _repository_ids_from_raw_page(raw_bytes: bytes) -> tuple[int, ...]:
+    try:
+        document = json.loads(raw_bytes)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise StateConflictError("raw discovery page is not valid JSON") from error
+    if not isinstance(document, list):
+        raise StateConflictError("raw discovery page must contain a JSON list")
+    repository_ids: set[int] = set()
+    for item in document:
+        if not isinstance(item, dict):
+            raise StateConflictError("raw discovery page items must be JSON objects")
+        repository_id = item.get("id")
+        if isinstance(repository_id, bool) or not isinstance(repository_id, int):
+            raise StateConflictError("raw discovery page repository IDs must be integers")
+        if repository_id <= 0:
+            raise StateConflictError("raw discovery page repository IDs must be positive")
+        repository_ids.add(repository_id)
+    return tuple(sorted(repository_ids))
 
 
 def _source_discovered_count(connection: sqlite3.Connection, source: str) -> int:
@@ -876,6 +934,7 @@ def _page_record(row: sqlite3.Row) -> DiscoveryPageRecord:
         str(row["raw_sha256"]),
         int(row["raw_size_bytes"]),
         _parse_datetime(str(row["committed_at"])),
+        False,
     )
 
 

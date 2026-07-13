@@ -21,6 +21,7 @@ class ScanStatus(StrEnum):
     """Reason a bounded scan returned control to its scheduler."""
 
     PAGE_LIMIT_REACHED = "page_limit_reached"
+    COMPLETED = "completed"
     UNCHANGED = "unchanged"
     RETRY = "retry"
     ERROR = "error"
@@ -96,8 +97,12 @@ class DiscoveryScanner:
                     committed,
                     error_type=type(error).__name__,
                 )
+            previous_cursor = cursor
             cursor = page.cursor_after
-            committed += 1
+            if page.newly_committed:
+                committed += 1
+            if outcome.page.next_url is None or cursor <= previous_cursor:
+                return self._outcome(ScanStatus.COMPLETED, run.id, cursor_start, cursor, committed)
         return self._outcome(ScanStatus.PAGE_LIMIT_REACHED, run.id, cursor_start, cursor, committed)
 
     @staticmethod

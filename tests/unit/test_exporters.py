@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import FrozenInstanceError
+from dataclasses import FrozenInstanceError, replace
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -308,6 +308,28 @@ def test_markdown_uses_validated_https_links_and_does_not_render_untrusted_descr
     assert "[octocat/repo-7](https://github.com/octocat/repo-7)" in markdown
     assert "javascript:" not in markdown
     assert "next line" not in markdown
+
+
+def test_coverage_note_is_escaped_as_untrusted_single_line_markdown() -> None:
+    malicious = (
+        "> quote\n- list\nCoverage\n# forged\n![x](javascript:alert(1)) <img src=x> **bold**"
+    )
+    manifest = build_catalog(
+        (_observation(7),),
+        taxonomy=load_taxonomy(TAXONOMY_PATH),
+        context=replace(_context(), coverage_note=malicious),
+    )
+
+    markdown = render_readme(manifest)
+
+    assert "\n# forged" not in markdown
+    assert "![x]" not in markdown
+    assert "<img" not in markdown
+    assert "&gt; quote \\- list" in markdown
+    assert "Coverage \\# forged" in markdown
+    assert "\\!\\[x\\]\\(javascript:alert\\(1\\)\\)" in markdown
+    assert "&lt;img src=x&gt;" in markdown
+    assert "\\*\\*bold\\*\\*" in markdown
 
 
 def test_output_path_symlinks_are_rejected(tmp_path: Path) -> None:
