@@ -1141,10 +1141,7 @@ class StateStore:
 def _cursor_after(cursor_before: int, page: RepositoryPage) -> int:
     if cursor_before < 0:
         raise ValueError("cursor_before must be nonnegative")
-    identity_cursor = max(
-        (identity.repository_id for identity in page.identities), default=cursor_before
-    )
-    cursor_after = page.next_cursor if page.next_cursor is not None else identity_cursor
+    cursor_after = _verified_page_identity_cursor(page, empty_default=cursor_before)
     if cursor_after < cursor_before:
         raise ValueError("page cursor cannot move backwards")
     return cursor_after
@@ -1509,6 +1506,7 @@ def _reject_credential_text(value: str) -> None:
 
 
 def _validate_repository_page_state(page: RepositoryPage) -> None:
+    _verified_page_identity_cursor(page, empty_default=0)
     _validate_state_url(page.next_url)
     for value in (page.etag, page.rate_limit.resource):
         if value is not None:
@@ -1521,6 +1519,17 @@ def _validate_repository_page_state(page: RepositoryPage) -> None:
             identity.html_url,
         ):
             _reject_credential_text(value)
+
+
+def _verified_page_identity_cursor(page: RepositoryPage, *, empty_default: int) -> int:
+    if not page.identities:
+        if page.next_cursor is not None:
+            raise ValueError("empty repository page cannot carry an advancing cursor")
+        return empty_default
+    maximum_repository_id = max(identity.repository_id for identity in page.identities)
+    if page.next_cursor is not None and page.next_cursor != maximum_repository_id:
+        raise ValueError("page cursor must equal maximum repository identity")
+    return maximum_repository_id
 
 
 _SCHEMA = """

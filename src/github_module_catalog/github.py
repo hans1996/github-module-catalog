@@ -237,6 +237,7 @@ class GitHubRepositorySource:
             max_response_bytes=self._max_response_bytes,
         )
         next_url, next_cursor = _parse_next_link(response)
+        _validate_inventory_page_cursor(inventory.identities, next_cursor)
         return PageResult(
             page=RepositoryPage(
                 raw_bytes=raw_bytes,
@@ -410,6 +411,18 @@ def _parse_next_link(response: httpx.Response) -> tuple[str | None, int | None]:
     if len(since_values) != 1 or _DIGITS.fullmatch(since_values[0]) is None:
         raise UnsafeGitHubUrl("GitHub next URL has no numeric cursor")
     return str(url), int(since_values[0])
+
+
+def _validate_inventory_page_cursor(
+    identities: tuple[RepositoryInventoryIdentity, ...], next_cursor: int | None
+) -> None:
+    if not identities:
+        if next_cursor is not None:
+            raise InvalidGitHubResponse("empty GitHub page cannot advance cursor")
+        return
+    maximum_repository_id = max(identity.repository_id for identity in identities)
+    if next_cursor is not None and next_cursor != maximum_repository_id:
+        raise InvalidGitHubResponse("GitHub Link cursor differs from maximum page ID")
 
 
 def _parse_rate_limit(

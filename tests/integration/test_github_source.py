@@ -353,7 +353,7 @@ def test_link_next_relation_is_the_only_pagination_signal() -> None:
     def handler(_: httpx.Request) -> httpx.Response:
         return httpx.Response(
             200,
-            json=[inventory_record()],
+            json=[inventory_record(id=101)],
             headers={
                 "Link": (
                     '<https://api.github.com/repositories?since=101>; rel="next", '
@@ -367,6 +367,41 @@ def test_link_next_relation_is_the_only_pagination_signal() -> None:
     assert isinstance(result, PageResult)
     assert result.page.next_cursor == 101
     assert result.page.next_url == "https://api.github.com/repositories?since=101"
+
+
+@pytest.mark.parametrize("linked_cursor", [999, 6])
+def test_inventory_link_cursor_must_equal_maximum_page_repository_id(
+    linked_cursor: int,
+) -> None:
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json=[inventory_record(id=7)],
+            headers={
+                "Link": (
+                    f'<https://api.github.com/repositories?since={linked_cursor}>; rel="next"'
+                )
+            },
+        )
+
+    source = GitHubRepositorySource(transport=httpx.MockTransport(handler), now=lambda: NOW)
+
+    with pytest.raises(InvalidGitHubResponse, match="cursor"):
+        source.fetch_page(0)
+
+
+def test_empty_inventory_page_cannot_carry_an_advancing_link_cursor() -> None:
+    def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json=[],
+            headers={"Link": '<https://api.github.com/repositories?since=1>; rel="next"'},
+        )
+
+    source = GitHubRepositorySource(transport=httpx.MockTransport(handler), now=lambda: NOW)
+
+    with pytest.raises(InvalidGitHubResponse, match="cursor"):
+        source.fetch_page(0)
 
 
 @pytest.mark.parametrize("status_code", [403, 429])

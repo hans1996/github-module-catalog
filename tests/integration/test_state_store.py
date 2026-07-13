@@ -325,7 +325,7 @@ def test_duplicate_numeric_ids_are_idempotent_and_renames_require_an_observation
     raw_store, state = _stores(tmp_path)
     run = state.create_crawl_run("github-public-repositories", started_at=NOW)
     first_page = _page()
-    renamed_page = _page(owner="new-owner", name="renamed", next_cursor=8)
+    renamed_page = _page(owner="new-owner", name="renamed", next_cursor=7)
     for page in (first_page, renamed_page):
         raw_store.write(page.raw_bytes, expected_sha256=page.raw_sha256)
     state.commit_discovery_page(run.id, cursor_before=0, page=first_page, committed_at=NOW)
@@ -380,6 +380,32 @@ def test_injected_failure_rolls_back_page_identities_events_and_cursor(tmp_path:
     assert state.list_discovery_pages(run.id) == ()
     assert state.list_repository_identities() == ()
     assert state.list_work_item_events() == ()
+
+
+@pytest.mark.parametrize("next_cursor", [999, 6])
+def test_state_rejects_unverified_page_cursor_before_advancing_state(
+    tmp_path: Path, next_cursor: int
+) -> None:
+    raw_store, state = _stores(tmp_path)
+    run = state.create_crawl_run("github", started_at=NOW)
+    page = _page(
+        7,
+        next_cursor=next_cursor,
+        next_url=f"https://api.github.com/repositories?since={next_cursor}",
+    )
+    raw_store.write(page.raw_bytes)
+
+    with pytest.raises(ValueError, match="cursor"):
+        state.commit_discovery_page(
+            run.id,
+            cursor_before=0,
+            page=page,
+            committed_at=NOW,
+        )
+
+    assert state.get_discovery_cursor(run.id) == 0
+    assert state.list_discovery_pages(run.id) == ()
+    assert state.list_repository_identities() == ()
 
 
 def test_stage_checkpoints_are_independent_and_return_frozen_records(tmp_path: Path) -> None:
