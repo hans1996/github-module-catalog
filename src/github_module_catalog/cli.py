@@ -8,12 +8,14 @@ import os
 import re
 import sqlite3
 import stat
+import uuid
 from collections.abc import Callable, Iterator, Mapping
 from contextlib import contextmanager
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
+from datetime import UTC, datetime, time, timedelta
 from importlib.resources import files
 from importlib.resources.abc import Traversable
+from math import ceil
 from pathlib import Path
 from typing import Annotated, Protocol, cast, runtime_checkable
 
@@ -32,7 +34,18 @@ from github_module_catalog.exporters import (
     render_publication_manifest,
 )
 from github_module_catalog.github import GitHubRepositorySource, parse_github_inventory
-from github_module_catalog.models import CatalogManifest
+from github_module_catalog.github_search import (
+    GitHubSearchSource,
+    RankedRepositorySnapshot,
+    build_github_search_query,
+    parse_github_search_page,
+)
+from github_module_catalog.models import (
+    CatalogManifest,
+    CatalogSearchPageEvidence,
+    CatalogSelectionCriteria,
+    RepositoryObservation,
+)
 from github_module_catalog.safeio import (
     UnsafeOutputPathError,
     file_identity,
@@ -40,6 +53,8 @@ from github_module_catalog.safeio import (
     open_directory,
     open_directory_at,
     read_regular_file_at,
+    remove_tree_at,
+    stat_entry,
 )
 from github_module_catalog.scanner import DiscoveryScanner, ScanStatus
 from github_module_catalog.source import RepositorySource
@@ -48,9 +63,14 @@ from github_module_catalog.storage import RawObjectStore
 from github_module_catalog.taxonomy import classify_repository, load_taxonomy
 
 _SOURCE_NAME = "github"
+_RANKED_SOURCE_NAME = "github-search-repositories"
 _SCHEMA_VERSION = "1.0.0"
 _CLASSIFIER_VERSION = "rules-v1"
 _MAX_PAGES = 1_000
+_MAX_SEARCH_PAGES = 10
+_MAX_ACTIVE_WITHIN_DAYS = 3_650
+_SEARCH_RESULTS_PER_PAGE = 100
+_RANKED_COVERAGE_NOTE = "Top ranked GitHub Search window; not all public repositories."
 _MAX_ARTIFACT_BYTES = 32 * 1024 * 1024
 _MAX_ARTIFACT_TOTAL_BYTES = 256 * 1024 * 1024
 _MAX_ARTIFACTS = 10_000
@@ -70,8 +90,25 @@ class _Closable(Protocol):
     def close(self) -> None: ...
 
 
+@runtime_checkable
+class RankedRepositorySource(Protocol):
+    """Boundary for one all-or-nothing ranked Search snapshot."""
+
+    def collect_snapshot(
+        self,
+        criteria: CatalogSelectionCriteria,
+        *,
+        max_pages: int,
+        raw_store: RawObjectStore,
+    ) -> RankedRepositorySnapshot: ...
+
+
 def _default_source_factory(token: str) -> RepositorySource:
     return GitHubRepositorySource(token=token)
+
+
+def _default_ranked_source_factory(token: str) -> RankedRepositorySource:
+    return GitHubSearchSource(token=token)
 
 
 def _default_taxonomy_path() -> Traversable:
@@ -83,6 +120,7 @@ class CliDependencies:
     """Injectable boundaries used by command-level tests and production."""
 
     source_factory: Callable[[str], RepositorySource] = _default_source_factory
+    ranked_source_factory: Callable[[str], RankedRepositorySource] = _default_ranked_source_factory
     now: Callable[[], datetime] = lambda: datetime.now(UTC)
     classifier: Classifier = classify_repository
     taxonomy_path: str | Path | Traversable = field(default_factory=_default_taxonomy_path)
@@ -109,6 +147,42 @@ def create_app(dependencies: CliDependencies | None = None) -> typer.Typer:
         _command(lambda: _discover(workspace, max_pages=max_pages, dependencies=deps))
 
     @cli.command()
+    def refresh(
+        workspace: WorkspaceOption,
+        min_stars: Annotated[
+            int,
+            typer.Option("--min-stars", min=0, help="Minimum GitHub star count."),
+        ] = 100,
+        active_within_days: Annotated[
+            int,
+            typer.Option(
+                "--active-within-days",
+                min=1,
+                max=_MAX_ACTIVE_WITHIN_DAYS,
+                help="Require a push within this many UTC calendar days.",
+            ),
+        ] = 365,
+        max_pages: Annotated[
+            int,
+            typer.Option(
+                "--max-pages",
+                min=1,
+                max=_MAX_SEARCH_PAGES,
+                help="GitHub Search page budget (100 repositories per page).",
+            ),
+        ] = _MAX_SEARCH_PAGES,
+    ) -> None:
+        _command(
+            lambda: _refresh(
+                workspace,
+                min_stars=min_stars,
+                active_within_days=active_within_days,
+                max_pages=max_pages,
+                dependencies=deps,
+            )
+        )
+
+    @cli.command()
     def status(workspace: WorkspaceOption) -> None:
         _command(lambda: _status(workspace))
 
@@ -126,6 +200,10 @@ def create_app(dependencies: CliDependencies | None = None) -> typer.Typer:
     @cli.command()
     def validate(workspace: WorkspaceOption) -> None:
         _command(lambda: _validate(workspace, dependencies=deps))
+
+    @cli.command("validate-output")
+    def validate_output(workspace: WorkspaceOption) -> None:
+        _command(lambda: _validate_ranked_output(workspace, dependencies=deps))
 
     return cli
 
@@ -185,6 +263,15 @@ class _PinnedStores:
     state: StateStore
 
 
+@dataclass(frozen=True, slots=True)
+class _PinnedRawStore:
+    """Ranked validation stores that deliberately exclude the legacy ledger."""
+
+    workspace: Path
+    workspace_fd: int
+    raw_store: RawObjectStore
+
+
 def _verify_pinned_workspace(
     workspace: Path, workspace_fd: int, expected_identity: tuple[int, int, int]
 ) -> None:
@@ -228,6 +315,24 @@ def _stores(path: Path, *, create: bool = False) -> Iterator[_PinnedStores]:
         os.close(workspace_fd)
 
 
+@contextmanager
+def _raw_stores(path: Path) -> Iterator[_PinnedRawStore]:
+    workspace = _safe_workspace(path)
+    workspace_fd = open_directory(workspace)
+    workspace_identity = file_identity(os.fstat(workspace_fd))
+    raw_store: RawObjectStore | None = None
+    try:
+        _verify_pinned_workspace(workspace, workspace_fd, workspace_identity)
+        raw_store = RawObjectStore(workspace, workspace_fd=workspace_fd)
+        _verify_pinned_workspace(workspace, workspace_fd, workspace_identity)
+        yield _PinnedRawStore(workspace, workspace_fd, raw_store)
+        _verify_pinned_workspace(workspace, workspace_fd, workspace_identity)
+    finally:
+        if raw_store is not None:
+            raw_store.close()
+        os.close(workspace_fd)
+
+
 def _initialize(path: Path) -> Mapping[str, object]:
     with _stores(path, create=True) as stores:
         return {"status": "initialized", "workspace": str(stores.workspace)}
@@ -262,6 +367,163 @@ def _discover(path: Path, *, max_pages: int, dependencies: CliDependencies) -> M
         "pages_committed": outcome.pages_committed,
         "observations_recorded": outcome.observations_recorded,
         "observation_failures": outcome.observation_failures,
+    }
+
+
+def _ranked_criteria(
+    *,
+    run_started_at: datetime,
+    min_stars: int,
+    active_within_days: int,
+    max_pages: int,
+) -> CatalogSelectionCriteria:
+    if type(min_stars) is not int or min_stars < 0:
+        raise CliOperationError("min_stars must be a nonnegative integer")
+    if (
+        type(active_within_days) is not int
+        or not 1 <= active_within_days <= _MAX_ACTIVE_WITHIN_DAYS
+    ):
+        raise CliOperationError("active_within_days is outside the supported range")
+    if type(max_pages) is not int or not 1 <= max_pages <= _MAX_SEARCH_PAGES:
+        raise CliOperationError("max_pages is outside the GitHub Search range")
+    if run_started_at.utcoffset() is None:
+        raise CliOperationError("run clock must be timezone-aware")
+    run_started_utc = run_started_at.astimezone(UTC)
+    cutoff_date = (run_started_utc - timedelta(days=active_within_days)).date()
+    pushed_since = datetime.combine(cutoff_date, time.min, tzinfo=UTC)
+    return CatalogSelectionCriteria(
+        min_stars=min_stars,
+        pushed_since=pushed_since,
+        result_limit=max_pages * _SEARCH_RESULTS_PER_PAGE,
+    )
+
+
+def _refresh(
+    path: Path,
+    *,
+    min_stars: int,
+    active_within_days: int,
+    max_pages: int,
+    dependencies: CliDependencies,
+) -> Mapping[str, object]:
+    token = _github_token()
+    run_started_at = dependencies.now()
+    if not isinstance(run_started_at, datetime) or run_started_at.utcoffset() is None:
+        raise CliOperationError("run clock must be timezone-aware")
+    run_started_utc = run_started_at.astimezone(UTC)
+    criteria = _ranked_criteria(
+        run_started_at=run_started_at,
+        min_stars=min_stars,
+        active_within_days=active_within_days,
+        max_pages=max_pages,
+    )
+    with _stores(path) as stores:
+        source = dependencies.ranked_source_factory(token)
+        try:
+            snapshot = source.collect_snapshot(
+                criteria,
+                max_pages=max_pages,
+                raw_store=stores.raw_store,
+            )
+        finally:
+            if isinstance(source, _Closable):
+                source.close()
+        completed_at = dependencies.now()
+        if not isinstance(completed_at, datetime) or completed_at.utcoffset() is None:
+            raise CliOperationError("completion clock must be timezone-aware")
+        completed_utc = completed_at.astimezone(UTC)
+        if not isinstance(snapshot, RankedRepositorySnapshot):
+            raise CliOperationError("ranked source returned an invalid snapshot")
+        if snapshot.criteria != criteria or snapshot.result_limit != criteria.result_limit:
+            raise CliOperationError("ranked snapshot criteria differ from the requested policy")
+        if not 1 <= snapshot.pages_fetched <= max_pages:
+            raise CliOperationError("ranked snapshot page count differs from the page budget")
+        if (
+            not isinstance(snapshot.observed_at, datetime)
+            or snapshot.observed_at.utcoffset() is None
+            or not (run_started_utc <= snapshot.observed_at.astimezone(UTC) <= completed_utc)
+        ):
+            raise CliOperationError("ranked snapshot time is outside the trusted command interval")
+
+        taxonomy = load_taxonomy(dependencies.taxonomy_path)
+        search_query = build_github_search_query(criteria)
+        search_pages = tuple(
+            CatalogSearchPageEvidence(
+                page_number=page_number,
+                query=search_query,
+                raw_sha256=raw_sha256,
+            )
+            for page_number, raw_sha256 in enumerate(snapshot.raw_page_hashes, start=1)
+        )
+        manifest = build_catalog(
+            snapshot.observations,
+            taxonomy=taxonomy,
+            context=CatalogBuildContext(
+                source=_RANKED_SOURCE_NAME,
+                selection=snapshot.criteria,
+                api_total_count=snapshot.api_total_count,
+                pages_fetched=snapshot.pages_fetched,
+                result_limit=snapshot.result_limit,
+                repository_ranks=snapshot.repository_ranks,
+                search_pages=search_pages,
+                discovered_count=len(snapshot.observations),
+                raw_page_hashes=snapshot.raw_page_hashes,
+                coverage_note=_RANKED_COVERAGE_NOTE,
+            ),
+            classifier_version=_CLASSIFIER_VERSION,
+            generated_at=snapshot.observed_at,
+            classifier=dependencies.classifier,
+            schema_version=_SCHEMA_VERSION,
+        )
+        _validate_ranked_manifest_against_raw(
+            manifest,
+            raw_store=stores.raw_store,
+            dependencies=dependencies,
+        )
+        output = stores.workspace / "catalog-output"
+        expected_manifest_bytes = render_publication_manifest(manifest)
+        candidate_name = f".catalog-output.candidate-{uuid.uuid4().hex}"
+        candidate = stores.workspace / candidate_name
+        try:
+            publish_catalog(
+                manifest,
+                candidate,
+                trusted_parent_fd=stores.workspace_fd,
+            )
+            candidate_fd = open_directory_at(stores.workspace_fd, candidate_name)
+            try:
+                observed, _, manifest_bytes = _validate_documents(candidate_fd)
+            finally:
+                os.close(candidate_fd)
+            if observed != manifest or manifest_bytes != expected_manifest_bytes:
+                raise CliOperationError("ranked candidate differs from the validated snapshot")
+            artifacts = publish_catalog(
+                manifest,
+                output,
+                trusted_parent_fd=stores.workspace_fd,
+            )
+        finally:
+            candidate_details = stat_entry(stores.workspace_fd, candidate_name)
+            if candidate_details is not None:
+                if not stat.S_ISDIR(candidate_details.st_mode):
+                    raise CliOperationError("ranked candidate path changed during validation")
+                remove_tree_at(
+                    stores.workspace_fd,
+                    candidate_name,
+                    expected=file_identity(candidate_details),
+                )
+    return {
+        "status": "published",
+        "entries": manifest.entry_count,
+        "capabilities": manifest.capability_count,
+        "classification_failures": len(manifest.classification_failure_repository_ids),
+        "api_total_count": snapshot.api_total_count,
+        "pages_fetched": snapshot.pages_fetched,
+        "result_limit": snapshot.result_limit,
+        "min_stars": criteria.min_stars,
+        "pushed_since": criteria.model_dump(mode="json")["pushed_since"],
+        "artifacts": len(artifacts),
+        "output": str(output.resolve()),
     }
 
 
@@ -581,6 +843,117 @@ def _validate_documents(output_fd: int) -> tuple[CatalogManifest, int, bytes]:
     return validated, len(contents), manifest_bytes
 
 
+def _validate_ranked_manifest_against_raw(
+    observed: CatalogManifest,
+    *,
+    raw_store: RawObjectStore,
+    dependencies: CliDependencies,
+) -> None:
+    if observed.source != _RANKED_SOURCE_NAME:
+        raise CliOperationError("ranked catalog source is not trusted")
+    if observed.schema_version != _SCHEMA_VERSION:
+        raise CliOperationError("ranked catalog schema version is not trusted")
+    if observed.classifier_version != _CLASSIFIER_VERSION:
+        raise CliOperationError("ranked catalog classifier version is not trusted")
+    if observed.selection is None or observed.generated_at is None:
+        raise CliOperationError("ranked catalog policy metadata is incomplete")
+    if (
+        observed.api_total_count is None
+        or observed.pages_fetched is None
+        or observed.result_limit is None
+        or not observed.search_pages
+        or observed.pages_fetched != len(observed.search_pages)
+        or observed.result_limit != observed.selection.result_limit
+    ):
+        raise CliOperationError("ranked catalog Search metadata is inconsistent")
+    expected_query = build_github_search_query(observed.selection)
+    if any(page.query != expected_query for page in observed.search_pages):
+        raise CliOperationError("ranked Search page query differs from the selection policy")
+    ordered_hashes = tuple(page.raw_sha256 for page in observed.search_pages)
+    if set(ordered_hashes) != set(observed.raw_page_hashes):
+        raise CliOperationError("ranked Search page evidence differs from raw page hashes")
+
+    taxonomy = load_taxonomy(dependencies.taxonomy_path)
+    if taxonomy.version != observed.taxonomy_version:
+        raise CliOperationError("ranked catalog taxonomy differs from configured taxonomy")
+    parsed_pages = tuple(
+        parse_github_search_page(
+            raw_store.read(page.raw_sha256),
+            observed_at=observed.generated_at,
+            criteria=observed.selection,
+        )
+        for page in observed.search_pages
+    )
+    if not parsed_pages:
+        raise CliOperationError("ranked catalog has no raw Search page evidence")
+    total_counts = {page.total_count for page in parsed_pages}
+    if total_counts != {observed.api_total_count}:
+        raise CliOperationError("ranked raw Search totals differ from the catalog")
+
+    target_count = min(observed.api_total_count, observed.result_limit)
+    required_pages = max(1, ceil(target_count / _SEARCH_RESULTS_PER_PAGE))
+    if observed.pages_fetched != required_pages:
+        raise CliOperationError("ranked Search page coverage differs from the catalog")
+    expected_page_sizes = [
+        min(
+            _SEARCH_RESULTS_PER_PAGE,
+            max(0, observed.api_total_count - (page_index * _SEARCH_RESULTS_PER_PAGE)),
+        )
+        for page_index in range(required_pages)
+    ]
+    if [len(page.observations) for page in parsed_pages] != expected_page_sizes:
+        raise CliOperationError("ranked raw Search page sizes are incomplete")
+
+    by_repository_id: dict[int, RepositoryObservation] = {}
+    for page in parsed_pages:
+        for observation in page.observations:
+            repository_id = observation.identity.repository_id
+            existing = by_repository_id.get(repository_id)
+            if existing is not None and existing != observation:
+                raise CliOperationError("ranked raw Search pages contain conflicting facts")
+            by_repository_id.setdefault(repository_id, observation)
+    if len(by_repository_id) < target_count:
+        raise CliOperationError("ranked raw Search pages do not fill the unique result window")
+    ranked_observations = tuple(
+        sorted(
+            by_repository_id.values(),
+            key=lambda item: (
+                -(item.stargazers_count if item.stargazers_count is not None else -1),
+                item.identity.repository_id,
+            ),
+        )[: observed.result_limit]
+    )
+    repository_ranks = tuple(
+        (observation.identity.repository_id, rank)
+        for rank, observation in enumerate(ranked_observations, start=1)
+    )
+    expected = build_catalog(
+        ranked_observations,
+        taxonomy=taxonomy,
+        context=CatalogBuildContext(
+            source=_RANKED_SOURCE_NAME,
+            selection=observed.selection,
+            api_total_count=observed.api_total_count,
+            pages_fetched=observed.pages_fetched,
+            result_limit=observed.result_limit,
+            repository_ranks=repository_ranks,
+            search_pages=observed.search_pages,
+            discovered_count=len(ranked_observations),
+            raw_page_hashes=observed.raw_page_hashes,
+            coverage_note=_RANKED_COVERAGE_NOTE,
+        ),
+        classifier_version=_CLASSIFIER_VERSION,
+        generated_at=observed.generated_at,
+        classifier=dependencies.classifier,
+        schema_version=_SCHEMA_VERSION,
+    )
+    if not _documents_match(
+        expected.model_dump(mode="json", exclude_none=True),
+        observed.model_dump(mode="json", exclude_none=True),
+    ):
+        raise CliOperationError("ranked catalog differs from its raw Search evidence")
+
+
 def _validate_against_state(
     observed: CatalogManifest,
     *,
@@ -681,6 +1054,26 @@ def _validate(path: Path, *, dependencies: CliDependencies) -> Mapping[str, obje
         finally:
             os.close(output_fd)
     return {"status": "valid", "artifacts_checked": checked, "entries": manifest.entry_count}
+
+
+def _validate_ranked_output(path: Path, *, dependencies: CliDependencies) -> Mapping[str, object]:
+    with _raw_stores(path) as stores:
+        output_fd = open_directory_at(stores.workspace_fd, "catalog-output")
+        try:
+            manifest, checked, _ = _validate_documents(output_fd)
+        finally:
+            os.close(output_fd)
+        _validate_ranked_manifest_against_raw(
+            manifest,
+            raw_store=stores.raw_store,
+            dependencies=dependencies,
+        )
+    return {
+        "status": "valid",
+        "artifacts_checked": checked,
+        "entries": manifest.entry_count,
+        "source": manifest.source,
+    }
 
 
 app = create_app()

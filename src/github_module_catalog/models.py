@@ -125,6 +125,14 @@ class CatalogSelectionCriteria(ImmutableModel):
         return value.astimezone(UTC)
 
 
+class CatalogSearchPageEvidence(ImmutableModel):
+    """Ordered request identity and raw response binding for one Search page."""
+
+    page_number: int = Field(strict=True, ge=1, le=10)
+    query: NonEmptyStr = Field(max_length=500)
+    raw_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+
 class RepositoryObservation(ImmutableModel):
     """Validated source facts observed for a public GitHub repository."""
 
@@ -340,6 +348,7 @@ class CatalogManifest(ImmutableModel):
     api_total_count: int | None = Field(default=None, ge=0, strict=True)
     pages_fetched: int | None = Field(default=None, ge=0, strict=True)
     result_limit: int | None = Field(default=None, gt=0, le=1_000, strict=True)
+    search_pages: tuple[CatalogSearchPageEvidence, ...] = ()
     cursor_start: int = Field(default=0, ge=0)
     cursor_end: int = Field(default=0, ge=0)
     discovered_count: int = Field(default=0, ge=0)
@@ -360,6 +369,19 @@ class CatalogManifest(ImmutableModel):
         if any(not _SHA256_PATTERN.fullmatch(item) for item in value):
             raise ValueError("source hashes must be lowercase SHA-256 digests")
         return tuple(sorted(set(value)))
+
+    @field_validator("search_pages")
+    @classmethod
+    def validate_ordered_search_pages(
+        cls, value: tuple[CatalogSearchPageEvidence, ...]
+    ) -> tuple[CatalogSearchPageEvidence, ...]:
+        page_numbers = [page.page_number for page in value]
+        if page_numbers != list(range(1, len(value) + 1)):
+            raise ValueError("Search page evidence must be ordered and contiguous from page 1")
+        raw_hashes = [page.raw_sha256 for page in value]
+        if len(raw_hashes) != len(set(raw_hashes)):
+            raise ValueError("Search page evidence must not repeat a raw response hash")
+        return value
 
     @field_validator("classification_failure_repository_ids")
     @classmethod
@@ -394,8 +416,10 @@ class CatalogManifest(ImmutableModel):
     def _validate_ranked_selection(self) -> None:
         metadata = (self.api_total_count, self.pages_fetched, self.result_limit)
         if self.selection is None:
-            if any(item is not None for item in metadata) or any(
-                entry.rank is not None for entry in self.entries
+            if (
+                any(item is not None for item in metadata)
+                or self.search_pages
+                or any(entry.rank is not None for entry in self.entries)
             ):
                 raise ValueError("rank and selection metadata require selection criteria")
             return
@@ -407,6 +431,11 @@ class CatalogManifest(ImmutableModel):
             raise ValueError("ranked entry count cannot exceed result_limit")
         if self.api_total_count is not None and self.api_total_count < len(self.entries):
             raise ValueError("api_total_count cannot be smaller than ranked entry count")
+        if self.search_pages:
+            if self.pages_fetched != len(self.search_pages):
+                raise ValueError("pages_fetched must match ordered Search page evidence")
+            if set(self.raw_page_hashes) != {page.raw_sha256 for page in self.search_pages}:
+                raise ValueError("raw_page_hashes must match ordered Search page evidence")
         if self.entries and self.pages_fetched == 0:
             raise ValueError("pages_fetched must be positive for a nonempty ranked catalog")
 

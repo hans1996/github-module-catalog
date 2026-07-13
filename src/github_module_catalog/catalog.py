@@ -10,6 +10,7 @@ from github_module_catalog.models import (
     CapabilityAssertion,
     CatalogEntry,
     CatalogManifest,
+    CatalogSearchPageEvidence,
     CatalogSelectionCriteria,
     RepositoryObservation,
 )
@@ -38,8 +39,13 @@ class CatalogBuildContext:
     pages_fetched: int | None = None
     result_limit: int | None = None
     repository_ranks: tuple[tuple[int, int], ...] = ()
+    search_pages: tuple[CatalogSearchPageEvidence, ...] = ()
 
     def __post_init__(self) -> None:
+        if not isinstance(self.search_pages, tuple) or any(
+            not isinstance(item, CatalogSearchPageEvidence) for item in self.search_pages
+        ):
+            raise TypeError("search_pages must be an immutable tuple of validated evidence")
         if self.selection is not None and not isinstance(self.selection, CatalogSelectionCriteria):
             raise TypeError("selection must be an immutable CatalogSelectionCriteria")
         if not isinstance(self.repository_ranks, tuple) or any(
@@ -62,7 +68,11 @@ class CatalogBuildContext:
             raise ValueError("rank mapping must contain unique contiguous ranks")
         metadata = (self.api_total_count, self.pages_fetched, self.result_limit)
         if self.selection is None:
-            if self.repository_ranks or any(item is not None for item in metadata):
+            if (
+                self.repository_ranks
+                or self.search_pages
+                or any(item is not None for item in metadata)
+            ):
                 raise ValueError("rank mapping and Search metadata require selection criteria")
             return
         if any(item is None for item in metadata):
@@ -75,6 +85,8 @@ class CatalogBuildContext:
             raise ValueError("pages_fetched must be nonnegative")
         if self.result_limit != self.selection.result_limit:
             raise ValueError("result_limit must match the selection criteria")
+        if self.search_pages and self.pages_fetched != len(self.search_pages):
+            raise ValueError("pages_fetched must match ordered Search page evidence")
 
 
 def build_catalog(
@@ -120,6 +132,7 @@ def build_catalog(
         api_total_count=context.api_total_count,
         pages_fetched=context.pages_fetched,
         result_limit=context.result_limit,
+        search_pages=context.search_pages,
         cursor_start=context.cursor_start,
         cursor_end=context.cursor_end,
         discovered_count=context.discovered_count,
