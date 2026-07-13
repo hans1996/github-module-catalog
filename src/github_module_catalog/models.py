@@ -263,7 +263,14 @@ class RepositoryObservation(ImmutableModel):
         )
 
 
-EvidenceSource = Literal["topic", "description", "language", "lifecycle", "license"]
+EvidenceSource = Literal[
+    "topic",
+    "description",
+    "language",
+    "lifecycle",
+    "license",
+    "taxonomy",
+]
 
 
 class Evidence(ImmutableModel):
@@ -320,9 +327,7 @@ class CapabilityDefinition(ImmutableModel):
     def canonicalize_parents(cls, value: tuple[str, ...]) -> tuple[str, ...]:
         normalized = tuple(sorted(set(value)))
         if any(
-            not parent
-            or len(parent) > 100
-            or re.fullmatch(_CAPABILITY_ID_PATTERN, parent) is None
+            not parent or len(parent) > 100 or re.fullmatch(_CAPABILITY_ID_PATTERN, parent) is None
             for parent in normalized
         ):
             raise ValueError("capability parents must contain safe capability IDs")
@@ -461,8 +466,7 @@ class CatalogManifest(ImmutableModel):
             )
             if missing_targets:
                 raise ValueError(
-                    "assertion targets missing capability definitions: "
-                    f"{missing_targets}"
+                    f"assertion targets missing capability definitions: {missing_targets}"
                 )
         self._validate_ranked_selection()
         return self

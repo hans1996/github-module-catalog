@@ -7,7 +7,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from github_module_catalog.models import RepositoryObservation, ReuseStatus
+from github_module_catalog.models import Evidence, RepositoryObservation, ReuseStatus
 from github_module_catalog.taxonomy import Taxonomy, classify_repository, load_taxonomy
 
 TAXONOMY_PATH = (
@@ -90,6 +90,19 @@ def taxonomy_node(node_id: str, *, parents: list[str] | None = None) -> dict[str
     }
 
 
+def focused_taxonomy(
+    nodes: list[dict[str, object]],
+    rules: list[dict[str, object]],
+) -> Taxonomy:
+    return Taxonomy.model_validate(
+        {
+            "version": "2.0.0",
+            "axes": {"capability": nodes},
+            "rules": rules,
+        }
+    )
+
+
 def test_taxonomy_rejects_parent_from_a_different_axis() -> None:
     document = {
         "version": "1.0.0",
@@ -126,12 +139,17 @@ def test_classifier_returns_deterministic_multi_label_assertions_with_provenance
     taxonomy = load_taxonomy(TAXONOMY_PATH)
     observation = repository_fixture()
 
-    assertions = classify_repository(observation, taxonomy, classifier_version="rules-v1")
+    assertions = classify_repository(observation, taxonomy, classifier_version="rules-v2")
 
-    assert [assertion.capability_id for assertion in assertions] == ["api-backend", "auth", "cli"]
+    assert [assertion.capability_id for assertion in assertions] == [
+        "api-backend",
+        "auth",
+        "cli",
+        "security",
+    ]
     assert all(assertion.repository_id == 42 for assertion in assertions)
     assert all(assertion.taxonomy_version == "1.0.0" for assertion in assertions)
-    assert all(assertion.classifier_version == "rules-v1" for assertion in assertions)
+    assert all(assertion.classifier_version == "rules-v2" for assertion in assertions)
     assert all(
         assertion.source_observation_hash == observation.stable_hash() for assertion in assertions
     )
@@ -205,3 +223,126 @@ def test_classifier_strips_sentence_punctuation_from_exclusion_signals() -> None
     assertions = classify_repository(observation, taxonomy)
 
     assert assertions == ()
+
+
+def test_rules_v2_matches_normalized_description_phrases_and_infers_parent() -> None:
+    taxonomy = focused_taxonomy(
+        [
+            taxonomy_node("database-storage"),
+            taxonomy_node("vector-database", parents=["database-storage"]),
+        ],
+        [
+            {
+                "capability_id": "vector-database",
+                "description_phrases": ["vector database"],
+            }
+        ],
+    )
+    observation = repository_fixture(
+        description="A fast vector-database for embeddings.",
+        topics=[],
+        primary_language="Rust",
+    )
+
+    assertions = classify_repository(observation, taxonomy)
+
+    assert [assertion.capability_id for assertion in assertions] == [
+        "database-storage",
+        "vector-database",
+    ]
+    child = assertions[1]
+    parent = assertions[0]
+    assert Evidence(source="description", value="vector database") in child.evidence
+    assert Evidence(source="taxonomy", value="derived-from:vector-database") in parent.evidence
+    assert parent.confidence == child.confidence
+    assert all(assertion.classifier_version == "rules-v2" for assertion in assertions)
+
+
+def test_rules_v2_exclude_topics_veto_a_high_signal_child_rule() -> None:
+    taxonomy = focused_taxonomy(
+        [taxonomy_node("ai-ml"), taxonomy_node("ai-agent-framework", parents=["ai-ml"])],
+        [
+            {
+                "capability_id": "ai-agent-framework",
+                "topics": ["ai-agent"],
+                "exclude_topics": ["awesome-list", "tutorials"],
+            }
+        ],
+    )
+    observation = repository_fixture(
+        description="A curated collection of agent projects",
+        topics=["ai-agent", "awesome-list"],
+    )
+
+    assert classify_repository(observation, taxonomy) == ()
+
+
+def test_rules_v2_direct_parent_evidence_wins_over_inferred_evidence() -> None:
+    taxonomy = focused_taxonomy(
+        [taxonomy_node("cli"), taxonomy_node("terminal-ui", parents=["cli"])],
+        [
+            {"capability_id": "cli", "topics": ["cli"]},
+            {"capability_id": "terminal-ui", "topics": ["tui"]},
+        ],
+    )
+    observation = repository_fixture(description=None, topics=["cli", "tui"])
+
+    assertions = classify_repository(observation, taxonomy)
+
+    assert [assertion.capability_id for assertion in assertions] == ["cli", "terminal-ui"]
+    cli = assertions[0]
+    assert Evidence(source="topic", value="cli") in cli.evidence
+    assert all(evidence.source != "taxonomy" for evidence in cli.evidence)
+
+
+def test_rules_v2_closes_multiple_parent_paths_without_duplicates() -> None:
+    taxonomy = focused_taxonomy(
+        [
+            taxonomy_node("ai-ml"),
+            taxonomy_node("media"),
+            taxonomy_node("computer-vision", parents=["ai-ml", "media"]),
+        ],
+        [{"capability_id": "computer-vision", "topics": ["ocr"]}],
+    )
+    observation = repository_fixture(description=None, topics=["ocr"])
+
+    first = classify_repository(observation, taxonomy)
+    second = classify_repository(observation, taxonomy)
+
+    assert [assertion.capability_id for assertion in first] == [
+        "ai-ml",
+        "computer-vision",
+        "media",
+    ]
+    assert first == second
+    assert len({assertion.capability_id for assertion in first}) == len(first)
+    assert all(
+        Evidence(source="taxonomy", value="derived-from:computer-vision") in assertion.evidence
+        for assertion in (first[0], first[2])
+    )
+
+
+def test_rules_v2_uses_stable_leaf_as_inherited_parent_provenance() -> None:
+    taxonomy = focused_taxonomy(
+        [
+            taxonomy_node("testing"),
+            taxonomy_node("api-testing", parents=["testing"]),
+            taxonomy_node("browser-e2e-testing", parents=["testing"]),
+        ],
+        [
+            {"capability_id": "api-testing", "topics": ["api-testing"]},
+            {"capability_id": "browser-e2e-testing", "topics": ["browser-automation"]},
+        ],
+    )
+    observation = repository_fixture(
+        description=None,
+        topics=["browser-automation", "api-testing"],
+    )
+
+    assertions = classify_repository(observation, taxonomy)
+
+    parent = next(assertion for assertion in assertions if assertion.capability_id == "testing")
+    assert Evidence(source="taxonomy", value="derived-from:api-testing") in parent.evidence
+    assert (
+        Evidence(source="taxonomy", value="derived-from:browser-e2e-testing") not in parent.evidence
+    )

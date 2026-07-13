@@ -39,6 +39,18 @@ def _canonical_strings(values: object, *, casefold: bool = False) -> tuple[str, 
     return tuple(sorted(normalized))
 
 
+def _normalized_phrase(value: str) -> str:
+    separated = re.sub(r"[-_/]+", " ", value.casefold())
+    return " ".join(_TOKEN_PATTERN.findall(separated))
+
+
+def _canonical_phrases(values: object) -> tuple[str, ...]:
+    phrases = {_normalized_phrase(value) for value in _canonical_strings(values, casefold=True)}
+    if any(not phrase for phrase in phrases):
+        raise ValueError("description phrases must contain searchable text")
+    return tuple(sorted(phrases))
+
+
 class TaxonomyNode(ImmutableModel):
     """Stable node on one taxonomy axis."""
 
@@ -81,20 +93,34 @@ class ClassificationRule(ImmutableModel):
     capability_id: str = Field(pattern=_NODE_ID_PATTERN)
     topics: tuple[str, ...] = ()
     description_tokens: tuple[str, ...] = ()
+    description_phrases: tuple[str, ...] = ()
     language_hints: tuple[str, ...] = ()
     exclude_tokens: tuple[str, ...] = ()
+    exclude_topics: tuple[str, ...] = ()
 
     @field_validator(
-        "topics", "description_tokens", "language_hints", "exclude_tokens", mode="before"
+        "topics",
+        "description_tokens",
+        "language_hints",
+        "exclude_tokens",
+        "exclude_topics",
+        mode="before",
     )
     @classmethod
     def normalize_match_values(cls, value: object) -> tuple[str, ...]:
         return _canonical_strings(value, casefold=True)
 
+    @field_validator("description_phrases", mode="before")
+    @classmethod
+    def normalize_description_phrases(cls, value: object) -> tuple[str, ...]:
+        return _canonical_phrases(value)
+
     @model_validator(mode="after")
     def require_positive_signal(self) -> Self:
-        if not self.topics and not self.description_tokens:
-            raise ValueError("classification rule requires a topic or description token")
+        if not self.topics and not self.description_tokens and not self.description_phrases:
+            raise ValueError(
+                "classification rule requires a topic, description token, or description phrase"
+            )
         return self
 
 
@@ -196,6 +222,10 @@ def _description_tokens(description: str | None) -> frozenset[str]:
     return frozenset(_TOKEN_PATTERN.findall(description.casefold()))
 
 
+def _description_phrase_text(description: str | None) -> str:
+    return "" if description is None else _normalized_phrase(description)
+
+
 def _lifecycle_value(observation: RepositoryObservation) -> str:
     if observation.disabled is True:
         return "disabled"
@@ -212,20 +242,28 @@ def _evidence_and_confidence(
 ) -> tuple[tuple[Evidence, ...], float] | None:
     repository_topics = frozenset(observation.topics)
     description_tokens = _description_tokens(observation.description)
-    if description_tokens.intersection(rule.exclude_tokens):
+    if repository_topics.intersection(rule.exclude_topics) or description_tokens.intersection(
+        rule.exclude_tokens
+    ):
         return None
 
     topic_matches = repository_topics.intersection(rule.topics)
     description_matches = description_tokens.intersection(rule.description_tokens)
-    if not topic_matches and not description_matches:
+    phrase_text = _description_phrase_text(observation.description)
+    padded_phrase_text = f" {phrase_text} "
+    phrase_matches = frozenset(
+        phrase for phrase in rule.description_phrases if f" {phrase} " in padded_phrase_text
+    )
+    if not topic_matches and not description_matches and not phrase_matches:
         return None
 
     evidence = [Evidence(source="topic", value=value) for value in sorted(topic_matches)]
     evidence.extend(
         Evidence(source="description", value=value) for value in sorted(description_matches)
     )
+    evidence.extend(Evidence(source="description", value=value) for value in sorted(phrase_matches))
     confidence = 0.95 if topic_matches else 0.75
-    if topic_matches and description_matches:
+    if topic_matches and (description_matches or phrase_matches):
         confidence += 0.02
 
     language = observation.primary_language.casefold() if observation.primary_language else None
@@ -238,25 +276,70 @@ def _evidence_and_confidence(
     return tuple(evidence), min(confidence, 0.99)
 
 
+def _capability_ancestors(taxonomy: Taxonomy, capability_id: str) -> tuple[str, ...]:
+    parents_by_id = {node.id: node.parents for node in taxonomy.axes.get("capability", ())}
+    ancestors: set[str] = set()
+    pending = list(parents_by_id.get(capability_id, ()))
+    while pending:
+        parent = pending.pop()
+        if parent in ancestors:
+            continue
+        ancestors.add(parent)
+        pending.extend(parents_by_id[parent])
+    return tuple(sorted(ancestors))
+
+
+def _resolved_capability_matches(
+    observation: RepositoryObservation,
+    taxonomy: Taxonomy,
+) -> dict[str, tuple[tuple[Evidence, ...], float]]:
+    direct: dict[str, tuple[tuple[Evidence, ...], float]] = {}
+    for rule in taxonomy.rules:
+        result = _evidence_and_confidence(observation, rule)
+        if result is not None:
+            direct[rule.capability_id] = result
+
+    inherited: dict[str, tuple[str, tuple[Evidence, ...], float]] = {}
+    for descendant_id, (evidence, confidence) in sorted(direct.items()):
+        derived_evidence = (
+            *evidence,
+            Evidence(source="taxonomy", value=f"derived-from:{descendant_id}"),
+        )
+        for ancestor_id in _capability_ancestors(taxonomy, descendant_id):
+            if ancestor_id in direct:
+                continue
+            candidate = (descendant_id, derived_evidence, confidence)
+            current = inherited.get(ancestor_id)
+            if current is None or (-confidence, descendant_id) < (-current[2], current[0]):
+                inherited[ancestor_id] = candidate
+
+    resolved = dict(direct)
+    resolved.update(
+        {
+            capability_id: (evidence, confidence)
+            for capability_id, (_, evidence, confidence) in inherited.items()
+        }
+    )
+    return resolved
+
+
 def classify_repository(
     observation: RepositoryObservation,
     taxonomy: Taxonomy,
     *,
-    classifier_version: str = "rules-v1",
+    classifier_version: str = "rules-v2",
 ) -> tuple[CapabilityAssertion, ...]:
     """Create deterministic, multi-label assertions without mutating source facts."""
 
     assertions: list[CapabilityAssertion] = []
     observation_hash = observation.stable_hash()
-    for rule in taxonomy.rules:
-        result = _evidence_and_confidence(observation, rule)
-        if result is None:
-            continue
-        evidence, confidence = result
+    for capability_id, (evidence, confidence) in sorted(
+        _resolved_capability_matches(observation, taxonomy).items()
+    ):
         assertions.append(
             CapabilityAssertion(
                 repository_id=observation.identity.repository_id,
-                capability_id=rule.capability_id,
+                capability_id=capability_id,
                 taxonomy_version=taxonomy.version,
                 classifier_version=classifier_version,
                 confidence=confidence,

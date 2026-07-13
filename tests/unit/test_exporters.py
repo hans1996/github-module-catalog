@@ -445,7 +445,10 @@ def test_json_yaml_and_markdown_have_equivalent_sorted_catalog_entries() -> None
     assert [
         entry["repository"]["identity"]["repository_id"] for entry in json_document["entries"]
     ] == [2, 9]
-    assert [item["capability_id"] for item in json_document["entries"][1]["assertions"]] == ["auth"]
+    assert [item["capability_id"] for item in json_document["entries"][1]["assertions"]] == [
+        "auth",
+        "security",
+    ]
     assert markdown.index("octocat/repo-2") < markdown.index("octocat/repo-9")
     assert "`auth`" in markdown and "`cli`" in markdown
     assert "| Repository ID | Repository | Capabilities | License | Reuse status |" in markdown
@@ -544,6 +547,7 @@ def test_repeated_publication_is_byte_identical_and_build_time_is_opt_in(
         Path("manifest.json"),
         Path("modules/auth.md"),
         Path("modules/cli.md"),
+        Path("modules/security.md"),
     }
     assert "generated_at" not in json.loads(first[Path("manifest.json")])
     timestamped = _manifest(generated_at=NOW)
