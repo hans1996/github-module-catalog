@@ -12,6 +12,8 @@ from collections.abc import Callable, Iterator, Mapping
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
+from importlib.resources import files
+from importlib.resources.abc import Traversable
 from pathlib import Path
 from typing import Annotated, Protocol, cast, runtime_checkable
 
@@ -66,8 +68,8 @@ def _default_source_factory(token: str) -> RepositorySource:
     return GitHubRepositorySource(token=token)
 
 
-def _default_taxonomy_path() -> Path:
-    return Path(__file__).parents[2] / "config" / "taxonomy.yaml"
+def _default_taxonomy_path() -> Traversable:
+    return files("github_module_catalog").joinpath("data", "taxonomy.yaml")
 
 
 @dataclass(frozen=True, slots=True)
@@ -77,7 +79,7 @@ class CliDependencies:
     source_factory: Callable[[str], RepositorySource] = _default_source_factory
     now: Callable[[], datetime] = lambda: datetime.now(UTC)
     classifier: Classifier = classify_repository
-    taxonomy_path: Path = field(default_factory=_default_taxonomy_path)
+    taxonomy_path: str | Path | Traversable = field(default_factory=_default_taxonomy_path)
 
 
 def create_app(dependencies: CliDependencies | None = None) -> typer.Typer:

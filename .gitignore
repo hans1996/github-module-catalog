@@ -12,6 +12,8 @@ dist/
 
 # Runtime data is intentionally kept out of Git.
 data/
+!src/github_module_catalog/data/
+!src/github_module_catalog/data/taxonomy.yaml
 state/
 catalog-output/
 
@@ -22,4 +24,3 @@ catalog-output/
 
 # Isolated feature worktrees.
 .worktrees/
-

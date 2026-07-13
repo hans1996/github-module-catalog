@@ -1,6 +1,7 @@
 # Taxonomy and classification
 
-The versioned source of truth is [`config/taxonomy.yaml`](../config/taxonomy.yaml).
+The versioned source of truth is
+[`src/github_module_catalog/data/taxonomy.yaml`](../src/github_module_catalog/data/taxonomy.yaml).
 Stable node IDs are machine contracts; labels, aliases, examples, and rules may
 be clarified only with an explicit taxonomy version change when meaning shifts.
 

@@ -43,7 +43,9 @@ from github_module_catalog.storage import RawObjectStore
 from github_module_catalog.taxonomy import Taxonomy, classify_repository, load_taxonomy
 
 NOW = datetime(2026, 7, 13, tzinfo=UTC)
-TAXONOMY_PATH = Path(__file__).parents[2] / "config" / "taxonomy.yaml"
+TAXONOMY_PATH = (
+    Path(__file__).parents[2] / "src" / "github_module_catalog" / "data" / "taxonomy.yaml"
+)
 
 
 def _observation(

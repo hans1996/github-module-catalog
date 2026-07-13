@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from collections.abc import Mapping
+from importlib.resources.abc import Traversable
 from pathlib import Path
 from types import MappingProxyType
 from typing import Self
@@ -178,10 +179,11 @@ class Taxonomy(ImmutableModel):
         return MappingProxyType({axis.id: axis.nodes for axis in self.axis_definitions})
 
 
-def load_taxonomy(path: str | Path) -> Taxonomy:
+def load_taxonomy(path: str | Path | Traversable) -> Taxonomy:
     """Load and strictly validate a versioned YAML taxonomy document."""
 
-    with Path(path).open(encoding="utf-8") as taxonomy_file:
+    taxonomy_source = Path(path) if isinstance(path, (str, Path)) else path
+    with taxonomy_source.open(encoding="utf-8") as taxonomy_file:
         raw_document = yaml.safe_load(taxonomy_file)
     if not isinstance(raw_document, dict):
         raise ValueError("taxonomy document must contain a mapping at its root")

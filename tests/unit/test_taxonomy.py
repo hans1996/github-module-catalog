@@ -10,7 +10,9 @@ from pydantic import ValidationError
 from github_module_catalog.models import RepositoryObservation, ReuseStatus
 from github_module_catalog.taxonomy import Taxonomy, classify_repository, load_taxonomy
 
-TAXONOMY_PATH = Path(__file__).parents[2] / "config" / "taxonomy.yaml"
+TAXONOMY_PATH = (
+    Path(__file__).parents[2] / "src" / "github_module_catalog" / "data" / "taxonomy.yaml"
+)
 REQUIRED_CAPABILITIES = {
     "cli",
     "web-ui",

@@ -275,7 +275,9 @@ def test_durable_discovery_records_inventory_observation_for_classification(
     result = _scan(FakeSource([PageResult(page)]), raw_store, state, max_pages=1)
     manifest = build_catalog_from_state(
         state,
-        taxonomy=load_taxonomy(Path("config/taxonomy.yaml")),
+        taxonomy=load_taxonomy(
+            Path("src/github_module_catalog/data/taxonomy.yaml")
+        ),
         source="github-public-repositories",
     )
 

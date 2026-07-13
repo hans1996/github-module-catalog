@@ -29,7 +29,9 @@ from github_module_catalog.source import (
 from github_module_catalog.taxonomy import classify_repository, load_taxonomy
 
 NOW = datetime(2026, 7, 13, 8, 0, tzinfo=UTC)
-TAXONOMY_PATH = Path(__file__).parents[2] / "config" / "taxonomy.yaml"
+TAXONOMY_PATH = (
+    Path(__file__).parents[2] / "src" / "github_module_catalog" / "data" / "taxonomy.yaml"
+)
 
 
 class ChunkedStream(httpx.SyncByteStream):
