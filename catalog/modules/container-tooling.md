@@ -2,13 +2,13 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-16T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-17T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `181846` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `181767` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 325 | 58708 | 2026-07-16T19:35:25Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 672 | 37981 | 2026-07-16T13:29:53Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
-| 675 | 37854 | 2026-07-16T16:05:15Z | [docker/compose](https://github.com/docker/compose) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 979 | 29954 | 2026-07-13T10:02:29Z | [abiosoft/colima](https://github.com/abiosoft/colima) | 0.97 | `MIT` | `safe_to_integrate` |
+| 325 | 58729 | 2026-07-16T19:45:09Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 671 | 37982 | 2026-07-17T03:19:50Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
+| 674 | 37864 | 2026-07-16T16:05:15Z | [docker/compose](https://github.com/docker/compose) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 978 | 29959 | 2026-07-13T10:02:29Z | [abiosoft/colima](https://github.com/abiosoft/colima) | 0.97 | `MIT` | `safe_to_integrate` |
