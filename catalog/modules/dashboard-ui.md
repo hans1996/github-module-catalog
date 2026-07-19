@@ -2,15 +2,15 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-18T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-19T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `181951` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `181892` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 492 | 45517 | 2026-07-02T13:57:12Z | [ColorlibHQ/AdminLTE](https://github.com/ColorlibHQ/AdminLTE) | 0.97 | `MIT` | `safe_to_integrate` |
-| 531 | 43666 | 2026-07-18T00:36:02Z | [payloadcms/payload](https://github.com/payloadcms/payload) | 0.77 | `MIT` | `safe_to_integrate` |
-| 582 | 41320 | 2026-07-18T19:23:53Z | [tabler/tabler](https://github.com/tabler/tabler) | 0.97 | `MIT` | `safe_to_integrate` |
-| 601 | 40388 | 2026-07-18T00:23:20Z | [appsmithorg/appsmith](https://github.com/appsmithorg/appsmith) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 762 | 35333 | 2026-06-05T15:19:38Z | [refinedev/refine](https://github.com/refinedev/refine) | 0.97 | `MIT` | `safe_to_integrate` |
-| 850 | 32942 | 2026-07-18T14:48:08Z | [vbenjs/vue-vben-admin](https://github.com/vbenjs/vue-vben-admin) | 0.75 | `MIT` | `safe_to_integrate` |
+| 492 | 45520 | 2026-07-02T13:57:12Z | [ColorlibHQ/AdminLTE](https://github.com/ColorlibHQ/AdminLTE) | 0.97 | `MIT` | `safe_to_integrate` |
+| 531 | 43672 | 2026-07-18T00:36:02Z | [payloadcms/payload](https://github.com/payloadcms/payload) | 0.77 | `MIT` | `safe_to_integrate` |
+| 582 | 41323 | 2026-07-18T19:45:44Z | [tabler/tabler](https://github.com/tabler/tabler) | 0.97 | `MIT` | `safe_to_integrate` |
+| 601 | 40394 | 2026-07-19T02:22:17Z | [appsmithorg/appsmith](https://github.com/appsmithorg/appsmith) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 762 | 35332 | 2026-06-05T15:19:38Z | [refinedev/refine](https://github.com/refinedev/refine) | 0.97 | `MIT` | `safe_to_integrate` |
+| 850 | 32944 | 2026-07-18T14:48:08Z | [vbenjs/vue-vben-admin](https://github.com/vbenjs/vue-vben-admin) | 0.75 | `MIT` | `safe_to_integrate` |
