@@ -12,7 +12,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 3
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 3
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 25
-  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 12
+  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
 - [`api-backend`](modules/api-backend.md) — API backend — 58
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
@@ -43,14 +43,14 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 61
+- [`media`](modules/media.md) — Media processing — 62
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 19
   - [`image-processing`](modules/image-processing.md) — Image processing — 6
   - [`media-downloader`](modules/media-downloader.md) — Media downloader — 2
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
-  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 12
-  - [`video-processing`](modules/video-processing.md) — Video processing — 9
+  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
+  - [`video-processing`](modules/video-processing.md) — Video processing — 10
 - [`security`](modules/security.md) — Security — 41
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
     - [`access-control`](modules/access-control.md) — Access control — 1
