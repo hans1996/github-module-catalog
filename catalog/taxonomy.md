@@ -6,11 +6,11 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 214
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 215
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 5
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 19
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 3
-  - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 3
+  - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 25
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
 - [`api-backend`](modules/api-backend.md) — API backend — 58
