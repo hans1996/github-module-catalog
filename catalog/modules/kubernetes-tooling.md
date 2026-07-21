@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-20T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-21T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182122` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182084` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 799 | 34170 | 2026-07-19T15:46:17Z | [derailed/k9s](https://github.com/derailed/k9s) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 980 | 30020 | 2026-07-19T23:55:32Z | [helm/helm](https://github.com/helm/helm) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 800 | 34172 | 2026-07-20T23:02:32Z | [derailed/k9s](https://github.com/derailed/k9s) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 982 | 30020 | 2026-07-21T01:09:46Z | [helm/helm](https://github.com/helm/helm) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
