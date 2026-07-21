@@ -61,6 +61,22 @@ dependency 的 write-capable publisher 也能逐 byte 重建。`taxonomy.md` 則
 關係與目前 counts 直接呈現在 GitHub。只有完整 snapshot 才會 atomically 取代
 `<workspace>/catalog-output`。`validate-output` 可單獨重做 raw-backed validation。
 
+### Whole-snapshot retry policy
+
+GitHub Search 不提供跨分頁的 snapshot isolation，因此 `total_count`、page membership 或
+`incomplete_results` 可能在一次十頁擷取途中短暫漂移。`refresh` 遇到
+`GitHubSearchError` 時最多執行三次完整嘗試，分別在第二、第三次之前等待 5 秒與 15 秒。
+每次嘗試都關閉舊 source、重新建立 client 並從 page 1 開始；selection cutoff 與 page
+budget 在整個 command 期間保持不變。成功摘要中的 `discovery_attempts` 會顯示實際嘗試
+次數，連續失敗則輸出最後一個安全的 Search 錯誤原因。
+
+重試只包住 Search snapshot boundary。Raw-backed validation、分類、artifact rendering 與
+publication 任一步驟失敗仍立即中止，而且舊的完整 catalog 不會被取代。曾評估通用的
+Tenacity 與 request-level 的 HTTPX/httpx-retries：後者無法恢復跨頁一致性；前者能做到，
+但這裡只有固定三次的同步 orchestration policy，新增 runtime dependency 的維護與供應鏈
+成本高於一個明確、可測的 bounded loop。若未來需要依 response headers、jitter 或多種
+backoff policy，再重新評估 Tenacity。
+
 Publisher 是第二個 trust boundary。它不需要第三方 dependency，會重驗：
 
 1. source tree 只有 manifest 宣告的 regular files，沒有 symlink、traversal 或額外檔案；

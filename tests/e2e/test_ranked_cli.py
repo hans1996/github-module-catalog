@@ -145,6 +145,7 @@ def _app(
     dependencies = CliDependencies(
         ranked_source_factory=ranked_source_factory,
         now=lambda: NOW,
+        sleep=lambda _seconds: None,
     )
     return create_app(dependencies), received_tokens, received
 
@@ -221,8 +222,32 @@ def test_ranked_refresh_publishes_tracked_shape_and_validates_from_raw_evidence(
     assert catalog["entries"][0]["repository"]["stargazers_count"] == 500
 
 
-def test_failed_ranked_refresh_preserves_the_previous_complete_output(tmp_path: Path) -> None:
-    app, _, _ = _app(fail_on_calls=frozenset({2}))
+def test_ranked_refresh_retries_a_transient_search_failure_from_page_one(
+    tmp_path: Path,
+) -> None:
+    app, received_tokens, received = _app(fail_on_calls=frozenset({1}))
+    workspace = tmp_path / "workspace"
+    assert RUNNER.invoke(app, ["init", "--workspace", str(workspace)]).exit_code == 0
+
+    refreshed = RUNNER.invoke(
+        app,
+        _refresh_arguments(workspace),
+        env={"GITHUB_TOKEN": _credential_marker()},
+    )
+
+    assert refreshed.exit_code == 0, refreshed.output
+    assert json.loads(refreshed.stdout)["discovery_attempts"] == 2
+    assert "attempt 1/3 failed" in refreshed.stderr
+    assert "retrying in 5 seconds" in refreshed.stderr
+    assert received_tokens == [_credential_marker(), _credential_marker()]
+    assert len(received) == 2
+    assert (workspace / "catalog-output" / "catalog.json").is_file()
+
+
+def test_failed_ranked_refresh_preserves_the_previous_complete_output(
+    tmp_path: Path,
+) -> None:
+    app, _, _ = _app(fail_on_calls=frozenset({2, 3, 4}))
     workspace = tmp_path / "workspace"
     assert RUNNER.invoke(app, ["init", "--workspace", str(workspace)]).exit_code == 0
     first = RUNNER.invoke(
@@ -246,6 +271,10 @@ def test_failed_ranked_refresh_preserves_the_previous_complete_output(tmp_path: 
     }
 
     assert failed.exit_code != 0
+    assert "ranked discovery failed after 3 attempts" in failed.stderr
+    assert "GitHubSearchError: simulated ranked source failure" in failed.stderr
+    assert "retrying in 5 seconds" in failed.stderr
+    assert "retrying in 15 seconds" in failed.stderr
     assert before == after
     assert _credential_marker() not in failed.output
 

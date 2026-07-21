@@ -8,6 +8,7 @@ import os
 import re
 import sqlite3
 import stat
+import time as time_module
 import uuid
 from collections.abc import Callable, Iterator, Mapping
 from contextlib import contextmanager
@@ -35,6 +36,7 @@ from github_module_catalog.exporters import (
 )
 from github_module_catalog.github import GitHubRepositorySource, parse_github_inventory
 from github_module_catalog.github_search import (
+    GitHubSearchError,
     GitHubSearchSource,
     RankedRepositorySnapshot,
     build_github_search_query,
@@ -70,6 +72,7 @@ _MAX_PAGES = 1_000
 _MAX_SEARCH_PAGES = 10
 _MAX_ACTIVE_WITHIN_DAYS = 3_650
 _SEARCH_RESULTS_PER_PAGE = 100
+_RANKED_DISCOVERY_RETRY_DELAYS_SECONDS = (5.0, 15.0)
 _RANKED_COVERAGE_NOTE = "Top ranked GitHub Search window; not all public repositories."
 _MAX_ARTIFACT_BYTES = 32 * 1024 * 1024
 _MAX_ARTIFACT_TOTAL_BYTES = 256 * 1024 * 1024
@@ -125,6 +128,7 @@ class CliDependencies:
     source_factory: Callable[[str], RepositorySource] = _default_source_factory
     ranked_source_factory: Callable[[str], RankedRepositorySource] = _default_ranked_source_factory
     now: Callable[[], datetime] = lambda: datetime.now(UTC)
+    sleep: Callable[[float], None] = time_module.sleep
     classifier: Classifier = classify_repository
     taxonomy_path: str | Path | Traversable = field(default_factory=_default_taxonomy_path)
 
@@ -421,16 +425,13 @@ def _refresh(
         max_pages=max_pages,
     )
     with _stores(path) as stores:
-        source = dependencies.ranked_source_factory(token)
-        try:
-            snapshot = source.collect_snapshot(
-                criteria,
-                max_pages=max_pages,
-                raw_store=stores.raw_store,
-            )
-        finally:
-            if isinstance(source, _Closable):
-                source.close()
+        snapshot, discovery_attempts = _collect_ranked_snapshot(
+            token=token,
+            criteria=criteria,
+            max_pages=max_pages,
+            raw_store=stores.raw_store,
+            dependencies=dependencies,
+        )
         completed_at = dependencies.now()
         if not isinstance(completed_at, datetime) or completed_at.utcoffset() is None:
             raise CliOperationError("completion clock must be timezone-aware")
@@ -517,6 +518,7 @@ def _refresh(
                 )
     return {
         "status": "published",
+        "discovery_attempts": discovery_attempts,
         "entries": manifest.entry_count,
         "capabilities": manifest.capability_count,
         "classification_failures": len(manifest.classification_failure_repository_ids),
@@ -528,6 +530,45 @@ def _refresh(
         "artifacts": len(artifacts),
         "output": str(output.resolve()),
     }
+
+
+def _collect_ranked_snapshot(
+    *,
+    token: str,
+    criteria: CatalogSelectionCriteria,
+    max_pages: int,
+    raw_store: RawObjectStore,
+    dependencies: CliDependencies,
+) -> tuple[RankedRepositorySnapshot, int]:
+    total_attempts = len(_RANKED_DISCOVERY_RETRY_DELAYS_SECONDS) + 1
+    for attempt in range(1, total_attempts + 1):
+        source = dependencies.ranked_source_factory(token)
+        try:
+            snapshot = source.collect_snapshot(
+                criteria,
+                max_pages=max_pages,
+                raw_store=raw_store,
+            )
+        except GitHubSearchError as error:
+            if attempt == total_attempts:
+                raise CliOperationError(
+                    f"ranked discovery failed after {attempt} attempts "
+                    f"({type(error).__name__}: {error})"
+                ) from None
+            retry_delay = _RANKED_DISCOVERY_RETRY_DELAYS_SECONDS[attempt - 1]
+            typer.echo(
+                f"Warning: ranked discovery attempt {attempt}/{total_attempts} failed "
+                f"({type(error).__name__}: {error}); "
+                f"retrying in {retry_delay:g} seconds",
+                err=True,
+            )
+        else:
+            return snapshot, attempt
+        finally:
+            if isinstance(source, _Closable):
+                source.close()
+        dependencies.sleep(retry_delay)
+    raise AssertionError("ranked discovery retry loop exhausted")  # pragma: no cover
 
 
 def _snapshot_summary(snapshot: CatalogStateSnapshot) -> Mapping[str, object]:
