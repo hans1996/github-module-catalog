@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-21T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-22T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182274` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182196` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 566 | 42261 | 2026-07-20T23:45:42Z | [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | 0.75 | `GPL-2.0` | `discovery_only` |
-| 732 | 36208 | 2026-07-17T16:28:14Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 566 | 42266 | 2026-07-20T23:45:42Z | [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | 0.75 | `GPL-2.0` | `discovery_only` |
+| 732 | 36213 | 2026-07-17T16:28:14Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
