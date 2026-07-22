@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-07-22T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182323` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182397` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 95 | 108272 | 2026-07-22T13:47:38Z | [fatedier/frp](https://github.com/fatedier/frp) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 95 | 108275 | 2026-07-22T18:31:31Z | [fatedier/frp](https://github.com/fatedier/frp) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
