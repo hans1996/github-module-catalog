@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-07-24T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182385` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182443` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 368 | 54534 | 2026-07-24T03:43:56Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 534 | 43845 | 2026-07-22T08:06:35Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 368 | 54562 | 2026-07-24T08:31:53Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 534 | 43851 | 2026-07-22T08:06:35Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
 | 662 | 38293 | 2026-07-24T00:43:35Z | [istio/istio](https://github.com/istio/istio) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 744 | 35920 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
-| 986 | 30009 | 2026-07-23T17:34:17Z | [hashicorp/consul](https://github.com/hashicorp/consul) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 744 | 35925 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
+| 986 | 30011 | 2026-07-24T05:44:48Z | [hashicorp/consul](https://github.com/hashicorp/consul) | 0.97 | `NOASSERTION` | `discovery_only` |
