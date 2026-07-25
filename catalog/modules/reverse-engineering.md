@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-07-25T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182555` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182652` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 232 | 71340 | 2026-07-24T16:30:14Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 260 | 66485 | 2026-07-24T22:39:45Z | [xtekky/gpt4free](https://github.com/xtekky/gpt4free) | 0.97 | `GPL-3.0` | `discovery_only` |
-| 372 | 54270 | 2026-07-21T00:47:52Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | 0.97 | `GPL-2.0` | `discovery_only` |
-| 421 | 49772 | 2026-07-14T19:26:37Z | [skylot/jadx](https://github.com/skylot/jadx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 430 | 48991 | 2026-07-24T22:16:42Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 232 | 71357 | 2026-07-24T16:30:14Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 260 | 66492 | 2026-07-25T18:37:20Z | [xtekky/gpt4free](https://github.com/xtekky/gpt4free) | 0.97 | `GPL-3.0` | `discovery_only` |
+| 372 | 54275 | 2026-07-21T00:47:52Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | 0.97 | `GPL-2.0` | `discovery_only` |
+| 422 | 49783 | 2026-07-14T19:26:37Z | [skylot/jadx](https://github.com/skylot/jadx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 430 | 48995 | 2026-07-24T22:16:42Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.99 | `NOASSERTION` | `discovery_only` |

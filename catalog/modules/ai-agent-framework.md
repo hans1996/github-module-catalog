@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-07-25T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182555` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182652` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 50 | 150170 | 2026-07-25T07:38:29Z | [langgenius/dify](https://github.com/langgenius/dify) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 183 | 77816 | 2026-07-25T02:54:14Z | [bytedance/deer-flow](https://github.com/bytedance/deer-flow) | 0.97 | `MIT` | `safe_to_integrate` |
-| 242 | 69503 | 2026-01-21T10:12:33Z | [FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT) | 0.77 | `MIT` | `safe_to_integrate` |
-| 263 | 65870 | 2026-07-25T06:07:50Z | [ruvnet/ruflo](https://github.com/ruvnet/ruflo) | 0.97 | `MIT` | `safe_to_integrate` |
-| 576 | 41842 | 2026-07-21T06:13:29Z | [666ghj/BettaFish](https://github.com/666ghj/BettaFish) | 0.97 | `GPL-2.0` | `discovery_only` |
+| 50 | 150226 | 2026-07-25T19:36:33Z | [langgenius/dify](https://github.com/langgenius/dify) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 183 | 77846 | 2026-07-25T15:50:21Z | [bytedance/deer-flow](https://github.com/bytedance/deer-flow) | 0.97 | `MIT` | `safe_to_integrate` |
+| 242 | 69513 | 2026-01-21T10:12:33Z | [FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT) | 0.77 | `MIT` | `safe_to_integrate` |
+| 263 | 65945 | 2026-07-25T06:07:50Z | [ruvnet/ruflo](https://github.com/ruvnet/ruflo) | 0.97 | `MIT` | `safe_to_integrate` |
+| 576 | 41841 | 2026-07-21T06:13:29Z | [666ghj/BettaFish](https://github.com/666ghj/BettaFish) | 0.97 | `GPL-2.0` | `discovery_only` |

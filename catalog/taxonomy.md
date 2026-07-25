@@ -6,15 +6,15 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 215
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 216
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 5
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 19
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 3
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 25
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
-- [`api-backend`](modules/api-backend.md) — API backend — 58
-  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
+- [`api-backend`](modules/api-backend.md) — API backend — 59
+  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 6
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
@@ -31,9 +31,9 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 2
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 9
-- [`devops`](modules/devops.md) — DevOps and delivery — 46
+- [`devops`](modules/devops.md) — DevOps and delivery — 45
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 3
-  - [`configuration-management`](modules/configuration-management.md) — Configuration management — 3
+  - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 4
   - [`infrastructure-as-code`](modules/infrastructure-as-code.md) — Infrastructure as code — 1
   - [`kubernetes-tooling`](modules/kubernetes-tooling.md) — Kubernetes tooling — 2

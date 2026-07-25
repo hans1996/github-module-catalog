@@ -4,10 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-07-25T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182555` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182652` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 241 | 69681 | 2026-07-24T18:51:56Z | [ansible/ansible](https://github.com/ansible/ansible) | 0.77 | `GPL-3.0` | `discovery_only` |
-| 845 | 33208 | 2026-07-24T09:50:44Z | [alibaba/nacos](https://github.com/alibaba/nacos) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 1000 | 29795 | 2026-07-19T06:42:34Z | [apolloconfig/apollo](https://github.com/apolloconfig/apollo) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 241 | 69693 | 2026-07-24T18:51:56Z | [ansible/ansible](https://github.com/ansible/ansible) | 0.77 | `GPL-3.0` | `discovery_only` |
+| 845 | 33210 | 2026-07-24T09:50:44Z | [alibaba/nacos](https://github.com/alibaba/nacos) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
