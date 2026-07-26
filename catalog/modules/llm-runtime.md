@@ -4,10 +4,10 @@
 
 Minimum stars: `100`; Pushed since: `2025-07-26T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182566` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182609` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 77 | 121590 | 2026-07-26T00:37:18Z | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | 0.77 | `MIT` | `safe_to_integrate` |
-| 152 | 87160 | 2026-07-26T02:24:27Z | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 547 | 43352 | 2026-07-25T23:08:06Z | [ray-project/ray](https://github.com/ray-project/ray) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 77 | 121607 | 2026-07-26T05:20:15Z | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | 0.77 | `MIT` | `safe_to_integrate` |
+| 152 | 87179 | 2026-07-26T08:39:26Z | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 546 | 43355 | 2026-07-26T04:51:54Z | [ray-project/ray](https://github.com/ray-project/ray) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
