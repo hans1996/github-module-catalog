@@ -2,16 +2,16 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-26T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-27T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182723` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182848` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 153 | 87111 | 2026-07-26T06:08:10Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
-| 431 | 49003 | 2026-07-24T22:16:42Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 477 | 46331 | 2026-07-24T22:18:48Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 482 | 46179 | 2026-07-24T18:38:04Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 516 | 44466 | 2026-07-26T19:33:34Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 679 | 38017 | 2026-07-26T19:15:32Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 749 | 35800 | 2026-07-24T22:10:07Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |
+| 153 | 87128 | 2026-07-26T06:08:10Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
+| 431 | 49005 | 2026-07-26T20:44:56Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 477 | 46371 | 2026-07-24T22:18:48Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 482 | 46187 | 2026-07-24T18:38:04Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 516 | 44612 | 2026-07-27T03:37:18Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 679 | 38021 | 2026-07-26T19:45:12Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 748 | 35809 | 2026-07-24T22:10:07Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |

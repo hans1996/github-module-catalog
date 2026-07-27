@@ -17,9 +17,9 @@ CLIs, services, plugins, and templates for larger systems.
 
 | Indexed repositories | GitHub Search matches | Last refresh |
 | ---: | ---: | --- |
-| **1,000** | **182,723** | **2026-07-26 19:38 UTC** |
+| **1,000** | **182,848** | **2026-07-27 04:06 UTC** |
 
-**Selection:** **100+ stars** · pushed since **2025-07-26** · public · non-archived · non-fork
+**Selection:** **100+ stars** · pushed since **2025-07-27** · public · non-archived · non-fork
 
 **Ranking:** stars descending, then repository ID. This is a top-ranked window, not an exhaustive index of GitHub.
 
@@ -33,7 +33,7 @@ Capability families overlap; one repository may appear in more than one family.
 | --- | ---: | --- |
 | [`ai-ml`](catalog/modules/ai-ml.md) | 216 | [`ai-agent-framework`](catalog/modules/ai-agent-framework.md) (5) · [`computer-vision`](catalog/modules/computer-vision.md) (18) · [`llm-runtime`](catalog/modules/llm-runtime.md) (3) · [`model-training`](catalog/modules/model-training.md) (4) · [`rag-retrieval`](catalog/modules/rag-retrieval.md) (26) · [`speech-ai`](catalog/modules/speech-ai.md) (13) |
 | [`api-backend`](catalog/modules/api-backend.md) | 59 | [`api-gateway`](catalog/modules/api-gateway.md) (6) · [`graphql-api`](catalog/modules/graphql-api.md) (1) · [`realtime-api`](catalog/modules/realtime-api.md) (1) · [`rest-api`](catalog/modules/rest-api.md) (7) · [`rpc-api`](catalog/modules/rpc-api.md) (2) |
-| [`cli`](catalog/modules/cli.md) | 94 | [`package-manager`](catalog/modules/package-manager.md) (6) · [`shell-tooling`](catalog/modules/shell-tooling.md) (23) · [`terminal-emulator`](catalog/modules/terminal-emulator.md) (7) · [`terminal-ui`](catalog/modules/terminal-ui.md) (8) |
+| [`cli`](catalog/modules/cli.md) | 95 | [`package-manager`](catalog/modules/package-manager.md) (6) · [`shell-tooling`](catalog/modules/shell-tooling.md) (23) · [`terminal-emulator`](catalog/modules/terminal-emulator.md) (7) · [`terminal-ui`](catalog/modules/terminal-ui.md) (8) |
 | [`database-storage`](catalog/modules/database-storage.md) | 43 | [`cache-key-value`](catalog/modules/cache-key-value.md) (4) · [`document-database`](catalog/modules/document-database.md) (1) · [`object-storage`](catalog/modules/object-storage.md) (2) · [`relational-database`](catalog/modules/relational-database.md) (2) · [`search-engine`](catalog/modules/search-engine.md) (5) · [`vector-database`](catalog/modules/vector-database.md) (9) |
 | [`devops`](catalog/modules/devops.md) | 45 | [`ci-cd`](catalog/modules/ci-cd.md) (3) · [`configuration-management`](catalog/modules/configuration-management.md) (2) · [`container-tooling`](catalog/modules/container-tooling.md) (4) · [`infrastructure-as-code`](catalog/modules/infrastructure-as-code.md) (1) · [`kubernetes-tooling`](catalog/modules/kubernetes-tooling.md) (2) · [`observability`](catalog/modules/observability.md) (19) · [`distributed-tracing`](catalog/modules/distributed-tracing.md) (1) · [`error-tracking`](catalog/modules/error-tracking.md) (2) · [`log-management`](catalog/modules/log-management.md) (1) · `metrics-monitoring` (0) · [`profiling`](catalog/modules/profiling.md) (2) |
 | [`media`](catalog/modules/media.md) | 61 | [`audio-processing`](catalog/modules/audio-processing.md) (2) · [`computer-vision`](catalog/modules/computer-vision.md) (18) · [`image-processing`](catalog/modules/image-processing.md) (5) · [`media-downloader`](catalog/modules/media-downloader.md) (2) · [`media-streaming`](catalog/modules/media-streaming.md) (3) · [`speech-ai`](catalog/modules/speech-ai.md) (13) · [`video-processing`](catalog/modules/video-processing.md) (10) |

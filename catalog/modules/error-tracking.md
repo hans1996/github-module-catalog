@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-26T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-27T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182723` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182848` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 520 | 44383 | 2026-07-26T13:09:24Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 698 | 37327 | 2026-07-26T19:04:11Z | [PostHog/posthog](https://github.com/PostHog/posthog) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 520 | 44384 | 2026-07-27T01:06:50Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 699 | 37328 | 2026-07-27T03:42:23Z | [PostHog/posthog](https://github.com/PostHog/posthog) | 0.77 | `NOASSERTION` | `discovery_only` |
