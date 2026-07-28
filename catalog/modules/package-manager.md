@@ -2,15 +2,15 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-27T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-28T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `183044` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182970` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 124 | 95043 | 2026-07-27T19:55:28Z | [oven-sh/bun](https://github.com/oven-sh/bun) | 0.77 | `NOASSERTION` | `discovery_only` |
-| 432 | 48962 | 2026-07-27T19:43:35Z | [Homebrew/brew](https://github.com/Homebrew/brew) | 0.97 | `BSD-2-Clause` | `safe_to_integrate` |
+| 124 | 95050 | 2026-07-28T03:39:26Z | [oven-sh/bun](https://github.com/oven-sh/bun) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 432 | 48964 | 2026-07-27T22:05:04Z | [Homebrew/brew](https://github.com/Homebrew/brew) | 0.97 | `BSD-2-Clause` | `safe_to_integrate` |
 | 585 | 41500 | 2026-05-12T11:09:42Z | [yarnpkg/yarn](https://github.com/yarnpkg/yarn) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 745 | 35895 | 2026-07-27T19:48:54Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | 0.99 | `MIT` | `safe_to_integrate` |
-| 802 | 34295 | 2026-07-26T15:25:05Z | [python-poetry/poetry](https://github.com/python-poetry/poetry) | 0.97 | `MIT` | `safe_to_integrate` |
-| 991 | 30046 | 2026-07-24T18:03:52Z | [helm/helm](https://github.com/helm/helm) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 746 | 35899 | 2026-07-28T01:07:09Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | 0.99 | `MIT` | `safe_to_integrate` |
+| 804 | 34294 | 2026-07-27T21:14:07Z | [python-poetry/poetry](https://github.com/python-poetry/poetry) | 0.97 | `MIT` | `safe_to_integrate` |
+| 991 | 30048 | 2026-07-27T21:33:45Z | [helm/helm](https://github.com/helm/helm) | 0.77 | `Apache-2.0` | `safe_to_integrate` |

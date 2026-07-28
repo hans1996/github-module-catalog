@@ -2,16 +2,16 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-27T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-28T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `183044` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182970` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 104 | 104377 | 2026-07-25T03:03:42Z | [microsoft/terminal](https://github.com/microsoft/terminal) | 0.97 | `MIT` | `safe_to_integrate` |
-| 217 | 73547 | 2026-07-27T04:02:50Z | [Eugeny/tabby](https://github.com/Eugeny/tabby) | 0.95 | `MIT` | `safe_to_integrate` |
-| 267 | 65119 | 2026-07-14T03:43:13Z | [alacritty/alacritty](https://github.com/alacritty/alacritty) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 331 | 58770 | 2026-07-27T18:52:45Z | [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty) | 0.75 | `MIT` | `safe_to_integrate` |
-| 337 | 58240 | 2026-07-14T20:47:14Z | [termux/termux-app](https://github.com/termux/termux-app) | 0.75 | `NOASSERTION` | `discovery_only` |
-| 516 | 44675 | 2026-06-29T11:03:02Z | [vercel/hyper](https://github.com/vercel/hyper) | 0.95 | `MIT` | `safe_to_integrate` |
-| 811 | 34103 | 2026-07-27T18:47:16Z | [kovidgoyal/kitty](https://github.com/kovidgoyal/kitty) | 0.95 | `GPL-3.0` | `discovery_only` |
+| 104 | 104378 | 2026-07-28T03:05:17Z | [microsoft/terminal](https://github.com/microsoft/terminal) | 0.97 | `MIT` | `safe_to_integrate` |
+| 218 | 73547 | 2026-07-27T04:02:50Z | [Eugeny/tabby](https://github.com/Eugeny/tabby) | 0.95 | `MIT` | `safe_to_integrate` |
+| 267 | 65127 | 2026-07-14T03:43:13Z | [alacritty/alacritty](https://github.com/alacritty/alacritty) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 331 | 58784 | 2026-07-28T03:34:21Z | [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty) | 0.75 | `MIT` | `safe_to_integrate` |
+| 338 | 58250 | 2026-07-14T20:47:14Z | [termux/termux-app](https://github.com/termux/termux-app) | 0.75 | `NOASSERTION` | `discovery_only` |
+| 516 | 44676 | 2026-06-29T11:03:02Z | [vercel/hyper](https://github.com/vercel/hyper) | 0.95 | `MIT` | `safe_to_integrate` |
+| 811 | 34113 | 2026-07-28T03:35:19Z | [kovidgoyal/kitty](https://github.com/kovidgoyal/kitty) | 0.95 | `GPL-3.0` | `discovery_only` |
