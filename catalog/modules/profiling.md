@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-28T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-29T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182927` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182855` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 522 | 44397 | 2026-07-28T19:52:21Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 911 | 31687 | 2026-07-28T18:58:00Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 523 | 44398 | 2026-07-29T00:17:43Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 913 | 31689 | 2026-07-28T23:55:16Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.95 | `NOASSERTION` | `discovery_only` |

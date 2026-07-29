@@ -2,15 +2,15 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-07-28T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-07-29T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182927` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182855` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 50 | 150573 | 2026-07-28T19:53:59Z | [langgenius/dify](https://github.com/langgenius/dify) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 184 | 78070 | 2026-07-28T16:09:03Z | [bytedance/deer-flow](https://github.com/bytedance/deer-flow) | 0.97 | `MIT` | `safe_to_integrate` |
-| 243 | 69571 | 2026-01-21T10:12:33Z | [FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT) | 0.77 | `MIT` | `safe_to_integrate` |
-| 261 | 66384 | 2026-07-28T19:26:12Z | [ruvnet/ruflo](https://github.com/ruvnet/ruflo) | 0.97 | `MIT` | `safe_to_integrate` |
-| 478 | 46336 | 2026-07-28T17:41:36Z | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | 0.99 | `MIT` | `safe_to_integrate` |
-| 576 | 41878 | 2026-07-21T06:13:29Z | [666ghj/BettaFish](https://github.com/666ghj/BettaFish) | 0.97 | `GPL-2.0` | `discovery_only` |
+| 50 | 150609 | 2026-07-29T03:40:29Z | [langgenius/dify](https://github.com/langgenius/dify) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 186 | 78106 | 2026-07-29T00:08:33Z | [bytedance/deer-flow](https://github.com/bytedance/deer-flow) | 0.97 | `MIT` | `safe_to_integrate` |
+| 245 | 69577 | 2026-01-21T10:12:33Z | [FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT) | 0.77 | `MIT` | `safe_to_integrate` |
+| 263 | 66421 | 2026-07-29T02:49:55Z | [ruvnet/ruflo](https://github.com/ruvnet/ruflo) | 0.97 | `MIT` | `safe_to_integrate` |
+| 479 | 46349 | 2026-07-29T02:38:16Z | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | 0.99 | `MIT` | `safe_to_integrate` |
+| 577 | 41881 | 2026-07-21T06:13:29Z | [666ghj/BettaFish](https://github.com/666ghj/BettaFish) | 0.97 | `GPL-2.0` | `discovery_only` |
