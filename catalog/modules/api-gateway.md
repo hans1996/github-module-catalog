@@ -4,13 +4,13 @@
 
 Minimum stars: `100`; Pushed since: `2025-07-30T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `182936` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `182991` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 367 | 55051 | 2026-07-30T03:33:15Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 540 | 43882 | 2026-07-22T08:06:35Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 672 | 38307 | 2026-07-29T22:52:05Z | [istio/istio](https://github.com/istio/istio) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 745 | 36043 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
-| 807 | 34255 | 2026-07-30T01:17:15Z | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | 0.97 | `MIT` | `safe_to_integrate` |
-| 995 | 30010 | 2026-07-29T06:58:54Z | [hashicorp/consul](https://github.com/hashicorp/consul) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 367 | 55073 | 2026-07-30T08:59:41Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 541 | 43884 | 2026-07-22T08:06:35Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 672 | 38307 | 2026-07-30T08:57:43Z | [istio/istio](https://github.com/istio/istio) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 743 | 36053 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
+| 799 | 34475 | 2026-07-30T08:24:43Z | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | 0.97 | `MIT` | `safe_to_integrate` |
+| 995 | 30010 | 2026-07-30T08:38:59Z | [hashicorp/consul](https://github.com/hashicorp/consul) | 0.97 | `NOASSERTION` | `discovery_only` |
