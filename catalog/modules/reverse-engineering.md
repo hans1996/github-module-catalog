@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-01T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `183204` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `183271` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 233 | 71707 | 2026-07-31T17:53:27Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 233 | 71717 | 2026-07-31T17:53:27Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
 | 262 | 66515 | 2026-07-26T01:47:30Z | [xtekky/gpt4free](https://github.com/xtekky/gpt4free) | 0.97 | `GPL-3.0` | `discovery_only` |
-| 377 | 54350 | 2026-08-01T11:57:29Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | 0.97 | `GPL-2.0` | `discovery_only` |
-| 423 | 49856 | 2026-07-28T18:28:15Z | [skylot/jadx](https://github.com/skylot/jadx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 432 | 49040 | 2026-07-26T20:44:56Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 376 | 54352 | 2026-08-01T19:29:13Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | 0.97 | `GPL-2.0` | `discovery_only` |
+| 422 | 49864 | 2026-07-28T18:28:15Z | [skylot/jadx](https://github.com/skylot/jadx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 431 | 49040 | 2026-07-26T20:44:56Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.99 | `NOASSERTION` | `discovery_only` |
