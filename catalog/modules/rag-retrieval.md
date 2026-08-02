@@ -4,33 +4,33 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-02T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `183268` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `183321` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 50 | 151043 | 2026-08-02T08:36:24Z | [langgenius/dify](https://github.com/langgenius/dify) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 52 | 147575 | 2026-08-01T07:57:17Z | [open-webui/open-webui](https://github.com/open-webui/open-webui) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 54 | 143205 | 2026-08-01T09:41:15Z | [langchain-ai/langchain](https://github.com/langchain-ai/langchain) | 0.97 | `MIT` | `safe_to_integrate` |
-| 114 | 100516 | 2026-08-01T14:44:12Z | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 140 | 89285 | 2026-08-02T03:25:43Z | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 157 | 86754 | 2026-07-22T11:59:34Z | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 158 | 86595 | 2026-08-02T02:19:14Z | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 275 | 64223 | 2026-07-31T04:38:27Z | [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | 0.97 | `MIT` | `safe_to_integrate` |
-| 280 | 63952 | 2026-08-01T04:33:33Z | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 296 | 62298 | 2026-08-01T15:06:21Z | [mem0ai/mem0](https://github.com/mem0ai/mem0) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 333 | 58990 | 2026-07-05T17:59:07Z | [pathwaycom/llm-app](https://github.com/pathwaycom/llm-app) | 0.95 | `MIT` | `safe_to_integrate` |
-| 370 | 55092 | 2026-07-31T17:16:39Z | [FlowiseAI/Flowise](https://github.com/FlowiseAI/Flowise) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 410 | 51294 | 2026-08-01T08:59:09Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | 0.97 | `MIT` | `safe_to_integrate` |
-| 466 | 47232 | 2026-07-30T05:57:37Z | [jeecgboot/JeecgBoot](https://github.com/jeecgboot/JeecgBoot) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 506 | 45461 | 2026-08-02T01:10:22Z | [milvus-io/milvus](https://github.com/milvus-io/milvus) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 656 | 38654 | 2026-08-02T00:51:22Z | [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | 0.97 | `MIT` | `safe_to_integrate` |
-| 661 | 38494 | 2025-11-10T09:27:42Z | [chatchat-space/Langchain-Chatchat](https://github.com/chatchat-space/Langchain-Chatchat) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 669 | 38423 | 2026-08-02T07:21:53Z | [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) | 0.99 | `MIT` | `safe_to_integrate` |
-| 741 | 36156 | 2026-08-02T01:55:40Z | [khoj-ai/khoj](https://github.com/khoj-ai/khoj) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 749 | 35951 | 2026-04-11T14:33:06Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.97 | `MIT` | `safe_to_integrate` |
-| 783 | 35161 | 2026-07-26T07:09:24Z | [microsoft/graphrag](https://github.com/microsoft/graphrag) | 0.99 | `MIT` | `safe_to_integrate` |
-| 788 | 34954 | 2026-08-02T08:05:30Z | [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) | 0.97 | `MIT` | `safe_to_integrate` |
-| 877 | 32557 | 2026-05-06T16:17:10Z | [datawhalechina/happy-llm](https://github.com/datawhalechina/happy-llm) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 907 | 31855 | 2026-08-02T05:45:13Z | [HKUDS/DeepTutor](https://github.com/HKUDS/DeepTutor) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 933 | 31369 | 2026-08-02T08:23:28Z | [onyx-dot-app/onyx](https://github.com/onyx-dot-app/onyx) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 967 | 30711 | 2025-09-30T18:07:21Z | [stanford-oval/storm](https://github.com/stanford-oval/storm) | 0.97 | `MIT` | `safe_to_integrate` |
+| 50 | 151063 | 2026-08-02T13:43:36Z | [langgenius/dify](https://github.com/langgenius/dify) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 52 | 147593 | 2026-08-01T07:57:17Z | [open-webui/open-webui](https://github.com/open-webui/open-webui) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 54 | 143223 | 2026-08-02T08:50:40Z | [langchain-ai/langchain](https://github.com/langchain-ai/langchain) | 0.97 | `MIT` | `safe_to_integrate` |
+| 113 | 100730 | 2026-08-01T14:44:12Z | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 140 | 89305 | 2026-08-02T03:25:43Z | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 157 | 86771 | 2026-07-22T11:59:34Z | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 158 | 86614 | 2026-08-02T13:32:45Z | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 276 | 64230 | 2026-07-31T04:38:27Z | [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | 0.97 | `MIT` | `safe_to_integrate` |
+| 280 | 63999 | 2026-08-01T04:33:33Z | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 296 | 62313 | 2026-08-01T15:06:21Z | [mem0ai/mem0](https://github.com/mem0ai/mem0) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 333 | 59029 | 2026-07-05T17:59:07Z | [pathwaycom/llm-app](https://github.com/pathwaycom/llm-app) | 0.95 | `MIT` | `safe_to_integrate` |
+| 370 | 55100 | 2026-07-31T17:16:39Z | [FlowiseAI/Flowise](https://github.com/FlowiseAI/Flowise) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 410 | 51302 | 2026-08-01T08:59:09Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | 0.97 | `MIT` | `safe_to_integrate` |
+| 466 | 47237 | 2026-07-30T05:57:37Z | [jeecgboot/JeecgBoot](https://github.com/jeecgboot/JeecgBoot) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 507 | 45463 | 2026-08-02T01:10:22Z | [milvus-io/milvus](https://github.com/milvus-io/milvus) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 656 | 38673 | 2026-08-02T00:51:22Z | [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | 0.97 | `MIT` | `safe_to_integrate` |
+| 661 | 38495 | 2025-11-10T09:27:42Z | [chatchat-space/Langchain-Chatchat](https://github.com/chatchat-space/Langchain-Chatchat) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 669 | 38425 | 2026-08-02T13:42:49Z | [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) | 0.99 | `MIT` | `safe_to_integrate` |
+| 741 | 36160 | 2026-08-02T01:55:40Z | [khoj-ai/khoj](https://github.com/khoj-ai/khoj) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 749 | 35955 | 2026-04-11T14:33:06Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.97 | `MIT` | `safe_to_integrate` |
+| 783 | 35168 | 2026-07-26T07:09:24Z | [microsoft/graphrag](https://github.com/microsoft/graphrag) | 0.99 | `MIT` | `safe_to_integrate` |
+| 788 | 34956 | 2026-08-02T13:55:29Z | [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) | 0.97 | `MIT` | `safe_to_integrate` |
+| 877 | 32567 | 2026-05-06T16:17:10Z | [datawhalechina/happy-llm](https://github.com/datawhalechina/happy-llm) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 904 | 31901 | 2026-08-02T05:45:13Z | [HKUDS/DeepTutor](https://github.com/HKUDS/DeepTutor) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 933 | 31374 | 2026-08-02T11:16:31Z | [onyx-dot-app/onyx](https://github.com/onyx-dot-app/onyx) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 966 | 30734 | 2025-09-30T18:07:21Z | [stanford-oval/storm](https://github.com/stanford-oval/storm) | 0.97 | `MIT` | `safe_to_integrate` |
