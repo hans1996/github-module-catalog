@@ -6,24 +6,24 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 217
-  - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 6
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 218
+  - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 4
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 26
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
-- [`api-backend`](modules/api-backend.md) — API backend — 59
-  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 6
+- [`api-backend`](modules/api-backend.md) — API backend — 58
+  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 95
+- [`cli`](modules/cli.md) — Command-line interface — 96
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 6
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
-  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 8
+  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 9
 - [`database-storage`](modules/database-storage.md) — Database and storage — 43
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 4
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
@@ -31,7 +31,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 2
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 9
-- [`devops`](modules/devops.md) — DevOps and delivery — 45
+- [`devops`](modules/devops.md) — DevOps and delivery — 44
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 3
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 4
