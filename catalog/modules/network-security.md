@@ -2,10 +2,10 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-04T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-05T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `183577` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `183554` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 96 | 108547 | 2026-08-04T04:53:16Z | [fatedier/frp](https://github.com/fatedier/frp) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 96 | 108561 | 2026-08-05T02:52:16Z | [fatedier/frp](https://github.com/fatedier/frp) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
