@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-06T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `183655` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `183686` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 35 | 182706 | 2026-08-04T22:58:34Z | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | 0.99 | `Unlicense` | `safe_to_integrate` |
+| 35 | 182751 | 2026-08-04T22:58:34Z | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | 0.99 | `Unlicense` | `safe_to_integrate` |
 | 575 | 41977 | 2026-04-06T11:59:56Z | [imputnet/cobalt](https://github.com/imputnet/cobalt) | 0.95 | `AGPL-3.0` | `discovery_only` |
