@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-08T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `183843` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `183883` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 828 | 33950 | 2026-08-08T01:40:47Z | [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 969 | 30752 | 2026-08-08T01:39:41Z | [rustfs/rustfs](https://github.com/rustfs/rustfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 828 | 33953 | 2026-08-08T06:58:49Z | [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 969 | 30761 | 2026-08-08T07:04:47Z | [rustfs/rustfs](https://github.com/rustfs/rustfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
