@@ -4,11 +4,11 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-11T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `184160` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `184230` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 216 | 73976 | 2026-08-10T03:20:42Z | [hiyouga/LlamaFactory](https://github.com/hiyouga/LlamaFactory) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 249 | 69863 | 2026-08-11T00:09:36Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 345 | 57852 | 2026-08-02T19:01:35Z | [ultralytics/yolov5](https://github.com/ultralytics/yolov5) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 408 | 51541 | 2026-08-09T22:20:15Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | 0.97 | `MIT` | `safe_to_integrate` |
+| 215 | 73987 | 2026-08-10T03:20:42Z | [hiyouga/LlamaFactory](https://github.com/hiyouga/LlamaFactory) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 249 | 69889 | 2026-08-11T07:36:26Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 347 | 57853 | 2026-08-02T19:01:35Z | [ultralytics/yolov5](https://github.com/ultralytics/yolov5) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 408 | 51552 | 2026-08-09T22:20:15Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | 0.97 | `MIT` | `safe_to_integrate` |
