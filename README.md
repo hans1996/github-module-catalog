@@ -17,7 +17,7 @@ CLIs, services, plugins, and templates for larger systems.
 
 | Indexed repositories | GitHub Search matches | Last refresh |
 | ---: | ---: | --- |
-| **1,000** | **184,810** | **2026-08-13 13:52 UTC** |
+| **1,000** | **184,885** | **2026-08-13 19:28 UTC** |
 
 **Selection:** **100+ stars** · pushed since **2025-08-13** · public · non-archived · non-fork
 
@@ -31,7 +31,7 @@ Capability families overlap; one repository may appear in more than one family.
 
 | Family | Repositories | Fine-grained capability index |
 | --- | ---: | --- |
-| [`ai-ml`](catalog/modules/ai-ml.md) | 222 | [`ai-agent-framework`](catalog/modules/ai-agent-framework.md) (7) · [`computer-vision`](catalog/modules/computer-vision.md) (18) · [`llm-runtime`](catalog/modules/llm-runtime.md) (4) · [`model-training`](catalog/modules/model-training.md) (4) · [`rag-retrieval`](catalog/modules/rag-retrieval.md) (25) · [`speech-ai`](catalog/modules/speech-ai.md) (13) |
+| [`ai-ml`](catalog/modules/ai-ml.md) | 221 | [`ai-agent-framework`](catalog/modules/ai-agent-framework.md) (7) · [`computer-vision`](catalog/modules/computer-vision.md) (18) · [`llm-runtime`](catalog/modules/llm-runtime.md) (4) · [`model-training`](catalog/modules/model-training.md) (4) · [`rag-retrieval`](catalog/modules/rag-retrieval.md) (25) · [`speech-ai`](catalog/modules/speech-ai.md) (13) |
 | [`api-backend`](catalog/modules/api-backend.md) | 56 | [`api-gateway`](catalog/modules/api-gateway.md) (5) · [`graphql-api`](catalog/modules/graphql-api.md) (1) · [`realtime-api`](catalog/modules/realtime-api.md) (1) · [`rest-api`](catalog/modules/rest-api.md) (7) · [`rpc-api`](catalog/modules/rpc-api.md) (2) |
 | [`cli`](catalog/modules/cli.md) | 95 | [`package-manager`](catalog/modules/package-manager.md) (5) · [`shell-tooling`](catalog/modules/shell-tooling.md) (23) · [`terminal-emulator`](catalog/modules/terminal-emulator.md) (7) · [`terminal-ui`](catalog/modules/terminal-ui.md) (9) |
 | [`database-storage`](catalog/modules/database-storage.md) | 43 | [`cache-key-value`](catalog/modules/cache-key-value.md) (4) · [`document-database`](catalog/modules/document-database.md) (1) · [`object-storage`](catalog/modules/object-storage.md) (2) · [`relational-database`](catalog/modules/relational-database.md) (2) · [`search-engine`](catalog/modules/search-engine.md) (5) · [`vector-database`](catalog/modules/vector-database.md) (9) |
