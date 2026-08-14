@@ -31,8 +31,8 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 2
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 9
-- [`devops`](modules/devops.md) — DevOps and delivery — 44
-  - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 4
+- [`devops`](modules/devops.md) — DevOps and delivery — 45
+  - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 5
   - [`infrastructure-as-code`](modules/infrastructure-as-code.md) — Infrastructure as code — 1
