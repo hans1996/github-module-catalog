@@ -4,16 +4,16 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-17T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `184909` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `184968` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 178 | 81403 | 2026-08-17T07:32:38Z | [jesseduffield/lazygit](https://github.com/jesseduffield/lazygit) | 0.77 | `MIT` | `safe_to_integrate` |
-| 256 | 67993 | 2026-08-17T13:07:18Z | [code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 356 | 57076 | 2026-06-23T03:10:19Z | [Textualize/rich](https://github.com/Textualize/rich) | 0.97 | `MIT` | `safe_to_integrate` |
-| 380 | 54464 | 2025-12-15T17:20:36Z | [wagoodman/dive](https://github.com/wagoodman/dive) | 0.97 | `MIT` | `safe_to_integrate` |
-| 540 | 44406 | 2026-08-12T20:40:50Z | [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) | 0.97 | `MIT` | `safe_to_integrate` |
-| 596 | 41420 | 2026-08-17T12:35:56Z | [sxyazi/yazi](https://github.com/sxyazi/yazi) | 0.97 | `MIT` | `safe_to_integrate` |
-| 606 | 40827 | 2026-08-17T12:48:18Z | [Hmbown/CodeWhale](https://github.com/Hmbown/CodeWhale) | 0.97 | `MIT` | `safe_to_integrate` |
-| 724 | 36956 | 2026-07-11T06:02:34Z | [Textualize/textual](https://github.com/Textualize/textual) | 0.97 | `MIT` | `safe_to_integrate` |
-| 804 | 34661 | 2026-08-17T13:02:11Z | [esengine/DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) | 0.97 | `MIT` | `safe_to_integrate` |
+| 178 | 81406 | 2026-08-17T07:32:38Z | [jesseduffield/lazygit](https://github.com/jesseduffield/lazygit) | 0.77 | `MIT` | `safe_to_integrate` |
+| 256 | 67998 | 2026-08-17T19:00:40Z | [code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 356 | 57077 | 2026-06-23T03:10:19Z | [Textualize/rich](https://github.com/Textualize/rich) | 0.97 | `MIT` | `safe_to_integrate` |
+| 380 | 54466 | 2025-12-15T17:20:36Z | [wagoodman/dive](https://github.com/wagoodman/dive) | 0.97 | `MIT` | `safe_to_integrate` |
+| 540 | 44411 | 2026-08-12T20:40:50Z | [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) | 0.97 | `MIT` | `safe_to_integrate` |
+| 596 | 41425 | 2026-08-17T18:01:12Z | [sxyazi/yazi](https://github.com/sxyazi/yazi) | 0.97 | `MIT` | `safe_to_integrate` |
+| 606 | 40827 | 2026-08-17T15:52:05Z | [Hmbown/CodeWhale](https://github.com/Hmbown/CodeWhale) | 0.97 | `MIT` | `safe_to_integrate` |
+| 724 | 36958 | 2026-07-11T06:02:34Z | [Textualize/textual](https://github.com/Textualize/textual) | 0.97 | `MIT` | `safe_to_integrate` |
+| 803 | 34676 | 2026-08-17T17:50:42Z | [esengine/DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) | 0.97 | `MIT` | `safe_to_integrate` |
