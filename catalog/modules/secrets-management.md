@@ -2,10 +2,10 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-17T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-18T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `184968` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `184941` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 757 | 36129 | 2026-08-17T17:06:20Z | [hashicorp/vault](https://github.com/hashicorp/vault) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 758 | 36130 | 2026-08-18T01:28:43Z | [hashicorp/vault](https://github.com/hashicorp/vault) | 0.99 | `NOASSERTION` | `discovery_only` |
