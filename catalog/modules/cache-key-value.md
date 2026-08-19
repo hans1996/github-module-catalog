@@ -4,11 +4,11 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-19T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `185349` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `185405` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 204 | 76040 | 2026-08-19T05:24:19Z | [redis/redis](https://github.com/redis/redis) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 403 | 52128 | 2026-08-19T12:45:16Z | [etcd-io/etcd](https://github.com/etcd-io/etcd) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
-| 919 | 31982 | 2026-08-19T12:06:57Z | [facebook/rocksdb](https://github.com/facebook/rocksdb) | 0.77 | `GPL-2.0` | `discovery_only` |
-| 970 | 31012 | 2026-08-19T13:05:59Z | [dragonflydb/dragonfly](https://github.com/dragonflydb/dragonfly) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 204 | 76043 | 2026-08-19T05:24:19Z | [redis/redis](https://github.com/redis/redis) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 403 | 52130 | 2026-08-19T12:45:16Z | [etcd-io/etcd](https://github.com/etcd-io/etcd) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 919 | 31984 | 2026-08-19T18:47:19Z | [facebook/rocksdb](https://github.com/facebook/rocksdb) | 0.77 | `GPL-2.0` | `discovery_only` |
+| 970 | 31012 | 2026-08-19T17:59:41Z | [dragonflydb/dragonfly](https://github.com/dragonflydb/dragonfly) | 0.97 | `NOASSERTION` | `discovery_only` |
