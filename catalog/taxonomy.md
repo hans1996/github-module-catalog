@@ -51,7 +51,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 41
+- [`security`](modules/security.md) — Security — 40
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
