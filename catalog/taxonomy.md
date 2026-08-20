@@ -11,7 +11,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 4
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
-  - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 26
+  - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 27
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
 - [`api-backend`](modules/api-backend.md) — API backend — 56
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
@@ -24,7 +24,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
   - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 10
-- [`database-storage`](modules/database-storage.md) — Database and storage — 43
+- [`database-storage`](modules/database-storage.md) — Database and storage — 44
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 4
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
   - [`object-storage`](modules/object-storage.md) — Object and blob storage — 2
