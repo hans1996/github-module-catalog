@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 225
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 226
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 4
@@ -51,16 +51,16 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 40
+- [`security`](modules/security.md) — Security — 41
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
     - `multi-factor-auth` — Multi-factor authentication — 0
     - `oauth-oidc` — OAuth and OpenID Connect — 0
   - [`cryptography`](modules/cryptography.md) — Cryptography — 3
-  - [`malware-analysis`](modules/malware-analysis.md) — Malware analysis — 1
+  - [`malware-analysis`](modules/malware-analysis.md) — Malware analysis — 2
   - [`network-security`](modules/network-security.md) — Network security — 1
-  - [`penetration-testing`](modules/penetration-testing.md) — Penetration testing — 7
+  - [`penetration-testing`](modules/penetration-testing.md) — Penetration testing — 8
   - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 5
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
   - [`vulnerability-scanning`](modules/vulnerability-scanning.md) — Vulnerability scanning — 2
