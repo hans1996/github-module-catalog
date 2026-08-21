@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-21T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `185414` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `185511` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 196 | 77853 | 2026-08-21T06:59:41Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 339 | 59033 | 2026-08-14T09:38:01Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 754 | 36312 | 2026-04-11T14:33:06Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.95 | `MIT` | `safe_to_integrate` |
-| 771 | 35842 | 2026-08-20T16:09:27Z | [searxng/searxng](https://github.com/searxng/searxng) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 829 | 34106 | 2026-08-21T03:13:37Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 196 | 77853 | 2026-08-21T13:09:30Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 339 | 59038 | 2026-08-14T09:38:01Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 754 | 36326 | 2026-04-11T14:33:06Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.95 | `MIT` | `safe_to_integrate` |
+| 771 | 35861 | 2026-08-21T12:58:31Z | [searxng/searxng](https://github.com/searxng/searxng) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 829 | 34114 | 2026-08-21T12:50:48Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
