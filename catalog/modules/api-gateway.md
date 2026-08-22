@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-22T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `185517` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `185576` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 360 | 56967 | 2026-08-22T01:50:47Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 399 | 52722 | 2026-08-22T01:32:20Z | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | 0.97 | `MIT` | `safe_to_integrate` |
-| 550 | 44019 | 2026-08-16T14:44:43Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 684 | 38353 | 2026-08-21T23:58:29Z | [istio/istio](https://github.com/istio/istio) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 745 | 36518 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
+| 360 | 56977 | 2026-08-22T06:59:42Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 398 | 52829 | 2026-08-22T01:32:20Z | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | 0.97 | `MIT` | `safe_to_integrate` |
+| 549 | 44019 | 2026-08-16T14:44:43Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 686 | 38353 | 2026-08-21T23:58:29Z | [istio/istio](https://github.com/istio/istio) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 744 | 36522 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
