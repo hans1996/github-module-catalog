@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-22T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-23T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `185701` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `185587` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 620 | 40533 | 2026-08-22T15:02:13Z | [duckdb/duckdb](https://github.com/duckdb/duckdb) | 0.77 | `MIT` | `safe_to_integrate` |
-| 902 | 32411 | 2026-08-07T17:28:36Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 618 | 40536 | 2026-08-22T15:02:13Z | [duckdb/duckdb](https://github.com/duckdb/duckdb) | 0.77 | `MIT` | `safe_to_integrate` |
+| 900 | 32411 | 2026-08-07T17:28:36Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | 0.77 | `NOASSERTION` | `discovery_only` |
