@@ -11,7 +11,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 4
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
-  - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 27
+  - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 26
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
 - [`api-backend`](modules/api-backend.md) — API backend — 56
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
