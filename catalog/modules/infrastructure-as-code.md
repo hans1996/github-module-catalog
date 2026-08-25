@@ -2,10 +2,10 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-24T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-25T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `185951` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `185942` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 438 | 49526 | 2026-08-24T17:46:41Z | [hashicorp/terraform](https://github.com/hashicorp/terraform) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 438 | 49528 | 2026-08-24T20:50:22Z | [hashicorp/terraform](https://github.com/hashicorp/terraform) | 0.97 | `NOASSERTION` | `discovery_only` |

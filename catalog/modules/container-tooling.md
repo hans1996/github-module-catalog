@@ -2,14 +2,14 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-24T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-25T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `185951` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `185942` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 320 | 60986 | 2026-08-24T17:50:37Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 525 | 45108 | 2026-08-21T19:41:30Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.95 | `MIT` | `safe_to_integrate` |
-| 686 | 38327 | 2026-08-21T13:17:09Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
-| 695 | 38054 | 2026-08-24T12:48:23Z | [docker/compose](https://github.com/docker/compose) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 994 | 30495 | 2026-08-24T17:22:38Z | [abiosoft/colima](https://github.com/abiosoft/colima) | 0.97 | `MIT` | `safe_to_integrate` |
+| 319 | 61000 | 2026-08-24T21:32:50Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 525 | 45116 | 2026-08-21T19:41:30Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.95 | `MIT` | `safe_to_integrate` |
+| 686 | 38328 | 2026-08-21T13:17:09Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
+| 694 | 38053 | 2026-08-24T12:48:23Z | [docker/compose](https://github.com/docker/compose) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 993 | 30497 | 2026-08-24T17:22:38Z | [abiosoft/colima](https://github.com/abiosoft/colima) | 0.97 | `MIT` | `safe_to_integrate` |
