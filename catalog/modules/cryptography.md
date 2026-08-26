@@ -2,12 +2,12 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-25T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-26T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `186120` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `186002` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 146 | 90005 | 2026-08-25T18:41:15Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | 0.97 | `MIT` | `safe_to_integrate` |
-| 847 | 33643 | 2026-06-15T14:56:43Z | [anoma/anoma](https://github.com/anoma/anoma) | 0.95 | `MIT` | `safe_to_integrate` |
-| 987 | 30679 | 2026-08-25T12:21:16Z | [openssl/openssl](https://github.com/openssl/openssl) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 146 | 90011 | 2026-08-25T21:53:17Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | 0.97 | `MIT` | `safe_to_integrate` |
+| 845 | 33642 | 2026-06-15T14:56:43Z | [anoma/anoma](https://github.com/anoma/anoma) | 0.95 | `MIT` | `safe_to_integrate` |
+| 986 | 30687 | 2026-08-25T12:21:16Z | [openssl/openssl](https://github.com/openssl/openssl) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
