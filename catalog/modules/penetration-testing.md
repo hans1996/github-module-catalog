@@ -2,17 +2,17 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-26T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-27T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `186213` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `186236` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 143 | 90360 | 2026-08-26T05:15:36Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
-| 345 | 58520 | 2026-08-26T19:58:27Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 445 | 49302 | 2026-08-23T23:13:49Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 482 | 47221 | 2026-08-26T18:19:04Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 483 | 47161 | 2026-08-15T02:33:56Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 687 | 38271 | 2026-08-26T11:46:12Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 720 | 37080 | 2026-08-26T17:17:27Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |
-| 964 | 31237 | 2026-08-24T11:12:27Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 143 | 90382 | 2026-08-27T07:40:20Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
+| 343 | 58680 | 2026-08-27T05:01:47Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 445 | 49307 | 2026-08-23T23:13:49Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 482 | 47242 | 2026-08-26T18:19:04Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 483 | 47171 | 2026-08-15T02:33:56Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 688 | 38277 | 2026-08-26T11:46:12Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 720 | 37088 | 2026-08-27T09:23:16Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |
+| 960 | 31319 | 2026-08-24T11:12:27Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | 0.97 | `Apache-2.0` | `safe_to_integrate` |

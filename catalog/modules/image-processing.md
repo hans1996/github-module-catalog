@@ -2,14 +2,14 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-08-26T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-08-27T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `186213` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `186236` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 141 | 90612 | 2026-08-26T10:38:33Z | [opencv/opencv](https://github.com/opencv/opencv) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 437 | 49743 | 2026-08-25T15:34:03Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.97 | `MIT` | `safe_to_integrate` |
-| 807 | 34588 | 2026-08-22T03:30:49Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | 0.97 | `MPL-2.0` | `discovery_only` |
-| 894 | 32609 | 2026-08-26T09:25:42Z | [lovell/sharp](https://github.com/lovell/sharp) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 985 | 30702 | 2026-08-25T06:21:27Z | [flameshot-org/flameshot](https://github.com/flameshot-org/flameshot) | 0.97 | `GPL-3.0` | `discovery_only` |
+| 142 | 90615 | 2026-08-27T06:31:21Z | [opencv/opencv](https://github.com/opencv/opencv) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 439 | 49756 | 2026-08-25T15:34:03Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.97 | `MIT` | `safe_to_integrate` |
+| 807 | 34594 | 2026-08-22T03:30:49Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | 0.97 | `MPL-2.0` | `discovery_only` |
+| 896 | 32608 | 2026-08-26T09:25:42Z | [lovell/sharp](https://github.com/lovell/sharp) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 985 | 30705 | 2026-08-25T06:21:27Z | [flameshot-org/flameshot](https://github.com/flameshot-org/flameshot) | 0.97 | `GPL-3.0` | `discovery_only` |
