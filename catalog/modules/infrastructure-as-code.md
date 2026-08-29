@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-29T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `186404` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `186531` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 439 | 49562 | 2026-08-28T21:50:59Z | [hashicorp/terraform](https://github.com/hashicorp/terraform) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 439 | 49566 | 2026-08-28T21:50:59Z | [hashicorp/terraform](https://github.com/hashicorp/terraform) | 0.97 | `NOASSERTION` | `discovery_only` |
