@@ -19,7 +19,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 95
+- [`cli`](modules/cli.md) — Command-line interface — 97
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
@@ -31,13 +31,13 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 2
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 9
-- [`devops`](modules/devops.md) — DevOps and delivery — 44
+- [`devops`](modules/devops.md) — DevOps and delivery — 45
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 5
   - [`infrastructure-as-code`](modules/infrastructure-as-code.md) — Infrastructure as code — 1
   - [`kubernetes-tooling`](modules/kubernetes-tooling.md) — Kubernetes tooling — 1
-  - [`observability`](modules/observability.md) — Observability — 18
+  - [`observability`](modules/observability.md) — Observability — 19
     - [`distributed-tracing`](modules/distributed-tracing.md) — Distributed tracing — 1
     - [`error-tracking`](modules/error-tracking.md) — Error tracking — 2
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
