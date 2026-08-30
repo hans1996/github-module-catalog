@@ -4,22 +4,22 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-30T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `186663` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `186723` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 77 | 123006 | 2026-08-27T09:15:37Z | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 0.95 | `MIT` | `safe_to_integrate` |
-| 119 | 99273 | 2026-08-30T05:19:38Z | [ant-design/ant-design](https://github.com/ant-design/ant-design) | 0.97 | `MIT` | `safe_to_integrate` |
-| 121 | 98968 | 2026-08-30T01:00:08Z | [mui/material-ui](https://github.com/mui/material-ui) | 0.99 | `MIT` | `safe_to_integrate` |
-| 133 | 92670 | 2026-08-30T03:26:39Z | [nexu-io/open-design](https://github.com/nexu-io/open-design) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 137 | 90961 | 2026-08-29T09:18:03Z | [storybookjs/storybook](https://github.com/storybookjs/storybook) | 0.97 | `MIT` | `safe_to_integrate` |
-| 399 | 52636 | 2026-08-28T20:43:57Z | [ionic-team/ionic-framework](https://github.com/ionic-team/ionic-framework) | 0.97 | `MIT` | `safe_to_integrate` |
-| 497 | 46430 | 2026-08-29T21:33:20Z | [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 77 | 123101 | 2026-08-27T09:15:37Z | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 0.95 | `MIT` | `safe_to_integrate` |
+| 119 | 99278 | 2026-08-30T11:33:00Z | [ant-design/ant-design](https://github.com/ant-design/ant-design) | 0.97 | `MIT` | `safe_to_integrate` |
+| 121 | 98969 | 2026-08-30T09:22:31Z | [mui/material-ui](https://github.com/mui/material-ui) | 0.99 | `MIT` | `safe_to_integrate` |
+| 133 | 92734 | 2026-08-30T06:33:35Z | [nexu-io/open-design](https://github.com/nexu-io/open-design) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 137 | 90960 | 2026-08-29T09:18:03Z | [storybookjs/storybook](https://github.com/storybookjs/storybook) | 0.97 | `MIT` | `safe_to_integrate` |
+| 399 | 52635 | 2026-08-28T20:43:57Z | [ionic-team/ionic-framework](https://github.com/ionic-team/ionic-framework) | 0.97 | `MIT` | `safe_to_integrate` |
+| 496 | 46448 | 2026-08-29T21:33:20Z | [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits) | 0.97 | `NOASSERTION` | `discovery_only` |
 | 558 | 43439 | 2026-08-29T03:27:07Z | [gradio-app/gradio](https://github.com/gradio-app/gradio) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 577 | 42247 | 2026-08-24T06:25:46Z | [saadeghi/daisyui](https://github.com/saadeghi/daisyui) | 0.99 | `MIT` | `safe_to_integrate` |
-| 591 | 41588 | 2026-08-28T23:35:22Z | [tabler/tabler](https://github.com/tabler/tabler) | 0.97 | `MIT` | `safe_to_integrate` |
-| 604 | 41044 | 2026-08-28T19:54:45Z | [vuetifyjs/vuetify](https://github.com/vuetifyjs/vuetify) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 577 | 42245 | 2026-08-24T06:25:46Z | [saadeghi/daisyui](https://github.com/saadeghi/daisyui) | 0.99 | `MIT` | `safe_to_integrate` |
+| 591 | 41586 | 2026-08-28T23:35:22Z | [tabler/tabler](https://github.com/tabler/tabler) | 0.97 | `MIT` | `safe_to_integrate` |
+| 604 | 41043 | 2026-08-28T19:54:45Z | [vuetifyjs/vuetify](https://github.com/vuetifyjs/vuetify) | 0.97 | `NOASSERTION` | `discovery_only` |
 | 618 | 40605 | 2026-08-29T17:41:12Z | [chakra-ui/chakra-ui](https://github.com/chakra-ui/chakra-ui) | 0.97 | `MIT` | `safe_to_integrate` |
-| 944 | 31633 | 2026-08-22T17:15:58Z | [mantinedev/mantine](https://github.com/mantinedev/mantine) | 0.97 | `MIT` | `safe_to_integrate` |
+| 944 | 31635 | 2026-08-22T17:15:58Z | [mantinedev/mantine](https://github.com/mantinedev/mantine) | 0.97 | `MIT` | `safe_to_integrate` |
 | 993 | 30575 | 2026-08-16T15:55:12Z | [layui/layui](https://github.com/layui/layui) | 0.97 | `MIT` | `safe_to_integrate` |
-| 997 | 30496 | 2026-08-29T10:28:37Z | [heroui-inc/heroui](https://github.com/heroui-inc/heroui) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 997 | 30500 | 2026-08-29T10:28:37Z | [heroui-inc/heroui](https://github.com/heroui-inc/heroui) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
