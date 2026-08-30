@@ -4,16 +4,16 @@
 
 Minimum stars: `100`; Pushed since: `2025-08-30T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `186723` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `186814` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 103 | 108600 | 2026-08-30T10:59:44Z | [supabase/supabase](https://github.com/supabase/supabase) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 321 | 60884 | 2026-08-28T09:28:23Z | [pocketbase/pocketbase](https://github.com/pocketbase/pocketbase) | 0.97 | `MIT` | `safe_to_integrate` |
-| 358 | 57166 | 2026-08-30T09:06:39Z | [appwrite/appwrite](https://github.com/appwrite/appwrite) | 0.77 | `BSD-3-Clause` | `safe_to_integrate` |
-| 556 | 43556 | 2026-08-30T11:47:53Z | [juspay/hyperswitch](https://github.com/juspay/hyperswitch) | 0.75 | `Apache-2.0` | `safe_to_integrate` |
-| 572 | 42617 | 2026-08-30T11:55:55Z | [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) | 0.77 | `MIT` | `safe_to_integrate` |
+| 103 | 108608 | 2026-08-30T15:28:08Z | [supabase/supabase](https://github.com/supabase/supabase) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 321 | 60886 | 2026-08-28T09:28:23Z | [pocketbase/pocketbase](https://github.com/pocketbase/pocketbase) | 0.97 | `MIT` | `safe_to_integrate` |
+| 359 | 57172 | 2026-08-30T16:41:14Z | [appwrite/appwrite](https://github.com/appwrite/appwrite) | 0.77 | `BSD-3-Clause` | `safe_to_integrate` |
+| 557 | 43561 | 2026-08-30T15:49:00Z | [juspay/hyperswitch](https://github.com/juspay/hyperswitch) | 0.75 | `Apache-2.0` | `safe_to_integrate` |
+| 572 | 42623 | 2026-08-30T16:25:10Z | [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) | 0.77 | `MIT` | `safe_to_integrate` |
 | 708 | 37657 | 2026-08-28T21:02:34Z | [directus/directus](https://github.com/directus/directus) | 0.77 | `NOASSERTION` | `discovery_only` |
-| 748 | 36492 | 2026-08-30T03:14:20Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
-| 767 | 35797 | 2026-08-30T03:36:52Z | [tailscale/tailscale](https://github.com/tailscale/tailscale) | 0.97 | `BSD-3-Clause` | `safe_to_integrate` |
-| 915 | 32110 | 2026-08-19T16:56:27Z | [hasura/graphql-engine](https://github.com/hasura/graphql-engine) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 748 | 36498 | 2026-08-30T03:14:20Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 767 | 35808 | 2026-08-30T16:24:41Z | [tailscale/tailscale](https://github.com/tailscale/tailscale) | 0.97 | `BSD-3-Clause` | `safe_to_integrate` |
+| 915 | 32109 | 2026-08-19T16:56:27Z | [hasura/graphql-engine](https://github.com/hasura/graphql-engine) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
