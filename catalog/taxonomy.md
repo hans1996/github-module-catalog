@@ -6,12 +6,12 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 229
-  - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 230
+  - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 8
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 4
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
-  - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 27
+  - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 28
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
 - [`api-backend`](modules/api-backend.md) — API backend — 57
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
@@ -31,7 +31,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 2
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 9
-- [`devops`](modules/devops.md) — DevOps and delivery — 45
+- [`devops`](modules/devops.md) — DevOps and delivery — 46
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 5
@@ -69,7 +69,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
   - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
-- [`web-ui`](modules/web-ui.md) — Web user interface — 62
+- [`web-ui`](modules/web-ui.md) — Web user interface — 61
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
