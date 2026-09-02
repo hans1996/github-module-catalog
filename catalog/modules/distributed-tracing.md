@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-02T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187182` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `187215` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 928 | 32000 | 2026-09-02T14:59:59Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 928 | 32003 | 2026-09-02T19:00:25Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.97 | `NOASSERTION` | `discovery_only` |
