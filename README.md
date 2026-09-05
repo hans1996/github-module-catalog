@@ -17,7 +17,7 @@ CLIs, services, plugins, and templates for larger systems.
 
 | Indexed repositories | GitHub Search matches | Last refresh |
 | ---: | ---: | --- |
-| **1,000** | **187,410** | **2026-09-05 15:19 UTC** |
+| **1,000** | **187,471** | **2026-09-05 20:27 UTC** |
 
 **Selection:** **100+ stars** · pushed since **2025-09-05** · public · non-archived · non-fork
 
@@ -31,7 +31,7 @@ Capability families overlap; one repository may appear in more than one family.
 
 | Family | Repositories | Fine-grained capability index |
 | --- | ---: | --- |
-| [`ai-ml`](catalog/modules/ai-ml.md) | 232 | [`ai-agent-framework`](catalog/modules/ai-agent-framework.md) (7) · [`computer-vision`](catalog/modules/computer-vision.md) (18) · [`llm-runtime`](catalog/modules/llm-runtime.md) (4) · [`model-training`](catalog/modules/model-training.md) (4) · [`rag-retrieval`](catalog/modules/rag-retrieval.md) (29) · [`speech-ai`](catalog/modules/speech-ai.md) (13) |
+| [`ai-ml`](catalog/modules/ai-ml.md) | 233 | [`ai-agent-framework`](catalog/modules/ai-agent-framework.md) (7) · [`computer-vision`](catalog/modules/computer-vision.md) (18) · [`llm-runtime`](catalog/modules/llm-runtime.md) (4) · [`model-training`](catalog/modules/model-training.md) (4) · [`rag-retrieval`](catalog/modules/rag-retrieval.md) (29) · [`speech-ai`](catalog/modules/speech-ai.md) (13) |
 | [`api-backend`](catalog/modules/api-backend.md) | 58 | [`api-gateway`](catalog/modules/api-gateway.md) (5) · [`graphql-api`](catalog/modules/graphql-api.md) (1) · [`realtime-api`](catalog/modules/realtime-api.md) (1) · [`rest-api`](catalog/modules/rest-api.md) (7) · [`rpc-api`](catalog/modules/rpc-api.md) (2) |
 | [`cli`](catalog/modules/cli.md) | 95 | [`package-manager`](catalog/modules/package-manager.md) (5) · [`shell-tooling`](catalog/modules/shell-tooling.md) (23) · [`terminal-emulator`](catalog/modules/terminal-emulator.md) (7) · [`terminal-ui`](catalog/modules/terminal-ui.md) (10) |
 | [`database-storage`](catalog/modules/database-storage.md) | 45 | [`cache-key-value`](catalog/modules/cache-key-value.md) (4) · [`document-database`](catalog/modules/document-database.md) (1) · [`object-storage`](catalog/modules/object-storage.md) (2) · [`relational-database`](catalog/modules/relational-database.md) (2) · [`search-engine`](catalog/modules/search-engine.md) (5) · [`vector-database`](catalog/modules/vector-database.md) (9) |
@@ -39,7 +39,7 @@ Capability families overlap; one repository may appear in more than one family.
 | [`media`](catalog/modules/media.md) | 61 | [`audio-processing`](catalog/modules/audio-processing.md) (2) · [`computer-vision`](catalog/modules/computer-vision.md) (18) · [`image-processing`](catalog/modules/image-processing.md) (5) · [`media-downloader`](catalog/modules/media-downloader.md) (2) · [`media-streaming`](catalog/modules/media-streaming.md) (3) · [`speech-ai`](catalog/modules/speech-ai.md) (13) · [`video-processing`](catalog/modules/video-processing.md) (10) |
 | [`security`](catalog/modules/security.md) | 44 | [`auth`](catalog/modules/auth.md) (9) · [`cryptography`](catalog/modules/cryptography.md) (3) · [`malware-analysis`](catalog/modules/malware-analysis.md) (2) · [`network-security`](catalog/modules/network-security.md) (1) · [`penetration-testing`](catalog/modules/penetration-testing.md) (9) · [`reverse-engineering`](catalog/modules/reverse-engineering.md) (6) · [`secrets-management`](catalog/modules/secrets-management.md) (1) · [`vulnerability-scanning`](catalog/modules/vulnerability-scanning.md) (2) · [`access-control`](catalog/modules/access-control.md) (1) · [`identity-provider`](catalog/modules/identity-provider.md) (1) · `multi-factor-auth` (0) · `oauth-oidc` (0) |
 | [`testing`](catalog/modules/testing.md) | 12 | [`api-testing`](catalog/modules/api-testing.md) (2) · [`browser-e2e-testing`](catalog/modules/browser-e2e-testing.md) (2) · [`performance-testing`](catalog/modules/performance-testing.md) (1) · [`unit-test-framework`](catalog/modules/unit-test-framework.md) (1) |
-| [`web-ui`](catalog/modules/web-ui.md) | 60 | [`content-management`](catalog/modules/content-management.md) (7) · [`dashboard-ui`](catalog/modules/dashboard-ui.md) (6) · [`static-site-generator`](catalog/modules/static-site-generator.md) (7) · [`ui-component-library`](catalog/modules/ui-component-library.md) (14) |
+| [`web-ui`](catalog/modules/web-ui.md) | 59 | [`content-management`](catalog/modules/content-management.md) (7) · [`dashboard-ui`](catalog/modules/dashboard-ui.md) (6) · [`static-site-generator`](catalog/modules/static-site-generator.md) (7) · [`ui-component-library`](catalog/modules/ui-component-library.md) (13) |
 <!-- catalog-index:end -->
 
 ## How it works

@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-05T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187410` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `187471` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 126 | 95888 | 2026-09-05T12:52:03Z | [oven-sh/bun](https://github.com/oven-sh/bun) | 0.77 | `NOASSERTION` | `discovery_only` |
-| 444 | 49411 | 2026-09-05T14:53:54Z | [Homebrew/brew](https://github.com/Homebrew/brew) | 0.97 | `BSD-2-Clause` | `safe_to_integrate` |
-| 600 | 41482 | 2026-05-12T11:09:42Z | [yarnpkg/yarn](https://github.com/yarnpkg/yarn) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 760 | 36420 | 2026-09-05T13:12:33Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | 0.99 | `MIT` | `safe_to_integrate` |
+| 126 | 95890 | 2026-09-05T20:27:13Z | [oven-sh/bun](https://github.com/oven-sh/bun) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 444 | 49412 | 2026-09-05T20:25:21Z | [Homebrew/brew](https://github.com/Homebrew/brew) | 0.97 | `BSD-2-Clause` | `safe_to_integrate` |
+| 600 | 41484 | 2026-05-12T11:09:42Z | [yarnpkg/yarn](https://github.com/yarnpkg/yarn) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 760 | 36425 | 2026-09-05T20:26:45Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | 0.99 | `MIT` | `safe_to_integrate` |
 | 829 | 34300 | 2026-09-05T11:06:00Z | [python-poetry/poetry](https://github.com/python-poetry/poetry) | 0.97 | `MIT` | `safe_to_integrate` |
