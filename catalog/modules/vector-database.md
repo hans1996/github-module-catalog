@@ -2,18 +2,18 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-05T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-09-06T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187471` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `187409` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 92 | 115035 | 2026-09-05T00:29:44Z | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
-| 279 | 65653 | 2026-09-04T01:10:46Z | [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | 0.95 | `MIT` | `safe_to_integrate` |
-| 341 | 59189 | 2026-09-03T15:23:43Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 342 | 58933 | 2026-07-05T17:59:07Z | [pathwaycom/llm-app](https://github.com/pathwaycom/llm-app) | 0.95 | `MIT` | `safe_to_integrate` |
-| 412 | 52031 | 2026-09-05T04:39:33Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | 0.97 | `MIT` | `safe_to_integrate` |
-| 513 | 45984 | 2026-09-05T01:01:35Z | [milvus-io/milvus](https://github.com/milvus-io/milvus) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 626 | 40490 | 2026-09-05T20:21:14Z | [pingcap/tidb](https://github.com/pingcap/tidb) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
-| 789 | 35536 | 2026-09-05T07:31:48Z | [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) | 0.97 | `MIT` | `safe_to_integrate` |
-| 825 | 34400 | 2026-09-05T17:34:22Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 92 | 115117 | 2026-09-05T21:19:43Z | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 279 | 65667 | 2026-09-04T01:10:46Z | [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | 0.95 | `MIT` | `safe_to_integrate` |
+| 341 | 59191 | 2026-09-03T15:23:43Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 343 | 58933 | 2026-07-05T17:59:07Z | [pathwaycom/llm-app](https://github.com/pathwaycom/llm-app) | 0.95 | `MIT` | `safe_to_integrate` |
+| 413 | 52032 | 2026-09-05T04:39:33Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | 0.97 | `MIT` | `safe_to_integrate` |
+| 513 | 45990 | 2026-09-05T01:01:35Z | [milvus-io/milvus](https://github.com/milvus-io/milvus) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 626 | 40490 | 2026-09-06T04:46:39Z | [pingcap/tidb](https://github.com/pingcap/tidb) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 790 | 35543 | 2026-09-05T07:31:48Z | [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) | 0.97 | `MIT` | `safe_to_integrate` |
+| 825 | 34402 | 2026-09-05T17:34:22Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
