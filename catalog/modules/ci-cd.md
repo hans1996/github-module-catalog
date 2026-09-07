@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-07T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187615` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `187683` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 243 | 71836 | 2026-08-09T22:50:11Z | [nektos/act](https://github.com/nektos/act) | 0.97 | `MIT` | `safe_to_integrate` |
-| 353 | 57858 | 2026-09-07T09:40:26Z | [go-gitea/gitea](https://github.com/go-gitea/gitea) | 0.97 | `MIT` | `safe_to_integrate` |
-| 476 | 47810 | 2026-09-03T14:40:41Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 522 | 45434 | 2026-09-03T10:29:07Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.97 | `MIT` | `safe_to_integrate` |
-| 700 | 38262 | 2026-09-04T23:29:32Z | [harness/harness](https://github.com/harness/harness) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 243 | 71843 | 2026-08-09T22:50:11Z | [nektos/act](https://github.com/nektos/act) | 0.97 | `MIT` | `safe_to_integrate` |
+| 353 | 57866 | 2026-09-07T14:35:06Z | [go-gitea/gitea](https://github.com/go-gitea/gitea) | 0.97 | `MIT` | `safe_to_integrate` |
+| 476 | 47816 | 2026-09-03T14:40:41Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 523 | 45439 | 2026-09-03T10:29:07Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.97 | `MIT` | `safe_to_integrate` |
+| 700 | 38266 | 2026-09-04T23:29:32Z | [harness/harness](https://github.com/harness/harness) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
