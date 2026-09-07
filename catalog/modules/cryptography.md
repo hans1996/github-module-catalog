@@ -4,10 +4,10 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-07T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187538` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `187615` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 149 | 90126 | 2026-09-06T13:24:53Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | 0.97 | `MIT` | `safe_to_integrate` |
+| 151 | 90129 | 2026-09-07T09:31:28Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | 0.97 | `MIT` | `safe_to_integrate` |
 | 859 | 33624 | 2026-06-15T14:56:43Z | [anoma/anoma](https://github.com/anoma/anoma) | 0.95 | `MIT` | `safe_to_integrate` |
-| 993 | 30758 | 2026-09-06T03:04:58Z | [openssl/openssl](https://github.com/openssl/openssl) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 994 | 30761 | 2026-09-07T08:41:16Z | [openssl/openssl](https://github.com/openssl/openssl) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
