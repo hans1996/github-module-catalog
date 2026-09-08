@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-08T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187645` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `187750` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 964 | 31410 | 2026-09-07T00:05:00Z | [grafana/k6](https://github.com/grafana/k6) | 0.99 | `AGPL-3.0` | `discovery_only` |
+| 964 | 31413 | 2026-09-08T09:46:29Z | [grafana/k6](https://github.com/grafana/k6) | 0.99 | `AGPL-3.0` | `discovery_only` |
