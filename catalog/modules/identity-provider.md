@@ -2,10 +2,10 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-07T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-09-08T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187683` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `187645` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 751 | 36642 | 2026-09-07T16:30:57Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 752 | 36647 | 2026-09-08T00:47:53Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
