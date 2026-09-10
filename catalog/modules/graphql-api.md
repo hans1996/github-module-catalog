@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-10T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `187918` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188027` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 929 | 32111 | 2026-09-09T01:51:19Z | [hasura/graphql-engine](https://github.com/hasura/graphql-engine) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 929 | 32113 | 2026-09-09T01:51:19Z | [hasura/graphql-engine](https://github.com/hasura/graphql-engine) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
