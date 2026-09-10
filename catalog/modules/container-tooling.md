@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-10T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `188106` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188162` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 314 | 61655 | 2026-09-10T15:50:14Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 521 | 45493 | 2026-09-03T10:29:07Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.95 | `MIT` | `safe_to_integrate` |
-| 691 | 38480 | 2026-09-10T13:01:24Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
+| 314 | 61662 | 2026-09-10T15:50:14Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 521 | 45497 | 2026-09-03T10:29:07Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.95 | `MIT` | `safe_to_integrate` |
+| 691 | 38482 | 2026-09-10T13:01:24Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
 | 700 | 38134 | 2026-09-10T09:12:33Z | [docker/compose](https://github.com/docker/compose) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 997 | 30754 | 2026-08-31T17:22:35Z | [abiosoft/colima](https://github.com/abiosoft/colima) | 0.97 | `MIT` | `safe_to_integrate` |
+| 997 | 30758 | 2026-08-31T17:22:35Z | [abiosoft/colima](https://github.com/abiosoft/colima) | 0.97 | `MIT` | `safe_to_integrate` |
