@@ -69,8 +69,8 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
   - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
-- [`web-ui`](modules/web-ui.md) — Web user interface — 60
+- [`web-ui`](modules/web-ui.md) — Web user interface — 59
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
-  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 14
+  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 13
