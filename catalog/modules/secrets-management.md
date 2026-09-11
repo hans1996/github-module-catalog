@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-11T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `188287` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188349` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 768 | 36228 | 2026-09-11T16:02:56Z | [hashicorp/vault](https://github.com/hashicorp/vault) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 768 | 36228 | 2026-09-11T20:02:16Z | [hashicorp/vault](https://github.com/hashicorp/vault) | 0.99 | `NOASSERTION` | `discovery_only` |
