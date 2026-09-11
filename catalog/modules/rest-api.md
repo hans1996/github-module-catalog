@@ -4,14 +4,14 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-11T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `188171` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188287` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 214 | 75705 | 2026-03-23T19:40:00Z | [typicode/json-server](https://github.com/typicode/json-server) | 0.75 | `MIT` | `safe_to_integrate` |
-| 283 | 64928 | 2026-09-11T11:09:34Z | [nocodb/nocodb](https://github.com/nocodb/nocodb) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 637 | 40141 | 2026-09-11T11:22:25Z | [gofiber/fiber](https://github.com/gofiber/fiber) | 0.97 | `MIT` | `safe_to_integrate` |
-| 840 | 34149 | 2026-09-10T03:56:54Z | [binwiederhier/ntfy](https://github.com/binwiederhier/ntfy) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 866 | 33552 | 2026-09-11T06:11:28Z | [nicolargo/glances](https://github.com/nicolargo/glances) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 877 | 33323 | 2026-09-08T19:52:43Z | [zeromicro/go-zero](https://github.com/zeromicro/go-zero) | 0.97 | `MIT` | `safe_to_integrate` |
+| 214 | 75706 | 2026-03-23T19:40:00Z | [typicode/json-server](https://github.com/typicode/json-server) | 0.75 | `MIT` | `safe_to_integrate` |
+| 284 | 64930 | 2026-09-11T14:04:34Z | [nocodb/nocodb](https://github.com/nocodb/nocodb) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 638 | 40143 | 2026-09-11T11:22:25Z | [gofiber/fiber](https://github.com/gofiber/fiber) | 0.97 | `MIT` | `safe_to_integrate` |
+| 839 | 34161 | 2026-09-10T03:56:54Z | [binwiederhier/ntfy](https://github.com/binwiederhier/ntfy) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 866 | 33555 | 2026-09-11T06:11:28Z | [nicolargo/glances](https://github.com/nicolargo/glances) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 877 | 33325 | 2026-09-08T19:52:43Z | [zeromicro/go-zero](https://github.com/zeromicro/go-zero) | 0.97 | `MIT` | `safe_to_integrate` |
 | 931 | 32113 | 2026-09-09T01:51:19Z | [hasura/graphql-engine](https://github.com/hasura/graphql-engine) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
