@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 233
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 234
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 4
@@ -19,11 +19,11 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 95
+- [`cli`](modules/cli.md) — Command-line interface — 96
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
-  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 10
+  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
 - [`database-storage`](modules/database-storage.md) — Database and storage — 45
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 4
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
@@ -51,7 +51,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 44
+- [`security`](modules/security.md) — Security — 43
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
