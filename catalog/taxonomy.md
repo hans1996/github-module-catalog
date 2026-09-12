@@ -31,13 +31,13 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 2
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 9
-- [`devops`](modules/devops.md) — DevOps and delivery — 45
+- [`devops`](modules/devops.md) — DevOps and delivery — 44
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 5
   - [`infrastructure-as-code`](modules/infrastructure-as-code.md) — Infrastructure as code — 1
   - [`kubernetes-tooling`](modules/kubernetes-tooling.md) — Kubernetes tooling — 1
-  - [`observability`](modules/observability.md) — Observability — 18
+  - [`observability`](modules/observability.md) — Observability — 17
     - [`distributed-tracing`](modules/distributed-tracing.md) — Distributed tracing — 1
     - [`error-tracking`](modules/error-tracking.md) — Error tracking — 2
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
@@ -73,4 +73,4 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
-  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 13
+  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 14
