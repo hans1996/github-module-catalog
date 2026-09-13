@@ -4,20 +4,20 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-13T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `188507` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188456` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 45 | 165359 | 2026-09-13T15:13:08Z | [huggingface/transformers](https://github.com/huggingface/transformers) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 82 | 123113 | 2026-09-13T12:18:30Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
-| 104 | 109002 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | 0.77 | `MIT` | `safe_to_integrate` |
-| 212 | 76099 | 2026-09-13T16:02:40Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 314 | 61770 | 2026-08-18T09:16:25Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | 0.97 | `MIT` | `safe_to_integrate` |
-| 335 | 60130 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 351 | 58214 | 2026-09-06T05:02:34Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 394 | 53645 | 2026-09-11T14:13:25Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | 0.97 | `MIT` | `safe_to_integrate` |
-| 458 | 49094 | 2026-09-13T16:06:07Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
-| 647 | 39833 | 2026-04-10T16:33:48Z | [2noise/ChatTTS](https://github.com/2noise/ChatTTS) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 735 | 37042 | 2026-09-02T12:12:35Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 743 | 36910 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 911 | 32671 | 2026-09-07T19:20:34Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 45 | 165452 | 2026-09-13T19:07:39Z | [huggingface/transformers](https://github.com/huggingface/transformers) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 82 | 123186 | 2026-09-13T12:18:30Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
+| 104 | 109012 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | 0.77 | `MIT` | `safe_to_integrate` |
+| 212 | 76110 | 2026-09-13T19:45:35Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 314 | 61775 | 2026-08-18T09:16:25Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | 0.97 | `MIT` | `safe_to_integrate` |
+| 335 | 60131 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 350 | 58341 | 2026-09-06T05:02:34Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 394 | 53649 | 2026-09-11T14:13:25Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | 0.97 | `MIT` | `safe_to_integrate` |
+| 458 | 49096 | 2026-09-13T20:06:04Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
+| 647 | 39834 | 2026-04-10T16:33:48Z | [2noise/ChatTTS](https://github.com/2noise/ChatTTS) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 733 | 37095 | 2026-09-02T12:12:35Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 743 | 36909 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 911 | 32673 | 2026-09-07T19:20:34Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | 0.97 | `NOASSERTION` | `discovery_only` |
