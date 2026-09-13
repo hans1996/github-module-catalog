@@ -2,19 +2,19 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-12T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-09-13T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `188414` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188360` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 52 | 149475 | 2026-09-11T16:58:44Z | [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 83 | 122787 | 2026-09-12T10:05:00Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
-| 211 | 76115 | 2026-09-11T18:38:58Z | [obsproject/obs-studio](https://github.com/obsproject/obs-studio) | 0.95 | `GPL-2.0` | `discovery_only` |
-| 292 | 64158 | 2026-09-12T20:29:46Z | [FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 354 | 57886 | 2026-09-06T05:02:34Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 436 | 49973 | 2026-09-11T14:28:12Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.97 | `MIT` | `safe_to_integrate` |
-| 454 | 49187 | 2026-09-12T17:03:27Z | [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 560 | 43681 | 2026-09-08T23:05:47Z | [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | 0.95 | `GPL-2.0` | `discovery_only` |
-| 738 | 36958 | 2026-09-11T09:04:18Z | [mpv-player/mpv](https://github.com/mpv-player/mpv) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 739 | 36922 | 2026-09-11T15:30:36Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 52 | 149494 | 2026-09-11T16:58:44Z | [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 83 | 122916 | 2026-09-13T04:31:29Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
+| 211 | 76127 | 2026-09-11T18:38:58Z | [obsproject/obs-studio](https://github.com/obsproject/obs-studio) | 0.95 | `GPL-2.0` | `discovery_only` |
+| 292 | 64164 | 2026-09-13T02:59:07Z | [FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 353 | 57976 | 2026-09-06T05:02:34Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 436 | 49974 | 2026-09-11T14:28:12Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.97 | `MIT` | `safe_to_integrate` |
+| 451 | 49254 | 2026-09-13T04:20:36Z | [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 560 | 43694 | 2026-09-08T23:05:47Z | [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | 0.95 | `GPL-2.0` | `discovery_only` |
+| 738 | 36959 | 2026-09-13T04:04:19Z | [mpv-player/mpv](https://github.com/mpv-player/mpv) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 739 | 36924 | 2026-09-11T15:30:36Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
