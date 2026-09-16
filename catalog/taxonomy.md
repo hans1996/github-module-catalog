@@ -6,13 +6,13 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 235
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 236
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 4
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 29
-  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
+  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
 - [`api-backend`](modules/api-backend.md) — API backend — 58
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
@@ -43,13 +43,13 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 61
+- [`media`](modules/media.md) — Media processing — 62
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
   - [`media-downloader`](modules/media-downloader.md) — Media downloader — 2
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
-  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 13
+  - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
 - [`security`](modules/security.md) — Security — 42
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
