@@ -6,1011 +6,1011 @@ Top ranked GitHub Search window; not all public repositories\.
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-17T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-09-18T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `188876` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188775` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 Source: `github-search-repositories`.
 
 | Rank | Stars | Last push | Repository | Capabilities | License | Reuse status |
 | ---: | ---: | --- | --- | --- | --- | --- |
-| 1 | 547885 | 2026-07-14T19:25:58Z | [codecrafters-io/build-your-own-x](https://github.com/codecrafters-io/build-your-own-x) | — | `unknown` | `discovery_only` |
-| 2 | 507139 | 2026-09-02T02:10:47Z | [sindresorhus/awesome](https://github.com/sindresorhus/awesome) | — | `CC0-1.0` | `discovery_only` |
-| 3 | 481201 | 2026-09-17T13:58:56Z | [public-apis/public-apis](https://github.com/public-apis/public-apis) | — | `MIT` | `safe_to_integrate` |
-| 4 | 455681 | 2026-09-17T20:01:01Z | [freeCodeCamp/freeCodeCamp](https://github.com/freeCodeCamp/freeCodeCamp) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 5 | 397054 | 2026-09-15T15:54:40Z | [EbookFoundation/free-programming-books](https://github.com/EbookFoundation/free-programming-books) | — | `CC-BY-4.0` | `discovery_only` |
-| 6 | 389986 | 2026-09-17T21:27:16Z | [openclaw/openclaw](https://github.com/openclaw/openclaw) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 7 | 370531 | 2026-09-15T01:10:09Z | [donnemartin/system-design-primer](https://github.com/donnemartin/system-design-primer) | — | `NOASSERTION` | `discovery_only` |
-| 8 | 367542 | 2026-09-17T08:18:48Z | [nilbuild/developer-roadmap](https://github.com/nilbuild/developer-roadmap) | — | `NOASSERTION` | `discovery_only` |
-| 9 | 321308 | 2026-09-15T16:48:04Z | [vinta/awesome-python](https://github.com/vinta/awesome-python) | — | `NOASSERTION` | `discovery_only` |
-| 10 | 319908 | 2026-09-15T18:43:10Z | [awesome-selfhosted/awesome-selfhosted](https://github.com/awesome-selfhosted/awesome-selfhosted) | — | `NOASSERTION` | `discovery_only` |
-| 11 | 288075 | 2026-09-14T18:42:08Z | [obra/superpowers](https://github.com/obra/superpowers) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 12 | 283666 | 2026-09-14T07:10:04Z | [practical-tutorials/project-based-learning](https://github.com/practical-tutorials/project-based-learning) | — | `MIT` | `safe_to_integrate` |
-| 13 | 264394 | 2026-09-17T11:11:14Z | [mattpocock/skills](https://github.com/mattpocock/skills) | — | `MIT` | `safe_to_integrate` |
-| 14 | 261052 | 2026-09-17T18:04:07Z | [affaan-m/ECC](https://github.com/affaan-m/ECC) | `ai-ml`, `security` | `MIT` | `safe_to_integrate` |
-| 15 | 250544 | 2026-09-17T19:48:26Z | [react/react](https://github.com/react/react) | `web-ui` | `MIT` | `safe_to_integrate` |
-| 16 | 249338 | 2026-09-17T19:33:54Z | [torvalds/linux](https://github.com/torvalds/linux) | — | `NOASSERTION` | `discovery_only` |
-| 17 | 246502 | 2026-09-17T21:17:34Z | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 18 | 227854 | 2026-09-17T13:30:15Z | [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | — | `MIT` | `safe_to_integrate` |
-| 19 | 224686 | 2026-09-17T14:36:54Z | [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python) | — | `MIT` | `safe_to_integrate` |
-| 20 | 213672 | 2026-04-20T10:05:04Z | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | `ai-ml` | `unknown` | `discovery_only` |
-| 21 | 209087 | 2026-07-14T05:38:25Z | [ossu/computer-science](https://github.com/ossu/computer-science) | — | `MIT` | `safe_to_integrate` |
-| 22 | 208160 | 2026-09-17T20:28:41Z | [anomalyco/opencode](https://github.com/anomalyco/opencode) | — | `MIT` | `safe_to_integrate` |
-| 23 | 204918 | 2026-09-17T21:26:36Z | [n8n-io/n8n](https://github.com/n8n-io/n8n) | `ai-ml`, `cli` | `NOASSERTION` | `discovery_only` |
-| 24 | 200163 | 2026-09-17T21:21:44Z | [tensorflow/tensorflow](https://github.com/tensorflow/tensorflow) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 25 | 199871 | 2026-08-12T10:36:46Z | [DigitalPlatDev/FreeDomain](https://github.com/DigitalPlatDev/FreeDomain) | — | `AGPL-3.0` | `discovery_only` |
-| 26 | 196761 | 2026-07-26T02:43:08Z | [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms) | — | `MIT` | `safe_to_integrate` |
-| 27 | 195259 | 2026-08-16T06:18:45Z | [ultraworkers/claw-code](https://github.com/ultraworkers/claw-code) | — | `MIT` | `safe_to_integrate` |
-| 28 | 192641 | 2026-09-17T21:26:42Z | [microsoft/vscode](https://github.com/microsoft/vscode) | — | `MIT` | `safe_to_integrate` |
-| 29 | 191766 | 2026-09-16T07:48:51Z | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | `cli`, `media`, `media-downloader` | `Unlicense` | `safe_to_integrate` |
-| 30 | 191010 | 2026-09-10T22:33:44Z | [massgravel/Microsoft-Activation-Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
-| 31 | 189776 | 2026-09-16T08:47:21Z | [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 32 | 187411 | 2026-09-17T20:52:56Z | [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 33 | 186565 | 2026-07-29T15:18:29Z | [jackfrued/Python-100-Days](https://github.com/jackfrued/Python-100-Days) | — | `unknown` | `discovery_only` |
-| 34 | 185108 | 2026-09-16T17:23:11Z | [microsoft/markitdown](https://github.com/microsoft/markitdown) | — | `MIT` | `safe_to_integrate` |
+| 1 | 547938 | 2026-07-14T19:25:58Z | [codecrafters-io/build-your-own-x](https://github.com/codecrafters-io/build-your-own-x) | — | `unknown` | `discovery_only` |
+| 2 | 507228 | 2026-09-02T02:10:47Z | [sindresorhus/awesome](https://github.com/sindresorhus/awesome) | — | `CC0-1.0` | `discovery_only` |
+| 3 | 481268 | 2026-09-17T13:58:56Z | [public-apis/public-apis](https://github.com/public-apis/public-apis) | — | `MIT` | `safe_to_integrate` |
+| 4 | 455704 | 2026-09-17T20:01:01Z | [freeCodeCamp/freeCodeCamp](https://github.com/freeCodeCamp/freeCodeCamp) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 5 | 397064 | 2026-09-15T15:54:40Z | [EbookFoundation/free-programming-books](https://github.com/EbookFoundation/free-programming-books) | — | `CC-BY-4.0` | `discovery_only` |
+| 6 | 390030 | 2026-09-18T04:50:30Z | [openclaw/openclaw](https://github.com/openclaw/openclaw) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 7 | 370556 | 2026-09-15T01:10:09Z | [donnemartin/system-design-primer](https://github.com/donnemartin/system-design-primer) | — | `NOASSERTION` | `discovery_only` |
+| 8 | 367558 | 2026-09-17T08:18:48Z | [nilbuild/developer-roadmap](https://github.com/nilbuild/developer-roadmap) | — | `NOASSERTION` | `discovery_only` |
+| 9 | 321372 | 2026-09-15T16:48:04Z | [vinta/awesome-python](https://github.com/vinta/awesome-python) | — | `NOASSERTION` | `discovery_only` |
+| 10 | 319975 | 2026-09-15T18:43:10Z | [awesome-selfhosted/awesome-selfhosted](https://github.com/awesome-selfhosted/awesome-selfhosted) | — | `NOASSERTION` | `discovery_only` |
+| 11 | 288199 | 2026-09-18T04:46:19Z | [obra/superpowers](https://github.com/obra/superpowers) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 12 | 283697 | 2026-09-14T07:10:04Z | [practical-tutorials/project-based-learning](https://github.com/practical-tutorials/project-based-learning) | — | `MIT` | `safe_to_integrate` |
+| 13 | 264650 | 2026-09-17T11:11:14Z | [mattpocock/skills](https://github.com/mattpocock/skills) | — | `MIT` | `safe_to_integrate` |
+| 14 | 261303 | 2026-09-17T18:04:07Z | [affaan-m/ECC](https://github.com/affaan-m/ECC) | `ai-ml`, `security` | `MIT` | `safe_to_integrate` |
+| 15 | 250551 | 2026-09-17T19:48:26Z | [react/react](https://github.com/react/react) | `web-ui` | `MIT` | `safe_to_integrate` |
+| 16 | 249362 | 2026-09-18T00:08:44Z | [torvalds/linux](https://github.com/torvalds/linux) | — | `NOASSERTION` | `discovery_only` |
+| 17 | 246618 | 2026-09-18T04:33:07Z | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 18 | 228233 | 2026-09-17T13:30:15Z | [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | — | `MIT` | `safe_to_integrate` |
+| 19 | 224685 | 2026-09-18T01:05:45Z | [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python) | — | `MIT` | `safe_to_integrate` |
+| 20 | 213777 | 2026-04-20T10:05:04Z | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | `ai-ml` | `unknown` | `discovery_only` |
+| 21 | 209094 | 2026-07-14T05:38:25Z | [ossu/computer-science](https://github.com/ossu/computer-science) | — | `MIT` | `safe_to_integrate` |
+| 22 | 208244 | 2026-09-18T04:42:48Z | [anomalyco/opencode](https://github.com/anomalyco/opencode) | — | `MIT` | `safe_to_integrate` |
+| 23 | 205090 | 2026-09-18T03:29:31Z | [n8n-io/n8n](https://github.com/n8n-io/n8n) | `ai-ml`, `cli` | `NOASSERTION` | `discovery_only` |
+| 24 | 200160 | 2026-09-18T04:43:33Z | [tensorflow/tensorflow](https://github.com/tensorflow/tensorflow) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 25 | 199911 | 2026-08-12T10:36:46Z | [DigitalPlatDev/FreeDomain](https://github.com/DigitalPlatDev/FreeDomain) | — | `AGPL-3.0` | `discovery_only` |
+| 26 | 196764 | 2026-07-26T02:43:08Z | [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms) | — | `MIT` | `safe_to_integrate` |
+| 27 | 195267 | 2026-08-16T06:18:45Z | [ultraworkers/claw-code](https://github.com/ultraworkers/claw-code) | — | `MIT` | `safe_to_integrate` |
+| 28 | 192642 | 2026-09-18T04:50:46Z | [microsoft/vscode](https://github.com/microsoft/vscode) | — | `MIT` | `safe_to_integrate` |
+| 29 | 191809 | 2026-09-16T07:48:51Z | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | `cli`, `media`, `media-downloader` | `Unlicense` | `safe_to_integrate` |
+| 30 | 191037 | 2026-09-10T22:33:44Z | [massgravel/Microsoft-Activation-Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
+| 31 | 189785 | 2026-09-16T08:47:21Z | [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 32 | 187421 | 2026-09-18T04:46:19Z | [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 33 | 186578 | 2026-07-29T15:18:29Z | [jackfrued/Python-100-Days](https://github.com/jackfrued/Python-100-Days) | — | `unknown` | `discovery_only` |
+| 34 | 185191 | 2026-09-16T17:23:11Z | [microsoft/markitdown](https://github.com/microsoft/markitdown) | — | `MIT` | `safe_to_integrate` |
 | 35 | 184923 | 2026-02-15T04:36:44Z | [getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS) | — | `NOASSERTION` | `discovery_only` |
-| 36 | 184516 | 2026-09-16T23:40:20Z | [avelino/awesome-go](https://github.com/avelino/awesome-go) | — | `MIT` | `safe_to_integrate` |
-| 37 | 181648 | 2026-09-17T20:18:59Z | [firecrawl/firecrawl](https://github.com/firecrawl/firecrawl) | `ai-ml`, `api-backend` | `AGPL-3.0` | `discovery_only` |
-| 38 | 181162 | 2026-09-17T21:21:31Z | [ollama/ollama](https://github.com/ollama/ollama) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 39 | 178995 | 2026-09-17T21:13:12Z | [flutter/flutter](https://github.com/flutter/flutter) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 40 | 177121 | 2026-08-28T00:38:12Z | [521xueweihan/HelloGitHub](https://github.com/521xueweihan/HelloGitHub) | — | `unknown` | `discovery_only` |
-| 41 | 176876 | 2026-09-10T19:44:11Z | [anthropics/skills](https://github.com/anthropics/skills) | — | `unknown` | `discovery_only` |
-| 42 | 175815 | 2026-09-11T16:15:42Z | [github/gitignore](https://github.com/github/gitignore) | — | `CC0-1.0` | `discovery_only` |
-| 43 | 174839 | 2026-09-15T11:10:39Z | [twbs/bootstrap](https://github.com/twbs/bootstrap) | — | `MIT` | `safe_to_integrate` |
-| 44 | 170558 | 2026-09-09T10:27:05Z | [f/prompts.chat](https://github.com/f/prompts.chat) | — | `NOASSERTION` | `discovery_only` |
-| 45 | 166253 | 2026-09-17T21:09:02Z | [huggingface/transformers](https://github.com/huggingface/transformers) | `ai-ml`, `media`, `speech-ai` | `Apache-2.0` | `safe_to_integrate` |
-| 46 | 164995 | 2026-03-02T07:00:53Z | [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 47 | 158641 | 2026-09-05T12:30:20Z | [Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) | — | `Apache-2.0` | `safe_to_integrate` |
-| 48 | 156175 | 2026-09-17T17:54:21Z | [langgenius/dify](https://github.com/langgenius/dify) | `ai-agent-framework`, `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 49 | 154945 | 2026-09-17T21:19:21Z | [langflow-ai/langflow](https://github.com/langflow-ai/langflow) | — | `MIT` | `safe_to_integrate` |
-| 50 | 153149 | 2026-09-12T16:57:21Z | [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 51 | 152398 | 2026-09-17T02:47:38Z | [open-webui/open-webui](https://github.com/open-webui/open-webui) | `ai-ml`, `api-backend`, `rag-retrieval`, `web-ui` | `NOASSERTION` | `discovery_only` |
-| 52 | 149853 | 2026-09-16T21:10:36Z | [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy) | `media`, `video-processing` | `Apache-2.0` | `safe_to_integrate` |
-| 53 | 148242 | 2026-04-16T19:24:09Z | [airbnb/javascript](https://github.com/airbnb/javascript) | — | `MIT` | `safe_to_integrate` |
-| 54 | 146539 | 2026-09-17T21:27:04Z | [langchain-ai/langchain](https://github.com/langchain-ai/langchain) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
-| 55 | 145819 | 2026-09-17T17:02:03Z | [anthropics/claude-code](https://github.com/anthropics/claude-code) | `cli` | `unknown` | `discovery_only` |
-| 56 | 145105 | 2026-09-17T16:42:28Z | [clash-verge-rev/clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev) | — | `GPL-3.0` | `discovery_only` |
-| 57 | 143696 | 2026-08-11T13:01:09Z | [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools) | `ai-ml` | `GPL-3.0` | `discovery_only` |
-| 58 | 142788 | 2026-08-07T12:06:42Z | [yangshun/tech-interview-handbook](https://github.com/yangshun/tech-interview-handbook) | — | `MIT` | `safe_to_integrate` |
-| 59 | 142342 | 2026-09-17T21:25:55Z | [vercel/next.js](https://github.com/vercel/next.js) | `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 60 | 141264 | 2026-09-14T14:34:56Z | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 61 | 141261 | 2026-02-19T16:45:25Z | [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl) | `cli`, `media` | `Unlicense` | `safe_to_integrate` |
-| 62 | 138867 | 2026-09-17T19:59:59Z | [golang/go](https://github.com/golang/go) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 63 | 138864 | 2026-09-17T14:28:38Z | [iptv-org/iptv](https://github.com/iptv-org/iptv) | — | `Unlicense` | `safe_to_integrate` |
-| 64 | 138794 | 2026-09-17T20:45:27Z | [microsoft/PowerToys](https://github.com/microsoft/PowerToys) | — | `MIT` | `safe_to_integrate` |
-| 65 | 138657 | 2026-09-16T04:08:39Z | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | — | `Apache-2.0` | `safe_to_integrate` |
-| 66 | 137696 | 2026-09-17T11:35:14Z | [ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) | — | `unknown` | `discovery_only` |
-| 67 | 137602 | 2026-09-17T17:48:40Z | [github/spec-kit](https://github.com/github/spec-kit) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 68 | 135920 | 2026-02-28T10:07:31Z | [labuladong/fucking-algorithm](https://github.com/labuladong/fucking-algorithm) | — | `unknown` | `discovery_only` |
-| 69 | 133674 | 2026-09-17T18:17:04Z | [Comfy-Org/ComfyUI](https://github.com/Comfy-Org/ComfyUI) | `ai-ml`, `api-backend` | `GPL-3.0` | `discovery_only` |
-| 70 | 133453 | 2026-09-17T16:38:39Z | [garrytan/gstack](https://github.com/garrytan/gstack) | — | `MIT` | `safe_to_integrate` |
-| 71 | 133386 | 2026-09-17T18:35:01Z | [farion1231/cc-switch](https://github.com/farion1231/cc-switch) | — | `MIT` | `safe_to_integrate` |
-| 72 | 132237 | 2026-09-17T19:06:17Z | [excalidraw/excalidraw](https://github.com/excalidraw/excalidraw) | — | `MIT` | `safe_to_integrate` |
-| 73 | 130225 | 2026-08-17T20:58:58Z | [krahets/hello-algo](https://github.com/krahets/hello-algo) | — | `NOASSERTION` | `discovery_only` |
-| 74 | 129127 | 2026-09-11T00:10:28Z | [Chalarangelo/30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code) | — | `CC-BY-4.0` | `discovery_only` |
-| 75 | 128584 | 2026-09-17T17:42:18Z | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | `ai-ml`, `llm-runtime` | `MIT` | `safe_to_integrate` |
-| 76 | 128492 | 2026-09-15T09:29:30Z | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `ai-ml`, `cli`, `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 77 | 127796 | 2026-09-17T21:21:31Z | [kubernetes/kubernetes](https://github.com/kubernetes/kubernetes) | — | `Apache-2.0` | `safe_to_integrate` |
-| 78 | 126637 | 2026-09-17T19:56:51Z | [react/react-native](https://github.com/react/react-native) | — | `MIT` | `safe_to_integrate` |
-| 79 | 124903 | 2026-09-17T21:26:10Z | [openai/codex](https://github.com/openai/codex) | `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 80 | 124438 | 2026-09-17T03:13:37Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | `ai-ml`, `media`, `speech-ai`, `video-processing` | `MIT` | `safe_to_integrate` |
-| 81 | 124062 | 2026-09-17T16:46:35Z | [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 82 | 123861 | 2026-09-17T10:24:24Z | [rustdesk/rustdesk](https://github.com/rustdesk/rustdesk) | — | `AGPL-3.0` | `discovery_only` |
-| 83 | 123123 | 2026-09-17T21:07:52Z | [electron/electron](https://github.com/electron/electron) | — | `MIT` | `safe_to_integrate` |
-| 84 | 121990 | 2026-09-17T20:38:01Z | [nodejs/node](https://github.com/nodejs/node) | — | `NOASSERTION` | `discovery_only` |
-| 85 | 120647 | 2026-07-26T03:29:02Z | [Hack-with-Github/Awesome-Hacking](https://github.com/Hack-with-Github/Awesome-Hacking) | — | `CC0-1.0` | `discovery_only` |
-| 86 | 119959 | 2026-09-17T03:44:45Z | [microsoft/generative-ai-for-beginners](https://github.com/microsoft/generative-ai-for-beginners) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 87 | 119022 | 2026-09-16T19:41:40Z | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `ai-ml`, `cli`, `database-storage`, `rag-retrieval`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
-| 88 | 118977 | 2026-07-29T00:39:06Z | [justjavac/free-programming-books-zh_CN](https://github.com/justjavac/free-programming-books-zh_CN) | — | `GPL-3.0` | `discovery_only` |
-| 89 | 118923 | 2026-09-17T20:34:00Z | [rust-lang/rust](https://github.com/rust-lang/rust) | — | `Apache-2.0` | `safe_to_integrate` |
-| 90 | 117371 | 2026-09-17T18:12:36Z | [godotengine/godot](https://github.com/godotengine/godot) | — | `MIT` | `safe_to_integrate` |
-| 91 | 116392 | 2026-09-16T18:46:06Z | [2dust/v2rayN](https://github.com/2dust/v2rayN) | — | `GPL-3.0` | `discovery_only` |
-| 92 | 116366 | 2026-07-31T12:32:42Z | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) | — | `MIT` | `safe_to_integrate` |
-| 93 | 115613 | 2026-09-17T20:31:36Z | [mrdoob/three.js](https://github.com/mrdoob/three.js) | — | `MIT` | `safe_to_integrate` |
-| 94 | 114968 | 2026-09-15T22:49:04Z | [browser-use/browser-use](https://github.com/browser-use/browser-use) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 95 | 114465 | 2026-09-17T20:51:40Z | [immich-app/immich](https://github.com/immich-app/immich) | `media` | `AGPL-3.0` | `discovery_only` |
-| 96 | 114030 | 2026-09-17T08:01:12Z | [jaywcjlove/awesome-mac](https://github.com/jaywcjlove/awesome-mac) | — | `CC0-1.0` | `discovery_only` |
-| 97 | 113741 | 2026-05-28T14:43:01Z | [d3/d3](https://github.com/d3/d3) | — | `ISC` | `safe_to_integrate` |
-| 98 | 111133 | 2026-09-17T17:15:31Z | [tauri-apps/tauri](https://github.com/tauri-apps/tauri) | `web-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 99 | 111092 | 2026-09-17T21:20:02Z | [microsoft/TypeScript](https://github.com/microsoft/TypeScript) | — | `Apache-2.0` | `safe_to_integrate` |
-| 100 | 109903 | 2026-09-17T21:02:24Z | [supabase/supabase](https://github.com/supabase/supabase) | `ai-ml`, `auth`, `database-storage`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 101 | 109813 | 2026-09-17T00:40:26Z | [papers-we-love/papers-we-love](https://github.com/papers-we-love/papers-we-love) | — | `unknown` | `discovery_only` |
-| 102 | 109487 | 2026-09-15T05:55:33Z | [fatedier/frp](https://github.com/fatedier/frp) | `network-security`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 103 | 109291 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | `ai-ml`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
-| 104 | 109206 | 2026-09-16T19:05:23Z | [axios/axios](https://github.com/axios/axios) | — | `MIT` | `safe_to_integrate` |
-| 105 | 108468 | 2026-09-17T10:35:32Z | [denoland/deno](https://github.com/denoland/deno) | — | `MIT` | `safe_to_integrate` |
-| 106 | 107289 | 2026-09-17T07:31:46Z | [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 107 | 107040 | 2026-09-17T21:04:48Z | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 108 | 106598 | 2026-09-17T19:44:29Z | [earendil-works/pi](https://github.com/earendil-works/pi) | `ai-ml`, `api-backend`, `cli` | `MIT` | `safe_to_integrate` |
-| 109 | 106251 | 2026-09-17T16:46:32Z | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 36 | 184563 | 2026-09-16T23:40:20Z | [avelino/awesome-go](https://github.com/avelino/awesome-go) | — | `MIT` | `safe_to_integrate` |
+| 37 | 181745 | 2026-09-18T03:03:00Z | [firecrawl/firecrawl](https://github.com/firecrawl/firecrawl) | `ai-ml`, `api-backend` | `AGPL-3.0` | `discovery_only` |
+| 38 | 181184 | 2026-09-17T23:54:24Z | [ollama/ollama](https://github.com/ollama/ollama) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 39 | 178996 | 2026-09-18T04:17:30Z | [flutter/flutter](https://github.com/flutter/flutter) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 40 | 177204 | 2026-08-28T00:38:12Z | [521xueweihan/HelloGitHub](https://github.com/521xueweihan/HelloGitHub) | — | `unknown` | `discovery_only` |
+| 41 | 176932 | 2026-09-10T19:44:11Z | [anthropics/skills](https://github.com/anthropics/skills) | — | `unknown` | `discovery_only` |
+| 42 | 175817 | 2026-09-11T16:15:42Z | [github/gitignore](https://github.com/github/gitignore) | — | `CC0-1.0` | `discovery_only` |
+| 43 | 174842 | 2026-09-15T11:10:39Z | [twbs/bootstrap](https://github.com/twbs/bootstrap) | — | `MIT` | `safe_to_integrate` |
+| 44 | 170596 | 2026-09-09T10:27:05Z | [f/prompts.chat](https://github.com/f/prompts.chat) | — | `NOASSERTION` | `discovery_only` |
+| 45 | 166262 | 2026-09-18T04:40:52Z | [huggingface/transformers](https://github.com/huggingface/transformers) | `ai-ml`, `media`, `speech-ai` | `Apache-2.0` | `safe_to_integrate` |
+| 46 | 164996 | 2026-03-02T07:00:53Z | [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 47 | 158655 | 2026-09-05T12:30:20Z | [Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) | — | `Apache-2.0` | `safe_to_integrate` |
+| 48 | 156215 | 2026-09-18T04:48:34Z | [langgenius/dify](https://github.com/langgenius/dify) | `ai-agent-framework`, `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 49 | 154960 | 2026-09-18T02:17:58Z | [langflow-ai/langflow](https://github.com/langflow-ai/langflow) | — | `MIT` | `safe_to_integrate` |
+| 50 | 153208 | 2026-09-12T16:57:21Z | [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 51 | 152426 | 2026-09-18T00:11:06Z | [open-webui/open-webui](https://github.com/open-webui/open-webui) | `ai-ml`, `api-backend`, `rag-retrieval`, `web-ui` | `NOASSERTION` | `discovery_only` |
+| 52 | 149873 | 2026-09-16T21:10:36Z | [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy) | `media`, `video-processing` | `Apache-2.0` | `safe_to_integrate` |
+| 53 | 148244 | 2026-04-16T19:24:09Z | [airbnb/javascript](https://github.com/airbnb/javascript) | — | `MIT` | `safe_to_integrate` |
+| 54 | 146563 | 2026-09-18T03:21:09Z | [langchain-ai/langchain](https://github.com/langchain-ai/langchain) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 55 | 145938 | 2026-09-18T02:12:25Z | [anthropics/claude-code](https://github.com/anthropics/claude-code) | `cli` | `unknown` | `discovery_only` |
+| 56 | 145160 | 2026-09-18T02:15:47Z | [clash-verge-rev/clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev) | — | `GPL-3.0` | `discovery_only` |
+| 57 | 143706 | 2026-08-11T13:01:09Z | [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 58 | 142795 | 2026-08-07T12:06:42Z | [yangshun/tech-interview-handbook](https://github.com/yangshun/tech-interview-handbook) | — | `MIT` | `safe_to_integrate` |
+| 59 | 142340 | 2026-09-18T01:58:17Z | [vercel/next.js](https://github.com/vercel/next.js) | `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 60 | 141470 | 2026-09-14T14:34:56Z | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 61 | 141262 | 2026-02-19T16:45:25Z | [ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl) | `cli`, `media` | `Unlicense` | `safe_to_integrate` |
+| 62 | 138890 | 2026-09-18T00:17:45Z | [iptv-org/iptv](https://github.com/iptv-org/iptv) | — | `Unlicense` | `safe_to_integrate` |
+| 63 | 138867 | 2026-09-17T22:32:30Z | [golang/go](https://github.com/golang/go) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 64 | 138800 | 2026-09-17T23:12:36Z | [microsoft/PowerToys](https://github.com/microsoft/PowerToys) | — | `MIT` | `safe_to_integrate` |
+| 65 | 138716 | 2026-09-16T04:08:39Z | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | — | `Apache-2.0` | `safe_to_integrate` |
+| 66 | 137712 | 2026-09-17T11:35:14Z | [ripienaar/free-for-dev](https://github.com/ripienaar/free-for-dev) | — | `unknown` | `discovery_only` |
+| 67 | 137676 | 2026-09-17T21:54:52Z | [github/spec-kit](https://github.com/github/spec-kit) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 68 | 135922 | 2026-02-28T10:07:31Z | [labuladong/fucking-algorithm](https://github.com/labuladong/fucking-algorithm) | — | `unknown` | `discovery_only` |
+| 69 | 133707 | 2026-09-18T04:14:44Z | [Comfy-Org/ComfyUI](https://github.com/Comfy-Org/ComfyUI) | `ai-ml`, `api-backend` | `GPL-3.0` | `discovery_only` |
+| 70 | 133493 | 2026-09-18T00:38:18Z | [garrytan/gstack](https://github.com/garrytan/gstack) | — | `MIT` | `safe_to_integrate` |
+| 71 | 133442 | 2026-09-17T18:35:01Z | [farion1231/cc-switch](https://github.com/farion1231/cc-switch) | — | `MIT` | `safe_to_integrate` |
+| 72 | 132256 | 2026-09-17T19:06:17Z | [excalidraw/excalidraw](https://github.com/excalidraw/excalidraw) | — | `MIT` | `safe_to_integrate` |
+| 73 | 130241 | 2026-08-17T20:58:58Z | [krahets/hello-algo](https://github.com/krahets/hello-algo) | — | `NOASSERTION` | `discovery_only` |
+| 74 | 129130 | 2026-09-11T00:10:28Z | [Chalarangelo/30-seconds-of-code](https://github.com/Chalarangelo/30-seconds-of-code) | — | `CC-BY-4.0` | `discovery_only` |
+| 75 | 128619 | 2026-09-18T00:57:15Z | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | `ai-ml`, `llm-runtime` | `MIT` | `safe_to_integrate` |
+| 76 | 128575 | 2026-09-15T09:29:30Z | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `ai-ml`, `cli`, `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 77 | 127800 | 2026-09-18T01:27:20Z | [kubernetes/kubernetes](https://github.com/kubernetes/kubernetes) | — | `Apache-2.0` | `safe_to_integrate` |
+| 78 | 126638 | 2026-09-18T00:33:04Z | [react/react-native](https://github.com/react/react-native) | — | `MIT` | `safe_to_integrate` |
+| 79 | 124975 | 2026-09-18T03:54:33Z | [openai/codex](https://github.com/openai/codex) | `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 80 | 124483 | 2026-09-17T03:13:37Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | `ai-ml`, `media`, `speech-ai`, `video-processing` | `MIT` | `safe_to_integrate` |
+| 81 | 124082 | 2026-09-17T16:46:35Z | [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 82 | 123892 | 2026-09-18T04:43:08Z | [rustdesk/rustdesk](https://github.com/rustdesk/rustdesk) | — | `AGPL-3.0` | `discovery_only` |
+| 83 | 123127 | 2026-09-18T04:05:18Z | [electron/electron](https://github.com/electron/electron) | — | `MIT` | `safe_to_integrate` |
+| 84 | 121992 | 2026-09-18T00:03:37Z | [nodejs/node](https://github.com/nodejs/node) | — | `NOASSERTION` | `discovery_only` |
+| 85 | 120667 | 2026-07-26T03:29:02Z | [Hack-with-Github/Awesome-Hacking](https://github.com/Hack-with-Github/Awesome-Hacking) | — | `CC0-1.0` | `discovery_only` |
+| 86 | 119980 | 2026-09-17T03:44:45Z | [microsoft/generative-ai-for-beginners](https://github.com/microsoft/generative-ai-for-beginners) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 87 | 119124 | 2026-09-16T19:41:40Z | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `ai-ml`, `cli`, `database-storage`, `rag-retrieval`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
+| 88 | 118979 | 2026-07-29T00:39:06Z | [justjavac/free-programming-books-zh_CN](https://github.com/justjavac/free-programming-books-zh_CN) | — | `GPL-3.0` | `discovery_only` |
+| 89 | 118922 | 2026-09-18T04:48:35Z | [rust-lang/rust](https://github.com/rust-lang/rust) | — | `Apache-2.0` | `safe_to_integrate` |
+| 90 | 117384 | 2026-09-17T18:12:36Z | [godotengine/godot](https://github.com/godotengine/godot) | — | `MIT` | `safe_to_integrate` |
+| 91 | 116429 | 2026-07-31T12:32:42Z | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) | — | `MIT` | `safe_to_integrate` |
+| 92 | 116417 | 2026-09-16T18:46:06Z | [2dust/v2rayN](https://github.com/2dust/v2rayN) | — | `GPL-3.0` | `discovery_only` |
+| 93 | 115620 | 2026-09-18T03:18:31Z | [mrdoob/three.js](https://github.com/mrdoob/three.js) | — | `MIT` | `safe_to_integrate` |
+| 94 | 115022 | 2026-09-15T22:49:04Z | [browser-use/browser-use](https://github.com/browser-use/browser-use) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 95 | 114488 | 2026-09-18T01:51:36Z | [immich-app/immich](https://github.com/immich-app/immich) | `media` | `AGPL-3.0` | `discovery_only` |
+| 96 | 114051 | 2026-09-17T08:01:12Z | [jaywcjlove/awesome-mac](https://github.com/jaywcjlove/awesome-mac) | — | `CC0-1.0` | `discovery_only` |
+| 97 | 113742 | 2026-05-28T14:43:01Z | [d3/d3](https://github.com/d3/d3) | — | `ISC` | `safe_to_integrate` |
+| 98 | 111144 | 2026-09-18T02:37:41Z | [tauri-apps/tauri](https://github.com/tauri-apps/tauri) | `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 99 | 111094 | 2026-09-18T03:09:48Z | [microsoft/TypeScript](https://github.com/microsoft/TypeScript) | — | `Apache-2.0` | `safe_to_integrate` |
+| 100 | 109931 | 2026-09-18T04:44:41Z | [supabase/supabase](https://github.com/supabase/supabase) | `ai-ml`, `auth`, `database-storage`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 101 | 109820 | 2026-09-17T00:40:26Z | [papers-we-love/papers-we-love](https://github.com/papers-we-love/papers-we-love) | — | `unknown` | `discovery_only` |
+| 102 | 109491 | 2026-09-15T05:55:33Z | [fatedier/frp](https://github.com/fatedier/frp) | `network-security`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 103 | 109302 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | `ai-ml`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
+| 104 | 109207 | 2026-09-16T19:05:23Z | [axios/axios](https://github.com/axios/axios) | — | `MIT` | `safe_to_integrate` |
+| 105 | 108466 | 2026-09-17T10:35:32Z | [denoland/deno](https://github.com/denoland/deno) | — | `MIT` | `safe_to_integrate` |
+| 106 | 107355 | 2026-09-18T04:02:58Z | [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 107 | 107051 | 2026-09-18T02:29:53Z | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 108 | 106707 | 2026-09-18T00:58:10Z | [earendil-works/pi](https://github.com/earendil-works/pi) | `ai-ml`, `api-backend`, `cli` | `MIT` | `safe_to_integrate` |
+| 109 | 106337 | 2026-09-17T16:46:32Z | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | `ai-ml` | `NOASSERTION` | `discovery_only` |
 | 110 | 105624 | 2026-06-15T11:41:04Z | [goldbergyoni/nodebestpractices](https://github.com/goldbergyoni/nodebestpractices) | `testing` | `CC-BY-SA-4.0` | `discovery_only` |
-| 111 | 105154 | 2026-09-17T14:08:55Z | [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) | — | `NOASSERTION` | `discovery_only` |
-| 112 | 104919 | 2026-09-17T17:53:15Z | [microsoft/terminal](https://github.com/microsoft/terminal) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
-| 113 | 103073 | 2026-09-17T21:26:17Z | [pytorch/pytorch](https://github.com/pytorch/pytorch) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 114 | 102762 | 2026-09-13T08:30:52Z | [ruanyf/weekly](https://github.com/ruanyf/weekly) | — | `unknown` | `discovery_only` |
-| 115 | 102403 | 2026-09-14T18:49:48Z | [fastapi/fastapi](https://github.com/fastapi/fastapi) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 116 | 102393 | 2026-09-17T20:56:45Z | [neovim/neovim](https://github.com/neovim/neovim) | `api-backend` | `NOASSERTION` | `discovery_only` |
-| 117 | 102242 | 2026-09-03T14:26:56Z | [Anduin2017/HowToCook](https://github.com/Anduin2017/HowToCook) | — | `Unlicense` | `safe_to_integrate` |
-| 118 | 101010 | 2026-09-17T21:01:26Z | [angular/angular](https://github.com/angular/angular) | — | `MIT` | `safe_to_integrate` |
-| 119 | 100458 | 2025-12-29T19:37:02Z | [mtdvio/every-programmer-should-know](https://github.com/mtdvio/every-programmer-should-know) | — | `CC-BY-4.0` | `discovery_only` |
-| 120 | 99526 | 2026-09-17T21:26:43Z | [ant-design/ant-design](https://github.com/ant-design/ant-design) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 111 | 105169 | 2026-09-17T14:08:55Z | [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) | — | `NOASSERTION` | `discovery_only` |
+| 112 | 104921 | 2026-09-18T03:43:34Z | [microsoft/terminal](https://github.com/microsoft/terminal) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
+| 113 | 103076 | 2026-09-18T04:44:22Z | [pytorch/pytorch](https://github.com/pytorch/pytorch) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 114 | 102836 | 2026-09-18T00:13:04Z | [ruanyf/weekly](https://github.com/ruanyf/weekly) | — | `unknown` | `discovery_only` |
+| 115 | 102409 | 2026-09-14T18:49:48Z | [fastapi/fastapi](https://github.com/fastapi/fastapi) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 116 | 102398 | 2026-09-18T03:25:16Z | [neovim/neovim](https://github.com/neovim/neovim) | `api-backend` | `NOASSERTION` | `discovery_only` |
+| 117 | 102250 | 2026-09-03T14:26:56Z | [Anduin2017/HowToCook](https://github.com/Anduin2017/HowToCook) | — | `Unlicense` | `safe_to_integrate` |
+| 118 | 101010 | 2026-09-17T21:48:20Z | [angular/angular](https://github.com/angular/angular) | — | `MIT` | `safe_to_integrate` |
+| 119 | 100460 | 2025-12-29T19:37:02Z | [mtdvio/every-programmer-should-know](https://github.com/mtdvio/every-programmer-should-know) | — | `CC-BY-4.0` | `discovery_only` |
+| 120 | 99529 | 2026-09-18T03:37:13Z | [ant-design/ant-design](https://github.com/ant-design/ant-design) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
 | 121 | 99052 | 2026-09-17T13:48:20Z | [mui/material-ui](https://github.com/mui/material-ui) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 122 | 97622 | 2025-10-11T14:51:21Z | [florinpop17/app-ideas](https://github.com/florinpop17/app-ideas) | — | `MIT` | `safe_to_integrate` |
-| 123 | 97595 | 2026-09-08T17:15:40Z | [tailwindlabs/tailwindcss](https://github.com/tailwindlabs/tailwindcss) | — | `MIT` | `safe_to_integrate` |
-| 124 | 96745 | 2026-09-17T20:17:35Z | [nexu-io/open-design](https://github.com/nexu-io/open-design) | `media`, `ui-component-library`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 125 | 96695 | 2026-09-15T11:05:04Z | [hacksider/Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam) | `ai-ml`, `media` | `AGPL-3.0` | `discovery_only` |
-| 126 | 96694 | 2026-09-14T16:47:48Z | [microsoft/Web-Dev-For-Beginners](https://github.com/microsoft/Web-Dev-For-Beginners) | — | `MIT` | `safe_to_integrate` |
-| 127 | 96279 | 2026-09-17T21:03:59Z | [microsoft/playwright](https://github.com/microsoft/playwright) | `api-backend`, `browser-e2e-testing`, `testing` | `Apache-2.0` | `safe_to_integrate` |
-| 128 | 96210 | 2026-03-26T00:07:37Z | [karpathy/autoresearch](https://github.com/karpathy/autoresearch) | `ai-ml` | `unknown` | `discovery_only` |
-| 129 | 95978 | 2026-09-17T21:26:17Z | [oven-sh/bun](https://github.com/oven-sh/bun) | `cli`, `package-manager` | `NOASSERTION` | `discovery_only` |
-| 130 | 95778 | 2026-09-12T03:14:59Z | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 131 | 95582 | 2026-09-17T11:04:49Z | [puppeteer/puppeteer](https://github.com/puppeteer/puppeteer) | `api-backend`, `testing` | `Apache-2.0` | `safe_to_integrate` |
-| 132 | 95162 | 2026-09-15T23:17:39Z | [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) | — | `MIT` | `safe_to_integrate` |
-| 133 | 95103 | 2026-09-11T04:00:38Z | [nvm-sh/nvm](https://github.com/nvm-sh/nvm) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 122 | 97629 | 2025-10-11T14:51:21Z | [florinpop17/app-ideas](https://github.com/florinpop17/app-ideas) | — | `MIT` | `safe_to_integrate` |
+| 123 | 97599 | 2026-09-08T17:15:40Z | [tailwindlabs/tailwindcss](https://github.com/tailwindlabs/tailwindcss) | — | `MIT` | `safe_to_integrate` |
+| 124 | 96805 | 2026-09-18T04:42:54Z | [nexu-io/open-design](https://github.com/nexu-io/open-design) | `media`, `ui-component-library`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 125 | 96703 | 2026-09-15T11:05:04Z | [hacksider/Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam) | `ai-ml`, `media` | `AGPL-3.0` | `discovery_only` |
+| 126 | 96698 | 2026-09-14T16:47:48Z | [microsoft/Web-Dev-For-Beginners](https://github.com/microsoft/Web-Dev-For-Beginners) | — | `MIT` | `safe_to_integrate` |
+| 127 | 96294 | 2026-09-18T04:39:15Z | [microsoft/playwright](https://github.com/microsoft/playwright) | `api-backend`, `browser-e2e-testing`, `testing` | `Apache-2.0` | `safe_to_integrate` |
+| 128 | 96230 | 2026-03-26T00:07:37Z | [karpathy/autoresearch](https://github.com/karpathy/autoresearch) | `ai-ml` | `unknown` | `discovery_only` |
+| 129 | 95980 | 2026-09-18T04:41:27Z | [oven-sh/bun](https://github.com/oven-sh/bun) | `cli`, `package-manager` | `NOASSERTION` | `discovery_only` |
+| 130 | 95968 | 2026-09-18T03:32:22Z | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 131 | 95587 | 2026-09-17T11:04:49Z | [puppeteer/puppeteer](https://github.com/puppeteer/puppeteer) | `api-backend`, `testing` | `Apache-2.0` | `safe_to_integrate` |
+| 132 | 95185 | 2026-09-15T23:17:39Z | [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) | — | `MIT` | `safe_to_integrate` |
+| 133 | 95107 | 2026-09-11T04:00:38Z | [nvm-sh/nvm](https://github.com/nvm-sh/nvm) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
 | 134 | 94706 | 2026-09-13T06:53:54Z | [iluwatar/java-design-patterns](https://github.com/iluwatar/java-design-patterns) | — | `NOASSERTION` | `discovery_only` |
-| 135 | 94307 | 2026-09-17T18:18:41Z | [ruvnet/RuView](https://github.com/ruvnet/RuView) | — | `MIT` | `safe_to_integrate` |
-| 136 | 94126 | 2026-09-17T18:52:55Z | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 137 | 94012 | 2026-09-09T16:23:48Z | [3b1b/manim](https://github.com/3b1b/manim) | — | `MIT` | `safe_to_integrate` |
-| 138 | 92438 | 2026-09-17T20:50:12Z | [Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) | — | `NOASSERTION` | `discovery_only` |
-| 139 | 92030 | 2026-09-17T21:11:40Z | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `ai-ml`, `llm-runtime` | `Apache-2.0` | `safe_to_integrate` |
-| 140 | 91989 | 2026-09-17T05:17:52Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | `cli`, `media`, `penetration-testing`, `security` | `MIT` | `safe_to_integrate` |
-| 141 | 91907 | 2026-09-14T13:10:57Z | [localsend/localsend](https://github.com/localsend/localsend) | — | `Apache-2.0` | `safe_to_integrate` |
-| 142 | 91481 | 2026-09-17T20:01:30Z | [louislam/uptime-kuma](https://github.com/louislam/uptime-kuma) | `devops`, `observability`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 143 | 91126 | 2026-09-17T20:27:22Z | [django/django](https://github.com/django/django) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 144 | 91081 | 2026-09-17T19:25:17Z | [storybookjs/storybook](https://github.com/storybookjs/storybook) | `testing`, `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 145 | 90891 | 2026-09-17T16:07:49Z | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 146 | 90870 | 2026-09-17T16:46:09Z | [opencv/opencv](https://github.com/opencv/opencv) | `ai-ml`, `computer-vision`, `image-processing`, `media` | `Apache-2.0` | `safe_to_integrate` |
-| 147 | 90661 | 2026-09-17T21:20:32Z | [home-assistant/core](https://github.com/home-assistant/core) | — | `Apache-2.0` | `safe_to_integrate` |
-| 148 | 90608 | 2026-09-15T05:29:39Z | [microsoft/ML-For-Beginners](https://github.com/microsoft/ML-For-Beginners) | — | `MIT` | `safe_to_integrate` |
-| 149 | 90432 | 2026-09-17T20:55:15Z | [zed-industries/zed](https://github.com/zed-industries/zed) | — | `NOASSERTION` | `discovery_only` |
-| 150 | 90418 | 2026-09-03T01:42:26Z | [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) | — | `NOASSERTION` | `discovery_only` |
-| 151 | 90295 | 2026-09-15T12:39:28Z | [mermaid-js/mermaid](https://github.com/mermaid-js/mermaid) | — | `MIT` | `safe_to_integrate` |
-| 152 | 90187 | 2026-09-17T20:24:50Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | `cryptography`, `security` | `MIT` | `safe_to_integrate` |
-| 153 | 89928 | 2026-09-17T21:21:28Z | [astral-sh/uv](https://github.com/astral-sh/uv) | — | `Apache-2.0` | `safe_to_integrate` |
-| 154 | 89856 | 2026-09-17T14:46:39Z | [gohugoio/hugo](https://github.com/gohugoio/hugo) | `content-management`, `static-site-generator`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 155 | 89731 | 2026-09-16T03:31:50Z | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | `ai-ml`, `computer-vision`, `media`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 156 | 89683 | 2026-08-10T16:38:36Z | [OpenCut-app/OpenCut](https://github.com/OpenCut-app/OpenCut) | — | `MIT` | `safe_to_integrate` |
-| 157 | 89349 | 2026-07-25T07:00:20Z | [MunGell/awesome-for-beginners](https://github.com/MunGell/awesome-for-beginners) | — | `unknown` | `discovery_only` |
+| 135 | 94332 | 2026-09-18T00:39:39Z | [ruvnet/RuView](https://github.com/ruvnet/RuView) | — | `MIT` | `safe_to_integrate` |
+| 136 | 94145 | 2026-09-17T18:52:55Z | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 137 | 94023 | 2026-09-09T16:23:48Z | [3b1b/manim](https://github.com/3b1b/manim) | — | `MIT` | `safe_to_integrate` |
+| 138 | 92460 | 2026-09-18T02:00:27Z | [Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) | — | `NOASSERTION` | `discovery_only` |
+| 139 | 92055 | 2026-09-18T04:49:39Z | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `ai-ml`, `llm-runtime` | `Apache-2.0` | `safe_to_integrate` |
+| 140 | 92009 | 2026-09-17T05:17:52Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | `cli`, `media`, `penetration-testing`, `security` | `MIT` | `safe_to_integrate` |
+| 141 | 91951 | 2026-09-14T13:10:57Z | [localsend/localsend](https://github.com/localsend/localsend) | — | `Apache-2.0` | `safe_to_integrate` |
+| 142 | 91498 | 2026-09-18T00:06:09Z | [louislam/uptime-kuma](https://github.com/louislam/uptime-kuma) | `devops`, `observability`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 143 | 91129 | 2026-09-18T01:46:40Z | [django/django](https://github.com/django/django) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 144 | 91089 | 2026-09-18T01:44:16Z | [storybookjs/storybook](https://github.com/storybookjs/storybook) | `testing`, `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 145 | 90911 | 2026-09-18T04:15:12Z | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 146 | 90877 | 2026-09-17T16:46:09Z | [opencv/opencv](https://github.com/opencv/opencv) | `ai-ml`, `computer-vision`, `image-processing`, `media` | `Apache-2.0` | `safe_to_integrate` |
+| 147 | 90680 | 2026-09-18T04:45:30Z | [home-assistant/core](https://github.com/home-assistant/core) | — | `Apache-2.0` | `safe_to_integrate` |
+| 148 | 90617 | 2026-09-15T05:29:39Z | [microsoft/ML-For-Beginners](https://github.com/microsoft/ML-For-Beginners) | — | `MIT` | `safe_to_integrate` |
+| 149 | 90449 | 2026-09-18T04:50:33Z | [zed-industries/zed](https://github.com/zed-industries/zed) | — | `NOASSERTION` | `discovery_only` |
+| 150 | 90426 | 2026-09-03T01:42:26Z | [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) | — | `NOASSERTION` | `discovery_only` |
+| 151 | 90299 | 2026-09-15T12:39:28Z | [mermaid-js/mermaid](https://github.com/mermaid-js/mermaid) | — | `MIT` | `safe_to_integrate` |
+| 152 | 90190 | 2026-09-17T20:24:50Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | `cryptography`, `security` | `MIT` | `safe_to_integrate` |
+| 153 | 89941 | 2026-09-18T02:38:08Z | [astral-sh/uv](https://github.com/astral-sh/uv) | — | `Apache-2.0` | `safe_to_integrate` |
+| 154 | 89858 | 2026-09-18T00:21:56Z | [gohugoio/hugo](https://github.com/gohugoio/hugo) | `content-management`, `static-site-generator`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 155 | 89745 | 2026-09-16T03:31:50Z | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | `ai-ml`, `computer-vision`, `media`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 156 | 89705 | 2026-08-10T16:38:36Z | [OpenCut-app/OpenCut](https://github.com/OpenCut-app/OpenCut) | — | `MIT` | `safe_to_integrate` |
+| 157 | 89359 | 2026-07-25T07:00:20Z | [MunGell/awesome-for-beginners](https://github.com/MunGell/awesome-for-beginners) | — | `unknown` | `discovery_only` |
 | 158 | 89232 | 2026-09-16T15:01:53Z | [gin-gonic/gin](https://github.com/gin-gonic/gin) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 159 | 88776 | 2026-08-11T02:07:25Z | [ChatGPTNextWeb/NextChat](https://github.com/ChatGPTNextWeb/NextChat) | `ai-ml`, `api-backend` | `MIT` | `safe_to_integrate` |
-| 160 | 88683 | 2026-09-15T12:01:36Z | [syncthing/syncthing](https://github.com/syncthing/syncthing) | — | `MPL-2.0` | `discovery_only` |
-| 161 | 88319 | 2026-09-17T21:23:18Z | [OpenHands/OpenHands](https://github.com/OpenHands/OpenHands) | `ai-ml`, `cli` | `MIT` | `safe_to_integrate` |
-| 162 | 88131 | 2026-09-16T18:12:04Z | [sveltejs/svelte](https://github.com/sveltejs/svelte) | `api-backend`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 163 | 87958 | 2026-09-16T15:01:43Z | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 164 | 87343 | 2026-09-17T17:38:42Z | [odysseus-dev/odysseus](https://github.com/odysseus-dev/odysseus) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 165 | 86687 | 2026-09-17T18:09:44Z | [koala73/worldmonitor](https://github.com/koala73/worldmonitor) | `ai-ml`, `devops`, `observability`, `web-ui` | `AGPL-3.0` | `discovery_only` |
-| 166 | 84967 | 2026-08-25T16:27:45Z | [laravel/laravel](https://github.com/laravel/laravel) | — | `unknown` | `discovery_only` |
-| 167 | 84789 | 2026-09-15T02:34:44Z | [macrozheng/mall](https://github.com/macrozheng/mall) | — | `Apache-2.0` | `safe_to_integrate` |
-| 168 | 84504 | 2025-12-27T14:22:30Z | [bregman-arie/devops-exercises](https://github.com/bregman-arie/devops-exercises) | — | `NOASSERTION` | `discovery_only` |
-| 169 | 84214 | 2026-08-26T06:00:45Z | [realworld-apps/realworld](https://github.com/realworld-apps/realworld) | — | `NOASSERTION` | `discovery_only` |
-| 170 | 83752 | 2026-09-16T07:49:01Z | [unclecode/crawl4ai](https://github.com/unclecode/crawl4ai) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 171 | 83524 | 2026-09-17T16:11:45Z | [Developer-Y/cs-video-courses](https://github.com/Developer-Y/cs-video-courses) | — | `unknown` | `discovery_only` |
-| 172 | 83153 | 2026-09-12T05:31:43Z | [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | `cli` | `MIT` | `safe_to_integrate` |
-| 173 | 83075 | 2026-09-14T03:16:23Z | [junegunn/fzf](https://github.com/junegunn/fzf) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 174 | 83002 | 2026-02-05T13:09:26Z | [mlabonne/llm-course](https://github.com/mlabonne/llm-course) | — | `Apache-2.0` | `safe_to_integrate` |
-| 175 | 82860 | 2026-09-17T10:51:39Z | [vitejs/vite](https://github.com/vitejs/vite) | `web-ui` | `MIT` | `safe_to_integrate` |
-| 176 | 82772 | 2026-09-15T16:16:24Z | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) | `ai-ml`, `api-backend`, `cli` | `MIT` | `safe_to_integrate` |
-| 177 | 82591 | 2026-09-17T14:40:26Z | [bytedance/deer-flow](https://github.com/bytedance/deer-flow) | `ai-agent-framework`, `ai-ml` | `MIT` | `safe_to_integrate` |
-| 178 | 82550 | 2026-09-17T18:17:25Z | [lobehub/lobehub](https://github.com/lobehub/lobehub) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 179 | 82431 | 2026-09-17T16:59:07Z | [jesseduffield/lazygit](https://github.com/jesseduffield/lazygit) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 180 | 82063 | 2025-10-18T13:39:24Z | [TapXWorld/ChinaTextbook](https://github.com/TapXWorld/ChinaTextbook) | — | `unknown` | `discovery_only` |
-| 181 | 82019 | 2026-07-28T17:02:16Z | [tonsky/FiraCode](https://github.com/tonsky/FiraCode) | — | `OFL-1.1` | `discovery_only` |
-| 182 | 81823 | 2026-09-14T19:47:52Z | [D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling) | `ai-ml` | `BSD-3-Clause` | `safe_to_integrate` |
-| 183 | 81459 | 2026-09-17T18:03:59Z | [spring-projects/spring-boot](https://github.com/spring-projects/spring-boot) | — | `Apache-2.0` | `safe_to_integrate` |
-| 184 | 80937 | 2026-08-27T07:52:21Z | [swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings) | — | `MIT` | `safe_to_integrate` |
-| 185 | 80934 | 2026-09-17T21:25:38Z | [paperclipai/paperclip](https://github.com/paperclipai/paperclip) | — | `MIT` | `safe_to_integrate` |
-| 186 | 80821 | 2026-09-15T09:15:47Z | [rtk-ai/rtk](https://github.com/rtk-ai/rtk) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 187 | 80562 | 2026-09-17T20:25:14Z | [netdata/netdata](https://github.com/netdata/netdata) | `ai-ml`, `database-storage`, `devops`, `observability` | `GPL-3.0` | `discovery_only` |
-| 188 | 80331 | 2026-09-16T15:34:42Z | [hoppscotch/hoppscotch](https://github.com/hoppscotch/hoppscotch) | `api-testing`, `cli`, `testing` | `MIT` | `safe_to_integrate` |
-| 189 | 80109 | 2026-09-17T20:39:58Z | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | `ai-ml`, `computer-vision`, `media` | `NOASSERTION` | `discovery_only` |
-| 190 | 79832 | 2026-08-31T00:55:37Z | [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) | — | `MIT` | `safe_to_integrate` |
-| 191 | 79608 | 2026-09-17T12:00:56Z | [datawhalechina/hello-agents](https://github.com/datawhalechina/hello-agents) | — | `NOASSERTION` | `discovery_only` |
-| 192 | 79575 | 2026-08-23T16:54:04Z | [Z4nzu/hackingtool](https://github.com/Z4nzu/hackingtool) | — | `MIT` | `safe_to_integrate` |
-| 193 | 79340 | 2026-08-06T04:51:23Z | [ventoy/Ventoy](https://github.com/ventoy/Ventoy) | `database-storage` | `GPL-3.0` | `discovery_only` |
-| 194 | 79332 | 2026-09-17T20:41:01Z | [coder/code-server](https://github.com/coder/code-server) | — | `MIT` | `safe_to_integrate` |
-| 195 | 79141 | 2026-09-09T17:27:34Z | [abi/screenshot-to-code](https://github.com/abi/screenshot-to-code) | — | `MIT` | `safe_to_integrate` |
-| 196 | 79116 | 2026-09-12T03:17:49Z | [doocs/advanced-java](https://github.com/doocs/advanced-java) | — | `CC-BY-SA-4.0` | `discovery_only` |
-| 197 | 79001 | 2026-09-17T20:23:43Z | [awesomedata/awesome-public-datasets](https://github.com/awesomedata/awesome-public-datasets) | — | `MIT` | `safe_to_integrate` |
-| 198 | 78419 | 2026-09-17T12:45:32Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | `reverse-engineering`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 199 | 78416 | 2026-03-11T20:09:13Z | [dair-ai/Prompt-Engineering-Guide](https://github.com/dair-ai/Prompt-Engineering-Guide) | — | `MIT` | `safe_to_integrate` |
-| 200 | 77925 | 2026-09-17T21:22:23Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | `database-storage`, `search-engine` | `NOASSERTION` | `discovery_only` |
-| 201 | 77656 | 2026-09-16T18:51:07Z | [tensorflow/models](https://github.com/tensorflow/models) | — | `NOASSERTION` | `discovery_only` |
-| 202 | 77205 | 2026-09-17T19:55:07Z | [python/cpython](https://github.com/python/cpython) | — | `NOASSERTION` | `discovery_only` |
-| 203 | 77053 | 2026-08-26T16:38:22Z | [shareAI-lab/learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) | — | `MIT` | `safe_to_integrate` |
-| 204 | 76925 | 2026-07-15T18:15:53Z | [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome) | — | `NOASSERTION` | `discovery_only` |
-| 205 | 76800 | 2026-09-15T12:19:07Z | [AppFlowy-IO/AppFlowy](https://github.com/AppFlowy-IO/AppFlowy) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 206 | 76790 | 2026-09-17T21:26:58Z | [grafana/grafana](https://github.com/grafana/grafana) | `devops`, `observability` | `AGPL-3.0` | `discovery_only` |
-| 207 | 76703 | 2026-06-12T13:49:06Z | [MisterBooo/LeetCodeAnimation](https://github.com/MisterBooo/LeetCodeAnimation) | — | `unknown` | `discovery_only` |
-| 208 | 76682 | 2026-09-17T12:49:24Z | [nestjs/nest](https://github.com/nestjs/nest) | — | `MIT` | `safe_to_integrate` |
-| 209 | 76537 | 2026-09-11T05:17:27Z | [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
-| 210 | 76396 | 2026-09-17T15:06:55Z | [redis/redis](https://github.com/redis/redis) | `cache-key-value`, `database-storage` | `NOASSERTION` | `discovery_only` |
-| 211 | 76326 | 2026-09-17T17:05:57Z | [obsproject/obs-studio](https://github.com/obsproject/obs-studio) | `media`, `media-streaming`, `video-processing` | `GPL-2.0` | `discovery_only` |
-| 212 | 76311 | 2026-09-17T21:09:59Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | `ai-ml`, `media`, `model-training`, `speech-ai`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 213 | 76230 | 2026-09-17T19:50:17Z | [ocornut/imgui](https://github.com/ocornut/imgui) | `api-backend`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 214 | 76035 | 2026-09-17T19:50:17Z | [openai/openai-cookbook](https://github.com/openai/openai-cookbook) | — | `MIT` | `safe_to_integrate` |
-| 215 | 75826 | 2026-09-17T21:02:24Z | [caddyserver/caddy](https://github.com/caddyserver/caddy) | `security` | `Apache-2.0` | `safe_to_integrate` |
+| 159 | 88778 | 2026-08-11T02:07:25Z | [ChatGPTNextWeb/NextChat](https://github.com/ChatGPTNextWeb/NextChat) | `ai-ml`, `api-backend` | `MIT` | `safe_to_integrate` |
+| 160 | 88688 | 2026-09-15T12:01:36Z | [syncthing/syncthing](https://github.com/syncthing/syncthing) | — | `MPL-2.0` | `discovery_only` |
+| 161 | 88354 | 2026-09-18T04:47:27Z | [OpenHands/OpenHands](https://github.com/OpenHands/OpenHands) | `ai-ml`, `cli` | `MIT` | `safe_to_integrate` |
+| 162 | 88131 | 2026-09-18T03:01:37Z | [sveltejs/svelte](https://github.com/sveltejs/svelte) | `api-backend`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 163 | 88044 | 2026-09-16T15:01:43Z | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 164 | 87353 | 2026-09-17T17:38:42Z | [odysseus-dev/odysseus](https://github.com/odysseus-dev/odysseus) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 165 | 86759 | 2026-09-18T02:45:23Z | [koala73/worldmonitor](https://github.com/koala73/worldmonitor) | `ai-ml`, `devops`, `observability`, `web-ui` | `AGPL-3.0` | `discovery_only` |
+| 166 | 84971 | 2026-08-25T16:27:45Z | [laravel/laravel](https://github.com/laravel/laravel) | — | `unknown` | `discovery_only` |
+| 167 | 84792 | 2026-09-15T02:34:44Z | [macrozheng/mall](https://github.com/macrozheng/mall) | — | `Apache-2.0` | `safe_to_integrate` |
+| 168 | 84508 | 2025-12-27T14:22:30Z | [bregman-arie/devops-exercises](https://github.com/bregman-arie/devops-exercises) | — | `NOASSERTION` | `discovery_only` |
+| 169 | 84216 | 2026-08-26T06:00:45Z | [realworld-apps/realworld](https://github.com/realworld-apps/realworld) | — | `NOASSERTION` | `discovery_only` |
+| 170 | 83782 | 2026-09-16T07:49:01Z | [unclecode/crawl4ai](https://github.com/unclecode/crawl4ai) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 171 | 83525 | 2026-09-17T16:11:45Z | [Developer-Y/cs-video-courses](https://github.com/Developer-Y/cs-video-courses) | — | `unknown` | `discovery_only` |
+| 172 | 83188 | 2026-09-12T05:31:43Z | [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | `cli` | `MIT` | `safe_to_integrate` |
+| 173 | 83088 | 2026-09-14T03:16:23Z | [junegunn/fzf](https://github.com/junegunn/fzf) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 174 | 83006 | 2026-02-05T13:09:26Z | [mlabonne/llm-course](https://github.com/mlabonne/llm-course) | — | `Apache-2.0` | `safe_to_integrate` |
+| 175 | 82873 | 2026-09-15T16:16:24Z | [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) | `ai-ml`, `api-backend`, `cli` | `MIT` | `safe_to_integrate` |
+| 176 | 82868 | 2026-09-18T03:34:14Z | [vitejs/vite](https://github.com/vitejs/vite) | `web-ui` | `MIT` | `safe_to_integrate` |
+| 177 | 82612 | 2026-09-18T03:32:04Z | [bytedance/deer-flow](https://github.com/bytedance/deer-flow) | `ai-agent-framework`, `ai-ml` | `MIT` | `safe_to_integrate` |
+| 178 | 82576 | 2026-09-18T04:46:37Z | [lobehub/lobehub](https://github.com/lobehub/lobehub) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 179 | 82435 | 2026-09-17T16:59:07Z | [jesseduffield/lazygit](https://github.com/jesseduffield/lazygit) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 180 | 82076 | 2025-10-18T13:39:24Z | [TapXWorld/ChinaTextbook](https://github.com/TapXWorld/ChinaTextbook) | — | `unknown` | `discovery_only` |
+| 181 | 82017 | 2026-07-28T17:02:16Z | [tonsky/FiraCode](https://github.com/tonsky/FiraCode) | — | `OFL-1.1` | `discovery_only` |
+| 182 | 81919 | 2026-09-17T23:59:17Z | [D4Vinci/Scrapling](https://github.com/D4Vinci/Scrapling) | `ai-ml` | `BSD-3-Clause` | `safe_to_integrate` |
+| 183 | 81463 | 2026-09-18T01:34:29Z | [spring-projects/spring-boot](https://github.com/spring-projects/spring-boot) | — | `Apache-2.0` | `safe_to_integrate` |
+| 184 | 80953 | 2026-09-18T04:07:21Z | [paperclipai/paperclip](https://github.com/paperclipai/paperclip) | — | `MIT` | `safe_to_integrate` |
+| 185 | 80946 | 2026-08-27T07:52:21Z | [swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings) | — | `MIT` | `safe_to_integrate` |
+| 186 | 80856 | 2026-09-18T00:31:31Z | [rtk-ai/rtk](https://github.com/rtk-ai/rtk) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 187 | 80564 | 2026-09-18T00:22:23Z | [netdata/netdata](https://github.com/netdata/netdata) | `ai-ml`, `database-storage`, `devops`, `observability` | `GPL-3.0` | `discovery_only` |
+| 188 | 80337 | 2026-09-16T15:34:42Z | [hoppscotch/hoppscotch](https://github.com/hoppscotch/hoppscotch) | `api-testing`, `cli`, `testing` | `MIT` | `safe_to_integrate` |
+| 189 | 80151 | 2026-09-17T20:39:58Z | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | `ai-ml`, `computer-vision`, `media` | `NOASSERTION` | `discovery_only` |
+| 190 | 79831 | 2026-08-31T00:55:37Z | [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats) | — | `MIT` | `safe_to_integrate` |
+| 191 | 79673 | 2026-09-17T12:00:56Z | [datawhalechina/hello-agents](https://github.com/datawhalechina/hello-agents) | — | `NOASSERTION` | `discovery_only` |
+| 192 | 79585 | 2026-08-23T16:54:04Z | [Z4nzu/hackingtool](https://github.com/Z4nzu/hackingtool) | — | `MIT` | `safe_to_integrate` |
+| 193 | 79343 | 2026-08-06T04:51:23Z | [ventoy/Ventoy](https://github.com/ventoy/Ventoy) | `database-storage` | `GPL-3.0` | `discovery_only` |
+| 194 | 79339 | 2026-09-17T20:41:01Z | [coder/code-server](https://github.com/coder/code-server) | — | `MIT` | `safe_to_integrate` |
+| 195 | 79173 | 2026-09-09T17:27:34Z | [abi/screenshot-to-code](https://github.com/abi/screenshot-to-code) | — | `MIT` | `safe_to_integrate` |
+| 196 | 79115 | 2026-09-12T03:17:49Z | [doocs/advanced-java](https://github.com/doocs/advanced-java) | — | `CC-BY-SA-4.0` | `discovery_only` |
+| 197 | 79009 | 2026-09-17T20:23:43Z | [awesomedata/awesome-public-datasets](https://github.com/awesomedata/awesome-public-datasets) | — | `MIT` | `safe_to_integrate` |
+| 198 | 78619 | 2026-09-17T12:45:32Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | `reverse-engineering`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 199 | 78426 | 2026-03-11T20:09:13Z | [dair-ai/Prompt-Engineering-Guide](https://github.com/dair-ai/Prompt-Engineering-Guide) | — | `MIT` | `safe_to_integrate` |
+| 200 | 77926 | 2026-09-18T04:43:27Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | `database-storage`, `search-engine` | `NOASSERTION` | `discovery_only` |
+| 201 | 77655 | 2026-09-16T18:51:07Z | [tensorflow/models](https://github.com/tensorflow/models) | — | `NOASSERTION` | `discovery_only` |
+| 202 | 77204 | 2026-09-18T02:43:39Z | [python/cpython](https://github.com/python/cpython) | — | `NOASSERTION` | `discovery_only` |
+| 203 | 77083 | 2026-08-26T16:38:22Z | [shareAI-lab/learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) | — | `MIT` | `safe_to_integrate` |
+| 204 | 76927 | 2026-07-15T18:15:53Z | [FortAwesome/Font-Awesome](https://github.com/FortAwesome/Font-Awesome) | — | `NOASSERTION` | `discovery_only` |
+| 205 | 76809 | 2026-09-15T12:19:07Z | [AppFlowy-IO/AppFlowy](https://github.com/AppFlowy-IO/AppFlowy) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 206 | 76792 | 2026-09-18T04:43:15Z | [grafana/grafana](https://github.com/grafana/grafana) | `devops`, `observability` | `AGPL-3.0` | `discovery_only` |
+| 207 | 76705 | 2026-06-12T13:49:06Z | [MisterBooo/LeetCodeAnimation](https://github.com/MisterBooo/LeetCodeAnimation) | — | `unknown` | `discovery_only` |
+| 208 | 76683 | 2026-09-18T02:53:24Z | [nestjs/nest](https://github.com/nestjs/nest) | — | `MIT` | `safe_to_integrate` |
+| 209 | 76544 | 2026-09-11T05:17:27Z | [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
+| 210 | 76398 | 2026-09-17T15:06:55Z | [redis/redis](https://github.com/redis/redis) | `cache-key-value`, `database-storage` | `NOASSERTION` | `discovery_only` |
+| 211 | 76336 | 2026-09-18T01:04:43Z | [obsproject/obs-studio](https://github.com/obsproject/obs-studio) | `media`, `media-streaming`, `video-processing` | `GPL-2.0` | `discovery_only` |
+| 212 | 76334 | 2026-09-18T04:01:23Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | `ai-ml`, `media`, `model-training`, `speech-ai`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 213 | 76235 | 2026-09-17T19:50:17Z | [ocornut/imgui](https://github.com/ocornut/imgui) | `api-backend`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 214 | 76041 | 2026-09-18T01:34:14Z | [openai/openai-cookbook](https://github.com/openai/openai-cookbook) | — | `MIT` | `safe_to_integrate` |
+| 215 | 75834 | 2026-09-17T21:02:24Z | [caddyserver/caddy](https://github.com/caddyserver/caddy) | `security` | `Apache-2.0` | `safe_to_integrate` |
 | 216 | 75709 | 2026-03-23T19:40:00Z | [typicode/json-server](https://github.com/typicode/json-server) | `api-backend`, `rest-api`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 217 | 75691 | 2026-09-17T02:11:53Z | [PKUFlyingPig/cs-self-learning](https://github.com/PKUFlyingPig/cs-self-learning) | — | `MIT` | `safe_to_integrate` |
-| 218 | 75235 | 2026-08-10T21:45:44Z | [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) | — | `unknown` | `discovery_only` |
-| 219 | 75001 | 2026-09-10T17:41:19Z | [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners) | — | `MIT` | `safe_to_integrate` |
-| 220 | 74835 | 2026-09-14T08:09:48Z | [hiyouga/LlamaFactory](https://github.com/hiyouga/LlamaFactory) | `ai-ml`, `model-training` | `Apache-2.0` | `safe_to_integrate` |
-| 221 | 74818 | 2026-09-17T21:21:17Z | [apache/superset](https://github.com/apache/superset) | — | `Apache-2.0` | `safe_to_integrate` |
-| 222 | 74746 | 2026-09-08T16:40:53Z | [pallets/flask](https://github.com/pallets/flask) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 223 | 74627 | 2026-09-04T01:13:20Z | [enaqx/awesome-react](https://github.com/enaqx/awesome-react) | — | `unknown` | `discovery_only` |
-| 224 | 74541 | 2026-09-16T04:03:20Z | [Eugeny/tabby](https://github.com/Eugeny/tabby) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
-| 225 | 74360 | 2026-09-17T10:19:48Z | [josephmisiti/awesome-machine-learning](https://github.com/josephmisiti/awesome-machine-learning) | — | `NOASSERTION` | `discovery_only` |
-| 226 | 74176 | 2026-08-14T05:59:25Z | [thedaviddias/Front-End-Checklist](https://github.com/thedaviddias/Front-End-Checklist) | — | `unknown` | `discovery_only` |
-| 227 | 74018 | 2026-01-04T03:51:47Z | [binhnguyennus/awesome-scalability](https://github.com/binhnguyennus/awesome-scalability) | — | `MIT` | `safe_to_integrate` |
-| 228 | 73997 | 2026-09-10T08:44:30Z | [Asabeneh/30-Days-Of-Python](https://github.com/Asabeneh/30-Days-Of-Python) | — | `unknown` | `discovery_only` |
-| 229 | 73819 | 2026-09-16T03:31:58Z | [666ghj/MiroFish](https://github.com/666ghj/MiroFish) | — | `AGPL-3.0` | `discovery_only` |
+| 217 | 75698 | 2026-09-17T02:11:53Z | [PKUFlyingPig/cs-self-learning](https://github.com/PKUFlyingPig/cs-self-learning) | — | `MIT` | `safe_to_integrate` |
+| 218 | 75247 | 2026-08-10T21:45:44Z | [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) | — | `unknown` | `discovery_only` |
+| 219 | 75024 | 2026-09-10T17:41:19Z | [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners) | — | `MIT` | `safe_to_integrate` |
+| 220 | 74845 | 2026-09-14T08:09:48Z | [hiyouga/LlamaFactory](https://github.com/hiyouga/LlamaFactory) | `ai-ml`, `model-training` | `Apache-2.0` | `safe_to_integrate` |
+| 221 | 74821 | 2026-09-18T02:26:09Z | [apache/superset](https://github.com/apache/superset) | — | `Apache-2.0` | `safe_to_integrate` |
+| 222 | 74748 | 2026-09-08T16:40:53Z | [pallets/flask](https://github.com/pallets/flask) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 223 | 74632 | 2026-09-04T01:13:20Z | [enaqx/awesome-react](https://github.com/enaqx/awesome-react) | — | `unknown` | `discovery_only` |
+| 224 | 74554 | 2026-09-16T04:03:20Z | [Eugeny/tabby](https://github.com/Eugeny/tabby) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
+| 225 | 74361 | 2026-09-17T10:19:48Z | [josephmisiti/awesome-machine-learning](https://github.com/josephmisiti/awesome-machine-learning) | — | `NOASSERTION` | `discovery_only` |
+| 226 | 74184 | 2026-08-14T05:59:25Z | [thedaviddias/Front-End-Checklist](https://github.com/thedaviddias/Front-End-Checklist) | — | `unknown` | `discovery_only` |
+| 227 | 74025 | 2026-01-04T03:51:47Z | [binhnguyennus/awesome-scalability](https://github.com/binhnguyennus/awesome-scalability) | — | `MIT` | `safe_to_integrate` |
+| 228 | 74015 | 2026-09-10T08:44:30Z | [Asabeneh/30-Days-Of-Python](https://github.com/Asabeneh/30-Days-Of-Python) | — | `unknown` | `discovery_only` |
+| 229 | 73868 | 2026-09-16T03:31:58Z | [666ghj/MiroFish](https://github.com/666ghj/MiroFish) | — | `AGPL-3.0` | `discovery_only` |
 | 230 | 73799 | 2026-07-25T18:20:02Z | [unionlabs/union](https://github.com/unionlabs/union) | `security` | `Apache-2.0` | `safe_to_integrate` |
-| 231 | 73575 | 2026-09-17T16:19:45Z | [danielmiessler/SecLists](https://github.com/danielmiessler/SecLists) | `security` | `MIT` | `safe_to_integrate` |
-| 232 | 73543 | 2026-09-17T19:57:31Z | [vuejs/awesome-vue](https://github.com/vuejs/awesome-vue) | — | `MIT` | `safe_to_integrate` |
-| 233 | 73332 | 2026-09-05T20:26:41Z | [fffaraz/awesome-cpp](https://github.com/fffaraz/awesome-cpp) | — | `MIT` | `safe_to_integrate` |
-| 234 | 73184 | 2026-09-17T20:20:12Z | [strapi/strapi](https://github.com/strapi/strapi) | `api-backend`, `content-management`, `web-ui` | `NOASSERTION` | `discovery_only` |
-| 235 | 73153 | 2026-09-17T21:06:36Z | [OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 236 | 72876 | 2026-08-21T21:29:50Z | [juliangarnier/anime](https://github.com/juliangarnier/anime) | — | `MIT` | `safe_to_integrate` |
-| 237 | 72757 | 2026-09-17T18:43:43Z | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 238 | 72716 | 2026-09-15T09:38:38Z | [toeverything/AFFiNE](https://github.com/toeverything/AFFiNE) | — | `NOASSERTION` | `discovery_only` |
-| 239 | 72716 | 2026-09-17T18:35:18Z | [ruvnet/ruflo](https://github.com/ruvnet/ruflo) | `ai-agent-framework`, `ai-ml` | `MIT` | `safe_to_integrate` |
-| 240 | 72386 | 2026-07-15T02:29:53Z | [chrislgarry/Apollo-11](https://github.com/chrislgarry/Apollo-11) | — | `NOASSERTION` | `discovery_only` |
-| 241 | 72307 | 2026-09-10T15:41:21Z | [hakimel/reveal.js](https://github.com/hakimel/reveal.js) | — | `MIT` | `safe_to_integrate` |
-| 242 | 72108 | 2026-09-17T20:21:52Z | [moby/moby](https://github.com/moby/moby) | — | `Apache-2.0` | `safe_to_integrate` |
-| 243 | 72041 | 2026-09-17T21:23:31Z | [protocolbuffers/protobuf](https://github.com/protocolbuffers/protobuf) | — | `NOASSERTION` | `discovery_only` |
-| 244 | 72031 | 2026-08-09T22:50:11Z | [nektos/act](https://github.com/nektos/act) | `ci-cd`, `devops` | `MIT` | `safe_to_integrate` |
-| 245 | 71947 | 2026-09-17T20:44:53Z | [career-ops-hq/career-ops](https://github.com/career-ops-hq/career-ops) | `ai-ml`, `cli` | `MIT` | `safe_to_integrate` |
-| 246 | 71711 | 2026-07-24T07:12:07Z | [daytonaio/daytona](https://github.com/daytonaio/daytona) | `ai-ml`, `devops` | `unknown` | `discovery_only` |
-| 247 | 71362 | 2026-01-25T12:33:10Z | [binary-husky/gpt_academic](https://github.com/binary-husky/gpt_academic) | `ai-ml` | `GPL-3.0` | `discovery_only` |
-| 248 | 71320 | 2026-09-16T18:43:52Z | [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) | — | `MIT` | `safe_to_integrate` |
-| 249 | 71052 | 2026-09-17T21:24:56Z | [stablyai/orca](https://github.com/stablyai/orca) | `cli` | `MIT` | `safe_to_integrate` |
-| 250 | 70714 | 2026-09-16T22:23:28Z | [ansible/ansible](https://github.com/ansible/ansible) | `configuration-management`, `devops` | `GPL-3.0` | `discovery_only` |
-| 251 | 70473 | 2026-01-21T10:12:33Z | [FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT) | `ai-agent-framework`, `ai-ml` | `MIT` | `safe_to_integrate` |
-| 252 | 70346 | 2026-09-17T21:17:06Z | [swiftlang/swift](https://github.com/swiftlang/swift) | — | `Apache-2.0` | `safe_to_integrate` |
-| 253 | 69454 | 2026-09-15T17:52:26Z | [expressjs/express](https://github.com/expressjs/express) | — | `MIT` | `safe_to_integrate` |
-| 254 | 69147 | 2026-09-17T21:13:52Z | [code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent) | `ai-ml`, `cli`, `terminal-ui` | `NOASSERTION` | `discovery_only` |
-| 255 | 68903 | 2026-09-17T16:05:08Z | [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 256 | 68742 | 2026-09-17T19:19:52Z | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 257 | 68641 | 2026-09-16T20:17:56Z | [microsoft/AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners) | `ai-ml`, `computer-vision`, `media` | `MIT` | `safe_to_integrate` |
-| 258 | 68529 | 2026-09-17T21:22:00Z | [cline/cline](https://github.com/cline/cline) | `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 259 | 68377 | 2026-08-04T13:59:44Z | [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep) | `cli` | `Unlicense` | `safe_to_integrate` |
-| 260 | 68366 | 2026-09-15T06:55:59Z | [openinterpreter/openinterpreter](https://github.com/openinterpreter/openinterpreter) | — | `Apache-2.0` | `safe_to_integrate` |
-| 261 | 67928 | 2026-09-17T19:38:43Z | [gorhill/uBlock](https://github.com/gorhill/uBlock) | — | `GPL-3.0` | `discovery_only` |
-| 262 | 67769 | 2026-09-13T14:43:47Z | [dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) | — | `AGPL-3.0` | `discovery_only` |
-| 263 | 67698 | 2026-09-14T14:56:56Z | [chartjs/Chart.js](https://github.com/chartjs/Chart.js) | — | `MIT` | `safe_to_integrate` |
-| 264 | 67624 | 2026-09-17T13:21:00Z | [tw93/Mole](https://github.com/tw93/Mole) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
-| 265 | 67454 | 2026-01-22T04:26:00Z | [labmlai/annotated_deep_learning_paper_implementations](https://github.com/labmlai/annotated_deep_learning_paper_implementations) | — | `MIT` | `safe_to_integrate` |
-| 266 | 67445 | 2026-09-17T21:01:18Z | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | `ai-ml`, `api-backend`, `api-gateway` | `MIT` | `safe_to_integrate` |
-| 267 | 67360 | 2026-09-15T16:46:47Z | [asgeirtj/system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks) | `ai-ml` | `CC0-1.0` | `discovery_only` |
-| 268 | 67345 | 2026-09-16T09:16:02Z | [apache/echarts](https://github.com/apache/echarts) | — | `Apache-2.0` | `safe_to_integrate` |
-| 269 | 67284 | 2026-09-17T17:17:26Z | [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | `ai-ml` | `BSD-3-Clause` | `safe_to_integrate` |
+| 231 | 73580 | 2026-09-17T16:19:45Z | [danielmiessler/SecLists](https://github.com/danielmiessler/SecLists) | `security` | `MIT` | `safe_to_integrate` |
+| 232 | 73544 | 2026-09-17T19:57:31Z | [vuejs/awesome-vue](https://github.com/vuejs/awesome-vue) | — | `MIT` | `safe_to_integrate` |
+| 233 | 73336 | 2026-09-05T20:26:41Z | [fffaraz/awesome-cpp](https://github.com/fffaraz/awesome-cpp) | — | `MIT` | `safe_to_integrate` |
+| 234 | 73188 | 2026-09-17T20:20:12Z | [strapi/strapi](https://github.com/strapi/strapi) | `api-backend`, `content-management`, `web-ui` | `NOASSERTION` | `discovery_only` |
+| 235 | 73164 | 2026-09-17T21:06:36Z | [OpenBB-finance/OpenBB](https://github.com/OpenBB-finance/OpenBB) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 236 | 72888 | 2026-08-21T21:29:50Z | [juliangarnier/anime](https://github.com/juliangarnier/anime) | — | `MIT` | `safe_to_integrate` |
+| 237 | 72811 | 2026-09-17T23:57:28Z | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 238 | 72738 | 2026-09-17T21:36:01Z | [ruvnet/ruflo](https://github.com/ruvnet/ruflo) | `ai-agent-framework`, `ai-ml` | `MIT` | `safe_to_integrate` |
+| 239 | 72729 | 2026-09-15T09:38:38Z | [toeverything/AFFiNE](https://github.com/toeverything/AFFiNE) | — | `NOASSERTION` | `discovery_only` |
+| 240 | 72388 | 2026-07-15T02:29:53Z | [chrislgarry/Apollo-11](https://github.com/chrislgarry/Apollo-11) | — | `NOASSERTION` | `discovery_only` |
+| 241 | 72310 | 2026-09-10T15:41:21Z | [hakimel/reveal.js](https://github.com/hakimel/reveal.js) | — | `MIT` | `safe_to_integrate` |
+| 242 | 72111 | 2026-09-17T20:21:52Z | [moby/moby](https://github.com/moby/moby) | — | `Apache-2.0` | `safe_to_integrate` |
+| 243 | 72043 | 2026-09-18T04:41:36Z | [protocolbuffers/protobuf](https://github.com/protocolbuffers/protobuf) | — | `NOASSERTION` | `discovery_only` |
+| 244 | 72036 | 2026-08-09T22:50:11Z | [nektos/act](https://github.com/nektos/act) | `ci-cd`, `devops` | `MIT` | `safe_to_integrate` |
+| 245 | 71972 | 2026-09-18T03:20:16Z | [career-ops-hq/career-ops](https://github.com/career-ops-hq/career-ops) | `ai-ml`, `cli` | `MIT` | `safe_to_integrate` |
+| 246 | 71721 | 2026-07-24T07:12:07Z | [daytonaio/daytona](https://github.com/daytonaio/daytona) | `ai-ml`, `devops` | `unknown` | `discovery_only` |
+| 247 | 71359 | 2026-01-25T12:33:10Z | [binary-husky/gpt_academic](https://github.com/binary-husky/gpt_academic) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 248 | 71351 | 2026-09-16T18:43:52Z | [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) | — | `MIT` | `safe_to_integrate` |
+| 249 | 71279 | 2026-09-18T04:50:15Z | [stablyai/orca](https://github.com/stablyai/orca) | `cli` | `MIT` | `safe_to_integrate` |
+| 250 | 70719 | 2026-09-18T04:01:07Z | [ansible/ansible](https://github.com/ansible/ansible) | `configuration-management`, `devops` | `GPL-3.0` | `discovery_only` |
+| 251 | 70484 | 2026-01-21T10:12:33Z | [FoundationAgents/MetaGPT](https://github.com/FoundationAgents/MetaGPT) | `ai-agent-framework`, `ai-ml` | `MIT` | `safe_to_integrate` |
+| 252 | 70346 | 2026-09-18T04:45:15Z | [swiftlang/swift](https://github.com/swiftlang/swift) | — | `Apache-2.0` | `safe_to_integrate` |
+| 253 | 69455 | 2026-09-15T17:52:26Z | [expressjs/express](https://github.com/expressjs/express) | — | `MIT` | `safe_to_integrate` |
+| 254 | 69169 | 2026-09-18T04:45:38Z | [code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent) | `ai-ml`, `cli`, `terminal-ui` | `NOASSERTION` | `discovery_only` |
+| 255 | 68969 | 2026-09-17T16:05:08Z | [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 256 | 68817 | 2026-09-18T01:44:40Z | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 257 | 68659 | 2026-09-16T20:17:56Z | [microsoft/AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners) | `ai-ml`, `computer-vision`, `media` | `MIT` | `safe_to_integrate` |
+| 258 | 68599 | 2026-09-18T04:48:57Z | [cline/cline](https://github.com/cline/cline) | `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 259 | 68383 | 2026-08-04T13:59:44Z | [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep) | `cli` | `Unlicense` | `safe_to_integrate` |
+| 260 | 68377 | 2026-09-15T06:55:59Z | [openinterpreter/openinterpreter](https://github.com/openinterpreter/openinterpreter) | — | `Apache-2.0` | `safe_to_integrate` |
+| 261 | 67937 | 2026-09-17T19:38:43Z | [gorhill/uBlock](https://github.com/gorhill/uBlock) | — | `GPL-3.0` | `discovery_only` |
+| 262 | 67777 | 2026-09-13T14:43:47Z | [dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) | — | `AGPL-3.0` | `discovery_only` |
+| 263 | 67697 | 2026-09-14T14:56:56Z | [chartjs/Chart.js](https://github.com/chartjs/Chart.js) | — | `MIT` | `safe_to_integrate` |
+| 264 | 67652 | 2026-09-17T13:21:00Z | [tw93/Mole](https://github.com/tw93/Mole) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
+| 265 | 67538 | 2026-09-18T01:14:15Z | [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | `ai-ml`, `api-backend`, `api-gateway` | `MIT` | `safe_to_integrate` |
+| 266 | 67456 | 2026-01-22T04:26:00Z | [labmlai/annotated_deep_learning_paper_implementations](https://github.com/labmlai/annotated_deep_learning_paper_implementations) | — | `MIT` | `safe_to_integrate` |
+| 267 | 67389 | 2026-09-17T22:06:05Z | [asgeirtj/system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks) | `ai-ml` | `CC0-1.0` | `discovery_only` |
+| 268 | 67348 | 2026-09-16T09:16:02Z | [apache/echarts](https://github.com/apache/echarts) | — | `Apache-2.0` | `safe_to_integrate` |
+| 269 | 67286 | 2026-09-17T17:17:26Z | [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | `ai-ml` | `BSD-3-Clause` | `safe_to_integrate` |
 | 270 | 66968 | 2026-05-24T10:07:48Z | [bradtraversy/design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) | — | `MIT` | `safe_to_integrate` |
-| 271 | 66839 | 2026-09-02T02:11:34Z | [sindresorhus/awesome-nodejs](https://github.com/sindresorhus/awesome-nodejs) | — | `CC0-1.0` | `discovery_only` |
-| 272 | 66691 | 2026-09-17T08:22:26Z | [xtekky/gpt4free](https://github.com/xtekky/gpt4free) | `reverse-engineering`, `security` | `GPL-3.0` | `discovery_only` |
-| 273 | 66563 | 2026-09-17T14:15:25Z | [docling-project/docling](https://github.com/docling-project/docling) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 271 | 66844 | 2026-09-02T02:11:34Z | [sindresorhus/awesome-nodejs](https://github.com/sindresorhus/awesome-nodejs) | — | `CC0-1.0` | `discovery_only` |
+| 272 | 66695 | 2026-09-18T03:55:53Z | [xtekky/gpt4free](https://github.com/xtekky/gpt4free) | `reverse-engineering`, `security` | `GPL-3.0` | `discovery_only` |
+| 273 | 66588 | 2026-09-17T14:15:25Z | [docling-project/docling](https://github.com/docling-project/docling) | `ai-ml` | `MIT` | `safe_to_integrate` |
 | 274 | 66523 | 2026-09-10T23:40:11Z | [leonardomso/33-js-concepts](https://github.com/leonardomso/33-js-concepts) | — | `MIT` | `safe_to_integrate` |
-| 275 | 66270 | 2026-09-17T20:55:08Z | [facebook/docusaurus](https://github.com/facebook/docusaurus) | — | `MIT` | `safe_to_integrate` |
-| 276 | 66262 | 2026-09-17T08:33:57Z | [TheAlgorithms/Java](https://github.com/TheAlgorithms/Java) | — | `MIT` | `safe_to_integrate` |
-| 277 | 66239 | 2026-09-17T20:05:38Z | [LadybirdBrowser/ladybird](https://github.com/LadybirdBrowser/ladybird) | — | `BSD-2-Clause` | `safe_to_integrate` |
-| 278 | 66142 | 2026-09-17T01:01:32Z | [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | `ai-ml`, `database-storage`, `rag-retrieval`, `vector-database` | `MIT` | `safe_to_integrate` |
-| 279 | 66107 | 2026-09-17T15:31:58Z | [prometheus/prometheus](https://github.com/prometheus/prometheus) | `database-storage`, `devops`, `observability` | `Apache-2.0` | `safe_to_integrate` |
-| 280 | 66054 | 2026-09-17T06:41:37Z | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 281 | 65945 | 2026-09-17T21:21:03Z | [webpack/webpack](https://github.com/webpack/webpack) | — | `MIT` | `safe_to_integrate` |
-| 282 | 65756 | 2026-09-17T09:24:33Z | [tt-a1i/archify](https://github.com/tt-a1i/archify) | — | `MIT` | `safe_to_integrate` |
-| 283 | 65751 | 2026-08-31T21:11:12Z | [alacritty/alacritty](https://github.com/alacritty/alacritty) | `cli`, `terminal-emulator` | `Apache-2.0` | `safe_to_integrate` |
-| 284 | 65507 | 2026-09-17T21:13:12Z | [mem0ai/mem0](https://github.com/mem0ai/mem0) | `ai-ml`, `devops`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 285 | 65204 | 2026-09-13T09:18:52Z | [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 286 | 65154 | 2026-09-15T08:15:10Z | [NanmiCoder/MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) | — | `NOASSERTION` | `discovery_only` |
-| 287 | 65071 | 2026-09-17T21:07:17Z | [warpdotdev/warp](https://github.com/warpdotdev/warp) | `cli`, `shell-tooling` | `AGPL-3.0` | `discovery_only` |
-| 288 | 64998 | 2026-09-17T14:33:14Z | [nocodb/nocodb](https://github.com/nocodb/nocodb) | `api-backend`, `rest-api` | `NOASSERTION` | `discovery_only` |
-| 289 | 64881 | 2026-09-17T15:22:05Z | [traefik/traefik](https://github.com/traefik/traefik) | — | `MIT` | `safe_to_integrate` |
-| 290 | 64645 | 2026-09-05T16:32:47Z | [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
-| 291 | 64388 | 2026-09-17T15:09:11Z | [scrapy/scrapy](https://github.com/scrapy/scrapy) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 292 | 64320 | 2026-09-17T20:24:53Z | [keras-team/keras](https://github.com/keras-team/keras) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 293 | 64304 | 2026-09-17T21:15:59Z | [FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg) | `media`, `media-streaming`, `video-processing` | `NOASSERTION` | `discovery_only` |
-| 294 | 64161 | 2026-08-30T07:00:57Z | [rust-lang/rustlings](https://github.com/rust-lang/rustlings) | — | `MIT` | `safe_to_integrate` |
-| 295 | 63746 | 2026-09-17T21:01:41Z | [tldr-pages/tldr](https://github.com/tldr-pages/tldr) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
-| 296 | 63672 | 2026-09-17T21:25:26Z | [commaai/openpilot](https://github.com/commaai/openpilot) | — | `MIT` | `safe_to_integrate` |
-| 297 | 63438 | 2026-09-03T20:28:11Z | [virattt/ai-hedge-fund](https://github.com/virattt/ai-hedge-fund) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 298 | 63301 | 2026-09-17T19:36:54Z | [usestrix/strix](https://github.com/usestrix/strix) | `ai-ml`, `penetration-testing`, `security`, `testing` | `Apache-2.0` | `safe_to_integrate` |
-| 299 | 63205 | 2026-09-17T19:19:19Z | [git/git](https://github.com/git/git) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
-| 300 | 63201 | 2026-09-15T11:04:12Z | [socketio/socket.io](https://github.com/socketio/socket.io) | `api-backend`, `realtime-api` | `MIT` | `safe_to_integrate` |
-| 301 | 63183 | 2025-11-12T19:52:34Z | [karpathy/nanoGPT](https://github.com/karpathy/nanoGPT) | — | `MIT` | `safe_to_integrate` |
-| 302 | 63160 | 2026-09-16T21:57:57Z | [jgraph/drawio-desktop](https://github.com/jgraph/drawio-desktop) | — | `Apache-2.0` | `safe_to_integrate` |
-| 303 | 63130 | 2026-09-17T15:28:24Z | [usememos/memos](https://github.com/usememos/memos) | — | `MIT` | `safe_to_integrate` |
-| 304 | 62881 | 2026-09-10T02:03:24Z | [byoungd/up](https://github.com/byoungd/up) | — | `NOASSERTION` | `discovery_only` |
-| 305 | 62811 | 2026-09-12T03:40:57Z | [topjohnwu/Magisk](https://github.com/topjohnwu/Magisk) | — | `GPL-3.0` | `discovery_only` |
-| 306 | 62770 | 2026-09-17T15:32:53Z | [ChrisTitusTech/winutil](https://github.com/ChrisTitusTech/winutil) | — | `MIT` | `safe_to_integrate` |
-| 307 | 62750 | 2026-09-14T21:24:31Z | [2dust/v2rayNG](https://github.com/2dust/v2rayNG) | — | `GPL-3.0` | `discovery_only` |
-| 308 | 62649 | 2026-09-17T21:05:48Z | [withastro/astro](https://github.com/withastro/astro) | `static-site-generator`, `web-ui` | `NOASSERTION` | `discovery_only` |
+| 275 | 66274 | 2026-09-17T20:55:08Z | [facebook/docusaurus](https://github.com/facebook/docusaurus) | — | `MIT` | `safe_to_integrate` |
+| 276 | 66264 | 2026-09-17T08:33:57Z | [TheAlgorithms/Java](https://github.com/TheAlgorithms/Java) | — | `MIT` | `safe_to_integrate` |
+| 277 | 66240 | 2026-09-18T00:29:24Z | [LadybirdBrowser/ladybird](https://github.com/LadybirdBrowser/ladybird) | — | `BSD-2-Clause` | `safe_to_integrate` |
+| 278 | 66156 | 2026-09-17T23:23:19Z | [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm) | `ai-ml`, `database-storage`, `rag-retrieval`, `vector-database` | `MIT` | `safe_to_integrate` |
+| 279 | 66109 | 2026-09-17T15:31:58Z | [prometheus/prometheus](https://github.com/prometheus/prometheus) | `database-storage`, `devops`, `observability` | `Apache-2.0` | `safe_to_integrate` |
+| 280 | 66070 | 2026-09-17T09:24:33Z | [tt-a1i/archify](https://github.com/tt-a1i/archify) | — | `MIT` | `safe_to_integrate` |
+| 281 | 66068 | 2026-09-18T04:24:00Z | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 282 | 65945 | 2026-09-18T04:46:57Z | [webpack/webpack](https://github.com/webpack/webpack) | — | `MIT` | `safe_to_integrate` |
+| 283 | 65753 | 2026-08-31T21:11:12Z | [alacritty/alacritty](https://github.com/alacritty/alacritty) | `cli`, `terminal-emulator` | `Apache-2.0` | `safe_to_integrate` |
+| 284 | 65539 | 2026-09-18T01:25:24Z | [mem0ai/mem0](https://github.com/mem0ai/mem0) | `ai-ml`, `devops`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 285 | 65223 | 2026-09-13T09:18:52Z | [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 286 | 65173 | 2026-09-15T08:15:10Z | [NanmiCoder/MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) | — | `NOASSERTION` | `discovery_only` |
+| 287 | 65077 | 2026-09-17T23:27:30Z | [warpdotdev/warp](https://github.com/warpdotdev/warp) | `cli`, `shell-tooling` | `AGPL-3.0` | `discovery_only` |
+| 288 | 65002 | 2026-09-17T14:33:14Z | [nocodb/nocodb](https://github.com/nocodb/nocodb) | `api-backend`, `rest-api` | `NOASSERTION` | `discovery_only` |
+| 289 | 64888 | 2026-09-17T15:22:05Z | [traefik/traefik](https://github.com/traefik/traefik) | — | `MIT` | `safe_to_integrate` |
+| 290 | 64650 | 2026-09-05T16:32:47Z | [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
+| 291 | 64394 | 2026-09-17T15:09:11Z | [scrapy/scrapy](https://github.com/scrapy/scrapy) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 292 | 64320 | 2026-09-18T01:39:07Z | [keras-team/keras](https://github.com/keras-team/keras) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 293 | 64314 | 2026-09-17T23:42:53Z | [FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg) | `media`, `media-streaming`, `video-processing` | `NOASSERTION` | `discovery_only` |
+| 294 | 64162 | 2026-08-30T07:00:57Z | [rust-lang/rustlings](https://github.com/rust-lang/rustlings) | — | `MIT` | `safe_to_integrate` |
+| 295 | 63750 | 2026-09-18T02:22:54Z | [tldr-pages/tldr](https://github.com/tldr-pages/tldr) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
+| 296 | 63676 | 2026-09-18T04:36:12Z | [commaai/openpilot](https://github.com/commaai/openpilot) | — | `MIT` | `safe_to_integrate` |
+| 297 | 63443 | 2026-09-03T20:28:11Z | [virattt/ai-hedge-fund](https://github.com/virattt/ai-hedge-fund) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 298 | 63387 | 2026-09-17T19:36:54Z | [usestrix/strix](https://github.com/usestrix/strix) | `ai-ml`, `penetration-testing`, `security`, `testing` | `Apache-2.0` | `safe_to_integrate` |
+| 299 | 63208 | 2026-09-17T22:52:17Z | [git/git](https://github.com/git/git) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
+| 300 | 63202 | 2026-09-15T11:04:12Z | [socketio/socket.io](https://github.com/socketio/socket.io) | `api-backend`, `realtime-api` | `MIT` | `safe_to_integrate` |
+| 301 | 63193 | 2025-11-12T19:52:34Z | [karpathy/nanoGPT](https://github.com/karpathy/nanoGPT) | — | `MIT` | `safe_to_integrate` |
+| 302 | 63166 | 2026-09-16T21:57:57Z | [jgraph/drawio-desktop](https://github.com/jgraph/drawio-desktop) | — | `Apache-2.0` | `safe_to_integrate` |
+| 303 | 63136 | 2026-09-17T23:21:42Z | [usememos/memos](https://github.com/usememos/memos) | — | `MIT` | `safe_to_integrate` |
+| 304 | 62911 | 2026-09-10T02:03:24Z | [byoungd/up](https://github.com/byoungd/up) | — | `NOASSERTION` | `discovery_only` |
+| 305 | 62815 | 2026-09-12T03:40:57Z | [topjohnwu/Magisk](https://github.com/topjohnwu/Magisk) | — | `GPL-3.0` | `discovery_only` |
+| 306 | 62788 | 2026-09-18T04:47:23Z | [ChrisTitusTech/winutil](https://github.com/ChrisTitusTech/winutil) | — | `MIT` | `safe_to_integrate` |
+| 307 | 62760 | 2026-09-14T21:24:31Z | [2dust/v2rayNG](https://github.com/2dust/v2rayNG) | — | `GPL-3.0` | `discovery_only` |
+| 308 | 62655 | 2026-09-18T00:47:52Z | [withastro/astro](https://github.com/withastro/astro) | `static-site-generator`, `web-ui` | `NOASSERTION` | `discovery_only` |
 | 309 | 62516 | 2026-08-03T02:57:08Z | [youngyangyang04/leetcode-master](https://github.com/youngyangyang04/leetcode-master) | — | `unknown` | `discovery_only` |
-| 310 | 62449 | 2026-04-28T10:52:14Z | [PlexPt/awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh) | — | `MIT` | `safe_to_integrate` |
-| 311 | 62328 | 2026-09-13T06:38:25Z | [sansan0/TrendRadar](https://github.com/sansan0/TrendRadar) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 310 | 62456 | 2026-04-28T10:52:14Z | [PlexPt/awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh) | — | `MIT` | `safe_to_integrate` |
+| 311 | 62349 | 2026-09-13T06:38:25Z | [sansan0/TrendRadar](https://github.com/sansan0/TrendRadar) | `ai-ml` | `GPL-3.0` | `discovery_only` |
 | 312 | 62272 | 2026-09-17T05:34:24Z | [pathwaycom/pathway](https://github.com/pathwaycom/pathway) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 313 | 62220 | 2026-09-17T05:35:40Z | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 314 | 62124 | 2026-09-17T12:43:11Z | [upstash/context7](https://github.com/upstash/context7) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 315 | 61944 | 2026-09-17T19:20:08Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | `container-tooling`, `devops` | `Apache-2.0` | `safe_to_integrate` |
-| 316 | 61870 | 2026-08-18T09:16:25Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | `ai-ml`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
-| 317 | 61728 | 2026-09-17T20:33:28Z | [ultralytics/ultralytics](https://github.com/ultralytics/ultralytics) | `ai-ml`, `computer-vision`, `media` | `AGPL-3.0` | `discovery_only` |
-| 318 | 61526 | 2026-09-17T10:21:39Z | [marktext/marktext](https://github.com/marktext/marktext) | — | `MIT` | `safe_to_integrate` |
-| 319 | 61491 | 2026-09-13T12:46:25Z | [tw93/Pake](https://github.com/tw93/Pake) | — | `GPL-3.0` | `discovery_only` |
-| 320 | 61482 | 2026-09-17T20:28:55Z | [reduxjs/redux](https://github.com/reduxjs/redux) | — | `MIT` | `safe_to_integrate` |
-| 321 | 61478 | 2026-09-15T06:53:55Z | [jingyaogong/minimind](https://github.com/jingyaogong/minimind) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 322 | 61468 | 2026-09-17T14:43:53Z | [1c7/chinese-independent-developer](https://github.com/1c7/chinese-independent-developer) | — | `unknown` | `discovery_only` |
-| 323 | 61439 | 2026-09-17T11:24:28Z | [FuelLabs/sway](https://github.com/FuelLabs/sway) | — | `Apache-2.0` | `safe_to_integrate` |
-| 324 | 61276 | 2026-09-11T18:02:54Z | [lodash/lodash](https://github.com/lodash/lodash) | — | `NOASSERTION` | `discovery_only` |
-| 325 | 61234 | 2026-09-17T19:39:31Z | [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
-| 326 | 61221 | 2026-09-03T04:34:54Z | [Solido/awesome-flutter](https://github.com/Solido/awesome-flutter) | — | `unknown` | `discovery_only` |
-| 327 | 61073 | 2026-09-16T11:43:00Z | [pocketbase/pocketbase](https://github.com/pocketbase/pocketbase) | `api-backend`, `auth`, `security` | `MIT` | `safe_to_integrate` |
-| 328 | 61021 | 2026-04-15T11:59:09Z | [microsoft/autogen](https://github.com/microsoft/autogen) | `ai-ml` | `CC-BY-4.0` | `discovery_only` |
-| 329 | 60978 | 2026-09-16T16:17:14Z | [termux/termux-app](https://github.com/termux/termux-app) | `cli`, `terminal-emulator` | `NOASSERTION` | `discovery_only` |
-| 330 | 60961 | 2026-09-12T10:02:33Z | [pi-hole/pi-hole](https://github.com/pi-hole/pi-hole) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
-| 331 | 60873 | 2026-09-17T19:58:44Z | [nuxt/nuxt](https://github.com/nuxt/nuxt) | `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 313 | 62243 | 2026-09-17T05:35:40Z | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 314 | 62141 | 2026-09-17T12:43:11Z | [upstash/context7](https://github.com/upstash/context7) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 315 | 61962 | 2026-09-17T19:20:08Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | `container-tooling`, `devops` | `Apache-2.0` | `safe_to_integrate` |
+| 316 | 61877 | 2026-08-18T09:16:25Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | `ai-ml`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
+| 317 | 61734 | 2026-09-17T20:33:28Z | [ultralytics/ultralytics](https://github.com/ultralytics/ultralytics) | `ai-ml`, `computer-vision`, `media` | `AGPL-3.0` | `discovery_only` |
+| 318 | 61539 | 2026-09-18T04:46:23Z | [marktext/marktext](https://github.com/marktext/marktext) | — | `MIT` | `safe_to_integrate` |
+| 319 | 61506 | 2026-09-15T06:53:55Z | [jingyaogong/minimind](https://github.com/jingyaogong/minimind) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 320 | 61498 | 2026-09-13T12:46:25Z | [tw93/Pake](https://github.com/tw93/Pake) | — | `GPL-3.0` | `discovery_only` |
+| 321 | 61483 | 2026-09-18T03:52:51Z | [reduxjs/redux](https://github.com/reduxjs/redux) | — | `MIT` | `safe_to_integrate` |
+| 322 | 61479 | 2026-09-18T02:47:46Z | [1c7/chinese-independent-developer](https://github.com/1c7/chinese-independent-developer) | — | `unknown` | `discovery_only` |
+| 323 | 61441 | 2026-09-17T11:24:28Z | [FuelLabs/sway](https://github.com/FuelLabs/sway) | — | `Apache-2.0` | `safe_to_integrate` |
+| 324 | 61274 | 2026-09-11T18:02:54Z | [lodash/lodash](https://github.com/lodash/lodash) | — | `NOASSERTION` | `discovery_only` |
+| 325 | 61241 | 2026-09-18T00:13:11Z | [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
+| 326 | 61227 | 2026-09-03T04:34:54Z | [Solido/awesome-flutter](https://github.com/Solido/awesome-flutter) | — | `unknown` | `discovery_only` |
+| 327 | 61076 | 2026-09-17T22:29:46Z | [pocketbase/pocketbase](https://github.com/pocketbase/pocketbase) | `api-backend`, `auth`, `security` | `MIT` | `safe_to_integrate` |
+| 328 | 61035 | 2026-04-15T11:59:09Z | [microsoft/autogen](https://github.com/microsoft/autogen) | `ai-ml` | `CC-BY-4.0` | `discovery_only` |
+| 329 | 60993 | 2026-09-16T16:17:14Z | [termux/termux-app](https://github.com/termux/termux-app) | `cli`, `terminal-emulator` | `NOASSERTION` | `discovery_only` |
+| 330 | 60964 | 2026-09-12T10:02:33Z | [pi-hole/pi-hole](https://github.com/pi-hole/pi-hole) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
+| 331 | 60874 | 2026-09-17T21:50:38Z | [nuxt/nuxt](https://github.com/nuxt/nuxt) | `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
 | 332 | 60866 | 2026-06-16T23:06:47Z | [h5bp/Front-end-Developer-Interview-Questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions) | — | `MIT` | `safe_to_integrate` |
-| 333 | 60486 | 2026-09-04T19:10:30Z | [sharkdp/bat](https://github.com/sharkdp/bat) | `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 334 | 60247 | 2026-09-17T16:28:48Z | [spring-projects/spring-framework](https://github.com/spring-projects/spring-framework) | — | `Apache-2.0` | `safe_to_integrate` |
-| 335 | 60142 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | `ai-ml`, `media`, `speech-ai` | `NOASSERTION` | `discovery_only` |
-| 336 | 60095 | 2026-09-17T19:38:42Z | [penpot/penpot](https://github.com/penpot/penpot) | `web-ui` | `MPL-2.0` | `discovery_only` |
-| 337 | 59930 | 2026-09-17T03:32:48Z | [starship/starship](https://github.com/starship/starship) | `cli`, `shell-tooling` | `ISC` | `safe_to_integrate` |
-| 338 | 59814 | 2026-09-16T16:09:39Z | [rclone/rclone](https://github.com/rclone/rclone) | `database-storage` | `MIT` | `safe_to_integrate` |
-| 339 | 59778 | 2026-09-08T21:14:50Z | [jquery/jquery](https://github.com/jquery/jquery) | — | `MIT` | `safe_to_integrate` |
-| 340 | 59734 | 2026-09-06T05:02:34Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | `ai-ml`, `media`, `speech-ai`, `video-processing` | `AGPL-3.0` | `discovery_only` |
-| 341 | 59592 | 2026-09-17T17:16:37Z | [remotion-dev/remotion](https://github.com/remotion-dev/remotion) | `media` | `NOASSERTION` | `discovery_only` |
-| 342 | 59547 | 2026-09-17T17:16:44Z | [makeplane/plane](https://github.com/makeplane/plane) | — | `AGPL-3.0` | `discovery_only` |
-| 343 | 59392 | 2026-09-17T07:03:47Z | [rust-unofficial/awesome-rust](https://github.com/rust-unofficial/awesome-rust) | — | `CC0-1.0` | `discovery_only` |
-| 344 | 59317 | 2026-09-17T13:32:29Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | `ai-ml`, `api-backend`, `database-storage`, `search-engine`, `vector-database` | `NOASSERTION` | `discovery_only` |
-| 345 | 59130 | 2026-09-16T11:17:23Z | [MemPalace/mempalace](https://github.com/MemPalace/mempalace) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 346 | 59008 | 2026-09-17T21:26:42Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | `ai-ml`, `api-backend`, `api-gateway` | `NOASSERTION` | `discovery_only` |
+| 333 | 60489 | 2026-09-04T19:10:30Z | [sharkdp/bat](https://github.com/sharkdp/bat) | `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 334 | 60246 | 2026-09-17T16:28:48Z | [spring-projects/spring-framework](https://github.com/spring-projects/spring-framework) | — | `Apache-2.0` | `safe_to_integrate` |
+| 335 | 60144 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | `ai-ml`, `media`, `speech-ai` | `NOASSERTION` | `discovery_only` |
+| 336 | 60107 | 2026-09-17T22:20:52Z | [penpot/penpot](https://github.com/penpot/penpot) | `web-ui` | `MPL-2.0` | `discovery_only` |
+| 337 | 59937 | 2026-09-18T03:14:24Z | [starship/starship](https://github.com/starship/starship) | `cli`, `shell-tooling` | `ISC` | `safe_to_integrate` |
+| 338 | 59820 | 2026-09-16T16:09:39Z | [rclone/rclone](https://github.com/rclone/rclone) | `database-storage` | `MIT` | `safe_to_integrate` |
+| 339 | 59792 | 2026-09-06T05:02:34Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | `ai-ml`, `media`, `speech-ai`, `video-processing` | `AGPL-3.0` | `discovery_only` |
+| 340 | 59778 | 2026-09-08T21:14:50Z | [jquery/jquery](https://github.com/jquery/jquery) | — | `MIT` | `safe_to_integrate` |
+| 341 | 59631 | 2026-09-17T17:16:37Z | [remotion-dev/remotion](https://github.com/remotion-dev/remotion) | `media` | `NOASSERTION` | `discovery_only` |
+| 342 | 59567 | 2026-09-17T17:16:44Z | [makeplane/plane](https://github.com/makeplane/plane) | — | `AGPL-3.0` | `discovery_only` |
+| 343 | 59402 | 2026-09-17T07:03:47Z | [rust-unofficial/awesome-rust](https://github.com/rust-unofficial/awesome-rust) | — | `CC0-1.0` | `discovery_only` |
+| 344 | 59320 | 2026-09-17T13:32:29Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | `ai-ml`, `api-backend`, `database-storage`, `search-engine`, `vector-database` | `NOASSERTION` | `discovery_only` |
+| 345 | 59144 | 2026-09-16T11:17:23Z | [MemPalace/mempalace](https://github.com/MemPalace/mempalace) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 346 | 59036 | 2026-09-18T04:49:52Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | `ai-ml`, `api-backend`, `api-gateway` | `NOASSERTION` | `discovery_only` |
 | 347 | 58918 | 2026-07-05T17:59:07Z | [pathwaycom/llm-app](https://github.com/pathwaycom/llm-app) | `ai-ml`, `database-storage`, `rag-retrieval`, `vector-database` | `MIT` | `safe_to_integrate` |
-| 348 | 58769 | 2026-09-17T10:09:12Z | [rails/rails](https://github.com/rails/rails) | — | `MIT` | `safe_to_integrate` |
-| 349 | 58706 | 2026-09-17T19:54:04Z | [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 350 | 58692 | 2026-09-14T22:44:24Z | [pmndrs/zustand](https://github.com/pmndrs/zustand) | — | `MIT` | `safe_to_integrate` |
-| 351 | 58333 | 2026-08-22T07:53:07Z | [FoundationAgents/OpenManus](https://github.com/FoundationAgents/OpenManus) | — | `MIT` | `safe_to_integrate` |
-| 352 | 58095 | 2026-09-07T20:06:43Z | [karpathy/nanochat](https://github.com/karpathy/nanochat) | — | `MIT` | `safe_to_integrate` |
-| 353 | 58047 | 2026-09-17T19:23:40Z | [go-gitea/gitea](https://github.com/go-gitea/gitea) | `ci-cd`, `devops` | `MIT` | `safe_to_integrate` |
-| 354 | 58033 | 2026-09-16T10:18:54Z | [ultralytics/yolov5](https://github.com/ultralytics/yolov5) | `ai-ml`, `computer-vision`, `media`, `model-training` | `AGPL-3.0` | `discovery_only` |
+| 348 | 58770 | 2026-09-18T04:00:17Z | [rails/rails](https://github.com/rails/rails) | — | `MIT` | `safe_to_integrate` |
+| 349 | 58715 | 2026-09-18T01:41:38Z | [crewAIInc/crewAI](https://github.com/crewAIInc/crewAI) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 350 | 58691 | 2026-09-14T22:44:24Z | [pmndrs/zustand](https://github.com/pmndrs/zustand) | — | `MIT` | `safe_to_integrate` |
+| 351 | 58337 | 2026-08-22T07:53:07Z | [FoundationAgents/OpenManus](https://github.com/FoundationAgents/OpenManus) | — | `MIT` | `safe_to_integrate` |
+| 352 | 58109 | 2026-09-07T20:06:43Z | [karpathy/nanochat](https://github.com/karpathy/nanochat) | — | `MIT` | `safe_to_integrate` |
+| 353 | 58054 | 2026-09-18T00:54:16Z | [go-gitea/gitea](https://github.com/go-gitea/gitea) | `ci-cd`, `devops` | `MIT` | `safe_to_integrate` |
+| 354 | 58037 | 2026-09-16T10:18:54Z | [ultralytics/yolov5](https://github.com/ultralytics/yolov5) | `ai-ml`, `computer-vision`, `media`, `model-training` | `AGPL-3.0` | `discovery_only` |
 | 355 | 57628 | 2026-09-14T15:51:15Z | [h5bp/html5-boilerplate](https://github.com/h5bp/html5-boilerplate) | — | `MIT` | `safe_to_integrate` |
-| 356 | 57622 | 2026-06-05T05:39:52Z | [wasabeef/awesome-android-ui](https://github.com/wasabeef/awesome-android-ui) | — | `MIT` | `safe_to_integrate` |
-| 357 | 57557 | 2026-08-05T11:39:37Z | [deepfakes/faceswap](https://github.com/deepfakes/faceswap) | `ai-ml` | `GPL-3.0` | `discovery_only` |
-| 358 | 57517 | 2026-09-17T14:46:34Z | [zylon-ai/private-gpt](https://github.com/zylon-ai/private-gpt) | `ai-ml`, `api-backend` | `Apache-2.0` | `safe_to_integrate` |
-| 359 | 57400 | 2026-09-17T17:24:05Z | [appwrite/appwrite](https://github.com/appwrite/appwrite) | `ai-ml`, `api-backend`, `auth`, `database-storage`, `devops`, `security` | `BSD-3-Clause` | `safe_to_integrate` |
-| 360 | 57379 | 2026-06-23T03:10:19Z | [Textualize/rich](https://github.com/Textualize/rich) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 361 | 57282 | 2026-09-10T15:48:43Z | [Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 362 | 57243 | 2026-09-17T07:48:36Z | [jellyfin/jellyfin](https://github.com/jellyfin/jellyfin) | `api-backend`, `media` | `GPL-2.0` | `discovery_only` |
-| 363 | 56950 | 2026-09-17T20:58:38Z | [twentyhq/twenty](https://github.com/twentyhq/twenty) | `ai-ml`, `api-backend` | `NOASSERTION` | `discovery_only` |
-| 364 | 56875 | 2026-08-24T07:23:27Z | [soimort/you-get](https://github.com/soimort/you-get) | — | `NOASSERTION` | `discovery_only` |
-| 365 | 56842 | 2026-09-17T20:33:41Z | [FuelLabs/fuel-core](https://github.com/FuelLabs/fuel-core) | — | `NOASSERTION` | `discovery_only` |
-| 366 | 56761 | 2026-06-25T11:12:50Z | [ageitgey/face_recognition](https://github.com/ageitgey/face_recognition) | `ai-ml`, `api-backend` | `MIT` | `safe_to_integrate` |
-| 367 | 56654 | 2026-06-24T14:16:03Z | [Zie619/n8n-workflows](https://github.com/Zie619/n8n-workflows) | — | `MIT` | `safe_to_integrate` |
+| 356 | 57626 | 2026-06-05T05:39:52Z | [wasabeef/awesome-android-ui](https://github.com/wasabeef/awesome-android-ui) | — | `MIT` | `safe_to_integrate` |
+| 357 | 57559 | 2026-08-05T11:39:37Z | [deepfakes/faceswap](https://github.com/deepfakes/faceswap) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 358 | 57519 | 2026-09-17T14:46:34Z | [zylon-ai/private-gpt](https://github.com/zylon-ai/private-gpt) | `ai-ml`, `api-backend` | `Apache-2.0` | `safe_to_integrate` |
+| 359 | 57404 | 2026-09-18T02:45:07Z | [appwrite/appwrite](https://github.com/appwrite/appwrite) | `ai-ml`, `api-backend`, `auth`, `database-storage`, `devops`, `security` | `BSD-3-Clause` | `safe_to_integrate` |
+| 360 | 57385 | 2026-06-23T03:10:19Z | [Textualize/rich](https://github.com/Textualize/rich) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 361 | 57293 | 2026-09-10T15:48:43Z | [Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 362 | 57251 | 2026-09-18T03:20:20Z | [jellyfin/jellyfin](https://github.com/jellyfin/jellyfin) | `api-backend`, `media` | `GPL-2.0` | `discovery_only` |
+| 363 | 56970 | 2026-09-18T03:56:34Z | [twentyhq/twenty](https://github.com/twentyhq/twenty) | `ai-ml`, `api-backend` | `NOASSERTION` | `discovery_only` |
+| 364 | 56876 | 2026-08-24T07:23:27Z | [soimort/you-get](https://github.com/soimort/you-get) | — | `NOASSERTION` | `discovery_only` |
+| 365 | 56844 | 2026-09-18T00:52:52Z | [FuelLabs/fuel-core](https://github.com/FuelLabs/fuel-core) | — | `NOASSERTION` | `discovery_only` |
+| 366 | 56762 | 2026-06-25T11:12:50Z | [ageitgey/face_recognition](https://github.com/ageitgey/face_recognition) | `ai-ml`, `api-backend` | `MIT` | `safe_to_integrate` |
+| 367 | 56666 | 2026-06-24T14:16:03Z | [Zie619/n8n-workflows](https://github.com/Zie619/n8n-workflows) | — | `MIT` | `safe_to_integrate` |
 | 368 | 56602 | 2026-04-28T17:18:05Z | [golang-standards/project-layout](https://github.com/golang-standards/project-layout) | — | `NOASSERTION` | `discovery_only` |
-| 369 | 56576 | 2026-09-17T14:52:51Z | [remix-run/react-router](https://github.com/remix-run/react-router) | — | `MIT` | `safe_to_integrate` |
-| 370 | 56416 | 2026-09-17T16:33:44Z | [laurent22/joplin](https://github.com/laurent22/joplin) | — | `NOASSERTION` | `discovery_only` |
-| 371 | 56083 | 2026-09-17T16:45:01Z | [typst/typst](https://github.com/typst/typst) | — | `Apache-2.0` | `safe_to_integrate` |
-| 372 | 55969 | 2026-09-17T20:08:29Z | [firstcontributions/first-contributions](https://github.com/firstcontributions/first-contributions) | — | `MIT` | `safe_to_integrate` |
-| 373 | 55939 | 2026-09-17T01:45:13Z | [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby) | `api-backend`, `security`, `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 374 | 55585 | 2026-09-17T16:10:08Z | [agalwood/Motrix](https://github.com/agalwood/Motrix) | — | `NOASSERTION` | `discovery_only` |
-| 375 | 55441 | 2026-09-17T21:27:37Z | [PowerShell/PowerShell](https://github.com/PowerShell/PowerShell) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 376 | 55340 | 2026-09-17T21:26:10Z | [TryGhost/Ghost](https://github.com/TryGhost/Ghost) | `content-management`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 377 | 55308 | 2026-09-17T09:19:35Z | [Alishahryar1/free-claude-code](https://github.com/Alishahryar1/free-claude-code) | `cli` | `MIT` | `safe_to_integrate` |
-| 378 | 55140 | 2026-09-16T22:09:40Z | [ngosang/trackerslist](https://github.com/ngosang/trackerslist) | — | `GPL-2.0` | `discovery_only` |
-| 379 | 55113 | 2026-09-14T08:10:04Z | [romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 380 | 55006 | 2026-09-17T15:45:54Z | [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master) | `ai-ml`, `media` | `MIT` | `safe_to_integrate` |
-| 381 | 54894 | 2026-09-07T11:42:35Z | [rohitg00/ai-engineering-from-scratch](https://github.com/rohitg00/ai-engineering-from-scratch) | — | `MIT` | `safe_to_integrate` |
-| 382 | 54825 | 2026-09-17T18:32:12Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | `reverse-engineering`, `security` | `GPL-2.0` | `discovery_only` |
-| 383 | 54789 | 2026-08-09T00:03:42Z | [jamiepine/voicebox](https://github.com/jamiepine/voicebox) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 384 | 54573 | 2025-12-15T17:20:36Z | [wagoodman/dive](https://github.com/wagoodman/dive) | `cli`, `media`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 385 | 54569 | 2025-10-10T06:25:48Z | [Lordog/dive-into-llms](https://github.com/Lordog/dive-into-llms) | — | `unknown` | `discovery_only` |
-| 386 | 54478 | 2026-09-17T18:16:26Z | [freqtrade/freqtrade](https://github.com/freqtrade/freqtrade) | — | `GPL-3.0` | `discovery_only` |
-| 387 | 54424 | 2026-09-17T21:24:44Z | [odoo/odoo](https://github.com/odoo/odoo) | — | `NOASSERTION` | `discovery_only` |
-| 388 | 54412 | 2026-09-17T08:59:30Z | [vuejs/core](https://github.com/vuejs/core) | — | `MIT` | `safe_to_integrate` |
-| 389 | 54392 | 2026-09-17T20:52:53Z | [aaif-goose/goose](https://github.com/aaif-goose/goose) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 390 | 54377 | 2026-09-03T09:04:46Z | [microsoft/VibeVoice](https://github.com/microsoft/VibeVoice) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 369 | 56579 | 2026-09-17T14:52:51Z | [remix-run/react-router](https://github.com/remix-run/react-router) | — | `MIT` | `safe_to_integrate` |
+| 370 | 56418 | 2026-09-17T23:07:18Z | [laurent22/joplin](https://github.com/laurent22/joplin) | — | `NOASSERTION` | `discovery_only` |
+| 371 | 56088 | 2026-09-17T16:45:01Z | [typst/typst](https://github.com/typst/typst) | — | `Apache-2.0` | `safe_to_integrate` |
+| 372 | 55970 | 2026-09-18T04:40:52Z | [firstcontributions/first-contributions](https://github.com/firstcontributions/first-contributions) | — | `MIT` | `safe_to_integrate` |
+| 373 | 55939 | 2026-09-18T02:04:18Z | [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby) | `api-backend`, `security`, `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 374 | 55603 | 2026-09-18T04:39:47Z | [agalwood/Motrix](https://github.com/agalwood/Motrix) | — | `NOASSERTION` | `discovery_only` |
+| 375 | 55443 | 2026-09-17T23:22:41Z | [PowerShell/PowerShell](https://github.com/PowerShell/PowerShell) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 376 | 55347 | 2026-09-18T02:16:15Z | [TryGhost/Ghost](https://github.com/TryGhost/Ghost) | `content-management`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 377 | 55335 | 2026-09-17T09:19:35Z | [Alishahryar1/free-claude-code](https://github.com/Alishahryar1/free-claude-code) | `cli` | `MIT` | `safe_to_integrate` |
+| 378 | 55142 | 2026-09-17T22:09:29Z | [ngosang/trackerslist](https://github.com/ngosang/trackerslist) | — | `GPL-2.0` | `discovery_only` |
+| 379 | 55115 | 2026-09-14T08:10:04Z | [romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 380 | 55066 | 2026-09-18T03:51:39Z | [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master) | `ai-ml`, `media` | `MIT` | `safe_to_integrate` |
+| 381 | 54931 | 2026-08-09T00:03:42Z | [jamiepine/voicebox](https://github.com/jamiepine/voicebox) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 382 | 54923 | 2026-09-07T11:42:35Z | [rohitg00/ai-engineering-from-scratch](https://github.com/rohitg00/ai-engineering-from-scratch) | — | `MIT` | `safe_to_integrate` |
+| 383 | 54826 | 2026-09-18T00:48:57Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | `reverse-engineering`, `security` | `GPL-2.0` | `discovery_only` |
+| 384 | 54605 | 2025-10-10T06:25:48Z | [Lordog/dive-into-llms](https://github.com/Lordog/dive-into-llms) | — | `unknown` | `discovery_only` |
+| 385 | 54573 | 2025-12-15T17:20:36Z | [wagoodman/dive](https://github.com/wagoodman/dive) | `cli`, `media`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 386 | 54489 | 2026-09-18T04:38:37Z | [freqtrade/freqtrade](https://github.com/freqtrade/freqtrade) | — | `GPL-3.0` | `discovery_only` |
+| 387 | 54435 | 2026-09-18T04:07:09Z | [odoo/odoo](https://github.com/odoo/odoo) | — | `NOASSERTION` | `discovery_only` |
+| 388 | 54410 | 2026-09-18T03:01:15Z | [vuejs/core](https://github.com/vuejs/core) | — | `MIT` | `safe_to_integrate` |
+| 389 | 54406 | 2026-09-18T03:18:42Z | [aaif-goose/goose](https://github.com/aaif-goose/goose) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 390 | 54387 | 2026-09-03T09:04:46Z | [microsoft/VibeVoice](https://github.com/microsoft/VibeVoice) | `ai-ml` | `MIT` | `safe_to_integrate` |
 | 391 | 54317 | 2026-09-07T16:54:39Z | [psf/requests](https://github.com/psf/requests) | — | `Apache-2.0` | `safe_to_integrate` |
-| 392 | 54223 | 2026-09-17T21:09:22Z | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | — | `NOASSERTION` | `discovery_only` |
-| 393 | 53971 | 2026-09-11T02:18:11Z | [google/material-design-icons](https://github.com/google/material-design-icons) | — | `Apache-2.0` | `safe_to_integrate` |
-| 394 | 53893 | 2026-09-17T18:47:32Z | [mozilla/pdf.js](https://github.com/mozilla/pdf.js) | — | `Apache-2.0` | `safe_to_integrate` |
-| 395 | 53730 | 2026-09-15T10:42:26Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | `ai-ml`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
-| 396 | 53688 | 2026-09-14T13:02:00Z | [lyswhut/lx-music-desktop](https://github.com/lyswhut/lx-music-desktop) | — | `Apache-2.0` | `safe_to_integrate` |
-| 397 | 53517 | 2026-09-13T05:26:36Z | [bannedbook/fanqiang](https://github.com/bannedbook/fanqiang) | — | `unknown` | `discovery_only` |
-| 398 | 53448 | 2026-06-17T01:56:08Z | [chinese-poetry/chinese-poetry](https://github.com/chinese-poetry/chinese-poetry) | `database-storage` | `MIT` | `safe_to_integrate` |
-| 399 | 53420 | 2026-09-17T21:15:25Z | [JetBrains/kotlin](https://github.com/JetBrains/kotlin) | — | `unknown` | `discovery_only` |
-| 400 | 53378 | 2026-08-27T19:34:29Z | [vsouza/awesome-ios](https://github.com/vsouza/awesome-ios) | — | `MIT` | `safe_to_integrate` |
-| 401 | 53318 | 2026-09-16T22:58:52Z | [dockur/windows](https://github.com/dockur/windows) | — | `MIT` | `safe_to_integrate` |
-| 402 | 53147 | 2026-09-17T08:14:19Z | [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 403 | 53091 | 2025-12-01T19:17:07Z | [lllyasviel/Fooocus](https://github.com/lllyasviel/Fooocus) | — | `GPL-3.0` | `discovery_only` |
-| 404 | 52931 | 2025-11-11T05:23:57Z | [sickcodes/Docker-OSX](https://github.com/sickcodes/Docker-OSX) | `security` | `GPL-3.0` | `discovery_only` |
+| 392 | 54237 | 2026-09-18T03:11:21Z | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | — | `NOASSERTION` | `discovery_only` |
+| 393 | 53971 | 2026-09-18T02:15:08Z | [google/material-design-icons](https://github.com/google/material-design-icons) | — | `Apache-2.0` | `safe_to_integrate` |
+| 394 | 53894 | 2026-09-18T00:32:06Z | [mozilla/pdf.js](https://github.com/mozilla/pdf.js) | — | `Apache-2.0` | `safe_to_integrate` |
+| 395 | 53739 | 2026-09-18T04:18:56Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | `ai-ml`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
+| 396 | 53691 | 2026-09-14T13:02:00Z | [lyswhut/lx-music-desktop](https://github.com/lyswhut/lx-music-desktop) | — | `Apache-2.0` | `safe_to_integrate` |
+| 397 | 53518 | 2026-09-13T05:26:36Z | [bannedbook/fanqiang](https://github.com/bannedbook/fanqiang) | — | `unknown` | `discovery_only` |
+| 398 | 53452 | 2026-06-17T01:56:08Z | [chinese-poetry/chinese-poetry](https://github.com/chinese-poetry/chinese-poetry) | `database-storage` | `MIT` | `safe_to_integrate` |
+| 399 | 53421 | 2026-09-18T04:49:48Z | [JetBrains/kotlin](https://github.com/JetBrains/kotlin) | — | `unknown` | `discovery_only` |
+| 400 | 53384 | 2026-08-27T19:34:29Z | [vsouza/awesome-ios](https://github.com/vsouza/awesome-ios) | — | `MIT` | `safe_to_integrate` |
+| 401 | 53317 | 2026-09-16T22:58:52Z | [dockur/windows](https://github.com/dockur/windows) | — | `MIT` | `safe_to_integrate` |
+| 402 | 53163 | 2026-09-17T08:14:19Z | [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 403 | 53101 | 2025-12-01T19:17:07Z | [lllyasviel/Fooocus](https://github.com/lllyasviel/Fooocus) | — | `GPL-3.0` | `discovery_only` |
+| 404 | 52935 | 2025-11-11T05:23:57Z | [sickcodes/Docker-OSX](https://github.com/sickcodes/Docker-OSX) | `security` | `GPL-3.0` | `discovery_only` |
 | 405 | 52857 | 2026-04-19T02:51:06Z | [jesseduffield/lazydocker](https://github.com/jesseduffield/lazydocker) | — | `MIT` | `safe_to_integrate` |
-| 406 | 52773 | 2026-09-16T16:50:30Z | [anthropics/claude-cookbooks](https://github.com/anthropics/claude-cookbooks) | — | `MIT` | `safe_to_integrate` |
-| 407 | 52670 | 2026-09-17T21:17:35Z | [ionic-team/ionic-framework](https://github.com/ionic-team/ionic-framework) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 408 | 52619 | 2026-09-14T09:56:58Z | [VoltAgent/awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) | — | `MIT` | `safe_to_integrate` |
-| 409 | 52513 | 2026-09-17T01:50:47Z | [chen08209/FlClash](https://github.com/chen08209/FlClash) | — | `GPL-3.0` | `discovery_only` |
-| 410 | 52310 | 2026-09-17T21:16:35Z | [expo/expo](https://github.com/expo/expo) | `web-ui` | `MIT` | `safe_to_integrate` |
-| 411 | 52300 | 2026-09-17T19:19:08Z | [router-for-me/CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 412 | 52270 | 2026-09-17T18:56:31Z | [etcd-io/etcd](https://github.com/etcd-io/etcd) | `cache-key-value`, `database-storage` | `Apache-2.0` | `safe_to_integrate` |
-| 413 | 52270 | 2026-09-17T21:05:29Z | [prettier/prettier](https://github.com/prettier/prettier) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 414 | 52202 | 2026-09-17T19:30:59Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | `ai-ml`, `database-storage`, `model-training`, `rag-retrieval`, `vector-database` | `MIT` | `safe_to_integrate` |
-| 415 | 52198 | 2026-09-17T14:09:32Z | [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) | — | `Apache-2.0` | `safe_to_integrate` |
-| 416 | 52164 | 2026-09-17T16:15:51Z | [dkhamsing/open-source-ios-apps](https://github.com/dkhamsing/open-source-ios-apps) | — | `CC0-1.0` | `discovery_only` |
-| 417 | 52142 | 2026-08-24T02:32:28Z | [poteto/hiring-without-whiteboards](https://github.com/poteto/hiring-without-whiteboards) | — | `MIT` | `safe_to_integrate` |
-| 418 | 51923 | 2026-09-17T19:03:49Z | [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 419 | 51907 | 2026-09-17T17:32:18Z | [google/guava](https://github.com/google/guava) | — | `Apache-2.0` | `safe_to_integrate` |
-| 420 | 51791 | 2026-09-17T20:16:00Z | [dbeaver/dbeaver](https://github.com/dbeaver/dbeaver) | `ai-ml`, `database-storage` | `Apache-2.0` | `safe_to_integrate` |
+| 406 | 52785 | 2026-09-16T16:50:30Z | [anthropics/claude-cookbooks](https://github.com/anthropics/claude-cookbooks) | — | `MIT` | `safe_to_integrate` |
+| 407 | 52669 | 2026-09-18T02:49:46Z | [ionic-team/ionic-framework](https://github.com/ionic-team/ionic-framework) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 408 | 52636 | 2026-09-14T09:56:58Z | [VoltAgent/awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) | — | `MIT` | `safe_to_integrate` |
+| 409 | 52539 | 2026-09-17T01:50:47Z | [chen08209/FlClash](https://github.com/chen08209/FlClash) | — | `GPL-3.0` | `discovery_only` |
+| 410 | 52337 | 2026-09-18T04:49:12Z | [router-for-me/CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 411 | 52314 | 2026-09-18T04:25:08Z | [expo/expo](https://github.com/expo/expo) | `web-ui` | `MIT` | `safe_to_integrate` |
+| 412 | 52276 | 2026-09-17T22:03:58Z | [prettier/prettier](https://github.com/prettier/prettier) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 413 | 52270 | 2026-09-18T00:00:37Z | [etcd-io/etcd](https://github.com/etcd-io/etcd) | `cache-key-value`, `database-storage` | `Apache-2.0` | `safe_to_integrate` |
+| 414 | 52222 | 2026-09-18T04:13:36Z | [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) | — | `Apache-2.0` | `safe_to_integrate` |
+| 415 | 52206 | 2026-09-18T04:10:58Z | [run-llama/llama_index](https://github.com/run-llama/llama_index) | `ai-ml`, `database-storage`, `model-training`, `rag-retrieval`, `vector-database` | `MIT` | `safe_to_integrate` |
+| 416 | 52167 | 2026-09-17T16:15:51Z | [dkhamsing/open-source-ios-apps](https://github.com/dkhamsing/open-source-ios-apps) | — | `CC0-1.0` | `discovery_only` |
+| 417 | 52141 | 2026-08-24T02:32:28Z | [poteto/hiring-without-whiteboards](https://github.com/poteto/hiring-without-whiteboards) | — | `MIT` | `safe_to_integrate` |
+| 418 | 51943 | 2026-09-18T04:49:51Z | [CherryHQ/cherry-studio](https://github.com/CherryHQ/cherry-studio) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 419 | 51906 | 2026-09-17T17:32:18Z | [google/guava](https://github.com/google/guava) | — | `Apache-2.0` | `safe_to_integrate` |
+| 420 | 51797 | 2026-09-18T03:55:12Z | [dbeaver/dbeaver](https://github.com/dbeaver/dbeaver) | `ai-ml`, `database-storage` | `Apache-2.0` | `safe_to_integrate` |
 | 421 | 51677 | 2026-09-17T19:20:03Z | [jekyll/jekyll](https://github.com/jekyll/jekyll) | `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 422 | 51520 | 2026-09-08T07:47:22Z | [charlax/professional-programming](https://github.com/charlax/professional-programming) | — | `MIT` | `safe_to_integrate` |
-| 423 | 51440 | 2026-09-16T20:46:51Z | [DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) | — | `NOASSERTION` | `discovery_only` |
-| 424 | 51344 | 2026-09-17T07:55:52Z | [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum) | — | `LGPL-3.0` | `discovery_only` |
-| 425 | 51192 | 2026-08-07T01:04:58Z | [justjavac/wechat-miniapp-radar](https://github.com/justjavac/wechat-miniapp-radar) | `ai-ml` | `GPL-3.0` | `discovery_only` |
-| 426 | 51031 | 2026-09-17T21:11:49Z | [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | `ai-ml`, `media`, `video-processing` | `Apache-2.0` | `safe_to_integrate` |
-| 427 | 51015 | 2026-09-17T20:55:48Z | [cypress-io/cypress](https://github.com/cypress-io/cypress) | `browser-e2e-testing`, `testing`, `unit-test-framework` | `MIT` | `safe_to_integrate` |
-| 428 | 50777 | 2026-09-17T15:52:31Z | [roboflow/supervision](https://github.com/roboflow/supervision) | `ai-ml`, `computer-vision`, `devops`, `image-processing`, `media`, `observability`, `video-processing` | `MIT` | `safe_to_integrate` |
-| 429 | 50714 | 2026-09-05T04:48:10Z | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 430 | 50625 | 2026-09-16T18:20:25Z | [nlohmann/json](https://github.com/nlohmann/json) | — | `MIT` | `safe_to_integrate` |
-| 431 | 50500 | 2026-09-12T18:25:15Z | [skylot/jadx](https://github.com/skylot/jadx) | `reverse-engineering`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 432 | 50432 | 2026-09-10T08:05:13Z | [serhii-londar/open-source-mac-os-apps](https://github.com/serhii-londar/open-source-mac-os-apps) | — | `CC0-1.0` | `discovery_only` |
-| 433 | 50422 | 2026-09-17T16:41:17Z | [tldraw/tldraw](https://github.com/tldraw/tldraw) | — | `NOASSERTION` | `discovery_only` |
-| 434 | 50399 | 2026-09-16T15:56:17Z | [chenglou/pretext](https://github.com/chenglou/pretext) | — | `MIT` | `safe_to_integrate` |
-| 435 | 50321 | 2026-09-17T16:53:31Z | [TanStack/query](https://github.com/TanStack/query) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 436 | 50303 | 2026-09-17T10:26:45Z | [multica-ai/multica](https://github.com/multica-ai/multica) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 437 | 50298 | 2026-09-17T18:08:38Z | [mastodon/mastodon](https://github.com/mastodon/mastodon) | — | `AGPL-3.0` | `discovery_only` |
-| 438 | 50180 | 2026-09-15T06:09:17Z | [AlistGo/alist](https://github.com/AlistGo/alist) | — | `AGPL-3.0` | `discovery_only` |
-| 439 | 50054 | 2026-03-01T20:13:02Z | [jgthms/bulma](https://github.com/jgthms/bulma) | — | `MIT` | `safe_to_integrate` |
-| 440 | 50022 | 2026-09-15T16:36:18Z | [apple/container](https://github.com/apple/container) | — | `Apache-2.0` | `safe_to_integrate` |
-| 441 | 49982 | 2026-09-10T02:00:11Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | `ai-ml`, `penetration-testing`, `security` | `AGPL-3.0` | `discovery_only` |
-| 442 | 49968 | 2026-09-16T13:35:13Z | [huginn/huginn](https://github.com/huginn/huginn) | `devops`, `observability` | `MIT` | `safe_to_integrate` |
-| 443 | 49951 | 2026-09-17T21:24:38Z | [ClickHouse/ClickHouse](https://github.com/ClickHouse/ClickHouse) | `ai-ml`, `database-storage` | `Apache-2.0` | `safe_to_integrate` |
-| 444 | 49738 | 2026-09-17T20:55:18Z | [pandas-dev/pandas](https://github.com/pandas-dev/pandas) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 445 | 49699 | 2026-09-17T20:22:16Z | [Homebrew/brew](https://github.com/Homebrew/brew) | `cli`, `package-manager` | `BSD-2-Clause` | `safe_to_integrate` |
-| 446 | 49677 | 2026-09-17T21:04:14Z | [hashicorp/terraform](https://github.com/hashicorp/terraform) | `devops`, `infrastructure-as-code` | `NOASSERTION` | `discovery_only` |
-| 447 | 49668 | 2026-09-17T21:25:53Z | [astral-sh/ruff](https://github.com/astral-sh/ruff) | — | `MIT` | `safe_to_integrate` |
-| 448 | 49552 | 2026-09-06T20:26:10Z | [blader/humanizer](https://github.com/blader/humanizer) | — | `MIT` | `safe_to_integrate` |
-| 449 | 49539 | 2026-08-21T07:26:58Z | [HKUDS/CLI-Anything](https://github.com/HKUDS/CLI-Anything) | — | `Apache-2.0` | `safe_to_integrate` |
-| 450 | 49538 | 2026-09-14T22:47:30Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | `malware-analysis`, `penetration-testing`, `reverse-engineering`, `security` | `NOASSERTION` | `discovery_only` |
-| 451 | 49524 | 2026-03-04T23:44:21Z | [GokuMohandas/Made-With-ML](https://github.com/GokuMohandas/Made-With-ML) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 452 | 49467 | 2026-09-12T14:03:09Z | [bigskysoftware/htmx](https://github.com/bigskysoftware/htmx) | — | `NOASSERTION` | `discovery_only` |
-| 453 | 49314 | 2026-09-15T00:34:26Z | [upscayl/upscayl](https://github.com/upscayl/upscayl) | `ai-ml`, `media` | `AGPL-3.0` | `discovery_only` |
-| 454 | 49312 | 2026-09-17T21:25:23Z | [metabase/metabase](https://github.com/metabase/metabase) | `database-storage` | `NOASSERTION` | `discovery_only` |
-| 455 | 49311 | 2026-09-17T05:16:47Z | [tmux/tmux](https://github.com/tmux/tmux) | — | `ISC` | `safe_to_integrate` |
-| 456 | 49239 | 2026-09-12T04:09:08Z | [KRTirtho/spotube](https://github.com/KRTirtho/spotube) | — | `NOASSERTION` | `discovery_only` |
-| 457 | 49220 | 2026-09-17T18:52:11Z | [moeru-ai/airi](https://github.com/moeru-ai/airi) | — | `MIT` | `safe_to_integrate` |
-| 458 | 49145 | 2026-09-17T21:04:15Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | `ai-ml`, `api-backend`, `computer-vision`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
-| 459 | 49115 | 2026-09-17T20:52:13Z | [JuliaLang/julia](https://github.com/JuliaLang/julia) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 422 | 51526 | 2026-09-08T07:47:22Z | [charlax/professional-programming](https://github.com/charlax/professional-programming) | — | `MIT` | `safe_to_integrate` |
+| 423 | 51439 | 2026-09-16T20:46:51Z | [DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) | — | `NOASSERTION` | `discovery_only` |
+| 424 | 51345 | 2026-09-18T03:45:20Z | [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum) | — | `LGPL-3.0` | `discovery_only` |
+| 425 | 51194 | 2026-08-07T01:04:58Z | [justjavac/wechat-miniapp-radar](https://github.com/justjavac/wechat-miniapp-radar) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 426 | 51105 | 2026-09-18T04:46:55Z | [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | `ai-ml`, `media`, `video-processing` | `Apache-2.0` | `safe_to_integrate` |
+| 427 | 51016 | 2026-09-18T03:18:21Z | [cypress-io/cypress](https://github.com/cypress-io/cypress) | `browser-e2e-testing`, `testing`, `unit-test-framework` | `MIT` | `safe_to_integrate` |
+| 428 | 50851 | 2026-09-18T01:35:42Z | [roboflow/supervision](https://github.com/roboflow/supervision) | `ai-ml`, `computer-vision`, `devops`, `image-processing`, `media`, `observability`, `video-processing` | `MIT` | `safe_to_integrate` |
+| 429 | 50746 | 2026-09-05T04:48:10Z | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 430 | 50627 | 2026-09-16T18:20:25Z | [nlohmann/json](https://github.com/nlohmann/json) | — | `MIT` | `safe_to_integrate` |
+| 431 | 50503 | 2026-09-12T18:25:15Z | [skylot/jadx](https://github.com/skylot/jadx) | `reverse-engineering`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 432 | 50436 | 2026-09-10T08:05:13Z | [serhii-londar/open-source-mac-os-apps](https://github.com/serhii-londar/open-source-mac-os-apps) | — | `CC0-1.0` | `discovery_only` |
+| 433 | 50431 | 2026-09-18T03:25:00Z | [tldraw/tldraw](https://github.com/tldraw/tldraw) | — | `NOASSERTION` | `discovery_only` |
+| 434 | 50406 | 2026-09-16T15:56:17Z | [chenglou/pretext](https://github.com/chenglou/pretext) | — | `MIT` | `safe_to_integrate` |
+| 435 | 50346 | 2026-09-18T04:50:06Z | [multica-ai/multica](https://github.com/multica-ai/multica) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 436 | 50324 | 2026-09-18T00:46:50Z | [TanStack/query](https://github.com/TanStack/query) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 437 | 50299 | 2026-09-18T04:32:09Z | [mastodon/mastodon](https://github.com/mastodon/mastodon) | — | `AGPL-3.0` | `discovery_only` |
+| 438 | 50184 | 2026-09-15T06:09:17Z | [AlistGo/alist](https://github.com/AlistGo/alist) | — | `AGPL-3.0` | `discovery_only` |
+| 439 | 50055 | 2026-03-01T20:13:02Z | [jgthms/bulma](https://github.com/jgthms/bulma) | — | `MIT` | `safe_to_integrate` |
+| 440 | 50029 | 2026-09-15T16:36:18Z | [apple/container](https://github.com/apple/container) | — | `Apache-2.0` | `safe_to_integrate` |
+| 441 | 50002 | 2026-09-10T02:00:11Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | `ai-ml`, `penetration-testing`, `security` | `AGPL-3.0` | `discovery_only` |
+| 442 | 49969 | 2026-09-18T02:43:56Z | [huginn/huginn](https://github.com/huginn/huginn) | `devops`, `observability` | `MIT` | `safe_to_integrate` |
+| 443 | 49952 | 2026-09-18T04:46:37Z | [ClickHouse/ClickHouse](https://github.com/ClickHouse/ClickHouse) | `ai-ml`, `database-storage` | `Apache-2.0` | `safe_to_integrate` |
+| 444 | 49739 | 2026-09-17T20:55:18Z | [pandas-dev/pandas](https://github.com/pandas-dev/pandas) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 445 | 49703 | 2026-09-17T23:32:24Z | [Homebrew/brew](https://github.com/Homebrew/brew) | `cli`, `package-manager` | `BSD-2-Clause` | `safe_to_integrate` |
+| 446 | 49679 | 2026-09-17T21:49:39Z | [hashicorp/terraform](https://github.com/hashicorp/terraform) | `devops`, `infrastructure-as-code` | `NOASSERTION` | `discovery_only` |
+| 447 | 49676 | 2026-09-18T04:34:00Z | [astral-sh/ruff](https://github.com/astral-sh/ruff) | — | `MIT` | `safe_to_integrate` |
+| 448 | 49658 | 2026-09-06T20:26:10Z | [blader/humanizer](https://github.com/blader/humanizer) | — | `MIT` | `safe_to_integrate` |
+| 449 | 49550 | 2026-08-21T07:26:58Z | [HKUDS/CLI-Anything](https://github.com/HKUDS/CLI-Anything) | — | `Apache-2.0` | `safe_to_integrate` |
+| 450 | 49540 | 2026-09-14T22:47:30Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | `malware-analysis`, `penetration-testing`, `reverse-engineering`, `security` | `NOASSERTION` | `discovery_only` |
+| 451 | 49529 | 2026-03-04T23:44:21Z | [GokuMohandas/Made-With-ML](https://github.com/GokuMohandas/Made-With-ML) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 452 | 49470 | 2026-09-18T00:23:47Z | [bigskysoftware/htmx](https://github.com/bigskysoftware/htmx) | — | `NOASSERTION` | `discovery_only` |
+| 453 | 49323 | 2026-09-18T04:24:45Z | [metabase/metabase](https://github.com/metabase/metabase) | `database-storage` | `NOASSERTION` | `discovery_only` |
+| 454 | 49319 | 2026-09-15T00:34:26Z | [upscayl/upscayl](https://github.com/upscayl/upscayl) | `ai-ml`, `media` | `AGPL-3.0` | `discovery_only` |
+| 455 | 49317 | 2026-09-17T05:16:47Z | [tmux/tmux](https://github.com/tmux/tmux) | — | `ISC` | `safe_to_integrate` |
+| 456 | 49242 | 2026-09-12T04:09:08Z | [KRTirtho/spotube](https://github.com/KRTirtho/spotube) | — | `NOASSERTION` | `discovery_only` |
+| 457 | 49233 | 2026-09-18T03:33:29Z | [moeru-ai/airi](https://github.com/moeru-ai/airi) | — | `MIT` | `safe_to_integrate` |
+| 458 | 49147 | 2026-09-18T02:23:32Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | `ai-ml`, `api-backend`, `computer-vision`, `media`, `speech-ai` | `MIT` | `safe_to_integrate` |
+| 459 | 49118 | 2026-09-18T00:06:33Z | [JuliaLang/julia](https://github.com/JuliaLang/julia) | `ai-ml` | `MIT` | `safe_to_integrate` |
 | 460 | 49037 | 2026-08-24T00:59:50Z | [akullpp/awesome-java](https://github.com/akullpp/awesome-java) | — | `CC-BY-SA-4.0` | `discovery_only` |
-| 461 | 49023 | 2026-05-22T14:02:20Z | [Aider-AI/aider](https://github.com/Aider-AI/aider) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 462 | 48764 | 2026-08-16T19:35:44Z | [lukasz-madon/awesome-remote-job](https://github.com/lukasz-madon/awesome-remote-job) | — | `unknown` | `discovery_only` |
-| 463 | 48721 | 2026-09-16T04:20:52Z | [slidevjs/slidev](https://github.com/slidevjs/slidev) | — | `MIT` | `safe_to_integrate` |
-| 464 | 48664 | 2026-09-15T11:35:36Z | [iamkun/dayjs](https://github.com/iamkun/dayjs) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 465 | 48635 | 2026-09-17T16:40:12Z | [microsoft/qlib](https://github.com/microsoft/qlib) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 466 | 48529 | 2026-09-14T08:35:10Z | [calcom/cal.diy](https://github.com/calcom/cal.diy) | `devops` | `MIT` | `safe_to_integrate` |
-| 467 | 48520 | 2026-09-16T03:18:59Z | [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) | — | `NOASSERTION` | `discovery_only` |
-| 468 | 48510 | 2026-05-16T14:20:30Z | [type-challenges/type-challenges](https://github.com/type-challenges/type-challenges) | — | `MIT` | `safe_to_integrate` |
-| 469 | 48506 | 2026-09-15T14:43:57Z | [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) | `cli` | `MIT` | `safe_to_integrate` |
-| 470 | 48435 | 2026-01-26T16:36:45Z | [brillout/awesome-react-components](https://github.com/brillout/awesome-react-components) | — | `CC0-1.0` | `discovery_only` |
-| 471 | 48315 | 2026-09-17T13:22:11Z | [QuantumNous/new-api](https://github.com/QuantumNous/new-api) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 472 | 48275 | 2026-09-17T18:29:36Z | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | `ai-agent-framework`, `ai-ml`, `llm-runtime` | `MIT` | `safe_to_integrate` |
-| 473 | 48269 | 2026-09-17T03:05:13Z | [bojieli/ai-agent-book](https://github.com/bojieli/ai-agent-book) | — | `Apache-2.0` | `safe_to_integrate` |
-| 474 | 48238 | 2026-09-17T21:25:49Z | [bevyengine/bevy](https://github.com/bevyengine/bevy) | — | `Apache-2.0` | `safe_to_integrate` |
+| 461 | 49030 | 2026-05-22T14:02:20Z | [Aider-AI/aider](https://github.com/Aider-AI/aider) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 462 | 48779 | 2026-08-16T19:35:44Z | [lukasz-madon/awesome-remote-job](https://github.com/lukasz-madon/awesome-remote-job) | — | `unknown` | `discovery_only` |
+| 463 | 48725 | 2026-09-16T04:20:52Z | [slidevjs/slidev](https://github.com/slidevjs/slidev) | — | `MIT` | `safe_to_integrate` |
+| 464 | 48666 | 2026-09-15T11:35:36Z | [iamkun/dayjs](https://github.com/iamkun/dayjs) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 465 | 48646 | 2026-09-17T16:40:12Z | [microsoft/qlib](https://github.com/microsoft/qlib) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 466 | 48553 | 2026-09-16T03:18:59Z | [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) | — | `NOASSERTION` | `discovery_only` |
+| 467 | 48535 | 2026-09-14T08:35:10Z | [calcom/cal.diy](https://github.com/calcom/cal.diy) | `devops` | `MIT` | `safe_to_integrate` |
+| 468 | 48530 | 2026-09-15T14:43:57Z | [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) | `cli` | `MIT` | `safe_to_integrate` |
+| 469 | 48510 | 2026-05-16T14:20:30Z | [type-challenges/type-challenges](https://github.com/type-challenges/type-challenges) | — | `MIT` | `safe_to_integrate` |
+| 470 | 48439 | 2026-01-26T16:36:45Z | [brillout/awesome-react-components](https://github.com/brillout/awesome-react-components) | — | `CC0-1.0` | `discovery_only` |
+| 471 | 48370 | 2026-09-18T03:02:27Z | [bojieli/ai-agent-book](https://github.com/bojieli/ai-agent-book) | — | `Apache-2.0` | `safe_to_integrate` |
+| 472 | 48344 | 2026-09-18T04:14:03Z | [QuantumNous/new-api](https://github.com/QuantumNous/new-api) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 473 | 48302 | 2026-09-17T18:29:36Z | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | `ai-agent-framework`, `ai-ml`, `llm-runtime` | `MIT` | `safe_to_integrate` |
+| 474 | 48253 | 2026-09-18T01:36:01Z | [bevyengine/bevy](https://github.com/bevyengine/bevy) | — | `Apache-2.0` | `safe_to_integrate` |
 | 475 | 48199 | 2026-09-17T06:49:14Z | [ReactiveX/RxJava](https://github.com/ReactiveX/RxJava) | — | `Apache-2.0` | `safe_to_integrate` |
-| 476 | 48179 | 2026-09-17T07:28:48Z | [pixijs/pixijs](https://github.com/pixijs/pixijs) | — | `MIT` | `safe_to_integrate` |
-| 477 | 48106 | 2026-09-08T21:04:43Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | `ai-ml`, `ci-cd`, `devops`, `penetration-testing`, `security` | `AGPL-3.0` | `discovery_only` |
-| 478 | 47910 | 2026-09-15T01:08:07Z | [moment/moment](https://github.com/moment/moment) | — | `MIT` | `safe_to_integrate` |
-| 479 | 47909 | 2025-12-31T18:59:20Z | [GitHubDaily/GitHubDaily](https://github.com/GitHubDaily/GitHubDaily) | — | `unknown` | `discovery_only` |
-| 480 | 47864 | 2026-09-17T10:44:45Z | [jeecgboot/JeecgBoot](https://github.com/jeecgboot/JeecgBoot) | `ai-ml`, `cli`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 481 | 47852 | 2026-09-17T21:27:27Z | [discourse/discourse](https://github.com/discourse/discourse) | — | `GPL-2.0` | `discovery_only` |
-| 482 | 47820 | 2026-09-12T20:28:48Z | [gogs/gogs](https://github.com/gogs/gogs) | — | `MIT` | `safe_to_integrate` |
-| 483 | 47711 | 2026-09-16T02:11:47Z | [nvm-windows/nvm](https://github.com/nvm-windows/nvm) | — | `unknown` | `discovery_only` |
-| 484 | 47680 | 2026-08-17T17:38:16Z | [oobabooga/textgen](https://github.com/oobabooga/textgen) | `api-backend` | `AGPL-3.0` | `discovery_only` |
-| 485 | 47665 | 2026-09-13T05:50:41Z | [acmesh-official/acme.sh](https://github.com/acmesh-official/acme.sh) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
-| 486 | 47614 | 2026-09-17T19:41:35Z | [prisma/orm](https://github.com/prisma/orm) | `database-storage` | `Apache-2.0` | `safe_to_integrate` |
-| 487 | 47490 | 2026-09-16T12:09:30Z | [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits) | `ui-component-library`, `web-ui` | `NOASSERTION` | `discovery_only` |
-| 488 | 47489 | 2026-09-17T21:01:39Z | [SimplifyJobs/Summer2027-Internships](https://github.com/SimplifyJobs/Summer2027-Internships) | — | `unknown` | `discovery_only` |
-| 489 | 47483 | 2026-08-25T18:59:53Z | [exo-explore/exo](https://github.com/exo-explore/exo) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 490 | 47417 | 2026-09-16T15:30:26Z | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | — | `MIT` | `safe_to_integrate` |
-| 491 | 47405 | 2026-09-17T21:20:23Z | [abhigyanpatwari/GitNexus](https://github.com/abhigyanpatwari/GitNexus) | — | `NOASSERTION` | `discovery_only` |
-| 492 | 47364 | 2025-11-20T14:58:13Z | [hiroi-sora/Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) | `ai-ml`, `computer-vision`, `media` | `MIT` | `safe_to_integrate` |
+| 476 | 48178 | 2026-09-17T07:28:48Z | [pixijs/pixijs](https://github.com/pixijs/pixijs) | — | `MIT` | `safe_to_integrate` |
+| 477 | 48118 | 2026-09-08T21:04:43Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | `ai-ml`, `ci-cd`, `devops`, `penetration-testing`, `security` | `AGPL-3.0` | `discovery_only` |
+| 478 | 47911 | 2025-12-31T18:59:20Z | [GitHubDaily/GitHubDaily](https://github.com/GitHubDaily/GitHubDaily) | — | `unknown` | `discovery_only` |
+| 479 | 47910 | 2026-09-15T01:08:07Z | [moment/moment](https://github.com/moment/moment) | — | `MIT` | `safe_to_integrate` |
+| 480 | 47875 | 2026-09-17T10:44:45Z | [jeecgboot/JeecgBoot](https://github.com/jeecgboot/JeecgBoot) | `ai-ml`, `cli`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 481 | 47854 | 2026-09-18T04:41:00Z | [discourse/discourse](https://github.com/discourse/discourse) | — | `GPL-2.0` | `discovery_only` |
+| 482 | 47819 | 2026-09-12T20:28:48Z | [gogs/gogs](https://github.com/gogs/gogs) | — | `MIT` | `safe_to_integrate` |
+| 483 | 47714 | 2026-09-16T02:11:47Z | [nvm-windows/nvm](https://github.com/nvm-windows/nvm) | — | `unknown` | `discovery_only` |
+| 484 | 47683 | 2026-08-17T17:38:16Z | [oobabooga/textgen](https://github.com/oobabooga/textgen) | `api-backend` | `AGPL-3.0` | `discovery_only` |
+| 485 | 47668 | 2026-09-13T05:50:41Z | [acmesh-official/acme.sh](https://github.com/acmesh-official/acme.sh) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
+| 486 | 47618 | 2026-09-17T22:39:00Z | [prisma/orm](https://github.com/prisma/orm) | `database-storage` | `Apache-2.0` | `safe_to_integrate` |
+| 487 | 47575 | 2026-09-16T15:30:26Z | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | — | `MIT` | `safe_to_integrate` |
+| 488 | 47506 | 2026-09-16T12:09:30Z | [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits) | `ui-component-library`, `web-ui` | `NOASSERTION` | `discovery_only` |
+| 489 | 47499 | 2026-09-18T04:31:48Z | [SimplifyJobs/Summer2027-Internships](https://github.com/SimplifyJobs/Summer2027-Internships) | — | `unknown` | `discovery_only` |
+| 490 | 47490 | 2026-08-25T18:59:53Z | [exo-explore/exo](https://github.com/exo-explore/exo) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 491 | 47414 | 2026-09-18T04:33:12Z | [abhigyanpatwari/GitNexus](https://github.com/abhigyanpatwari/GitNexus) | — | `NOASSERTION` | `discovery_only` |
+| 492 | 47374 | 2025-11-20T14:58:13Z | [hiroi-sora/Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) | `ai-ml`, `computer-vision`, `media` | `MIT` | `safe_to_integrate` |
 | 493 | 47098 | 2026-09-09T17:26:52Z | [typescript-cheatsheets/react](https://github.com/typescript-cheatsheets/react) | — | `MIT` | `safe_to_integrate` |
-| 494 | 47072 | 2026-05-27T08:41:54Z | [gedoor/legado](https://github.com/gedoor/legado) | — | `unknown` | `discovery_only` |
-| 495 | 47061 | 2026-09-17T19:56:47Z | [lysine-dev/okhttp](https://github.com/lysine-dev/okhttp) | — | `Apache-2.0` | `safe_to_integrate` |
-| 496 | 47023 | 2026-09-17T12:43:41Z | [usebruno/bruno](https://github.com/usebruno/bruno) | `api-testing`, `testing` | `MIT` | `safe_to_integrate` |
-| 497 | 47017 | 2026-09-17T09:12:36Z | [zhayujie/CowAgent](https://github.com/zhayujie/CowAgent) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 494 | 47071 | 2026-05-27T08:41:54Z | [gedoor/legado](https://github.com/gedoor/legado) | — | `unknown` | `discovery_only` |
+| 495 | 47061 | 2026-09-17T23:01:46Z | [lysine-dev/okhttp](https://github.com/lysine-dev/okhttp) | — | `Apache-2.0` | `safe_to_integrate` |
+| 496 | 47027 | 2026-09-17T12:43:41Z | [usebruno/bruno](https://github.com/usebruno/bruno) | `api-testing`, `testing` | `MIT` | `safe_to_integrate` |
+| 497 | 47023 | 2026-09-18T04:25:49Z | [zhayujie/CowAgent](https://github.com/zhayujie/CowAgent) | `ai-ml` | `MIT` | `safe_to_integrate` |
 | 498 | 46934 | 2026-08-31T03:24:40Z | [v2ray/v2ray-core](https://github.com/v2ray/v2ray-core) | — | `MIT` | `safe_to_integrate` |
-| 499 | 46918 | 2026-09-17T18:25:37Z | [serverless/serverless](https://github.com/serverless/serverless) | — | `NOASSERTION` | `discovery_only` |
-| 500 | 46884 | 2026-09-17T21:05:46Z | [apache/airflow](https://github.com/apache/airflow) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 501 | 46820 | 2026-08-27T12:03:08Z | [Asabeneh/30-Days-Of-JavaScript](https://github.com/Asabeneh/30-Days-Of-JavaScript) | — | `unknown` | `discovery_only` |
-| 502 | 46759 | 2026-09-13T18:23:00Z | [microsoft/monaco-editor](https://github.com/microsoft/monaco-editor) | — | `MIT` | `safe_to_integrate` |
-| 503 | 46723 | 2026-09-16T22:38:35Z | [9001/copyparty](https://github.com/9001/copyparty) | `media` | `MIT` | `safe_to_integrate` |
-| 504 | 46544 | 2026-09-17T07:54:12Z | [MHSanaei/3x-ui](https://github.com/MHSanaei/3x-ui) | — | `GPL-3.0` | `discovery_only` |
-| 505 | 46534 | 2026-09-17T20:35:46Z | [sickn33/agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | `cli` | `MIT` | `safe_to_integrate` |
+| 499 | 46917 | 2026-09-17T18:25:37Z | [serverless/serverless](https://github.com/serverless/serverless) | — | `NOASSERTION` | `discovery_only` |
+| 500 | 46885 | 2026-09-18T04:48:21Z | [apache/airflow](https://github.com/apache/airflow) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 501 | 46821 | 2026-08-27T12:03:08Z | [Asabeneh/30-Days-Of-JavaScript](https://github.com/Asabeneh/30-Days-Of-JavaScript) | — | `unknown` | `discovery_only` |
+| 502 | 46766 | 2026-09-13T18:23:00Z | [microsoft/monaco-editor](https://github.com/microsoft/monaco-editor) | — | `MIT` | `safe_to_integrate` |
+| 503 | 46726 | 2026-09-17T22:49:59Z | [9001/copyparty](https://github.com/9001/copyparty) | `media` | `MIT` | `safe_to_integrate` |
+| 504 | 46555 | 2026-09-17T07:54:12Z | [MHSanaei/3x-ui](https://github.com/MHSanaei/3x-ui) | — | `GPL-3.0` | `discovery_only` |
+| 505 | 46546 | 2026-09-18T04:20:50Z | [sickn33/agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | `cli` | `MIT` | `safe_to_integrate` |
 | 506 | 46478 | 2026-04-12T17:26:10Z | [LeCoupa/awesome-cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets) | — | `MIT` | `safe_to_integrate` |
-| 507 | 46408 | 2026-09-17T17:19:42Z | [siyuan-note/siyuan](https://github.com/siyuan-note/siyuan) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 508 | 46381 | 2026-09-17T17:41:34Z | [iina/iina](https://github.com/iina/iina) | `media` | `GPL-3.0` | `discovery_only` |
-| 509 | 46359 | 2026-09-11T11:27:11Z | [docker/awesome-compose](https://github.com/docker/awesome-compose) | — | `CC0-1.0` | `discovery_only` |
-| 510 | 46315 | 2026-09-17T06:04:01Z | [jgm/pandoc](https://github.com/jgm/pandoc) | — | `GPL-2.0` | `discovery_only` |
-| 511 | 46310 | 2026-09-15T14:24:34Z | [cli/cli](https://github.com/cli/cli) | `cli` | `MIT` | `safe_to_integrate` |
-| 512 | 46256 | 2026-09-15T23:26:17Z | [helix-editor/helix](https://github.com/helix-editor/helix) | — | `MPL-2.0` | `discovery_only` |
-| 513 | 46231 | 2026-09-17T19:23:39Z | [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub) | — | `AGPL-3.0` | `discovery_only` |
-| 514 | 46197 | 2026-08-31T08:35:25Z | [zhongyang219/TrafficMonitor](https://github.com/zhongyang219/TrafficMonitor) | — | `NOASSERTION` | `discovery_only` |
-| 515 | 46146 | 2026-09-17T16:53:08Z | [milvus-io/milvus](https://github.com/milvus-io/milvus) | `ai-ml`, `database-storage`, `rag-retrieval`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
-| 516 | 46134 | 2026-09-17T21:11:36Z | [RocketChat/Rocket.Chat](https://github.com/RocketChat/Rocket.Chat) | — | `NOASSERTION` | `discovery_only` |
-| 517 | 46124 | 2026-07-08T00:36:51Z | [karanpratapsingh/system-design](https://github.com/karanpratapsingh/system-design) | — | `NOASSERTION` | `discovery_only` |
+| 507 | 46414 | 2026-09-18T03:50:30Z | [siyuan-note/siyuan](https://github.com/siyuan-note/siyuan) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 508 | 46385 | 2026-09-17T17:41:34Z | [iina/iina](https://github.com/iina/iina) | `media` | `GPL-3.0` | `discovery_only` |
+| 509 | 46363 | 2026-09-11T11:27:11Z | [docker/awesome-compose](https://github.com/docker/awesome-compose) | — | `CC0-1.0` | `discovery_only` |
+| 510 | 46321 | 2026-09-17T06:04:01Z | [jgm/pandoc](https://github.com/jgm/pandoc) | — | `GPL-2.0` | `discovery_only` |
+| 511 | 46315 | 2026-09-15T14:24:34Z | [cli/cli](https://github.com/cli/cli) | `cli` | `MIT` | `safe_to_integrate` |
+| 512 | 46261 | 2026-09-15T23:26:17Z | [helix-editor/helix](https://github.com/helix-editor/helix) | — | `MPL-2.0` | `discovery_only` |
+| 513 | 46235 | 2026-09-18T02:35:04Z | [DIYgod/RSSHub](https://github.com/DIYgod/RSSHub) | — | `AGPL-3.0` | `discovery_only` |
+| 514 | 46202 | 2026-08-31T08:35:25Z | [zhongyang219/TrafficMonitor](https://github.com/zhongyang219/TrafficMonitor) | — | `NOASSERTION` | `discovery_only` |
+| 515 | 46153 | 2026-09-18T04:25:18Z | [milvus-io/milvus](https://github.com/milvus-io/milvus) | `ai-ml`, `database-storage`, `rag-retrieval`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
+| 516 | 46136 | 2026-09-18T04:29:23Z | [RocketChat/Rocket.Chat](https://github.com/RocketChat/Rocket.Chat) | — | `NOASSERTION` | `discovery_only` |
+| 517 | 46126 | 2026-07-08T00:36:51Z | [karanpratapsingh/system-design](https://github.com/karanpratapsingh/system-design) | — | `NOASSERTION` | `discovery_only` |
 | 518 | 45832 | 2026-09-09T20:43:33Z | [android/architecture-samples](https://github.com/android/architecture-samples) | — | `Apache-2.0` | `safe_to_integrate` |
-| 519 | 45773 | 2026-09-17T21:25:46Z | [streamlit/streamlit](https://github.com/streamlit/streamlit) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 519 | 45778 | 2026-09-18T04:37:46Z | [streamlit/streamlit](https://github.com/streamlit/streamlit) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
 | 520 | 45749 | 2026-08-14T07:30:27Z | [google/zx](https://github.com/google/zx) | `cli`, `shell-tooling` | `Apache-2.0` | `safe_to_integrate` |
-| 521 | 45628 | 2026-09-14T12:54:03Z | [Leaflet/Leaflet](https://github.com/Leaflet/Leaflet) | — | `BSD-2-Clause` | `safe_to_integrate` |
-| 522 | 45604 | 2026-09-10T02:51:34Z | [ColorlibHQ/AdminLTE](https://github.com/ColorlibHQ/AdminLTE) | `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 523 | 45603 | 2026-09-15T08:16:16Z | [DataTalksClub/data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp) | — | `unknown` | `discovery_only` |
-| 524 | 45602 | 2026-09-03T10:29:07Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | `ci-cd`, `container-tooling`, `devops` | `MIT` | `safe_to_integrate` |
-| 525 | 45499 | 2026-09-17T21:11:43Z | [files-community/Files](https://github.com/files-community/Files) | — | `MIT` | `safe_to_integrate` |
-| 526 | 45460 | 2026-09-16T10:23:13Z | [jestjs/jest](https://github.com/jestjs/jest) | `testing` | `MIT` | `safe_to_integrate` |
-| 527 | 45415 | 2026-09-13T06:36:50Z | [vnpy/vnpy](https://github.com/vnpy/vnpy) | — | `MIT` | `safe_to_integrate` |
-| 528 | 45363 | 2026-09-14T09:27:38Z | [K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 529 | 45320 | 2026-09-17T20:12:01Z | [grpc/grpc](https://github.com/grpc/grpc) | — | `Apache-2.0` | `safe_to_integrate` |
-| 530 | 45318 | 2026-08-06T15:54:13Z | [isocpp/CppCoreGuidelines](https://github.com/isocpp/CppCoreGuidelines) | — | `NOASSERTION` | `discovery_only` |
-| 531 | 45256 | 2026-09-17T20:36:46Z | [paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) | `ai-ml`, `computer-vision`, `media` | `GPL-3.0` | `discovery_only` |
+| 521 | 45630 | 2026-09-14T12:54:03Z | [Leaflet/Leaflet](https://github.com/Leaflet/Leaflet) | — | `BSD-2-Clause` | `safe_to_integrate` |
+| 522 | 45611 | 2026-09-03T10:29:07Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | `ci-cd`, `container-tooling`, `devops` | `MIT` | `safe_to_integrate` |
+| 523 | 45607 | 2026-09-15T08:16:16Z | [DataTalksClub/data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp) | — | `unknown` | `discovery_only` |
+| 524 | 45604 | 2026-09-10T02:51:34Z | [ColorlibHQ/AdminLTE](https://github.com/ColorlibHQ/AdminLTE) | `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 525 | 45504 | 2026-09-17T21:50:31Z | [files-community/Files](https://github.com/files-community/Files) | — | `MIT` | `safe_to_integrate` |
+| 526 | 45460 | 2026-09-18T01:25:58Z | [jestjs/jest](https://github.com/jestjs/jest) | `testing` | `MIT` | `safe_to_integrate` |
+| 527 | 45420 | 2026-09-13T06:36:50Z | [vnpy/vnpy](https://github.com/vnpy/vnpy) | — | `MIT` | `safe_to_integrate` |
+| 528 | 45396 | 2026-09-14T09:27:38Z | [K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 529 | 45322 | 2026-09-18T04:37:51Z | [grpc/grpc](https://github.com/grpc/grpc) | — | `Apache-2.0` | `safe_to_integrate` |
+| 530 | 45317 | 2026-08-06T15:54:13Z | [isocpp/CppCoreGuidelines](https://github.com/isocpp/CppCoreGuidelines) | — | `NOASSERTION` | `discovery_only` |
+| 531 | 45260 | 2026-09-18T04:07:34Z | [paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) | `ai-ml`, `computer-vision`, `media` | `GPL-3.0` | `discovery_only` |
 | 532 | 45103 | 2026-09-17T07:06:18Z | [pyenv/pyenv](https://github.com/pyenv/pyenv) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 533 | 45077 | 2026-09-10T06:52:11Z | [mitmproxy/mitmproxy](https://github.com/mitmproxy/mitmproxy) | `security` | `MIT` | `safe_to_integrate` |
-| 534 | 45002 | 2026-09-17T08:08:32Z | [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 535 | 44955 | 2026-09-17T18:03:37Z | [logseq/logseq](https://github.com/logseq/logseq) | — | `AGPL-3.0` | `discovery_only` |
-| 536 | 44861 | 2026-09-17T11:46:54Z | [react-hook-form/react-hook-form](https://github.com/react-hook-form/react-hook-form) | — | `MIT` | `safe_to_integrate` |
-| 537 | 44807 | 2026-09-12T04:32:11Z | [sudheerj/reactjs-interview-questions](https://github.com/sudheerj/reactjs-interview-questions) | — | `MIT` | `safe_to_integrate` |
-| 538 | 44806 | 2026-09-17T19:42:34Z | [meteor/meteor](https://github.com/meteor/meteor) | — | `NOASSERTION` | `discovery_only` |
-| 539 | 44793 | 2026-09-17T21:27:42Z | [getsentry/sentry](https://github.com/getsentry/sentry) | `devops`, `error-tracking`, `observability`, `profiling` | `NOASSERTION` | `discovery_only` |
-| 540 | 44793 | 2026-09-17T18:18:38Z | [payloadcms/payload](https://github.com/payloadcms/payload) | `api-backend`, `content-management`, `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 541 | 44732 | 2026-08-21T20:44:39Z | [vercel/hyper](https://github.com/vercel/hyper) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
-| 542 | 44610 | 2026-07-11T00:43:07Z | [spf13/cobra](https://github.com/spf13/cobra) | `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 543 | 44558 | 2026-09-17T12:09:24Z | [NaiboWang/EasySpider](https://github.com/NaiboWang/EasySpider) | `web-ui` | `AGPL-3.0` | `discovery_only` |
-| 544 | 44511 | 2026-09-17T16:56:30Z | [janhq/jan](https://github.com/janhq/jan) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 545 | 44482 | 2026-09-17T21:19:58Z | [zen-browser/desktop](https://github.com/zen-browser/desktop) | — | `MPL-2.0` | `discovery_only` |
-| 546 | 44464 | 2026-09-16T06:43:23Z | [sharkdp/fd](https://github.com/sharkdp/fd) | `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 547 | 44431 | 2026-09-14T15:39:27Z | [AykutSarac/jsoncrack.com](https://github.com/AykutSarac/jsoncrack.com) | — | `Apache-2.0` | `safe_to_integrate` |
-| 548 | 44224 | 2026-09-17T21:25:25Z | [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) | `ai-ml`, `api-backend`, `auth`, `security` | `MIT` | `safe_to_integrate` |
+| 533 | 45079 | 2026-09-10T06:52:11Z | [mitmproxy/mitmproxy](https://github.com/mitmproxy/mitmproxy) | `security` | `MIT` | `safe_to_integrate` |
+| 534 | 45007 | 2026-09-17T08:08:32Z | [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 535 | 44957 | 2026-09-18T04:17:58Z | [logseq/logseq](https://github.com/logseq/logseq) | — | `AGPL-3.0` | `discovery_only` |
+| 536 | 44862 | 2026-09-17T21:38:14Z | [react-hook-form/react-hook-form](https://github.com/react-hook-form/react-hook-form) | — | `MIT` | `safe_to_integrate` |
+| 537 | 44807 | 2026-09-17T19:42:34Z | [meteor/meteor](https://github.com/meteor/meteor) | — | `NOASSERTION` | `discovery_only` |
+| 538 | 44807 | 2026-09-12T04:32:11Z | [sudheerj/reactjs-interview-questions](https://github.com/sudheerj/reactjs-interview-questions) | — | `MIT` | `safe_to_integrate` |
+| 539 | 44806 | 2026-09-17T18:18:38Z | [payloadcms/payload](https://github.com/payloadcms/payload) | `api-backend`, `content-management`, `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 540 | 44798 | 2026-09-18T04:42:40Z | [getsentry/sentry](https://github.com/getsentry/sentry) | `devops`, `error-tracking`, `observability`, `profiling` | `NOASSERTION` | `discovery_only` |
+| 541 | 44734 | 2026-08-21T20:44:39Z | [vercel/hyper](https://github.com/vercel/hyper) | `cli`, `terminal-emulator` | `MIT` | `safe_to_integrate` |
+| 542 | 44612 | 2026-07-11T00:43:07Z | [spf13/cobra](https://github.com/spf13/cobra) | `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 543 | 44565 | 2026-09-17T12:09:24Z | [NaiboWang/EasySpider](https://github.com/NaiboWang/EasySpider) | `web-ui` | `AGPL-3.0` | `discovery_only` |
+| 544 | 44516 | 2026-09-18T04:45:35Z | [janhq/jan](https://github.com/janhq/jan) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 545 | 44486 | 2026-09-17T22:40:11Z | [zen-browser/desktop](https://github.com/zen-browser/desktop) | — | `MPL-2.0` | `discovery_only` |
+| 546 | 44469 | 2026-09-16T06:43:23Z | [sharkdp/fd](https://github.com/sharkdp/fd) | `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 547 | 44433 | 2026-09-14T15:39:27Z | [AykutSarac/jsoncrack.com](https://github.com/AykutSarac/jsoncrack.com) | — | `Apache-2.0` | `safe_to_integrate` |
+| 548 | 44255 | 2026-09-18T04:47:09Z | [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat) | `ai-ml`, `api-backend`, `auth`, `security` | `MIT` | `safe_to_integrate` |
 | 549 | 44148 | 2026-09-07T06:16:21Z | [Kong/kong](https://github.com/Kong/kong) | `ai-ml`, `api-backend`, `api-gateway`, `devops` | `Apache-2.0` | `safe_to_integrate` |
-| 550 | 44137 | 2026-08-03T20:29:57Z | [DataExpert-io/data-engineer-handbook](https://github.com/DataExpert-io/data-engineer-handbook) | — | `unknown` | `discovery_only` |
-| 551 | 44025 | 2026-09-06T13:12:08Z | [parcel-bundler/parcel](https://github.com/parcel-bundler/parcel) | — | `MIT` | `safe_to_integrate` |
-| 552 | 44022 | 2026-09-17T14:22:27Z | [ccxt/ccxt](https://github.com/ccxt/ccxt) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 550 | 44140 | 2026-08-03T20:29:57Z | [DataExpert-io/data-engineer-handbook](https://github.com/DataExpert-io/data-engineer-handbook) | — | `unknown` | `discovery_only` |
+| 551 | 44027 | 2026-09-17T22:20:20Z | [ccxt/ccxt](https://github.com/ccxt/ccxt) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 552 | 44025 | 2026-09-06T13:12:08Z | [parcel-bundler/parcel](https://github.com/parcel-bundler/parcel) | — | `MIT` | `safe_to_integrate` |
 | 553 | 44011 | 2026-08-13T08:25:31Z | [yangshun/front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook) | — | `MIT` | `safe_to_integrate` |
-| 554 | 44007 | 2026-09-17T20:26:49Z | [apache/spark](https://github.com/apache/spark) | — | `Apache-2.0` | `safe_to_integrate` |
-| 555 | 44007 | 2026-06-10T18:51:23Z | [streamich/react-use](https://github.com/streamich/react-use) | — | `Unlicense` | `safe_to_integrate` |
-| 556 | 43999 | 2026-09-17T18:10:13Z | [babel/babel](https://github.com/babel/babel) | — | `MIT` | `safe_to_integrate` |
-| 557 | 43966 | 2026-09-14T17:06:56Z | [colinhacks/zod](https://github.com/colinhacks/zod) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 558 | 43958 | 2026-09-07T19:17:46Z | [danielmiessler/Fabric](https://github.com/danielmiessler/Fabric) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 559 | 43942 | 2026-09-09T20:57:39Z | [lysine-dev/retrofit](https://github.com/lysine-dev/retrofit) | — | `Apache-2.0` | `safe_to_integrate` |
-| 560 | 43924 | 2026-09-15T12:37:20Z | [juanfont/headscale](https://github.com/juanfont/headscale) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 561 | 43856 | 2026-09-17T21:19:21Z | [ray-project/ray](https://github.com/ray-project/ray) | `ai-ml`, `devops`, `llm-runtime` | `Apache-2.0` | `safe_to_integrate` |
-| 562 | 43838 | 2026-09-14T09:55:23Z | [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | `audio-processing`, `media`, `video-processing` | `GPL-2.0` | `discovery_only` |
-| 563 | 43674 | 2026-09-16T20:11:21Z | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) | — | `MIT` | `safe_to_integrate` |
-| 564 | 43615 | 2026-09-17T20:51:25Z | [juspay/hyperswitch](https://github.com/juspay/hyperswitch) | `auth`, `devops`, `observability`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 565 | 43579 | 2026-07-06T04:01:22Z | [zbezj/HEU_KMS_Activator](https://github.com/zbezj/HEU_KMS_Activator) | — | `unknown` | `discovery_only` |
-| 566 | 43561 | 2026-09-17T20:15:34Z | [gradio-app/gradio](https://github.com/gradio-app/gradio) | `ai-ml`, `ui-component-library`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 567 | 43557 | 2026-09-17T21:01:14Z | [HeyPuter/puter](https://github.com/HeyPuter/puter) | `database-storage` | `AGPL-3.0` | `discovery_only` |
-| 568 | 43457 | 2026-05-16T06:05:14Z | [Light-City/CPlusPlusThings](https://github.com/Light-City/CPlusPlusThings) | — | `unknown` | `discovery_only` |
-| 569 | 43326 | 2026-04-06T11:59:56Z | [imputnet/cobalt](https://github.com/imputnet/cobalt) | `media`, `media-downloader`, `web-ui` | `AGPL-3.0` | `discovery_only` |
-| 570 | 43305 | 2025-11-27T01:42:59Z | [ziglang/zig](https://github.com/ziglang/zig) | — | `MIT` | `safe_to_integrate` |
-| 571 | 43293 | 2026-09-04T23:39:51Z | [Unitech/pm2](https://github.com/Unitech/pm2) | `cli`, `devops`, `observability` | `NOASSERTION` | `discovery_only` |
-| 572 | 43159 | 2026-09-16T19:09:33Z | [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 573 | 43129 | 2026-09-17T21:09:24Z | [deepspeedai/DeepSpeed](https://github.com/deepspeedai/DeepSpeed) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 574 | 43106 | 2026-09-17T20:27:27Z | [reactive-resume/reactive-resume](https://github.com/reactive-resume/reactive-resume) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 554 | 44009 | 2026-06-10T18:51:23Z | [streamich/react-use](https://github.com/streamich/react-use) | — | `Unlicense` | `safe_to_integrate` |
+| 555 | 44008 | 2026-09-18T03:14:07Z | [apache/spark](https://github.com/apache/spark) | — | `Apache-2.0` | `safe_to_integrate` |
+| 556 | 43999 | 2026-09-18T03:16:36Z | [babel/babel](https://github.com/babel/babel) | — | `MIT` | `safe_to_integrate` |
+| 557 | 43968 | 2026-09-14T17:06:56Z | [colinhacks/zod](https://github.com/colinhacks/zod) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 558 | 43967 | 2026-09-07T19:17:46Z | [danielmiessler/Fabric](https://github.com/danielmiessler/Fabric) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 559 | 43941 | 2026-09-09T20:57:39Z | [lysine-dev/retrofit](https://github.com/lysine-dev/retrofit) | — | `Apache-2.0` | `safe_to_integrate` |
+| 560 | 43932 | 2026-09-17T21:57:02Z | [juanfont/headscale](https://github.com/juanfont/headscale) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 561 | 43862 | 2026-09-18T04:41:32Z | [ray-project/ray](https://github.com/ray-project/ray) | `ai-ml`, `devops`, `llm-runtime` | `Apache-2.0` | `safe_to_integrate` |
+| 562 | 43847 | 2026-09-14T09:55:23Z | [mifi/lossless-cut](https://github.com/mifi/lossless-cut) | `audio-processing`, `media`, `video-processing` | `GPL-2.0` | `discovery_only` |
+| 563 | 43704 | 2026-09-18T01:32:00Z | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) | — | `MIT` | `safe_to_integrate` |
+| 564 | 43618 | 2026-09-18T04:40:20Z | [juspay/hyperswitch](https://github.com/juspay/hyperswitch) | `auth`, `devops`, `observability`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 565 | 43580 | 2026-07-06T04:01:22Z | [zbezj/HEU_KMS_Activator](https://github.com/zbezj/HEU_KMS_Activator) | — | `unknown` | `discovery_only` |
+| 566 | 43565 | 2026-09-18T03:47:56Z | [gradio-app/gradio](https://github.com/gradio-app/gradio) | `ai-ml`, `ui-component-library`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 567 | 43560 | 2026-09-18T01:56:03Z | [HeyPuter/puter](https://github.com/HeyPuter/puter) | `database-storage` | `AGPL-3.0` | `discovery_only` |
+| 568 | 43461 | 2026-05-16T06:05:14Z | [Light-City/CPlusPlusThings](https://github.com/Light-City/CPlusPlusThings) | — | `unknown` | `discovery_only` |
+| 569 | 43461 | 2026-04-06T11:59:56Z | [imputnet/cobalt](https://github.com/imputnet/cobalt) | `media`, `media-downloader`, `web-ui` | `AGPL-3.0` | `discovery_only` |
+| 570 | 43303 | 2025-11-27T01:42:59Z | [ziglang/zig](https://github.com/ziglang/zig) | — | `MIT` | `safe_to_integrate` |
+| 571 | 43296 | 2026-09-04T23:39:51Z | [Unitech/pm2](https://github.com/Unitech/pm2) | `cli`, `devops`, `observability` | `NOASSERTION` | `discovery_only` |
+| 572 | 43193 | 2026-09-16T19:09:33Z | [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 573 | 43132 | 2026-09-18T04:43:52Z | [deepspeedai/DeepSpeed](https://github.com/deepspeedai/DeepSpeed) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 574 | 43117 | 2026-09-17T20:27:27Z | [reactive-resume/reactive-resume](https://github.com/reactive-resume/reactive-resume) | `ai-ml` | `MIT` | `safe_to_integrate` |
 | 575 | 43019 | 2026-08-29T12:24:43Z | [FuelLabs/fuels-rs](https://github.com/FuelLabs/fuels-rs) | — | `Apache-2.0` | `safe_to_integrate` |
-| 576 | 42994 | 2026-09-17T09:08:37Z | [faif/python-patterns](https://github.com/faif/python-patterns) | — | `unknown` | `discovery_only` |
+| 576 | 42993 | 2026-09-17T09:08:37Z | [faif/python-patterns](https://github.com/faif/python-patterns) | — | `unknown` | `discovery_only` |
 | 577 | 42977 | 2026-03-27T18:21:29Z | [FuelLabs/fuels-ts](https://github.com/FuelLabs/fuels-ts) | — | `Apache-2.0` | `safe_to_integrate` |
-| 578 | 42871 | 2026-09-17T20:39:29Z | [curl/curl](https://github.com/curl/curl) | — | `NOASSERTION` | `discovery_only` |
-| 579 | 42827 | 2026-09-16T08:50:46Z | [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills) | — | `Apache-2.0` | `safe_to_integrate` |
-| 580 | 42774 | 2026-09-17T16:24:10Z | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 581 | 42747 | 2026-09-07T17:19:11Z | [chatanywhere/GPT_API_free](https://github.com/chatanywhere/GPT_API_free) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 578 | 42909 | 2026-09-16T08:50:46Z | [Yuan1z0825/nature-skills](https://github.com/Yuan1z0825/nature-skills) | — | `Apache-2.0` | `safe_to_integrate` |
+| 579 | 42874 | 2026-09-17T22:38:13Z | [curl/curl](https://github.com/curl/curl) | — | `NOASSERTION` | `discovery_only` |
+| 580 | 42789 | 2026-09-18T04:42:06Z | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 581 | 42768 | 2026-09-07T17:19:11Z | [chatanywhere/GPT_API_free](https://github.com/chatanywhere/GPT_API_free) | `api-backend` | `MIT` | `safe_to_integrate` |
 | 582 | 42621 | 2026-09-10T08:40:11Z | [mingrammer/diagrams](https://github.com/mingrammer/diagrams) | — | `MIT` | `safe_to_integrate` |
-| 583 | 42595 | 2026-07-23T20:48:50Z | [k88hudson/git-flight-rules](https://github.com/k88hudson/git-flight-rules) | — | `CC-BY-SA-4.0` | `discovery_only` |
-| 584 | 42456 | 2026-06-25T14:49:35Z | [aria2/aria2](https://github.com/aria2/aria2) | `cli` | `GPL-2.0` | `discovery_only` |
+| 583 | 42594 | 2026-07-23T20:48:50Z | [k88hudson/git-flight-rules](https://github.com/k88hudson/git-flight-rules) | — | `CC-BY-SA-4.0` | `discovery_only` |
+| 584 | 42468 | 2026-06-25T14:49:35Z | [aria2/aria2](https://github.com/aria2/aria2) | `cli` | `GPL-2.0` | `discovery_only` |
 | 585 | 42419 | 2026-09-14T05:44:45Z | [Alamofire/Alamofire](https://github.com/Alamofire/Alamofire) | — | `MIT` | `safe_to_integrate` |
-| 586 | 42412 | 2026-09-17T14:36:02Z | [saadeghi/daisyui](https://github.com/saadeghi/daisyui) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 587 | 42253 | 2026-09-16T18:16:51Z | [sxyazi/yazi](https://github.com/sxyazi/yazi) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 588 | 42246 | 2026-09-16T03:33:01Z | [666ghj/BettaFish](https://github.com/666ghj/BettaFish) | `ai-agent-framework`, `ai-ml` | `GPL-2.0` | `discovery_only` |
-| 589 | 42219 | 2026-09-17T18:19:43Z | [agno-agi/agno](https://github.com/agno-agi/agno) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 586 | 42411 | 2026-09-17T14:36:02Z | [saadeghi/daisyui](https://github.com/saadeghi/daisyui) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 587 | 42263 | 2026-09-17T22:54:14Z | [sxyazi/yazi](https://github.com/sxyazi/yazi) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 588 | 42252 | 2026-09-16T03:33:01Z | [666ghj/BettaFish](https://github.com/666ghj/BettaFish) | `ai-agent-framework`, `ai-ml` | `GPL-2.0` | `discovery_only` |
+| 589 | 42227 | 2026-09-17T18:19:43Z | [agno-agi/agno](https://github.com/agno-agi/agno) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
 | 590 | 42124 | 2026-09-17T18:19:33Z | [fastlane/fastlane](https://github.com/fastlane/fastlane) | `devops` | `MIT` | `safe_to_integrate` |
-| 591 | 42065 | 2025-12-30T13:31:16Z | [LC044/WeChatMsg](https://github.com/LC044/WeChatMsg) | — | `unknown` | `discovery_only` |
-| 592 | 41962 | 2026-09-06T16:52:03Z | [gkd-kit/gkd](https://github.com/gkd-kit/gkd) | — | `GPL-3.0` | `discovery_only` |
-| 593 | 41908 | 2026-09-17T16:53:18Z | [exelban/stats](https://github.com/exelban/stats) | — | `MIT` | `safe_to_integrate` |
+| 591 | 42066 | 2025-12-30T13:31:16Z | [LC044/WeChatMsg](https://github.com/LC044/WeChatMsg) | — | `unknown` | `discovery_only` |
+| 592 | 41971 | 2026-09-06T16:52:03Z | [gkd-kit/gkd](https://github.com/gkd-kit/gkd) | — | `GPL-3.0` | `discovery_only` |
+| 593 | 41922 | 2026-09-17T16:53:18Z | [exelban/stats](https://github.com/exelban/stats) | — | `MIT` | `safe_to_integrate` |
 | 594 | 41904 | 2026-09-14T20:08:32Z | [nolimits4web/swiper](https://github.com/nolimits4web/swiper) | — | `MIT` | `safe_to_integrate` |
-| 595 | 41849 | 2026-09-17T09:33:45Z | [Wei-Shaw/sub2api](https://github.com/Wei-Shaw/sub2api) | — | `LGPL-3.0` | `discovery_only` |
-| 596 | 41845 | 2026-09-17T06:32:59Z | [psf/black](https://github.com/psf/black) | — | `MIT` | `safe_to_integrate` |
-| 597 | 41843 | 2026-09-17T15:33:41Z | [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
-| 598 | 41791 | 2026-09-16T13:37:52Z | [chatboxai/chatbox](https://github.com/chatboxai/chatbox) | `ai-ml` | `GPL-3.0` | `discovery_only` |
-| 599 | 41770 | 2026-08-29T09:36:32Z | [hexojs/hexo](https://github.com/hexojs/hexo) | `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 600 | 41746 | 2025-12-23T18:48:24Z | [chubin/cheat.sh](https://github.com/chubin/cheat.sh) | `cli` | `MIT` | `safe_to_integrate` |
-| 601 | 41724 | 2026-09-17T19:28:29Z | [omacom/omarchy](https://github.com/omacom/omarchy) | — | `MIT` | `safe_to_integrate` |
-| 602 | 41706 | 2026-09-17T11:40:44Z | [tabler/tabler](https://github.com/tabler/tabler) | `dashboard-ui`, `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 603 | 41641 | 2026-09-16T05:55:06Z | [XTLS/Xray-core](https://github.com/XTLS/Xray-core) | — | `MPL-2.0` | `discovery_only` |
-| 604 | 41612 | 2026-09-17T09:45:30Z | [dcloudio/uni-app](https://github.com/dcloudio/uni-app) | — | `Apache-2.0` | `safe_to_integrate` |
-| 605 | 41567 | 2026-09-17T18:36:53Z | [apache/dubbo](https://github.com/apache/dubbo) | `api-backend`, `rpc-api` | `Apache-2.0` | `safe_to_integrate` |
-| 606 | 41538 | 2026-09-06T09:04:15Z | [luongnv89/claude-howto](https://github.com/luongnv89/claude-howto) | — | `MIT` | `safe_to_integrate` |
-| 607 | 41499 | 2026-02-16T18:32:29Z | [ashishps1/awesome-system-design-resources](https://github.com/ashishps1/awesome-system-design-resources) | — | `GPL-3.0` | `discovery_only` |
+| 595 | 41884 | 2026-09-18T01:48:32Z | [Wei-Shaw/sub2api](https://github.com/Wei-Shaw/sub2api) | — | `LGPL-3.0` | `discovery_only` |
+| 596 | 41863 | 2026-09-18T04:34:40Z | [langchain-ai/langgraph](https://github.com/langchain-ai/langgraph) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 597 | 41845 | 2026-09-17T06:32:59Z | [psf/black](https://github.com/psf/black) | — | `MIT` | `safe_to_integrate` |
+| 598 | 41798 | 2026-09-16T13:37:52Z | [chatboxai/chatbox](https://github.com/chatboxai/chatbox) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 599 | 41774 | 2026-08-29T09:36:32Z | [hexojs/hexo](https://github.com/hexojs/hexo) | `static-site-generator`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 600 | 41763 | 2026-09-18T03:25:33Z | [omacom/omarchy](https://github.com/omacom/omarchy) | — | `MIT` | `safe_to_integrate` |
+| 601 | 41745 | 2025-12-23T18:48:24Z | [chubin/cheat.sh](https://github.com/chubin/cheat.sh) | `cli` | `MIT` | `safe_to_integrate` |
+| 602 | 41711 | 2026-09-17T22:44:06Z | [tabler/tabler](https://github.com/tabler/tabler) | `dashboard-ui`, `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 603 | 41642 | 2026-09-16T05:55:06Z | [XTLS/Xray-core](https://github.com/XTLS/Xray-core) | — | `MPL-2.0` | `discovery_only` |
+| 604 | 41613 | 2026-09-18T03:06:46Z | [dcloudio/uni-app](https://github.com/dcloudio/uni-app) | — | `Apache-2.0` | `safe_to_integrate` |
+| 605 | 41568 | 2026-09-17T18:36:53Z | [apache/dubbo](https://github.com/apache/dubbo) | `api-backend`, `rpc-api` | `Apache-2.0` | `safe_to_integrate` |
+| 606 | 41541 | 2026-09-06T09:04:15Z | [luongnv89/claude-howto](https://github.com/luongnv89/claude-howto) | — | `MIT` | `safe_to_integrate` |
+| 607 | 41503 | 2026-02-16T18:32:29Z | [ashishps1/awesome-system-design-resources](https://github.com/ashishps1/awesome-system-design-resources) | — | `GPL-3.0` | `discovery_only` |
 | 608 | 41475 | 2026-05-12T11:09:42Z | [yarnpkg/yarn](https://github.com/yarnpkg/yarn) | `cli`, `package-manager` | `NOASSERTION` | `discovery_only` |
-| 609 | 41445 | 2026-09-17T20:35:13Z | [duckdb/duckdb](https://github.com/duckdb/duckdb) | `database-storage`, `relational-database` | `MIT` | `safe_to_integrate` |
+| 609 | 41472 | 2026-09-18T02:24:02Z | [duckdb/duckdb](https://github.com/duckdb/duckdb) | `database-storage`, `relational-database` | `MIT` | `safe_to_integrate` |
 | 610 | 41441 | 2026-09-16T12:20:50Z | [hpcaitech/ColossalAI](https://github.com/hpcaitech/ColossalAI) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 611 | 41305 | 2026-09-17T20:31:18Z | [LizardByte/Sunshine](https://github.com/LizardByte/Sunshine) | — | `GPL-3.0` | `discovery_only` |
+| 611 | 41309 | 2026-09-17T22:20:42Z | [LizardByte/Sunshine](https://github.com/LizardByte/Sunshine) | — | `GPL-3.0` | `discovery_only` |
 | 612 | 41166 | 2026-09-13T22:45:01Z | [nwjs/nw.js](https://github.com/nwjs/nw.js) | — | `MIT` | `safe_to_integrate` |
-| 613 | 41144 | 2026-09-17T19:39:54Z | [GyulyVGC/sniffnet](https://github.com/GyulyVGC/sniffnet) | `security` | `Apache-2.0` | `safe_to_integrate` |
-| 614 | 41102 | 2026-09-11T18:15:16Z | [styled-components/styled-components](https://github.com/styled-components/styled-components) | — | `MIT` | `safe_to_integrate` |
-| 615 | 41064 | 2026-09-07T08:20:49Z | [QSCTech/zju-icicles](https://github.com/QSCTech/zju-icicles) | — | `unknown` | `discovery_only` |
+| 613 | 41147 | 2026-09-17T19:39:54Z | [GyulyVGC/sniffnet](https://github.com/GyulyVGC/sniffnet) | `security` | `Apache-2.0` | `safe_to_integrate` |
+| 614 | 41103 | 2026-09-11T18:15:16Z | [styled-components/styled-components](https://github.com/styled-components/styled-components) | — | `MIT` | `safe_to_integrate` |
+| 615 | 41065 | 2026-09-07T08:20:49Z | [QSCTech/zju-icicles](https://github.com/QSCTech/zju-icicles) | — | `unknown` | `discovery_only` |
 | 616 | 41042 | 2026-09-17T13:21:18Z | [vuetifyjs/vuetify](https://github.com/vuetifyjs/vuetify) | `ui-component-library`, `web-ui` | `NOASSERTION` | `discovery_only` |
-| 617 | 40995 | 2026-09-17T20:42:20Z | [Hmbown/Codewhale](https://github.com/Hmbown/Codewhale) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 618 | 40937 | 2026-09-17T18:16:38Z | [ToolJet/ToolJet](https://github.com/ToolJet/ToolJet) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 619 | 40926 | 2026-09-17T20:37:44Z | [facebookresearch/faiss](https://github.com/facebookresearch/faiss) | — | `MIT` | `safe_to_integrate` |
-| 620 | 40898 | 2026-09-17T17:09:42Z | [ManimCommunity/manim](https://github.com/ManimCommunity/manim) | — | `MIT` | `safe_to_integrate` |
-| 621 | 40896 | 2026-09-17T20:16:57Z | [vim/vim](https://github.com/vim/vim) | — | `Vim` | `discovery_only` |
-| 622 | 40895 | 2026-09-17T19:56:26Z | [appsmithorg/appsmith](https://github.com/appsmithorg/appsmith) | `api-backend`, `dashboard-ui`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 623 | 40833 | 2026-09-11T10:15:29Z | [remoteintech/remote-jobs](https://github.com/remoteintech/remote-jobs) | — | `NOASSERTION` | `discovery_only` |
-| 624 | 40798 | 2026-05-30T18:01:29Z | [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | — | `CC0-1.0` | `discovery_only` |
-| 625 | 40773 | 2026-09-15T20:39:25Z | [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design) | — | `MIT` | `safe_to_integrate` |
-| 626 | 40649 | 2026-09-15T20:20:59Z | [chakra-ui/chakra-ui](https://github.com/chakra-ui/chakra-ui) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 627 | 40629 | 2026-09-17T15:55:18Z | [AstrBotDevs/AstrBot](https://github.com/AstrBotDevs/AstrBot) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 628 | 40619 | 2026-09-16T17:00:22Z | [CorentinTh/it-tools](https://github.com/CorentinTh/it-tools) | `web-ui` | `GPL-3.0` | `discovery_only` |
-| 629 | 40604 | 2026-09-17T08:05:27Z | [trpc/trpc](https://github.com/trpc/trpc) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 630 | 40590 | 2026-09-17T13:23:58Z | [outline/outline](https://github.com/outline/outline) | — | `NOASSERTION` | `discovery_only` |
-| 631 | 40541 | 2026-09-17T20:49:50Z | [pingcap/tidb](https://github.com/pingcap/tidb) | `ai-ml`, `database-storage`, `devops`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
-| 632 | 40521 | 2026-09-17T21:27:25Z | [llvm/llvm-project](https://github.com/llvm/llvm-project) | — | `NOASSERTION` | `discovery_only` |
-| 633 | 40521 | 2026-09-17T21:01:48Z | [nushell/nushell](https://github.com/nushell/nushell) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 634 | 40389 | 2026-09-17T20:55:46Z | [php/php-src](https://github.com/php/php-src) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 635 | 40366 | 2026-09-14T12:45:16Z | [schollz/croc](https://github.com/schollz/croc) | — | `MIT` | `safe_to_integrate` |
-| 636 | 40332 | 2026-08-21T06:56:13Z | [phaserjs/phaser](https://github.com/phaserjs/phaser) | — | `MIT` | `safe_to_integrate` |
-| 637 | 40268 | 2026-07-27T05:52:06Z | [microsoft/BitNet](https://github.com/microsoft/BitNet) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 638 | 40200 | 2026-09-17T21:13:39Z | [photoprism/photoprism](https://github.com/photoprism/photoprism) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 639 | 40165 | 2026-09-16T06:07:57Z | [qbittorrent/qBittorrent](https://github.com/qbittorrent/qBittorrent) | — | `NOASSERTION` | `discovery_only` |
-| 640 | 40160 | 2026-09-17T14:00:05Z | [gofiber/fiber](https://github.com/gofiber/fiber) | `api-backend`, `rest-api` | `MIT` | `safe_to_integrate` |
-| 641 | 40059 | 2026-08-09T17:20:12Z | [evanw/esbuild](https://github.com/evanw/esbuild) | — | `MIT` | `safe_to_integrate` |
-| 642 | 40050 | 2026-09-17T15:08:14Z | [koalaman/shellcheck](https://github.com/koalaman/shellcheck) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
-| 643 | 40021 | 2026-09-17T11:50:27Z | [Kong/insomnia](https://github.com/Kong/insomnia) | — | `Apache-2.0` | `safe_to_integrate` |
-| 644 | 40002 | 2026-09-17T19:58:01Z | [novuhq/novu](https://github.com/novuhq/novu) | `devops` | `NOASSERTION` | `discovery_only` |
-| 645 | 39958 | 2026-09-14T16:21:15Z | [go-gorm/gorm](https://github.com/go-gorm/gorm) | — | `MIT` | `safe_to_integrate` |
-| 646 | 39895 | 2026-09-15T04:49:29Z | [HKUDS/DeepTutor](https://github.com/HKUDS/DeepTutor) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 647 | 39889 | 2026-09-16T05:32:01Z | [vadimdemedes/ink](https://github.com/vadimdemedes/ink) | `cli` | `MIT` | `safe_to_integrate` |
-| 648 | 39885 | 2026-09-16T08:26:46Z | [videojs/video.js](https://github.com/videojs/video.js) | `media`, `media-streaming` | `NOASSERTION` | `discovery_only` |
-| 649 | 39849 | 2026-04-10T16:33:48Z | [2noise/ChatTTS](https://github.com/2noise/ChatTTS) | `ai-ml`, `media`, `speech-ai` | `AGPL-3.0` | `discovery_only` |
-| 650 | 39839 | 2026-09-17T11:00:57Z | [tinyhumansai/openhuman](https://github.com/tinyhumansai/openhuman) | `ai-ml` | `GPL-3.0` | `discovery_only` |
-| 651 | 39836 | 2026-09-17T21:27:32Z | [PostHog/posthog](https://github.com/PostHog/posthog) | `ai-ml`, `devops`, `error-tracking`, `observability` | `NOASSERTION` | `discovery_only` |
-| 652 | 39814 | 2026-09-13T07:35:22Z | [datalab-to/marker](https://github.com/datalab-to/marker) | — | `Apache-2.0` | `safe_to_integrate` |
-| 653 | 39788 | 2026-09-17T09:53:45Z | [halo-dev/halo](https://github.com/halo-dev/halo) | `content-management`, `web-ui` | `GPL-3.0` | `discovery_only` |
-| 654 | 39763 | 2026-09-17T16:18:24Z | [pola-rs/polars](https://github.com/pola-rs/polars) | — | `MIT` | `safe_to_integrate` |
-| 655 | 39751 | 2026-09-14T01:07:51Z | [wshobson/agents](https://github.com/wshobson/agents) | — | `MIT` | `safe_to_integrate` |
-| 656 | 39743 | 2026-09-16T21:37:33Z | [mindsdb/mindshub](https://github.com/mindsdb/mindshub) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 657 | 39727 | 2026-09-17T18:06:24Z | [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
-| 658 | 39710 | 2026-09-17T13:51:13Z | [TeamNewPipe/NewPipe](https://github.com/TeamNewPipe/NewPipe) | `media` | `GPL-3.0` | `discovery_only` |
-| 659 | 39618 | 2026-09-16T21:59:38Z | [ShareX/ShareX](https://github.com/ShareX/ShareX) | `ai-ml`, `computer-vision`, `media` | `GPL-3.0` | `discovery_only` |
-| 660 | 39615 | 2026-09-17T16:07:00Z | [google/styleguide](https://github.com/google/styleguide) | — | `NOASSERTION` | `discovery_only` |
-| 661 | 39572 | 2026-09-17T20:09:31Z | [drawdb-io/drawdb](https://github.com/drawdb-io/drawdb) | `database-storage` | `AGPL-3.0` | `discovery_only` |
-| 662 | 39548 | 2026-09-17T17:24:09Z | [google/googletest](https://github.com/google/googletest) | `testing` | `BSD-3-Clause` | `safe_to_integrate` |
-| 663 | 39536 | 2026-09-14T20:37:22Z | [ajeetdsouza/zoxide](https://github.com/ajeetdsouza/zoxide) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 617 | 40998 | 2026-09-18T02:21:00Z | [Hmbown/Codewhale](https://github.com/Hmbown/Codewhale) | `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 618 | 40936 | 2026-09-18T04:30:57Z | [ToolJet/ToolJet](https://github.com/ToolJet/ToolJet) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 619 | 40928 | 2026-09-18T02:01:08Z | [facebookresearch/faiss](https://github.com/facebookresearch/faiss) | — | `MIT` | `safe_to_integrate` |
+| 620 | 40904 | 2026-09-18T01:31:56Z | [ManimCommunity/manim](https://github.com/ManimCommunity/manim) | — | `MIT` | `safe_to_integrate` |
+| 621 | 40898 | 2026-09-18T01:36:10Z | [appsmithorg/appsmith](https://github.com/appsmithorg/appsmith) | `api-backend`, `dashboard-ui`, `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 622 | 40896 | 2026-09-17T20:16:57Z | [vim/vim](https://github.com/vim/vim) | — | `Vim` | `discovery_only` |
+| 623 | 40867 | 2026-09-15T20:39:25Z | [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design) | — | `MIT` | `safe_to_integrate` |
+| 624 | 40834 | 2026-09-11T10:15:29Z | [remoteintech/remote-jobs](https://github.com/remoteintech/remote-jobs) | — | `NOASSERTION` | `discovery_only` |
+| 625 | 40798 | 2026-05-30T18:01:29Z | [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | — | `CC0-1.0` | `discovery_only` |
+| 626 | 40650 | 2026-09-15T20:20:59Z | [chakra-ui/chakra-ui](https://github.com/chakra-ui/chakra-ui) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 627 | 40639 | 2026-09-17T15:55:18Z | [AstrBotDevs/AstrBot](https://github.com/AstrBotDevs/AstrBot) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 628 | 40622 | 2026-09-16T17:00:22Z | [CorentinTh/it-tools](https://github.com/CorentinTh/it-tools) | `web-ui` | `GPL-3.0` | `discovery_only` |
+| 629 | 40607 | 2026-09-17T08:05:27Z | [trpc/trpc](https://github.com/trpc/trpc) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 630 | 40599 | 2026-09-18T02:36:30Z | [outline/outline](https://github.com/outline/outline) | — | `NOASSERTION` | `discovery_only` |
+| 631 | 40542 | 2026-09-18T04:37:32Z | [pingcap/tidb](https://github.com/pingcap/tidb) | `ai-ml`, `database-storage`, `devops`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
+| 632 | 40526 | 2026-09-18T04:25:20Z | [llvm/llvm-project](https://github.com/llvm/llvm-project) | — | `NOASSERTION` | `discovery_only` |
+| 633 | 40521 | 2026-09-17T22:48:09Z | [nushell/nushell](https://github.com/nushell/nushell) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 634 | 40391 | 2026-09-18T03:11:00Z | [php/php-src](https://github.com/php/php-src) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 635 | 40367 | 2026-09-14T12:45:16Z | [schollz/croc](https://github.com/schollz/croc) | — | `MIT` | `safe_to_integrate` |
+| 636 | 40334 | 2026-08-21T06:56:13Z | [phaserjs/phaser](https://github.com/phaserjs/phaser) | — | `MIT` | `safe_to_integrate` |
+| 637 | 40269 | 2026-07-27T05:52:06Z | [microsoft/BitNet](https://github.com/microsoft/BitNet) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 638 | 40203 | 2026-09-17T23:05:42Z | [photoprism/photoprism](https://github.com/photoprism/photoprism) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 639 | 40170 | 2026-09-16T06:07:57Z | [qbittorrent/qBittorrent](https://github.com/qbittorrent/qBittorrent) | — | `NOASSERTION` | `discovery_only` |
+| 640 | 40159 | 2026-09-17T14:00:05Z | [gofiber/fiber](https://github.com/gofiber/fiber) | `api-backend`, `rest-api` | `MIT` | `safe_to_integrate` |
+| 641 | 40058 | 2026-08-09T17:20:12Z | [evanw/esbuild](https://github.com/evanw/esbuild) | — | `MIT` | `safe_to_integrate` |
+| 642 | 40052 | 2026-09-17T15:08:14Z | [koalaman/shellcheck](https://github.com/koalaman/shellcheck) | `cli`, `shell-tooling` | `GPL-3.0` | `discovery_only` |
+| 643 | 40022 | 2026-09-18T00:51:26Z | [Kong/insomnia](https://github.com/Kong/insomnia) | — | `Apache-2.0` | `safe_to_integrate` |
+| 644 | 40008 | 2026-09-17T19:58:01Z | [novuhq/novu](https://github.com/novuhq/novu) | `devops` | `NOASSERTION` | `discovery_only` |
+| 645 | 39957 | 2026-09-14T16:21:15Z | [go-gorm/gorm](https://github.com/go-gorm/gorm) | — | `MIT` | `safe_to_integrate` |
+| 646 | 39914 | 2026-09-15T04:49:29Z | [HKUDS/DeepTutor](https://github.com/HKUDS/DeepTutor) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 647 | 39890 | 2026-09-16T05:32:01Z | [vadimdemedes/ink](https://github.com/vadimdemedes/ink) | `cli` | `MIT` | `safe_to_integrate` |
+| 648 | 39886 | 2026-09-16T08:26:46Z | [videojs/video.js](https://github.com/videojs/video.js) | `media`, `media-streaming` | `NOASSERTION` | `discovery_only` |
+| 649 | 39858 | 2026-09-17T11:00:57Z | [tinyhumansai/openhuman](https://github.com/tinyhumansai/openhuman) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 650 | 39851 | 2026-04-10T16:33:48Z | [2noise/ChatTTS](https://github.com/2noise/ChatTTS) | `ai-ml`, `media`, `speech-ai` | `AGPL-3.0` | `discovery_only` |
+| 651 | 39842 | 2026-09-18T04:46:02Z | [PostHog/posthog](https://github.com/PostHog/posthog) | `ai-ml`, `devops`, `error-tracking`, `observability` | `NOASSERTION` | `discovery_only` |
+| 652 | 39820 | 2026-09-13T07:35:22Z | [datalab-to/marker](https://github.com/datalab-to/marker) | — | `Apache-2.0` | `safe_to_integrate` |
+| 653 | 39797 | 2026-09-18T03:49:38Z | [halo-dev/halo](https://github.com/halo-dev/halo) | `content-management`, `web-ui` | `GPL-3.0` | `discovery_only` |
+| 654 | 39764 | 2026-09-17T16:18:24Z | [pola-rs/polars](https://github.com/pola-rs/polars) | — | `MIT` | `safe_to_integrate` |
+| 655 | 39763 | 2026-09-14T01:07:51Z | [wshobson/agents](https://github.com/wshobson/agents) | — | `MIT` | `safe_to_integrate` |
+| 656 | 39746 | 2026-09-16T21:37:33Z | [mindsdb/mindshub](https://github.com/mindsdb/mindshub) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 657 | 39738 | 2026-09-18T03:35:25Z | [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 658 | 39711 | 2026-09-17T13:51:13Z | [TeamNewPipe/NewPipe](https://github.com/TeamNewPipe/NewPipe) | `media` | `GPL-3.0` | `discovery_only` |
+| 659 | 39625 | 2026-09-18T03:15:30Z | [ShareX/ShareX](https://github.com/ShareX/ShareX) | `ai-ml`, `computer-vision`, `media` | `GPL-3.0` | `discovery_only` |
+| 660 | 39615 | 2026-09-18T01:52:41Z | [google/styleguide](https://github.com/google/styleguide) | — | `NOASSERTION` | `discovery_only` |
+| 661 | 39575 | 2026-09-17T20:09:31Z | [drawdb-io/drawdb](https://github.com/drawdb-io/drawdb) | `database-storage` | `AGPL-3.0` | `discovery_only` |
+| 662 | 39551 | 2026-09-17T17:24:09Z | [google/googletest](https://github.com/google/googletest) | `testing` | `BSD-3-Clause` | `safe_to_integrate` |
+| 663 | 39545 | 2026-09-14T20:37:22Z | [ajeetdsouza/zoxide](https://github.com/ajeetdsouza/zoxide) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
 | 664 | 39534 | 2026-05-01T00:25:53Z | [lm-sys/FastChat](https://github.com/lm-sys/FastChat) | — | `Apache-2.0` | `safe_to_integrate` |
-| 665 | 39530 | 2026-08-31T18:02:45Z | [The-Vibe-Company/quivr](https://github.com/The-Vibe-Company/quivr) | `ai-ml`, `api-backend`, `database-storage`, `rag-retrieval`, `security`, `web-ui` | `NOASSERTION` | `discovery_only` |
-| 666 | 39527 | 2026-09-17T16:40:41Z | [aseprite/aseprite](https://github.com/aseprite/aseprite) | — | `unknown` | `discovery_only` |
+| 665 | 39532 | 2026-08-31T18:02:45Z | [The-Vibe-Company/quivr](https://github.com/The-Vibe-Company/quivr) | `ai-ml`, `api-backend`, `database-storage`, `rag-retrieval`, `security`, `web-ui` | `NOASSERTION` | `discovery_only` |
+| 666 | 39529 | 2026-09-17T16:40:41Z | [aseprite/aseprite](https://github.com/aseprite/aseprite) | — | `unknown` | `discovery_only` |
 | 667 | 39462 | 2026-09-15T18:45:27Z | [freeCodeCamp/devdocs](https://github.com/freeCodeCamp/devdocs) | `api-backend` | `MPL-2.0` | `discovery_only` |
-| 668 | 39423 | 2026-03-11T04:06:29Z | [google/leveldb](https://github.com/google/leveldb) | `database-storage` | `BSD-3-Clause` | `safe_to_integrate` |
-| 669 | 39327 | 2026-09-17T17:10:50Z | [frappe/erpnext](https://github.com/frappe/erpnext) | — | `GPL-3.0` | `discovery_only` |
-| 670 | 39324 | 2026-09-04T01:51:59Z | [YunaiV/ruoyi-vue-pro](https://github.com/YunaiV/ruoyi-vue-pro) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 671 | 39223 | 2026-09-16T11:27:50Z | [Yeachan-Heo/oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) | — | `MIT` | `safe_to_integrate` |
-| 672 | 39221 | 2026-09-17T20:49:16Z | [herdrdev/herdr](https://github.com/herdrdev/herdr) | `ai-ml`, `cli`, `terminal-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 673 | 39159 | 2026-09-16T12:37:45Z | [DioxusLabs/dioxus](https://github.com/DioxusLabs/dioxus) | `web-ui` | `Apache-2.0` | `safe_to_integrate` |
-| 674 | 39158 | 2026-02-23T16:27:47Z | [deepseek-ai/awesome-deepseek-integration](https://github.com/deepseek-ai/awesome-deepseek-integration) | — | `CC0-1.0` | `discovery_only` |
-| 675 | 39117 | 2026-09-17T20:55:45Z | [github/awesome-copilot](https://github.com/github/awesome-copilot) | — | `MIT` | `safe_to_integrate` |
-| 676 | 39092 | 2026-09-17T21:26:44Z | [mattermost/mattermost](https://github.com/mattermost/mattermost) | — | `NOASSERTION` | `discovery_only` |
-| 677 | 39089 | 2026-09-13T21:50:29Z | [lfnovo/open-notebook](https://github.com/lfnovo/open-notebook) | — | `MIT` | `safe_to_integrate` |
-| 678 | 39034 | 2026-04-13T12:38:49Z | [shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos) | — | `MIT` | `safe_to_integrate` |
-| 679 | 39025 | 2026-09-11T03:56:20Z | [bytedance/UI-TARS-desktop](https://github.com/bytedance/UI-TARS-desktop) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 680 | 39019 | 2026-09-17T16:01:43Z | [rapid7/metasploit-framework](https://github.com/rapid7/metasploit-framework) | — | `NOASSERTION` | `discovery_only` |
+| 668 | 39425 | 2026-03-11T04:06:29Z | [google/leveldb](https://github.com/google/leveldb) | `database-storage` | `BSD-3-Clause` | `safe_to_integrate` |
+| 669 | 39337 | 2026-09-18T03:44:36Z | [frappe/erpnext](https://github.com/frappe/erpnext) | — | `GPL-3.0` | `discovery_only` |
+| 670 | 39333 | 2026-09-04T01:51:59Z | [YunaiV/ruoyi-vue-pro](https://github.com/YunaiV/ruoyi-vue-pro) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 671 | 39297 | 2026-09-18T02:33:20Z | [herdrdev/herdr](https://github.com/herdrdev/herdr) | `ai-ml`, `cli`, `terminal-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 672 | 39233 | 2026-09-18T03:08:19Z | [Yeachan-Heo/oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) | — | `MIT` | `safe_to_integrate` |
+| 673 | 39164 | 2026-09-16T12:37:45Z | [DioxusLabs/dioxus](https://github.com/DioxusLabs/dioxus) | `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 674 | 39163 | 2026-02-23T16:27:47Z | [deepseek-ai/awesome-deepseek-integration](https://github.com/deepseek-ai/awesome-deepseek-integration) | — | `CC0-1.0` | `discovery_only` |
+| 675 | 39129 | 2026-09-18T02:58:32Z | [github/awesome-copilot](https://github.com/github/awesome-copilot) | — | `MIT` | `safe_to_integrate` |
+| 676 | 39105 | 2026-09-18T01:46:29Z | [lfnovo/open-notebook](https://github.com/lfnovo/open-notebook) | — | `MIT` | `safe_to_integrate` |
+| 677 | 39096 | 2026-09-18T04:47:47Z | [mattermost/mattermost](https://github.com/mattermost/mattermost) | — | `NOASSERTION` | `discovery_only` |
+| 678 | 39084 | 2026-04-13T12:38:49Z | [shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos) | — | `MIT` | `safe_to_integrate` |
+| 679 | 39033 | 2026-09-11T03:56:20Z | [bytedance/UI-TARS-desktop](https://github.com/bytedance/UI-TARS-desktop) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 680 | 39020 | 2026-09-17T16:01:43Z | [rapid7/metasploit-framework](https://github.com/rapid7/metasploit-framework) | — | `NOASSERTION` | `discovery_only` |
 | 681 | 39003 | 2026-07-29T00:31:28Z | [spacedriveapp/spacedrive](https://github.com/spacedriveapp/spacedrive) | `database-storage` | `NOASSERTION` | `discovery_only` |
-| 682 | 38970 | 2026-09-17T15:18:16Z | [RSSNext/Folo](https://github.com/RSSNext/Folo) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 683 | 38886 | 2026-09-17T16:52:35Z | [umami-software/umami](https://github.com/umami-software/umami) | — | `MIT` | `safe_to_integrate` |
-| 684 | 38872 | 2026-09-15T02:45:16Z | [preactjs/preact](https://github.com/preactjs/preact) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 685 | 38855 | 2026-09-17T00:50:44Z | [lapce/lapce](https://github.com/lapce/lapce) | — | `Apache-2.0` | `safe_to_integrate` |
-| 686 | 38803 | 2026-08-20T13:49:11Z | [Dogfalo/materialize](https://github.com/Dogfalo/materialize) | — | `MIT` | `safe_to_integrate` |
-| 687 | 38788 | 2026-08-16T12:51:44Z | [huiyadanli/RevokeMsgPatcher](https://github.com/huiyadanli/RevokeMsgPatcher) | — | `GPL-3.0` | `discovery_only` |
-| 688 | 38785 | 2026-09-16T19:46:42Z | [google-research/google-research](https://github.com/google-research/google-research) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 689 | 38776 | 2026-09-16T17:24:26Z | [ant-design/ant-design-pro](https://github.com/ant-design/ant-design-pro) | — | `MIT` | `safe_to_integrate` |
-| 690 | 38714 | 2026-05-17T04:19:12Z | [naptha/tesseract.js](https://github.com/naptha/tesseract.js) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
+| 682 | 38971 | 2026-09-17T15:18:16Z | [RSSNext/Folo](https://github.com/RSSNext/Folo) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 683 | 38895 | 2026-09-18T02:49:36Z | [umami-software/umami](https://github.com/umami-software/umami) | — | `MIT` | `safe_to_integrate` |
+| 684 | 38874 | 2026-09-15T02:45:16Z | [preactjs/preact](https://github.com/preactjs/preact) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 685 | 38856 | 2026-09-18T00:45:04Z | [lapce/lapce](https://github.com/lapce/lapce) | — | `Apache-2.0` | `safe_to_integrate` |
+| 686 | 38804 | 2026-08-20T13:49:11Z | [Dogfalo/materialize](https://github.com/Dogfalo/materialize) | — | `MIT` | `safe_to_integrate` |
+| 687 | 38789 | 2026-08-16T12:51:44Z | [huiyadanli/RevokeMsgPatcher](https://github.com/huiyadanli/RevokeMsgPatcher) | — | `GPL-3.0` | `discovery_only` |
+| 688 | 38786 | 2026-09-16T19:46:42Z | [google-research/google-research](https://github.com/google-research/google-research) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 689 | 38775 | 2026-09-16T17:24:26Z | [ant-design/ant-design-pro](https://github.com/ant-design/ant-design-pro) | — | `MIT` | `safe_to_integrate` |
+| 690 | 38715 | 2026-05-17T04:19:12Z | [naptha/tesseract.js](https://github.com/naptha/tesseract.js) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
 | 691 | 38673 | 2026-07-29T14:56:37Z | [gto76/python-cheatsheet](https://github.com/gto76/python-cheatsheet) | — | `unknown` | `discovery_only` |
-| 692 | 38641 | 2025-11-10T09:27:42Z | [chatchat-space/Langchain-Chatchat](https://github.com/chatchat-space/Langchain-Chatchat) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
-| 693 | 38611 | 2026-09-13T18:57:36Z | [google/langextract](https://github.com/google/langextract) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 694 | 38589 | 2026-09-17T13:50:23Z | [hyprwm/Hyprland](https://github.com/hyprwm/Hyprland) | — | `BSD-3-Clause` | `safe_to_integrate` |
-| 695 | 38527 | 2026-09-15T15:52:14Z | [emilkowalski/skills](https://github.com/emilkowalski/skills) | — | `MIT` | `safe_to_integrate` |
-| 696 | 38516 | 2026-09-17T01:28:39Z | [portainer/portainer](https://github.com/portainer/portainer) | `container-tooling`, `devops`, `web-ui` | `Zlib` | `discovery_only` |
-| 697 | 38459 | 2026-09-15T09:36:14Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | `database-storage`, `penetration-testing`, `security` | `NOASSERTION` | `discovery_only` |
-| 698 | 38442 | 2026-09-17T21:18:34Z | [dotnet/aspnetcore](https://github.com/dotnet/aspnetcore) | — | `MIT` | `safe_to_integrate` |
-| 699 | 38426 | 2026-09-17T11:47:38Z | [ueberdosis/tiptap](https://github.com/ueberdosis/tiptap) | — | `MIT` | `safe_to_integrate` |
-| 700 | 38405 | 2026-09-17T13:54:17Z | [xyflow/xyflow](https://github.com/xyflow/xyflow) | — | `MIT` | `safe_to_integrate` |
-| 701 | 38395 | 2026-09-17T19:52:38Z | [istio/istio](https://github.com/istio/istio) | `api-backend`, `api-gateway` | `Apache-2.0` | `safe_to_integrate` |
-| 702 | 38378 | 2026-09-17T20:30:48Z | [harness/harness](https://github.com/harness/harness) | `ci-cd`, `devops` | `Apache-2.0` | `safe_to_integrate` |
-| 703 | 38324 | 2026-08-04T07:47:32Z | [RVC-Project/Retrieval-based-Voice-Conversion-WebUI](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI) | — | `MIT` | `safe_to_integrate` |
-| 704 | 38217 | 2026-09-17T07:18:55Z | [huihut/interview](https://github.com/huihut/interview) | — | `NOASSERTION` | `discovery_only` |
-| 705 | 38212 | 2026-08-28T05:31:39Z | [anthropics/prompt-eng-interactive-tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial) | — | `unknown` | `discovery_only` |
-| 706 | 38175 | 2026-09-17T15:51:23Z | [docker/compose](https://github.com/docker/compose) | `container-tooling`, `devops` | `Apache-2.0` | `safe_to_integrate` |
+| 692 | 38642 | 2025-11-10T09:27:42Z | [chatchat-space/Langchain-Chatchat](https://github.com/chatchat-space/Langchain-Chatchat) | `ai-ml`, `rag-retrieval` | `Apache-2.0` | `safe_to_integrate` |
+| 693 | 38613 | 2026-09-13T18:57:36Z | [google/langextract](https://github.com/google/langextract) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 694 | 38588 | 2026-09-17T13:50:23Z | [hyprwm/Hyprland](https://github.com/hyprwm/Hyprland) | — | `BSD-3-Clause` | `safe_to_integrate` |
+| 695 | 38577 | 2026-09-15T15:52:14Z | [emilkowalski/skills](https://github.com/emilkowalski/skills) | — | `MIT` | `safe_to_integrate` |
+| 696 | 38520 | 2026-09-18T04:22:40Z | [portainer/portainer](https://github.com/portainer/portainer) | `container-tooling`, `devops`, `web-ui` | `Zlib` | `discovery_only` |
+| 697 | 38463 | 2026-09-17T22:53:20Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | `database-storage`, `penetration-testing`, `security` | `NOASSERTION` | `discovery_only` |
+| 698 | 38445 | 2026-09-18T04:22:17Z | [dotnet/aspnetcore](https://github.com/dotnet/aspnetcore) | — | `MIT` | `safe_to_integrate` |
+| 699 | 38429 | 2026-09-17T11:47:38Z | [ueberdosis/tiptap](https://github.com/ueberdosis/tiptap) | — | `MIT` | `safe_to_integrate` |
+| 700 | 38410 | 2026-09-17T13:54:17Z | [xyflow/xyflow](https://github.com/xyflow/xyflow) | — | `MIT` | `safe_to_integrate` |
+| 701 | 38395 | 2026-09-17T22:38:17Z | [istio/istio](https://github.com/istio/istio) | `api-backend`, `api-gateway` | `Apache-2.0` | `safe_to_integrate` |
+| 702 | 38384 | 2026-09-17T20:30:48Z | [harness/harness](https://github.com/harness/harness) | `ci-cd`, `devops` | `Apache-2.0` | `safe_to_integrate` |
+| 703 | 38332 | 2026-08-04T07:47:32Z | [RVC-Project/Retrieval-based-Voice-Conversion-WebUI](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI) | — | `MIT` | `safe_to_integrate` |
+| 704 | 38218 | 2026-09-17T07:18:55Z | [huihut/interview](https://github.com/huihut/interview) | — | `NOASSERTION` | `discovery_only` |
+| 705 | 38218 | 2026-08-28T05:31:39Z | [anthropics/prompt-eng-interactive-tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial) | — | `unknown` | `discovery_only` |
+| 706 | 38178 | 2026-09-17T15:51:23Z | [docker/compose](https://github.com/docker/compose) | `container-tooling`, `devops` | `Apache-2.0` | `safe_to_integrate` |
 | 707 | 38170 | 2026-07-23T07:05:16Z | [impress/impress.js](https://github.com/impress/impress.js) | — | `MIT` | `safe_to_integrate` |
-| 708 | 38104 | 2026-09-17T20:58:04Z | [stanfordnlp/dspy](https://github.com/stanfordnlp/dspy) | — | `MIT` | `safe_to_integrate` |
-| 709 | 38090 | 2026-09-17T16:43:44Z | [SagerNet/sing-box](https://github.com/SagerNet/sing-box) | — | `NOASSERTION` | `discovery_only` |
-| 710 | 38001 | 2026-09-17T19:34:35Z | [servo/servo](https://github.com/servo/servo) | — | `MPL-2.0` | `discovery_only` |
-| 711 | 37962 | 2026-09-17T14:50:05Z | [aquasecurity/trivy](https://github.com/aquasecurity/trivy) | `security`, `vulnerability-scanning` | `Apache-2.0` | `safe_to_integrate` |
-| 712 | 37948 | 2026-09-17T20:41:19Z | [directus/directus](https://github.com/directus/directus) | `api-backend`, `auth`, `content-management`, `database-storage`, `security`, `web-ui` | `NOASSERTION` | `discovery_only` |
-| 713 | 37878 | 2026-09-17T16:55:00Z | [TriliumNext/Trilium](https://github.com/TriliumNext/Trilium) | — | `AGPL-3.0` | `discovery_only` |
-| 714 | 37878 | 2026-09-17T17:15:27Z | [volcengine/OpenViking](https://github.com/volcengine/OpenViking) | `ai-ml`, `database-storage`, `rag-retrieval` | `AGPL-3.0` | `discovery_only` |
-| 715 | 37865 | 2026-09-17T18:10:05Z | [vlang/v](https://github.com/vlang/v) | — | `MIT` | `safe_to_integrate` |
-| 716 | 37814 | 2026-07-27T05:40:40Z | [ashishpatel26/500-AI-Agents-Projects](https://github.com/ashishpatel26/500-AI-Agents-Projects) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 717 | 37737 | 2026-09-17T15:35:11Z | [soxoj/maigret](https://github.com/soxoj/maigret) | `cli`, `penetration-testing`, `security` | `MIT` | `safe_to_integrate` |
-| 718 | 37711 | 2026-09-02T12:12:35Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | `ai-ml`, `media`, `speech-ai` | `Apache-2.0` | `safe_to_integrate` |
+| 708 | 38113 | 2026-09-17T22:13:59Z | [stanfordnlp/dspy](https://github.com/stanfordnlp/dspy) | — | `MIT` | `safe_to_integrate` |
+| 709 | 38092 | 2026-09-18T02:59:04Z | [SagerNet/sing-box](https://github.com/SagerNet/sing-box) | — | `NOASSERTION` | `discovery_only` |
+| 710 | 38003 | 2026-09-18T03:21:23Z | [servo/servo](https://github.com/servo/servo) | — | `MPL-2.0` | `discovery_only` |
+| 711 | 37969 | 2026-09-17T22:39:24Z | [aquasecurity/trivy](https://github.com/aquasecurity/trivy) | `security`, `vulnerability-scanning` | `Apache-2.0` | `safe_to_integrate` |
+| 712 | 37952 | 2026-09-17T23:46:45Z | [directus/directus](https://github.com/directus/directus) | `api-backend`, `auth`, `content-management`, `database-storage`, `security`, `web-ui` | `NOASSERTION` | `discovery_only` |
+| 713 | 37919 | 2026-09-18T03:52:08Z | [volcengine/OpenViking](https://github.com/volcengine/OpenViking) | `ai-ml`, `database-storage`, `rag-retrieval` | `AGPL-3.0` | `discovery_only` |
+| 714 | 37879 | 2026-09-18T04:39:01Z | [TriliumNext/Trilium](https://github.com/TriliumNext/Trilium) | — | `AGPL-3.0` | `discovery_only` |
+| 715 | 37868 | 2026-09-18T04:48:55Z | [vlang/v](https://github.com/vlang/v) | — | `MIT` | `safe_to_integrate` |
+| 716 | 37819 | 2026-07-27T05:40:40Z | [ashishpatel26/500-AI-Agents-Projects](https://github.com/ashishpatel26/500-AI-Agents-Projects) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 717 | 37753 | 2026-09-17T15:35:11Z | [soxoj/maigret](https://github.com/soxoj/maigret) | `cli`, `penetration-testing`, `security` | `MIT` | `safe_to_integrate` |
+| 718 | 37738 | 2026-09-02T12:12:35Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | `ai-ml`, `media`, `speech-ai` | `Apache-2.0` | `safe_to_integrate` |
 | 719 | 37680 | 2026-07-03T09:48:44Z | [denysdovhan/wtfjs](https://github.com/denysdovhan/wtfjs) | — | `WTFPL` | `discovery_only` |
 | 720 | 37680 | 2026-09-14T10:05:06Z | [NervJS/taro](https://github.com/NervJS/taro) | — | `NOASSERTION` | `discovery_only` |
-| 721 | 37669 | 2026-09-16T15:53:03Z | [pbatard/rufus](https://github.com/pbatard/rufus) | `database-storage` | `GPL-3.0` | `discovery_only` |
-| 722 | 37629 | 2026-09-10T21:32:11Z | [patchy631/ai-engineering-hub](https://github.com/patchy631/ai-engineering-hub) | — | `MIT` | `safe_to_integrate` |
-| 723 | 37606 | 2026-09-17T14:23:19Z | [PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) | — | `CC-BY-SA-4.0` | `discovery_only` |
-| 724 | 37603 | 2026-09-17T16:01:49Z | [THU-MAIC/OpenMAIC](https://github.com/THU-MAIC/OpenMAIC) | — | `MIT` | `safe_to_integrate` |
-| 725 | 37583 | 2026-06-29T09:40:15Z | [ZuodaoTech/everyone-can-use-english](https://github.com/ZuodaoTech/everyone-can-use-english) | — | `GPL-3.0` | `discovery_only` |
-| 726 | 37549 | 2026-09-08T07:19:20Z | [alibaba/arthas](https://github.com/alibaba/arthas) | — | `Apache-2.0` | `safe_to_integrate` |
-| 727 | 37397 | 2026-09-17T21:16:14Z | [CopilotKit/CopilotKit](https://github.com/CopilotKit/CopilotKit) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 728 | 37391 | 2026-08-02T01:55:40Z | [khoj-ai/khoj](https://github.com/khoj-ai/khoj) | `ai-ml`, `rag-retrieval` | `AGPL-3.0` | `discovery_only` |
-| 729 | 37352 | 2026-09-14T17:05:29Z | [Dokploy/dokploy](https://github.com/Dokploy/dokploy) | `ai-ml`, `api-backend`, `devops`, `web-ui` | `NOASSERTION` | `discovery_only` |
+| 721 | 37670 | 2026-09-16T15:53:03Z | [pbatard/rufus](https://github.com/pbatard/rufus) | `database-storage` | `GPL-3.0` | `discovery_only` |
+| 722 | 37663 | 2026-09-10T21:32:11Z | [patchy631/ai-engineering-hub](https://github.com/patchy631/ai-engineering-hub) | — | `MIT` | `safe_to_integrate` |
+| 723 | 37658 | 2026-09-18T04:36:29Z | [THU-MAIC/OpenMAIC](https://github.com/THU-MAIC/OpenMAIC) | — | `MIT` | `safe_to_integrate` |
+| 724 | 37610 | 2026-09-17T14:23:19Z | [PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) | — | `CC-BY-SA-4.0` | `discovery_only` |
+| 725 | 37606 | 2026-06-29T09:40:15Z | [ZuodaoTech/everyone-can-use-english](https://github.com/ZuodaoTech/everyone-can-use-english) | — | `GPL-3.0` | `discovery_only` |
+| 726 | 37548 | 2026-09-08T07:19:20Z | [alibaba/arthas](https://github.com/alibaba/arthas) | — | `Apache-2.0` | `safe_to_integrate` |
+| 727 | 37403 | 2026-09-18T04:39:42Z | [CopilotKit/CopilotKit](https://github.com/CopilotKit/CopilotKit) | `ai-ml`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 728 | 37399 | 2026-08-02T01:55:40Z | [khoj-ai/khoj](https://github.com/khoj-ai/khoj) | `ai-ml`, `rag-retrieval` | `AGPL-3.0` | `discovery_only` |
+| 729 | 37356 | 2026-09-17T23:50:19Z | [Dokploy/dokploy](https://github.com/Dokploy/dokploy) | `ai-ml`, `api-backend`, `devops`, `web-ui` | `NOASSERTION` | `discovery_only` |
 | 730 | 37324 | 2026-09-15T15:14:20Z | [eugenp/tutorials](https://github.com/eugenp/tutorials) | — | `MIT` | `safe_to_integrate` |
-| 731 | 37290 | 2026-09-17T12:13:07Z | [musistudio/claude-code-router](https://github.com/musistudio/claude-code-router) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 732 | 37262 | 2026-07-11T06:02:34Z | [Textualize/textual](https://github.com/Textualize/textual) | `api-backend`, `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 733 | 37258 | 2026-09-17T10:25:30Z | [searxng/searxng](https://github.com/searxng/searxng) | `database-storage`, `search-engine` | `AGPL-3.0` | `discovery_only` |
+| 731 | 37298 | 2026-09-18T02:27:33Z | [musistudio/claude-code-router](https://github.com/musistudio/claude-code-router) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 732 | 37270 | 2026-09-17T10:25:30Z | [searxng/searxng](https://github.com/searxng/searxng) | `database-storage`, `search-engine` | `AGPL-3.0` | `discovery_only` |
+| 733 | 37266 | 2026-07-11T06:02:34Z | [Textualize/textual](https://github.com/Textualize/textual) | `api-backend`, `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
 | 734 | 37253 | 2025-10-22T09:39:06Z | [0voice/interview_internal_reference](https://github.com/0voice/interview_internal_reference) | — | `unknown` | `discovery_only` |
-| 735 | 37209 | 2026-09-17T17:29:54Z | [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) | — | `Apache-2.0` | `safe_to_integrate` |
-| 736 | 37158 | 2026-09-15T02:49:55Z | [markedjs/marked](https://github.com/markedjs/marked) | — | `NOASSERTION` | `discovery_only` |
-| 737 | 37152 | 2026-09-17T17:31:25Z | [huggingface/pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
-| 738 | 37143 | 2026-09-17T07:53:07Z | [fastify/fastify](https://github.com/fastify/fastify) | — | `MIT` | `safe_to_integrate` |
-| 739 | 37125 | 2026-09-13T19:33:25Z | [Crosstalk-Solutions/project-nomad](https://github.com/Crosstalk-Solutions/project-nomad) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 740 | 37091 | 2026-09-13T21:52:54Z | [microsoft/Data-Science-For-Beginners](https://github.com/microsoft/Data-Science-For-Beginners) | — | `MIT` | `safe_to_integrate` |
-| 741 | 37089 | 2026-09-05T12:22:32Z | [glanceapp/glance](https://github.com/glanceapp/glance) | `devops`, `observability`, `web-ui` | `AGPL-3.0` | `discovery_only` |
-| 742 | 37086 | 2026-01-13T19:49:12Z | [satwikkansal/wtfpython](https://github.com/satwikkansal/wtfpython) | — | `WTFPL` | `discovery_only` |
-| 743 | 37036 | 2026-09-17T18:53:38Z | [PDFMathTranslate/PDFMathTranslate](https://github.com/PDFMathTranslate/PDFMathTranslate) | `ai-ml`, `cli` | `AGPL-3.0` | `discovery_only` |
-| 744 | 37005 | 2026-09-14T04:28:01Z | [mpv-player/mpv](https://github.com/mpv-player/mpv) | `media`, `video-processing` | `NOASSERTION` | `discovery_only` |
-| 745 | 36999 | 2025-11-03T12:37:27Z | [AobingJava/JavaFamily](https://github.com/AobingJava/JavaFamily) | — | `unknown` | `discovery_only` |
-| 746 | 36997 | 2026-09-17T00:37:30Z | [bilawalsidhu/gods-eye-view](https://github.com/bilawalsidhu/gods-eye-view) | — | `NOASSERTION` | `discovery_only` |
-| 747 | 36986 | 2026-09-17T20:57:22Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | `ai-ml`, `audio-processing`, `computer-vision`, `media`, `video-processing` | `Apache-2.0` | `safe_to_integrate` |
-| 748 | 36964 | 2026-09-17T15:06:42Z | [AdguardTeam/AdGuardHome](https://github.com/AdguardTeam/AdGuardHome) | — | `GPL-3.0` | `discovery_only` |
-| 749 | 36955 | 2026-09-17T07:46:08Z | [1Panel-dev/1Panel](https://github.com/1Panel-dev/1Panel) | `ai-ml` | `GPL-3.0` | `discovery_only` |
-| 750 | 36932 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | `ai-ml`, `api-backend`, `api-gateway` | `MIT` | `safe_to_integrate` |
-| 751 | 36914 | 2026-09-17T21:23:40Z | [chatwoot/chatwoot](https://github.com/chatwoot/chatwoot) | — | `NOASSERTION` | `discovery_only` |
-| 752 | 36912 | 2026-09-06T04:01:05Z | [jaywcjlove/linux-command](https://github.com/jaywcjlove/linux-command) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 753 | 36909 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | `ai-ml`, `media`, `speech-ai` | `NOASSERTION` | `discovery_only` |
-| 754 | 36862 | 2026-09-01T14:12:12Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | `ai-ml`, `database-storage`, `rag-retrieval`, `search-engine` | `MIT` | `safe_to_integrate` |
-| 755 | 36842 | 2026-09-12T10:37:31Z | [veggiemonk/awesome-docker](https://github.com/veggiemonk/awesome-docker) | — | `Apache-2.0` | `safe_to_integrate` |
-| 756 | 36831 | 2026-09-17T16:28:41Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | `auth`, `identity-provider`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 757 | 36829 | 2026-09-17T21:05:51Z | [nextcloud/server](https://github.com/nextcloud/server) | — | `AGPL-3.0` | `discovery_only` |
-| 758 | 36800 | 2026-09-17T18:11:18Z | [firecracker-microvm/firecracker](https://github.com/firecracker-microvm/firecracker) | — | `Apache-2.0` | `safe_to_integrate` |
-| 759 | 36798 | 2026-08-09T11:06:54Z | [shadowsocks/shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android) | — | `NOASSERTION` | `discovery_only` |
-| 760 | 36705 | 2026-09-17T21:12:11Z | [AlexsJones/llmfit](https://github.com/AlexsJones/llmfit) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 735 | 37226 | 2026-09-17T17:29:54Z | [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) | — | `Apache-2.0` | `safe_to_integrate` |
+| 736 | 37216 | 2026-09-17T00:37:30Z | [bilawalsidhu/gods-eye-view](https://github.com/bilawalsidhu/gods-eye-view) | — | `NOASSERTION` | `discovery_only` |
+| 737 | 37159 | 2026-09-15T02:49:55Z | [markedjs/marked](https://github.com/markedjs/marked) | — | `NOASSERTION` | `discovery_only` |
+| 738 | 37153 | 2026-09-17T17:31:25Z | [huggingface/pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
+| 739 | 37146 | 2026-09-17T07:53:07Z | [fastify/fastify](https://github.com/fastify/fastify) | — | `MIT` | `safe_to_integrate` |
+| 740 | 37130 | 2026-09-13T19:33:25Z | [Crosstalk-Solutions/project-nomad](https://github.com/Crosstalk-Solutions/project-nomad) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 741 | 37103 | 2026-09-13T21:52:54Z | [microsoft/Data-Science-For-Beginners](https://github.com/microsoft/Data-Science-For-Beginners) | — | `MIT` | `safe_to_integrate` |
+| 742 | 37092 | 2026-09-05T12:22:32Z | [glanceapp/glance](https://github.com/glanceapp/glance) | `devops`, `observability`, `web-ui` | `AGPL-3.0` | `discovery_only` |
+| 743 | 37086 | 2026-01-13T19:49:12Z | [satwikkansal/wtfpython](https://github.com/satwikkansal/wtfpython) | — | `WTFPL` | `discovery_only` |
+| 744 | 37042 | 2026-09-18T04:26:25Z | [PDFMathTranslate/PDFMathTranslate](https://github.com/PDFMathTranslate/PDFMathTranslate) | `ai-ml`, `cli` | `AGPL-3.0` | `discovery_only` |
+| 745 | 37010 | 2026-09-14T04:28:01Z | [mpv-player/mpv](https://github.com/mpv-player/mpv) | `media`, `video-processing` | `NOASSERTION` | `discovery_only` |
+| 746 | 36997 | 2025-11-03T12:37:27Z | [AobingJava/JavaFamily](https://github.com/AobingJava/JavaFamily) | — | `unknown` | `discovery_only` |
+| 747 | 36990 | 2026-09-18T04:30:58Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | `ai-ml`, `audio-processing`, `computer-vision`, `media`, `video-processing` | `Apache-2.0` | `safe_to_integrate` |
+| 748 | 36963 | 2026-09-17T15:06:42Z | [AdguardTeam/AdGuardHome](https://github.com/AdguardTeam/AdGuardHome) | — | `GPL-3.0` | `discovery_only` |
+| 749 | 36962 | 2026-09-18T03:35:48Z | [1Panel-dev/1Panel](https://github.com/1Panel-dev/1Panel) | `ai-ml` | `GPL-3.0` | `discovery_only` |
+| 750 | 36940 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | `ai-ml`, `api-backend`, `api-gateway` | `MIT` | `safe_to_integrate` |
+| 751 | 36921 | 2026-09-18T02:22:26Z | [chatwoot/chatwoot](https://github.com/chatwoot/chatwoot) | — | `NOASSERTION` | `discovery_only` |
+| 752 | 36913 | 2026-09-06T04:01:05Z | [jaywcjlove/linux-command](https://github.com/jaywcjlove/linux-command) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 753 | 36908 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | `ai-ml`, `media`, `speech-ai` | `NOASSERTION` | `discovery_only` |
+| 754 | 36867 | 2026-09-01T14:12:12Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | `ai-ml`, `database-storage`, `rag-retrieval`, `search-engine` | `MIT` | `safe_to_integrate` |
+| 755 | 36843 | 2026-09-12T10:37:31Z | [veggiemonk/awesome-docker](https://github.com/veggiemonk/awesome-docker) | — | `Apache-2.0` | `safe_to_integrate` |
+| 756 | 36838 | 2026-09-18T02:58:28Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | `auth`, `identity-provider`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 757 | 36835 | 2026-09-18T00:48:06Z | [nextcloud/server](https://github.com/nextcloud/server) | — | `AGPL-3.0` | `discovery_only` |
+| 758 | 36802 | 2026-09-17T18:11:18Z | [firecracker-microvm/firecracker](https://github.com/firecracker-microvm/firecracker) | — | `Apache-2.0` | `safe_to_integrate` |
+| 759 | 36799 | 2026-08-09T11:06:54Z | [shadowsocks/shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android) | — | `NOASSERTION` | `discovery_only` |
+| 760 | 36728 | 2026-09-17T21:12:11Z | [AlexsJones/llmfit](https://github.com/AlexsJones/llmfit) | `ai-ml` | `MIT` | `safe_to_integrate` |
 | 761 | 36652 | 2026-09-11T07:22:38Z | [typeorm/typeorm](https://github.com/typeorm/typeorm) | `database-storage` | `MIT` | `safe_to_integrate` |
 | 762 | 36645 | 2026-08-30T01:05:02Z | [date-fns/date-fns](https://github.com/date-fns/date-fns) | — | `unknown` | `discovery_only` |
 | 763 | 36605 | 2026-09-17T11:27:32Z | [doocs/leetcode](https://github.com/doocs/leetcode) | — | `CC-BY-SA-4.0` | `discovery_only` |
-| 764 | 36589 | 2026-09-17T21:22:34Z | [tailscale/tailscale](https://github.com/tailscale/tailscale) | `auth`, `security` | `BSD-3-Clause` | `safe_to_integrate` |
-| 765 | 36553 | 2026-09-17T21:12:14Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | `cli`, `package-manager` | `MIT` | `safe_to_integrate` |
-| 766 | 36515 | 2026-09-11T21:46:10Z | [hehonghui/awesome-english-ebooks](https://github.com/hehonghui/awesome-english-ebooks) | — | `unknown` | `discovery_only` |
-| 767 | 36503 | 2026-09-15T14:29:12Z | [inkonchain/docs](https://github.com/inkonchain/docs) | — | `unknown` | `discovery_only` |
-| 768 | 36488 | 2026-09-15T06:50:15Z | [hankcs/HanLP](https://github.com/hankcs/HanLP) | — | `Apache-2.0` | `safe_to_integrate` |
-| 769 | 36458 | 2026-08-05T18:22:59Z | [inkonchain/node](https://github.com/inkonchain/node) | — | `MIT` | `safe_to_integrate` |
-| 770 | 36433 | 2026-09-17T21:15:47Z | [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | — | `Apache-2.0` | `safe_to_integrate` |
-| 771 | 36356 | 2026-09-17T19:10:20Z | [medusajs/medusa](https://github.com/medusajs/medusa) | — | `NOASSERTION` | `discovery_only` |
-| 772 | 36336 | 2026-09-03T12:25:52Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | `ai-ml`, `penetration-testing`, `reverse-engineering`, `security`, `testing` | `MIT` | `safe_to_integrate` |
-| 773 | 36309 | 2026-09-17T21:23:28Z | [jax-ml/jax](https://github.com/jax-ml/jax) | — | `Apache-2.0` | `safe_to_integrate` |
-| 774 | 36262 | 2026-09-17T00:27:39Z | [wailsapp/wails](https://github.com/wailsapp/wails) | — | `MIT` | `safe_to_integrate` |
-| 775 | 36260 | 2026-09-17T17:01:54Z | [hashicorp/vault](https://github.com/hashicorp/vault) | `secrets-management`, `security` | `NOASSERTION` | `discovery_only` |
-| 776 | 36245 | 2026-09-13T06:14:49Z | [permissionlesstech/bitchat](https://github.com/permissionlesstech/bitchat) | — | `Unlicense` | `safe_to_integrate` |
-| 777 | 36109 | 2026-09-17T21:25:55Z | [sgl-project/sglang](https://github.com/sgl-project/sglang) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 778 | 36106 | 2026-02-10T05:07:19Z | [carbon-app/carbon](https://github.com/carbon-app/carbon) | — | `MIT` | `safe_to_integrate` |
-| 779 | 36102 | 2026-09-01T01:43:58Z | [restic/restic](https://github.com/restic/restic) | — | `BSD-2-Clause` | `safe_to_integrate` |
+| 764 | 36599 | 2026-09-18T04:36:48Z | [tailscale/tailscale](https://github.com/tailscale/tailscale) | `auth`, `security` | `BSD-3-Clause` | `safe_to_integrate` |
+| 765 | 36553 | 2026-09-18T02:23:05Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | `cli`, `package-manager` | `MIT` | `safe_to_integrate` |
+| 766 | 36531 | 2026-09-17T21:28:02Z | [hehonghui/awesome-english-ebooks](https://github.com/hehonghui/awesome-english-ebooks) | — | `unknown` | `discovery_only` |
+| 767 | 36505 | 2026-09-15T14:29:12Z | [inkonchain/docs](https://github.com/inkonchain/docs) | — | `unknown` | `discovery_only` |
+| 768 | 36489 | 2026-09-15T06:50:15Z | [hankcs/HanLP](https://github.com/hankcs/HanLP) | — | `Apache-2.0` | `safe_to_integrate` |
+| 769 | 36459 | 2026-08-05T18:22:59Z | [inkonchain/node](https://github.com/inkonchain/node) | — | `MIT` | `safe_to_integrate` |
+| 770 | 36447 | 2026-09-17T21:15:47Z | [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | — | `Apache-2.0` | `safe_to_integrate` |
+| 771 | 36367 | 2026-09-03T12:25:52Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | `ai-ml`, `penetration-testing`, `reverse-engineering`, `security`, `testing` | `MIT` | `safe_to_integrate` |
+| 772 | 36362 | 2026-09-18T03:21:59Z | [medusajs/medusa](https://github.com/medusajs/medusa) | — | `NOASSERTION` | `discovery_only` |
+| 773 | 36308 | 2026-09-18T02:18:29Z | [jax-ml/jax](https://github.com/jax-ml/jax) | — | `Apache-2.0` | `safe_to_integrate` |
+| 774 | 36266 | 2026-09-18T00:07:32Z | [wailsapp/wails](https://github.com/wailsapp/wails) | — | `MIT` | `safe_to_integrate` |
+| 775 | 36262 | 2026-09-17T23:02:13Z | [hashicorp/vault](https://github.com/hashicorp/vault) | `secrets-management`, `security` | `NOASSERTION` | `discovery_only` |
+| 776 | 36249 | 2026-09-13T06:14:49Z | [permissionlesstech/bitchat](https://github.com/permissionlesstech/bitchat) | — | `Unlicense` | `safe_to_integrate` |
+| 777 | 36116 | 2026-09-18T04:49:10Z | [sgl-project/sglang](https://github.com/sgl-project/sglang) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 778 | 36107 | 2026-02-10T05:07:19Z | [carbon-app/carbon](https://github.com/carbon-app/carbon) | — | `MIT` | `safe_to_integrate` |
+| 779 | 36105 | 2026-09-01T01:43:58Z | [restic/restic](https://github.com/restic/restic) | — | `BSD-2-Clause` | `safe_to_integrate` |
 | 780 | 36053 | 2026-09-17T18:24:44Z | [lerna/lerna](https://github.com/lerna/lerna) | — | `MIT` | `safe_to_integrate` |
-| 781 | 36040 | 2026-09-17T21:27:21Z | [solidjs/solid](https://github.com/solidjs/solid) | — | `MIT` | `safe_to_integrate` |
-| 782 | 36017 | 2026-09-16T17:15:35Z | [microsoft/graphrag](https://github.com/microsoft/graphrag) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
-| 783 | 36015 | 2026-09-17T16:51:02Z | [gitroomhq/postiz-app](https://github.com/gitroomhq/postiz-app) | `media` | `AGPL-3.0` | `discovery_only` |
-| 784 | 35947 | 2026-09-17T20:24:23Z | [blakeblackshear/frigate](https://github.com/blakeblackshear/frigate) | `ai-ml`, `computer-vision`, `media` | `MIT` | `safe_to_integrate` |
-| 785 | 35946 | 2026-09-16T12:36:08Z | [continuedev/continue](https://github.com/continuedev/continue) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 786 | 35905 | 2026-09-17T05:48:22Z | [DayuanJiang/next-ai-draw-io](https://github.com/DayuanJiang/next-ai-draw-io) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 787 | 35866 | 2026-09-16T17:43:47Z | [gchq/CyberChef](https://github.com/gchq/CyberChef) | — | `Apache-2.0` | `safe_to_integrate` |
-| 788 | 35858 | 2026-05-14T13:53:04Z | [alan2207/bulletproof-react](https://github.com/alan2207/bulletproof-react) | — | `MIT` | `safe_to_integrate` |
-| 789 | 35850 | 2026-09-01T20:47:57Z | [casey/just](https://github.com/casey/just) | — | `CC0-1.0` | `discovery_only` |
-| 790 | 35800 | 2026-09-17T01:11:19Z | [drizzle-team/drizzle-orm](https://github.com/drizzle-team/drizzle-orm) | — | `Apache-2.0` | `safe_to_integrate` |
-| 791 | 35770 | 2026-05-22T13:40:34Z | [junegunn/vim-plug](https://github.com/junegunn/vim-plug) | — | `MIT` | `safe_to_integrate` |
-| 792 | 35723 | 2026-02-15T22:03:57Z | [airbnb/lottie-android](https://github.com/airbnb/lottie-android) | — | `Apache-2.0` | `safe_to_integrate` |
-| 793 | 35697 | 2026-08-26T14:11:18Z | [jondot/awesome-react-native](https://github.com/jondot/awesome-react-native) | — | `unknown` | `discovery_only` |
-| 794 | 35696 | 2026-09-17T14:41:49Z | [JustVugg/colibri](https://github.com/JustVugg/colibri) | — | `Apache-2.0` | `safe_to_integrate` |
-| 795 | 35688 | 2026-09-10T12:56:35Z | [refinedev/refine](https://github.com/refinedev/refine) | `api-backend`, `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 796 | 35687 | 2026-09-14T15:32:49Z | [koajs/koa](https://github.com/koajs/koa) | — | `MIT` | `safe_to_integrate` |
-| 797 | 35680 | 2026-09-17T17:16:48Z | [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) | `ai-ml`, `database-storage`, `rag-retrieval`, `vector-database` | `MIT` | `safe_to_integrate` |
-| 798 | 35617 | 2026-09-15T09:13:25Z | [jqlang/jq](https://github.com/jqlang/jq) | `cli` | `NOASSERTION` | `discovery_only` |
-| 799 | 35587 | 2026-09-17T18:38:20Z | [esengine/DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) | `ai-agent-framework`, `ai-ml`, `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 800 | 35533 | 2026-09-17T20:29:02Z | [utmapp/UTM](https://github.com/utmapp/UTM) | — | `Apache-2.0` | `safe_to_integrate` |
-| 801 | 35470 | 2026-03-02T12:50:21Z | [kuchin/awesome-cto](https://github.com/kuchin/awesome-cto) | — | `CC0-1.0` | `discovery_only` |
-| 802 | 35444 | 2026-09-14T16:26:14Z | [zellij-org/zellij](https://github.com/zellij-org/zellij) | `cli` | `MIT` | `safe_to_integrate` |
-| 803 | 35411 | 2026-09-17T16:14:56Z | [lightpanda-io/browser](https://github.com/lightpanda-io/browser) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 804 | 35388 | 2026-03-17T16:13:31Z | [alvarotrigo/fullPage.js](https://github.com/alvarotrigo/fullPage.js) | — | `GPL-3.0` | `discovery_only` |
+| 781 | 36042 | 2026-09-18T04:24:14Z | [solidjs/solid](https://github.com/solidjs/solid) | — | `MIT` | `safe_to_integrate` |
+| 782 | 36025 | 2026-09-17T16:51:02Z | [gitroomhq/postiz-app](https://github.com/gitroomhq/postiz-app) | `media` | `AGPL-3.0` | `discovery_only` |
+| 783 | 36022 | 2026-09-16T17:15:35Z | [microsoft/graphrag](https://github.com/microsoft/graphrag) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 784 | 35953 | 2026-09-18T01:42:46Z | [blakeblackshear/frigate](https://github.com/blakeblackshear/frigate) | `ai-ml`, `computer-vision`, `media` | `MIT` | `safe_to_integrate` |
+| 785 | 35948 | 2026-09-16T12:36:08Z | [continuedev/continue](https://github.com/continuedev/continue) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 786 | 35909 | 2026-09-17T21:49:04Z | [DayuanJiang/next-ai-draw-io](https://github.com/DayuanJiang/next-ai-draw-io) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 787 | 35869 | 2026-09-18T02:09:09Z | [gchq/CyberChef](https://github.com/gchq/CyberChef) | — | `Apache-2.0` | `safe_to_integrate` |
+| 788 | 35860 | 2026-05-14T13:53:04Z | [alan2207/bulletproof-react](https://github.com/alan2207/bulletproof-react) | — | `MIT` | `safe_to_integrate` |
+| 789 | 35855 | 2026-09-01T20:47:57Z | [casey/just](https://github.com/casey/just) | — | `CC0-1.0` | `discovery_only` |
+| 790 | 35835 | 2026-09-17T14:41:49Z | [JustVugg/colibri](https://github.com/JustVugg/colibri) | — | `Apache-2.0` | `safe_to_integrate` |
+| 791 | 35803 | 2026-09-17T01:11:19Z | [drizzle-team/drizzle-orm](https://github.com/drizzle-team/drizzle-orm) | — | `Apache-2.0` | `safe_to_integrate` |
+| 792 | 35770 | 2026-05-22T13:40:34Z | [junegunn/vim-plug](https://github.com/junegunn/vim-plug) | — | `MIT` | `safe_to_integrate` |
+| 793 | 35723 | 2026-02-15T22:03:57Z | [airbnb/lottie-android](https://github.com/airbnb/lottie-android) | — | `Apache-2.0` | `safe_to_integrate` |
+| 794 | 35698 | 2026-08-26T14:11:18Z | [jondot/awesome-react-native](https://github.com/jondot/awesome-react-native) | — | `unknown` | `discovery_only` |
+| 795 | 35696 | 2026-09-17T17:16:48Z | [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) | `ai-ml`, `database-storage`, `rag-retrieval`, `vector-database` | `MIT` | `safe_to_integrate` |
+| 796 | 35690 | 2026-09-10T12:56:35Z | [refinedev/refine](https://github.com/refinedev/refine) | `api-backend`, `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 797 | 35688 | 2026-09-14T15:32:49Z | [koajs/koa](https://github.com/koajs/koa) | — | `MIT` | `safe_to_integrate` |
+| 798 | 35615 | 2026-09-15T09:13:25Z | [jqlang/jq](https://github.com/jqlang/jq) | `cli` | `NOASSERTION` | `discovery_only` |
+| 799 | 35593 | 2026-09-18T04:47:24Z | [esengine/DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) | `ai-agent-framework`, `ai-ml`, `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 800 | 35537 | 2026-09-17T20:29:02Z | [utmapp/UTM](https://github.com/utmapp/UTM) | — | `Apache-2.0` | `safe_to_integrate` |
+| 801 | 35472 | 2026-03-02T12:50:21Z | [kuchin/awesome-cto](https://github.com/kuchin/awesome-cto) | — | `CC0-1.0` | `discovery_only` |
+| 802 | 35447 | 2026-09-14T16:26:14Z | [zellij-org/zellij](https://github.com/zellij-org/zellij) | `cli` | `MIT` | `safe_to_integrate` |
+| 803 | 35418 | 2026-09-18T04:34:27Z | [lightpanda-io/browser](https://github.com/lightpanda-io/browser) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 804 | 35387 | 2026-03-17T16:13:31Z | [alvarotrigo/fullPage.js](https://github.com/alvarotrigo/fullPage.js) | — | `GPL-3.0` | `discovery_only` |
 | 805 | 35353 | 2026-08-31T19:47:57Z | [geekcomputers/Python](https://github.com/geekcomputers/Python) | — | `MIT` | `safe_to_integrate` |
-| 806 | 35324 | 2026-03-19T23:03:16Z | [typicode/husky](https://github.com/typicode/husky) | — | `MIT` | `safe_to_integrate` |
-| 807 | 35254 | 2026-09-17T13:35:22Z | [sahat/hackathon-starter](https://github.com/sahat/hackathon-starter) | — | `MIT` | `safe_to_integrate` |
-| 808 | 35185 | 2026-09-17T15:16:20Z | [awesome-foss/awesome-sysadmin](https://github.com/awesome-foss/awesome-sysadmin) | — | `NOASSERTION` | `discovery_only` |
-| 809 | 35062 | 2026-09-17T17:50:02Z | [netty/netty](https://github.com/netty/netty) | — | `Apache-2.0` | `safe_to_integrate` |
-| 810 | 35057 | 2026-09-17T11:03:52Z | [agentscope-ai/QwenPaw](https://github.com/agentscope-ai/QwenPaw) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 811 | 35030 | 2026-09-08T21:09:10Z | [sorrycc/awesome-javascript](https://github.com/sorrycc/awesome-javascript) | — | `unknown` | `discovery_only` |
-| 812 | 35024 | 2026-09-17T18:27:51Z | [bumptech/glide](https://github.com/bumptech/glide) | `media` | `NOASSERTION` | `discovery_only` |
-| 813 | 34947 | 2026-09-17T14:27:06Z | [kovidgoyal/kitty](https://github.com/kovidgoyal/kitty) | `cli`, `terminal-emulator` | `GPL-3.0` | `discovery_only` |
-| 814 | 34922 | 2026-09-11T01:21:20Z | [linshenkx/prompt-optimizer](https://github.com/linshenkx/prompt-optimizer) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 815 | 34921 | 2026-09-17T21:16:08Z | [laravel/framework](https://github.com/laravel/framework) | — | `MIT` | `safe_to_integrate` |
-| 816 | 34889 | 2026-09-16T00:20:12Z | [anthropics/financial-services](https://github.com/anthropics/financial-services) | — | `Apache-2.0` | `safe_to_integrate` |
-| 817 | 34847 | 2026-09-14T11:44:15Z | [lissy93/web-check](https://github.com/lissy93/web-check) | `security` | `MIT` | `safe_to_integrate` |
-| 818 | 34790 | 2026-09-16T23:20:07Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | `ai-ml`, `computer-vision`, `image-processing`, `media` | `MPL-2.0` | `discovery_only` |
-| 819 | 34787 | 2026-09-17T21:21:57Z | [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) | `database-storage`, `object-storage` | `Apache-2.0` | `safe_to_integrate` |
-| 820 | 34772 | 2026-09-17T18:46:25Z | [raysan5/raylib](https://github.com/raysan5/raylib) | — | `Zlib` | `discovery_only` |
-| 821 | 34768 | 2026-08-20T12:35:19Z | [qishibo/AnotherRedisDesktopManager](https://github.com/qishibo/AnotherRedisDesktopManager) | — | `MIT` | `safe_to_integrate` |
-| 822 | 34731 | 2026-09-17T20:02:23Z | [langfuse/langfuse](https://github.com/langfuse/langfuse) | `ai-ml`, `devops`, `observability` | `NOASSERTION` | `discovery_only` |
-| 823 | 34714 | 2026-08-19T05:38:53Z | [facebookresearch/detectron2](https://github.com/facebookresearch/detectron2) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
-| 824 | 34665 | 2025-10-11T14:51:22Z | [TheAlgorithms/C-Plus-Plus](https://github.com/TheAlgorithms/C-Plus-Plus) | — | `MIT` | `safe_to_integrate` |
-| 825 | 34662 | 2026-08-02T06:42:09Z | [nothings/stb](https://github.com/nothings/stb) | — | `NOASSERTION` | `discovery_only` |
-| 826 | 34638 | 2026-09-17T20:25:54Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | `ai-ml`, `database-storage`, `search-engine`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
-| 827 | 34625 | 2026-09-16T18:28:46Z | [aristocratos/btop](https://github.com/aristocratos/btop) | — | `Apache-2.0` | `safe_to_integrate` |
-| 828 | 34618 | 2026-09-15T16:50:43Z | [derailed/k9s](https://github.com/derailed/k9s) | `cli`, `devops`, `kubernetes-tooling` | `Apache-2.0` | `safe_to_integrate` |
-| 829 | 34601 | 2026-09-08T22:27:45Z | [v2fly/v2ray-core](https://github.com/v2fly/v2ray-core) | — | `MIT` | `safe_to_integrate` |
-| 830 | 34553 | 2026-09-17T11:47:24Z | [JCodesMore/ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template) | — | `MIT` | `safe_to_integrate` |
-| 831 | 34533 | 2026-09-17T16:48:07Z | [huggingface/diffusers](https://github.com/huggingface/diffusers) | `media` | `Apache-2.0` | `safe_to_integrate` |
-| 832 | 34520 | 2026-09-17T13:19:37Z | [alibaba/open-code-review](https://github.com/alibaba/open-code-review) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 833 | 34516 | 2026-09-15T07:12:04Z | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | — | `MIT` | `safe_to_integrate` |
-| 834 | 34494 | 2026-09-17T21:09:41Z | [SeleniumHQ/selenium](https://github.com/SeleniumHQ/selenium) | — | `Apache-2.0` | `safe_to_integrate` |
-| 835 | 34475 | 2026-09-17T06:25:33Z | [lyogavin/airllm](https://github.com/lyogavin/airllm) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 836 | 34432 | 2026-09-17T21:13:43Z | [backstage/backstage](https://github.com/backstage/backstage) | `devops` | `Apache-2.0` | `safe_to_integrate` |
-| 837 | 34365 | 2026-06-02T09:25:23Z | [balena-io/etcher](https://github.com/balena-io/etcher) | — | `Apache-2.0` | `safe_to_integrate` |
-| 838 | 34333 | 2026-07-24T08:01:27Z | [OpenBMB/ChatDev](https://github.com/OpenBMB/ChatDev) | — | `Apache-2.0` | `safe_to_integrate` |
+| 806 | 35323 | 2026-03-19T23:03:16Z | [typicode/husky](https://github.com/typicode/husky) | — | `MIT` | `safe_to_integrate` |
+| 807 | 35320 | 2026-09-18T04:45:09Z | [alibaba/open-code-review](https://github.com/alibaba/open-code-review) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 808 | 35254 | 2026-09-17T13:35:22Z | [sahat/hackathon-starter](https://github.com/sahat/hackathon-starter) | — | `MIT` | `safe_to_integrate` |
+| 809 | 35188 | 2026-09-17T15:16:20Z | [awesome-foss/awesome-sysadmin](https://github.com/awesome-foss/awesome-sysadmin) | — | `NOASSERTION` | `discovery_only` |
+| 810 | 35066 | 2026-09-18T03:59:40Z | [agentscope-ai/QwenPaw](https://github.com/agentscope-ai/QwenPaw) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 811 | 35062 | 2026-09-17T17:50:02Z | [netty/netty](https://github.com/netty/netty) | — | `Apache-2.0` | `safe_to_integrate` |
+| 812 | 35030 | 2026-09-08T21:09:10Z | [sorrycc/awesome-javascript](https://github.com/sorrycc/awesome-javascript) | — | `unknown` | `discovery_only` |
+| 813 | 35024 | 2026-09-17T18:27:51Z | [bumptech/glide](https://github.com/bumptech/glide) | `media` | `NOASSERTION` | `discovery_only` |
+| 814 | 34954 | 2026-09-11T01:21:20Z | [linshenkx/prompt-optimizer](https://github.com/linshenkx/prompt-optimizer) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 815 | 34952 | 2026-09-17T21:28:28Z | [kovidgoyal/kitty](https://github.com/kovidgoyal/kitty) | `cli`, `terminal-emulator` | `GPL-3.0` | `discovery_only` |
+| 816 | 34922 | 2026-09-17T21:16:08Z | [laravel/framework](https://github.com/laravel/framework) | — | `MIT` | `safe_to_integrate` |
+| 817 | 34898 | 2026-09-16T00:20:12Z | [anthropics/financial-services](https://github.com/anthropics/financial-services) | — | `Apache-2.0` | `safe_to_integrate` |
+| 818 | 34852 | 2026-09-14T11:44:15Z | [lissy93/web-check](https://github.com/lissy93/web-check) | `security` | `MIT` | `safe_to_integrate` |
+| 819 | 34796 | 2026-09-18T04:47:55Z | [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) | `database-storage`, `object-storage` | `Apache-2.0` | `safe_to_integrate` |
+| 820 | 34793 | 2026-09-16T23:20:07Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | `ai-ml`, `computer-vision`, `image-processing`, `media` | `MPL-2.0` | `discovery_only` |
+| 821 | 34777 | 2026-09-17T21:47:21Z | [raysan5/raylib](https://github.com/raysan5/raylib) | — | `Zlib` | `discovery_only` |
+| 822 | 34769 | 2026-08-20T12:35:19Z | [qishibo/AnotherRedisDesktopManager](https://github.com/qishibo/AnotherRedisDesktopManager) | — | `MIT` | `safe_to_integrate` |
+| 823 | 34746 | 2026-09-17T20:02:23Z | [langfuse/langfuse](https://github.com/langfuse/langfuse) | `ai-ml`, `devops`, `observability` | `NOASSERTION` | `discovery_only` |
+| 824 | 34713 | 2026-08-19T05:38:53Z | [facebookresearch/detectron2](https://github.com/facebookresearch/detectron2) | `ai-ml`, `computer-vision`, `media` | `Apache-2.0` | `safe_to_integrate` |
+| 825 | 34664 | 2026-08-02T06:42:09Z | [nothings/stb](https://github.com/nothings/stb) | — | `NOASSERTION` | `discovery_only` |
+| 826 | 34664 | 2025-10-11T14:51:22Z | [TheAlgorithms/C-Plus-Plus](https://github.com/TheAlgorithms/C-Plus-Plus) | — | `MIT` | `safe_to_integrate` |
+| 827 | 34650 | 2026-09-17T23:12:27Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | `ai-ml`, `database-storage`, `search-engine`, `vector-database` | `Apache-2.0` | `safe_to_integrate` |
+| 828 | 34626 | 2026-09-18T03:04:43Z | [aristocratos/btop](https://github.com/aristocratos/btop) | — | `Apache-2.0` | `safe_to_integrate` |
+| 829 | 34621 | 2026-09-18T00:23:11Z | [derailed/k9s](https://github.com/derailed/k9s) | `cli`, `devops`, `kubernetes-tooling` | `Apache-2.0` | `safe_to_integrate` |
+| 830 | 34601 | 2026-09-08T22:27:45Z | [v2fly/v2ray-core](https://github.com/v2fly/v2ray-core) | — | `MIT` | `safe_to_integrate` |
+| 831 | 34571 | 2026-09-17T23:45:06Z | [JCodesMore/ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template) | — | `MIT` | `safe_to_integrate` |
+| 832 | 34539 | 2026-09-15T07:12:04Z | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | — | `MIT` | `safe_to_integrate` |
+| 833 | 34534 | 2026-09-18T04:18:47Z | [huggingface/diffusers](https://github.com/huggingface/diffusers) | `media` | `Apache-2.0` | `safe_to_integrate` |
+| 834 | 34496 | 2026-09-18T00:57:43Z | [SeleniumHQ/selenium](https://github.com/SeleniumHQ/selenium) | — | `Apache-2.0` | `safe_to_integrate` |
+| 835 | 34492 | 2026-09-17T06:25:33Z | [lyogavin/airllm](https://github.com/lyogavin/airllm) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 836 | 34433 | 2026-09-18T00:58:36Z | [backstage/backstage](https://github.com/backstage/backstage) | `devops` | `Apache-2.0` | `safe_to_integrate` |
+| 837 | 34364 | 2026-06-02T09:25:23Z | [balena-io/etcher](https://github.com/balena-io/etcher) | — | `Apache-2.0` | `safe_to_integrate` |
+| 838 | 34337 | 2026-07-24T08:01:27Z | [OpenBMB/ChatDev](https://github.com/OpenBMB/ChatDev) | — | `Apache-2.0` | `safe_to_integrate` |
 | 839 | 34322 | 2026-03-25T18:46:40Z | [openai/CLIP](https://github.com/openai/CLIP) | `ai-ml`, `media` | `MIT` | `safe_to_integrate` |
 | 840 | 34317 | 2025-11-10T17:02:06Z | [jaredpalmer/formik](https://github.com/jaredpalmer/formik) | — | `Apache-2.0` | `safe_to_integrate` |
-| 841 | 34302 | 2026-09-14T21:44:00Z | [python-poetry/poetry](https://github.com/python-poetry/poetry) | `cli`, `package-manager` | `MIT` | `safe_to_integrate` |
-| 842 | 34300 | 2026-09-17T20:35:29Z | [dgtlmoon/changedetection.io](https://github.com/dgtlmoon/changedetection.io) | `devops`, `observability` | `Apache-2.0` | `safe_to_integrate` |
-| 843 | 34282 | 2026-09-15T21:43:19Z | [binwiederhier/ntfy](https://github.com/binwiederhier/ntfy) | `api-backend`, `rest-api` | `Apache-2.0` | `safe_to_integrate` |
-| 844 | 34258 | 2026-03-07T14:45:13Z | [TheAlgorithms/JavaScript](https://github.com/TheAlgorithms/JavaScript) | — | `GPL-3.0` | `discovery_only` |
-| 845 | 34214 | 2026-09-15T13:39:49Z | [MonitorControl/MonitorControl](https://github.com/MonitorControl/MonitorControl) | — | `MIT` | `safe_to_integrate` |
-| 846 | 34207 | 2026-09-15T08:14:12Z | [fish-shell/fish-shell](https://github.com/fish-shell/fish-shell) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
-| 847 | 34195 | 2026-09-17T15:39:27Z | [swc-project/swc](https://github.com/swc-project/swc) | — | `Apache-2.0` | `safe_to_integrate` |
-| 848 | 34166 | 2026-09-15T17:30:48Z | [MetaCubeX/mihomo](https://github.com/MetaCubeX/mihomo) | `api-backend` | `MIT` | `safe_to_integrate` |
-| 849 | 34161 | 2026-09-14T21:39:25Z | [NginxProxyManager/nginx-proxy-manager](https://github.com/NginxProxyManager/nginx-proxy-manager) | — | `MIT` | `safe_to_integrate` |
-| 850 | 34115 | 2026-02-12T18:51:57Z | [zenorocha/clipboard.js](https://github.com/zenorocha/clipboard.js) | — | `MIT` | `safe_to_integrate` |
-| 851 | 34115 | 2026-08-19T02:47:43Z | [Leey21/awesome-ai-research-writing](https://github.com/Leey21/awesome-ai-research-writing) | — | `unknown` | `discovery_only` |
+| 841 | 34312 | 2026-09-18T00:24:54Z | [dgtlmoon/changedetection.io](https://github.com/dgtlmoon/changedetection.io) | `devops`, `observability` | `Apache-2.0` | `safe_to_integrate` |
+| 842 | 34304 | 2026-09-14T21:44:00Z | [python-poetry/poetry](https://github.com/python-poetry/poetry) | `cli`, `package-manager` | `MIT` | `safe_to_integrate` |
+| 843 | 34288 | 2026-09-15T21:43:19Z | [binwiederhier/ntfy](https://github.com/binwiederhier/ntfy) | `api-backend`, `rest-api` | `Apache-2.0` | `safe_to_integrate` |
+| 844 | 34259 | 2026-03-07T14:45:13Z | [TheAlgorithms/JavaScript](https://github.com/TheAlgorithms/JavaScript) | — | `GPL-3.0` | `discovery_only` |
+| 845 | 34217 | 2026-09-15T13:39:49Z | [MonitorControl/MonitorControl](https://github.com/MonitorControl/MonitorControl) | — | `MIT` | `safe_to_integrate` |
+| 846 | 34210 | 2026-09-15T08:14:12Z | [fish-shell/fish-shell](https://github.com/fish-shell/fish-shell) | `cli`, `shell-tooling` | `NOASSERTION` | `discovery_only` |
+| 847 | 34196 | 2026-09-18T04:12:03Z | [swc-project/swc](https://github.com/swc-project/swc) | — | `Apache-2.0` | `safe_to_integrate` |
+| 848 | 34181 | 2026-09-15T17:30:48Z | [MetaCubeX/mihomo](https://github.com/MetaCubeX/mihomo) | `api-backend` | `MIT` | `safe_to_integrate` |
+| 849 | 34163 | 2026-09-14T21:39:25Z | [NginxProxyManager/nginx-proxy-manager](https://github.com/NginxProxyManager/nginx-proxy-manager) | — | `MIT` | `safe_to_integrate` |
+| 850 | 34128 | 2026-08-19T02:47:43Z | [Leey21/awesome-ai-research-writing](https://github.com/Leey21/awesome-ai-research-writing) | — | `unknown` | `discovery_only` |
+| 851 | 34115 | 2026-02-12T18:51:57Z | [zenorocha/clipboard.js](https://github.com/zenorocha/clipboard.js) | — | `MIT` | `safe_to_integrate` |
 | 852 | 34097 | 2026-09-07T06:52:57Z | [zxing/zxing](https://github.com/zxing/zxing) | — | `Apache-2.0` | `safe_to_integrate` |
-| 853 | 34045 | 2026-09-17T21:26:23Z | [jdx/mise](https://github.com/jdx/mise) | — | `MIT` | `safe_to_integrate` |
-| 854 | 34044 | 2026-09-17T16:55:22Z | [pcottle/learnGitBranching](https://github.com/pcottle/learnGitBranching) | — | `MIT` | `safe_to_integrate` |
-| 855 | 33979 | 2026-09-16T18:28:38Z | [k3s-io/k3s](https://github.com/k3s-io/k3s) | — | `Apache-2.0` | `safe_to_integrate` |
-| 856 | 33913 | 2026-07-06T12:44:31Z | [valinet/ExplorerPatcher](https://github.com/valinet/ExplorerPatcher) | — | `GPL-2.0` | `discovery_only` |
-| 857 | 33904 | 2026-08-24T08:26:10Z | [explosion/spaCy](https://github.com/explosion/spaCy) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 858 | 33897 | 2026-09-17T16:12:22Z | [carbon-language/carbon-lang](https://github.com/carbon-language/carbon-lang) | — | `NOASSERTION` | `discovery_only` |
+| 853 | 34051 | 2026-09-18T04:43:57Z | [jdx/mise](https://github.com/jdx/mise) | — | `MIT` | `safe_to_integrate` |
+| 854 | 34045 | 2026-09-17T16:55:22Z | [pcottle/learnGitBranching](https://github.com/pcottle/learnGitBranching) | — | `MIT` | `safe_to_integrate` |
+| 855 | 33980 | 2026-09-16T18:28:38Z | [k3s-io/k3s](https://github.com/k3s-io/k3s) | — | `Apache-2.0` | `safe_to_integrate` |
+| 856 | 33916 | 2026-07-06T12:44:31Z | [valinet/ExplorerPatcher](https://github.com/valinet/ExplorerPatcher) | — | `GPL-2.0` | `discovery_only` |
+| 857 | 33906 | 2026-08-24T08:26:10Z | [explosion/spaCy](https://github.com/explosion/spaCy) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 858 | 33897 | 2026-09-18T02:35:43Z | [carbon-language/carbon-lang](https://github.com/carbon-language/carbon-lang) | — | `NOASSERTION` | `discovery_only` |
 | 859 | 33884 | 2026-06-30T20:38:02Z | [TabbyML/tabby](https://github.com/TabbyML/tabby) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 860 | 33875 | 2026-08-08T17:18:48Z | [datawhalechina/happy-llm](https://github.com/datawhalechina/happy-llm) | `ai-ml`, `rag-retrieval` | `NOASSERTION` | `discovery_only` |
-| 861 | 33840 | 2026-09-17T14:39:04Z | [SerenityOS/serenity](https://github.com/SerenityOS/serenity) | — | `BSD-2-Clause` | `safe_to_integrate` |
-| 862 | 33810 | 2026-09-11T01:48:08Z | [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go) | — | `MIT` | `safe_to_integrate` |
-| 863 | 33807 | 2026-09-17T02:00:54Z | [yuliskov/SmartTube](https://github.com/yuliskov/SmartTube) | `media` | `MIT` | `safe_to_integrate` |
-| 864 | 33743 | 2026-09-17T21:18:31Z | [apache/kafka](https://github.com/apache/kafka) | — | `Apache-2.0` | `safe_to_integrate` |
-| 865 | 33724 | 2026-09-17T21:08:48Z | [microsoft/WSL](https://github.com/microsoft/WSL) | — | `MIT` | `safe_to_integrate` |
-| 866 | 33679 | 2026-09-11T22:41:08Z | [waydabber/BetterDisplay](https://github.com/waydabber/BetterDisplay) | — | `unknown` | `discovery_only` |
+| 860 | 33881 | 2026-08-08T17:18:48Z | [datawhalechina/happy-llm](https://github.com/datawhalechina/happy-llm) | `ai-ml`, `rag-retrieval` | `NOASSERTION` | `discovery_only` |
+| 861 | 33842 | 2026-09-18T00:09:11Z | [SerenityOS/serenity](https://github.com/SerenityOS/serenity) | — | `BSD-2-Clause` | `safe_to_integrate` |
+| 862 | 33819 | 2026-09-17T02:00:54Z | [yuliskov/SmartTube](https://github.com/yuliskov/SmartTube) | `media` | `MIT` | `safe_to_integrate` |
+| 863 | 33809 | 2026-09-11T01:48:08Z | [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go) | — | `MIT` | `safe_to_integrate` |
+| 864 | 33744 | 2026-09-18T04:24:08Z | [apache/kafka](https://github.com/apache/kafka) | — | `Apache-2.0` | `safe_to_integrate` |
+| 865 | 33725 | 2026-09-18T03:13:32Z | [microsoft/WSL](https://github.com/microsoft/WSL) | — | `MIT` | `safe_to_integrate` |
+| 866 | 33681 | 2026-09-11T22:41:08Z | [waydabber/BetterDisplay](https://github.com/waydabber/BetterDisplay) | — | `unknown` | `discovery_only` |
 | 867 | 33674 | 2026-06-18T18:38:25Z | [Pythagora-io/gpt-pilot](https://github.com/Pythagora-io/gpt-pilot) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 868 | 33633 | 2026-09-16T17:39:36Z | [motiondivision/motion](https://github.com/motiondivision/motion) | — | `MIT` | `safe_to_integrate` |
-| 869 | 33612 | 2026-09-17T21:19:32Z | [tinygrad/tinygrad](https://github.com/tinygrad/tinygrad) | — | `MIT` | `safe_to_integrate` |
-| 870 | 33609 | 2026-09-17T18:18:20Z | [HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 871 | 33607 | 2026-06-15T14:56:43Z | [anoma/anoma](https://github.com/anoma/anoma) | `cryptography`, `security` | `MIT` | `safe_to_integrate` |
-| 872 | 33594 | 2026-09-13T16:45:37Z | [nicolargo/glances](https://github.com/nicolargo/glances) | `api-backend`, `cli`, `devops`, `observability`, `rest-api` | `NOASSERTION` | `discovery_only` |
-| 873 | 33594 | 2026-09-17T21:22:31Z | [FreeCAD/FreeCAD](https://github.com/FreeCAD/FreeCAD) | — | `LGPL-2.1` | `discovery_only` |
-| 874 | 33554 | 2026-09-16T17:34:11Z | [qarmin/czkawka](https://github.com/qarmin/czkawka) | — | `NOASSERTION` | `discovery_only` |
-| 875 | 33513 | 2026-09-17T16:59:49Z | [pear-devs/pear-desktop](https://github.com/pear-devs/pear-desktop) | — | `MIT` | `safe_to_integrate` |
-| 876 | 33512 | 2026-09-17T21:26:04Z | [block/buzz](https://github.com/block/buzz) | — | `Apache-2.0` | `safe_to_integrate` |
-| 877 | 33504 | 2026-09-16T11:12:02Z | [0xAX/linux-insides](https://github.com/0xAX/linux-insides) | — | `NOASSERTION` | `discovery_only` |
-| 878 | 33492 | 2026-09-16T16:49:48Z | [lutzroeder/netron](https://github.com/lutzroeder/netron) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 879 | 33485 | 2026-09-14T19:16:18Z | [SillyTavern/SillyTavern](https://github.com/SillyTavern/SillyTavern) | `ai-ml`, `web-ui` | `AGPL-3.0` | `discovery_only` |
-| 880 | 33473 | 2026-09-17T19:41:30Z | [vbenjs/vue-vben-admin](https://github.com/vbenjs/vue-vben-admin) | `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 868 | 33640 | 2026-09-16T17:39:36Z | [motiondivision/motion](https://github.com/motiondivision/motion) | — | `MIT` | `safe_to_integrate` |
+| 869 | 33621 | 2026-09-17T18:18:20Z | [HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 870 | 33613 | 2026-09-18T04:23:14Z | [tinygrad/tinygrad](https://github.com/tinygrad/tinygrad) | — | `MIT` | `safe_to_integrate` |
+| 871 | 33608 | 2026-06-15T14:56:43Z | [anoma/anoma](https://github.com/anoma/anoma) | `cryptography`, `security` | `MIT` | `safe_to_integrate` |
+| 872 | 33600 | 2026-09-18T04:19:20Z | [FreeCAD/FreeCAD](https://github.com/FreeCAD/FreeCAD) | — | `LGPL-2.1` | `discovery_only` |
+| 873 | 33596 | 2026-09-13T16:45:37Z | [nicolargo/glances](https://github.com/nicolargo/glances) | `api-backend`, `cli`, `devops`, `observability`, `rest-api` | `NOASSERTION` | `discovery_only` |
+| 874 | 33563 | 2026-09-16T17:34:11Z | [qarmin/czkawka](https://github.com/qarmin/czkawka) | — | `NOASSERTION` | `discovery_only` |
+| 875 | 33547 | 2026-09-18T04:06:36Z | [block/buzz](https://github.com/block/buzz) | — | `Apache-2.0` | `safe_to_integrate` |
+| 876 | 33513 | 2026-09-17T16:59:49Z | [pear-devs/pear-desktop](https://github.com/pear-devs/pear-desktop) | — | `MIT` | `safe_to_integrate` |
+| 877 | 33503 | 2026-09-16T11:12:02Z | [0xAX/linux-insides](https://github.com/0xAX/linux-insides) | — | `NOASSERTION` | `discovery_only` |
+| 878 | 33494 | 2026-09-16T16:49:48Z | [lutzroeder/netron](https://github.com/lutzroeder/netron) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 879 | 33490 | 2026-09-14T19:16:18Z | [SillyTavern/SillyTavern](https://github.com/SillyTavern/SillyTavern) | `ai-ml`, `web-ui` | `AGPL-3.0` | `discovery_only` |
+| 880 | 33475 | 2026-09-17T19:41:30Z | [vbenjs/vue-vben-admin](https://github.com/vbenjs/vue-vben-admin) | `dashboard-ui`, `web-ui` | `MIT` | `safe_to_integrate` |
 | 881 | 33450 | 2026-06-21T23:53:56Z | [XX-net/XX-Net](https://github.com/XX-net/XX-Net) | — | `unknown` | `discovery_only` |
-| 882 | 33411 | 2026-08-30T20:32:38Z | [Flowseal/zapret-discord-youtube](https://github.com/Flowseal/zapret-discord-youtube) | — | `NOASSERTION` | `discovery_only` |
-| 883 | 33394 | 2026-09-15T23:39:56Z | [Gitlawb/openclaude](https://github.com/Gitlawb/openclaude) | `ai-ml`, `cli` | `NOASSERTION` | `discovery_only` |
-| 884 | 33381 | 2026-09-16T12:37:53Z | [alibaba/nacos](https://github.com/alibaba/nacos) | `ai-ml`, `configuration-management`, `devops` | `Apache-2.0` | `safe_to_integrate` |
-| 885 | 33362 | 2026-09-14T11:04:23Z | [google/comprehensive-rust](https://github.com/google/comprehensive-rust) | — | `Apache-2.0` | `safe_to_integrate` |
-| 886 | 33357 | 2026-09-17T21:16:29Z | [remix-run/remix](https://github.com/remix-run/remix) | — | `MIT` | `safe_to_integrate` |
-| 887 | 33333 | 2026-09-17T20:47:00Z | [zeromicro/go-zero](https://github.com/zeromicro/go-zero) | `api-backend`, `cli`, `rest-api`, `rpc-api` | `MIT` | `safe_to_integrate` |
-| 888 | 33297 | 2026-06-14T12:57:40Z | [qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic) | — | `MIT` | `safe_to_integrate` |
-| 889 | 33279 | 2026-09-16T12:44:42Z | [VSCodium/vscodium](https://github.com/VSCodium/vscodium) | — | `MIT` | `safe_to_integrate` |
-| 890 | 33265 | 2026-07-08T00:17:31Z | [openai/codex-plugin-cc](https://github.com/openai/codex-plugin-cc) | — | `Apache-2.0` | `safe_to_integrate` |
+| 882 | 33416 | 2026-08-30T20:32:38Z | [Flowseal/zapret-discord-youtube](https://github.com/Flowseal/zapret-discord-youtube) | — | `NOASSERTION` | `discovery_only` |
+| 883 | 33397 | 2026-09-15T23:39:56Z | [Gitlawb/openclaude](https://github.com/Gitlawb/openclaude) | `ai-ml`, `cli` | `NOASSERTION` | `discovery_only` |
+| 884 | 33382 | 2026-09-16T12:37:53Z | [alibaba/nacos](https://github.com/alibaba/nacos) | `ai-ml`, `configuration-management`, `devops` | `Apache-2.0` | `safe_to_integrate` |
+| 885 | 33361 | 2026-09-17T22:02:41Z | [google/comprehensive-rust](https://github.com/google/comprehensive-rust) | — | `Apache-2.0` | `safe_to_integrate` |
+| 886 | 33359 | 2026-09-18T01:26:42Z | [remix-run/remix](https://github.com/remix-run/remix) | — | `MIT` | `safe_to_integrate` |
+| 887 | 33332 | 2026-09-17T20:47:00Z | [zeromicro/go-zero](https://github.com/zeromicro/go-zero) | `api-backend`, `cli`, `rest-api`, `rpc-api` | `MIT` | `safe_to_integrate` |
+| 888 | 33301 | 2026-06-14T12:57:40Z | [qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic) | — | `MIT` | `safe_to_integrate` |
+| 889 | 33284 | 2026-09-16T12:44:42Z | [VSCodium/vscodium](https://github.com/VSCodium/vscodium) | — | `MIT` | `safe_to_integrate` |
+| 890 | 33275 | 2026-07-08T00:17:31Z | [openai/codex-plugin-cc](https://github.com/openai/codex-plugin-cc) | — | `Apache-2.0` | `safe_to_integrate` |
 | 891 | 33248 | 2026-05-12T15:25:06Z | [cursor/cursor](https://github.com/cursor/cursor) | — | `unknown` | `discovery_only` |
 | 892 | 33237 | 2026-09-15T19:32:43Z | [certbot/certbot](https://github.com/certbot/certbot) | — | `NOASSERTION` | `discovery_only` |
-| 893 | 33226 | 2026-09-17T12:46:08Z | [Yeachan-Heo/oh-my-codex](https://github.com/Yeachan-Heo/oh-my-codex) | — | `MIT` | `safe_to_integrate` |
-| 894 | 33222 | 2026-09-17T05:09:30Z | [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm) | — | `Apache-2.0` | `safe_to_integrate` |
-| 895 | 33202 | 2026-09-17T21:26:59Z | [OWASP/CheatSheetSeries](https://github.com/OWASP/CheatSheetSeries) | `security` | `CC-BY-SA-4.0` | `discovery_only` |
-| 896 | 33169 | 2026-09-17T14:14:13Z | [tokio-rs/tokio](https://github.com/tokio-rs/tokio) | — | `MIT` | `safe_to_integrate` |
-| 897 | 33101 | 2026-09-13T07:35:40Z | [binarywang/WxJava](https://github.com/binarywang/WxJava) | — | `Apache-2.0` | `safe_to_integrate` |
-| 898 | 33042 | 2026-09-14T23:11:22Z | [surrealdb/surrealdb](https://github.com/surrealdb/surrealdb) | `database-storage`, `document-database` | `NOASSERTION` | `discovery_only` |
-| 899 | 33032 | 2026-09-13T16:05:00Z | [maboloshi/github-chinese](https://github.com/maboloshi/github-chinese) | — | `GPL-3.0` | `discovery_only` |
-| 900 | 33029 | 2026-09-10T02:52:02Z | [immutable-js/immutable-js](https://github.com/immutable-js/immutable-js) | — | `MIT` | `safe_to_integrate` |
-| 901 | 33013 | 2026-09-15T20:02:45Z | [google-research/timesfm](https://github.com/google-research/timesfm) | — | `Apache-2.0` | `safe_to_integrate` |
-| 902 | 33005 | 2026-09-16T10:53:57Z | [github/github-mcp-server](https://github.com/github/github-mcp-server) | — | `MIT` | `safe_to_integrate` |
-| 903 | 32946 | 2026-09-17T18:14:59Z | [telegramdesktop/tdesktop](https://github.com/telegramdesktop/tdesktop) | — | `GPL-3.0` | `discovery_only` |
+| 893 | 33234 | 2026-09-17T12:46:08Z | [Yeachan-Heo/oh-my-codex](https://github.com/Yeachan-Heo/oh-my-codex) | — | `MIT` | `safe_to_integrate` |
+| 894 | 33230 | 2026-09-18T01:07:15Z | [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm) | — | `Apache-2.0` | `safe_to_integrate` |
+| 895 | 33204 | 2026-09-17T21:26:59Z | [OWASP/CheatSheetSeries](https://github.com/OWASP/CheatSheetSeries) | `security` | `CC-BY-SA-4.0` | `discovery_only` |
+| 896 | 33170 | 2026-09-18T02:53:10Z | [tokio-rs/tokio](https://github.com/tokio-rs/tokio) | — | `MIT` | `safe_to_integrate` |
+| 897 | 33103 | 2026-09-13T07:35:40Z | [binarywang/WxJava](https://github.com/binarywang/WxJava) | — | `Apache-2.0` | `safe_to_integrate` |
+| 898 | 33053 | 2026-09-13T16:05:00Z | [maboloshi/github-chinese](https://github.com/maboloshi/github-chinese) | — | `GPL-3.0` | `discovery_only` |
+| 899 | 33046 | 2026-09-15T20:02:45Z | [google-research/timesfm](https://github.com/google-research/timesfm) | — | `Apache-2.0` | `safe_to_integrate` |
+| 900 | 33042 | 2026-09-14T23:11:22Z | [surrealdb/surrealdb](https://github.com/surrealdb/surrealdb) | `database-storage`, `document-database` | `NOASSERTION` | `discovery_only` |
+| 901 | 33030 | 2026-09-10T02:52:02Z | [immutable-js/immutable-js](https://github.com/immutable-js/immutable-js) | — | `MIT` | `safe_to_integrate` |
+| 902 | 33010 | 2026-09-16T10:53:57Z | [github/github-mcp-server](https://github.com/github/github-mcp-server) | — | `MIT` | `safe_to_integrate` |
+| 903 | 32950 | 2026-09-17T18:14:59Z | [telegramdesktop/tdesktop](https://github.com/telegramdesktop/tdesktop) | — | `GPL-3.0` | `discovery_only` |
 | 904 | 32932 | 2026-02-09T06:30:13Z | [gulpjs/gulp](https://github.com/gulpjs/gulp) | — | `MIT` | `safe_to_integrate` |
-| 905 | 32911 | 2026-08-31T04:32:44Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | `ai-ml`, `cli`, `malware-analysis`, `penetration-testing`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 906 | 32909 | 2026-09-09T07:57:01Z | [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 907 | 32887 | 2026-09-17T15:16:38Z | [podman-container-tools/podman](https://github.com/podman-container-tools/podman) | — | `Apache-2.0` | `safe_to_integrate` |
-| 908 | 32879 | 2026-09-17T16:23:05Z | [shadps4-emu/shadPS4](https://github.com/shadps4-emu/shadPS4) | — | `GPL-2.0` | `discovery_only` |
-| 909 | 32830 | 2026-09-17T16:44:52Z | [ValveSoftware/Proton](https://github.com/ValveSoftware/Proton) | — | `NOASSERTION` | `discovery_only` |
-| 910 | 32827 | 2026-08-25T03:02:26Z | [alchaincyf/nuwa-skill](https://github.com/alchaincyf/nuwa-skill) | — | `MIT` | `safe_to_integrate` |
-| 911 | 32822 | 2026-09-17T21:27:49Z | [zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw) | `ai-ml`, `devops` | `Apache-2.0` | `safe_to_integrate` |
-| 912 | 32803 | 2026-09-11T03:20:35Z | [yewstack/yew](https://github.com/yewstack/yew) | — | `Apache-2.0` | `safe_to_integrate` |
-| 913 | 32763 | 2026-09-17T21:16:55Z | [numpy/numpy](https://github.com/numpy/numpy) | — | `NOASSERTION` | `discovery_only` |
-| 914 | 32763 | 2026-08-10T17:43:24Z | [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app) | — | `NOASSERTION` | `discovery_only` |
-| 915 | 32758 | 2026-09-17T17:34:07Z | [rustfs/rustfs](https://github.com/rustfs/rustfs) | `database-storage`, `object-storage` | `Apache-2.0` | `safe_to_integrate` |
+| 905 | 32924 | 2026-08-31T04:32:44Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | `ai-ml`, `cli`, `malware-analysis`, `penetration-testing`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 906 | 32923 | 2026-09-09T07:57:01Z | [iOfficeAI/AionUi](https://github.com/iOfficeAI/AionUi) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 907 | 32887 | 2026-09-18T01:25:30Z | [podman-container-tools/podman](https://github.com/podman-container-tools/podman) | — | `Apache-2.0` | `safe_to_integrate` |
+| 908 | 32885 | 2026-09-17T16:23:05Z | [shadps4-emu/shadPS4](https://github.com/shadps4-emu/shadPS4) | — | `GPL-2.0` | `discovery_only` |
+| 909 | 32844 | 2026-08-25T03:02:26Z | [alchaincyf/nuwa-skill](https://github.com/alchaincyf/nuwa-skill) | — | `MIT` | `safe_to_integrate` |
+| 910 | 32830 | 2026-09-17T16:44:52Z | [ValveSoftware/Proton](https://github.com/ValveSoftware/Proton) | — | `NOASSERTION` | `discovery_only` |
+| 911 | 32827 | 2026-09-18T00:09:26Z | [zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw) | `ai-ml`, `devops` | `Apache-2.0` | `safe_to_integrate` |
+| 912 | 32816 | 2026-09-18T04:50:41Z | [rustfs/rustfs](https://github.com/rustfs/rustfs) | `database-storage`, `object-storage` | `Apache-2.0` | `safe_to_integrate` |
+| 913 | 32803 | 2026-09-18T03:19:36Z | [yewstack/yew](https://github.com/yewstack/yew) | — | `Apache-2.0` | `safe_to_integrate` |
+| 914 | 32768 | 2026-08-10T17:43:24Z | [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app) | — | `NOASSERTION` | `discovery_only` |
+| 915 | 32762 | 2026-09-17T21:16:55Z | [numpy/numpy](https://github.com/numpy/numpy) | — | `NOASSERTION` | `discovery_only` |
 | 916 | 32750 | 2026-08-26T13:32:18Z | [floating-ui/floating-ui](https://github.com/floating-ui/floating-ui) | — | `MIT` | `safe_to_integrate` |
-| 917 | 32726 | 2026-09-16T17:33:47Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | `ai-ml`, `media`, `speech-ai` | `NOASSERTION` | `discovery_only` |
+| 917 | 32729 | 2026-09-16T17:33:47Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | `ai-ml`, `media`, `speech-ai` | `NOASSERTION` | `discovery_only` |
 | 918 | 32708 | 2026-09-16T09:51:44Z | [labstack/echo](https://github.com/labstack/echo) | — | `MIT` | `safe_to_integrate` |
-| 919 | 32701 | 2026-09-17T21:25:25Z | [gethomepage/homepage](https://github.com/gethomepage/homepage) | `api-backend`, `web-ui` | `GPL-3.0` | `discovery_only` |
+| 919 | 32707 | 2026-09-17T21:29:49Z | [gethomepage/homepage](https://github.com/gethomepage/homepage) | `api-backend`, `web-ui` | `GPL-3.0` | `discovery_only` |
 | 920 | 32700 | 2026-07-13T19:44:57Z | [ziadoz/awesome-php](https://github.com/ziadoz/awesome-php) | — | `WTFPL` | `discovery_only` |
-| 921 | 32686 | 2026-09-13T18:58:12Z | [lovell/sharp](https://github.com/lovell/sharp) | `image-processing`, `media` | `Apache-2.0` | `safe_to_integrate` |
-| 922 | 32626 | 2026-09-15T00:53:42Z | [huggingface/agents-course](https://github.com/huggingface/agents-course) | — | `Apache-2.0` | `safe_to_integrate` |
-| 923 | 32479 | 2026-09-14T11:05:16Z | [vercel/swr](https://github.com/vercel/swr) | — | `MIT` | `safe_to_integrate` |
-| 924 | 32473 | 2026-09-16T20:06:34Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | `database-storage`, `relational-database` | `NOASSERTION` | `discovery_only` |
-| 925 | 32466 | 2026-09-11T13:41:32Z | [freestylefly/awesome-gpt-image-2](https://github.com/freestylefly/awesome-gpt-image-2) | — | `MIT` | `safe_to_integrate` |
-| 926 | 32442 | 2026-09-17T18:27:14Z | [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) | `ai-ml`, `media`, `speech-ai` | `AGPL-3.0` | `discovery_only` |
-| 927 | 32423 | 2026-09-17T01:43:56Z | [beego/beego](https://github.com/beego/beego) | — | `NOASSERTION` | `discovery_only` |
-| 928 | 32344 | 2026-09-16T09:36:08Z | [pmndrs/react-three-fiber](https://github.com/pmndrs/react-three-fiber) | — | `MIT` | `safe_to_integrate` |
-| 929 | 32256 | 2026-09-15T07:25:14Z | [honojs/hono](https://github.com/honojs/hono) | — | `MIT` | `safe_to_integrate` |
-| 930 | 32244 | 2026-09-12T02:51:21Z | [datawhalechina/self-llm](https://github.com/datawhalechina/self-llm) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 931 | 32214 | 2026-09-15T15:44:46Z | [dandavison/delta](https://github.com/dandavison/delta) | — | `MIT` | `safe_to_integrate` |
-| 932 | 32207 | 2026-09-17T20:51:19Z | [conductor-oss/conductor](https://github.com/conductor-oss/conductor) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 921 | 32689 | 2026-09-13T18:58:12Z | [lovell/sharp](https://github.com/lovell/sharp) | `image-processing`, `media` | `Apache-2.0` | `safe_to_integrate` |
+| 922 | 32643 | 2026-09-15T00:53:42Z | [huggingface/agents-course](https://github.com/huggingface/agents-course) | — | `Apache-2.0` | `safe_to_integrate` |
+| 923 | 32562 | 2026-09-18T04:45:06Z | [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) | `ai-ml`, `media`, `speech-ai` | `AGPL-3.0` | `discovery_only` |
+| 924 | 32542 | 2026-09-11T13:41:32Z | [freestylefly/awesome-gpt-image-2](https://github.com/freestylefly/awesome-gpt-image-2) | — | `MIT` | `safe_to_integrate` |
+| 925 | 32480 | 2026-09-14T11:05:16Z | [vercel/swr](https://github.com/vercel/swr) | — | `MIT` | `safe_to_integrate` |
+| 926 | 32472 | 2026-09-16T20:06:34Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | `database-storage`, `relational-database` | `NOASSERTION` | `discovery_only` |
+| 927 | 32424 | 2026-09-17T01:43:56Z | [beego/beego](https://github.com/beego/beego) | — | `NOASSERTION` | `discovery_only` |
+| 928 | 32346 | 2026-09-16T09:36:08Z | [pmndrs/react-three-fiber](https://github.com/pmndrs/react-three-fiber) | — | `MIT` | `safe_to_integrate` |
+| 929 | 32258 | 2026-09-15T07:25:14Z | [honojs/hono](https://github.com/honojs/hono) | — | `MIT` | `safe_to_integrate` |
+| 930 | 32251 | 2026-09-12T02:51:21Z | [datawhalechina/self-llm](https://github.com/datawhalechina/self-llm) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 931 | 32218 | 2026-09-15T15:44:46Z | [dandavison/delta](https://github.com/dandavison/delta) | — | `MIT` | `safe_to_integrate` |
+| 932 | 32207 | 2026-09-18T04:44:08Z | [conductor-oss/conductor](https://github.com/conductor-oss/conductor) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
 | 933 | 32197 | 2026-05-03T01:41:50Z | [google/material-design-lite](https://github.com/google/material-design-lite) | — | `Apache-2.0` | `safe_to_integrate` |
-| 934 | 32177 | 2026-09-17T09:00:16Z | [refined-github/refined-github](https://github.com/refined-github/refined-github) | — | `MIT` | `safe_to_integrate` |
-| 935 | 32146 | 2026-09-17T21:25:07Z | [dokku/dokku](https://github.com/dokku/dokku) | `devops` | `MIT` | `safe_to_integrate` |
-| 936 | 32143 | 2026-09-17T21:14:36Z | [onyx-dot-app/onyx](https://github.com/onyx-dot-app/onyx) | `ai-ml`, `rag-retrieval` | `NOASSERTION` | `discovery_only` |
-| 937 | 32138 | 2026-09-17T18:41:40Z | [linera-io/linera-protocol](https://github.com/linera-io/linera-protocol) | — | `Apache-2.0` | `safe_to_integrate` |
-| 938 | 32134 | 2026-09-16T20:45:24Z | [kubernetes/minikube](https://github.com/kubernetes/minikube) | — | `Apache-2.0` | `safe_to_integrate` |
-| 939 | 32120 | 2026-09-17T00:16:50Z | [XIU2/TrackersListCollection](https://github.com/XIU2/TrackersListCollection) | — | `GPL-3.0` | `discovery_only` |
-| 940 | 32117 | 2026-09-17T21:03:17Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | `ai-ml`, `devops`, `distributed-tracing`, `log-management`, `observability`, `profiling` | `NOASSERTION` | `discovery_only` |
-| 941 | 32113 | 2026-09-17T16:40:44Z | [hasura/graphql-engine](https://github.com/hasura/graphql-engine) | `access-control`, `api-backend`, `auth`, `database-storage`, `graphql-api`, `rest-api`, `security` | `Apache-2.0` | `safe_to_integrate` |
-| 942 | 32106 | 2026-09-17T20:20:23Z | [facebook/rocksdb](https://github.com/facebook/rocksdb) | `cache-key-value`, `database-storage` | `GPL-2.0` | `discovery_only` |
-| 943 | 32076 | 2026-09-17T08:01:20Z | [filamentphp/filament](https://github.com/filamentphp/filament) | `content-management`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 944 | 32008 | 2026-02-25T11:53:38Z | [DevToys-app/DevToys](https://github.com/DevToys-app/DevToys) | — | `MIT` | `safe_to_integrate` |
-| 945 | 31988 | 2026-08-20T08:29:47Z | [barry-ran/QtScrcpy](https://github.com/barry-ran/QtScrcpy) | — | `Apache-2.0` | `safe_to_integrate` |
-| 946 | 31948 | 2026-09-17T09:54:12Z | [codex-team/editor.js](https://github.com/codex-team/editor.js) | `web-ui` | `Apache-2.0` | `safe_to_integrate` |
+| 934 | 32179 | 2026-09-17T09:00:16Z | [refined-github/refined-github](https://github.com/refined-github/refined-github) | — | `MIT` | `safe_to_integrate` |
+| 935 | 32149 | 2026-09-18T01:35:28Z | [onyx-dot-app/onyx](https://github.com/onyx-dot-app/onyx) | `ai-ml`, `rag-retrieval` | `NOASSERTION` | `discovery_only` |
+| 936 | 32148 | 2026-09-18T04:36:41Z | [dokku/dokku](https://github.com/dokku/dokku) | `devops` | `MIT` | `safe_to_integrate` |
+| 937 | 32137 | 2026-09-18T03:02:33Z | [linera-io/linera-protocol](https://github.com/linera-io/linera-protocol) | — | `Apache-2.0` | `safe_to_integrate` |
+| 938 | 32135 | 2026-09-17T21:57:07Z | [kubernetes/minikube](https://github.com/kubernetes/minikube) | — | `Apache-2.0` | `safe_to_integrate` |
+| 939 | 32121 | 2026-09-18T00:17:34Z | [XIU2/TrackersListCollection](https://github.com/XIU2/TrackersListCollection) | — | `GPL-3.0` | `discovery_only` |
+| 940 | 32120 | 2026-09-18T04:18:48Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | `ai-ml`, `devops`, `distributed-tracing`, `log-management`, `observability`, `profiling` | `NOASSERTION` | `discovery_only` |
+| 941 | 32114 | 2026-09-17T16:40:44Z | [hasura/graphql-engine](https://github.com/hasura/graphql-engine) | `access-control`, `api-backend`, `auth`, `database-storage`, `graphql-api`, `rest-api`, `security` | `Apache-2.0` | `safe_to_integrate` |
+| 942 | 32108 | 2026-09-17T22:34:22Z | [facebook/rocksdb](https://github.com/facebook/rocksdb) | `cache-key-value`, `database-storage` | `GPL-2.0` | `discovery_only` |
+| 943 | 32078 | 2026-09-17T08:01:20Z | [filamentphp/filament](https://github.com/filamentphp/filament) | `content-management`, `web-ui` | `MIT` | `safe_to_integrate` |
+| 944 | 32009 | 2026-02-25T11:53:38Z | [DevToys-app/DevToys](https://github.com/DevToys-app/DevToys) | — | `MIT` | `safe_to_integrate` |
+| 945 | 31992 | 2026-08-20T08:29:47Z | [barry-ran/QtScrcpy](https://github.com/barry-ran/QtScrcpy) | — | `Apache-2.0` | `safe_to_integrate` |
+| 946 | 31951 | 2026-09-17T09:54:12Z | [codex-team/editor.js](https://github.com/codex-team/editor.js) | `web-ui` | `Apache-2.0` | `safe_to_integrate` |
 | 947 | 31932 | 2026-09-15T11:55:10Z | [alpinejs/alpine](https://github.com/alpinejs/alpine) | — | `MIT` | `safe_to_integrate` |
-| 948 | 31913 | 2026-09-15T22:35:17Z | [FujiwaraChoki/MoneyPrinterV2](https://github.com/FujiwaraChoki/MoneyPrinterV2) | `cli` | `AGPL-3.0` | `discovery_only` |
-| 949 | 31882 | 2026-09-17T15:00:21Z | [vercel-labs/skills](https://github.com/vercel-labs/skills) | — | `MIT` | `safe_to_integrate` |
-| 950 | 31880 | 2026-09-17T10:53:01Z | [agentscope-ai/agentscope](https://github.com/agentscope-ai/agentscope) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
-| 951 | 31848 | 2026-07-24T02:51:59Z | [hsliuping/TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) | `ai-ml` | `NOASSERTION` | `discovery_only` |
-| 952 | 31803 | 2026-03-25T01:04:16Z | [Trinea/android-open-project](https://github.com/Trinea/android-open-project) | — | `Apache-2.0` | `safe_to_integrate` |
-| 953 | 31795 | 2026-09-15T05:29:10Z | [cjpais/Handy](https://github.com/cjpais/Handy) | — | `MIT` | `safe_to_integrate` |
-| 954 | 31748 | 2026-09-13T05:21:11Z | [ianstormtaylor/slate](https://github.com/ianstormtaylor/slate) | — | `MIT` | `safe_to_integrate` |
-| 955 | 31747 | 2026-09-17T19:42:44Z | [influxdata/influxdb](https://github.com/influxdata/influxdb) | `database-storage`, `devops`, `observability` | `Apache-2.0` | `safe_to_integrate` |
-| 956 | 31730 | 2026-09-16T18:57:15Z | [Fincept-Corporation/FinceptTerminal](https://github.com/Fincept-Corporation/FinceptTerminal) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 948 | 31918 | 2026-09-15T22:35:17Z | [FujiwaraChoki/MoneyPrinterV2](https://github.com/FujiwaraChoki/MoneyPrinterV2) | `cli` | `AGPL-3.0` | `discovery_only` |
+| 949 | 31902 | 2026-09-17T15:00:21Z | [vercel-labs/skills](https://github.com/vercel-labs/skills) | — | `MIT` | `safe_to_integrate` |
+| 950 | 31896 | 2026-09-18T04:06:25Z | [agentscope-ai/agentscope](https://github.com/agentscope-ai/agentscope) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
+| 951 | 31862 | 2026-07-24T02:51:59Z | [hsliuping/TradingAgents-CN](https://github.com/hsliuping/TradingAgents-CN) | `ai-ml` | `NOASSERTION` | `discovery_only` |
+| 952 | 31810 | 2026-09-15T05:29:10Z | [cjpais/Handy](https://github.com/cjpais/Handy) | — | `MIT` | `safe_to_integrate` |
+| 953 | 31803 | 2026-03-25T01:04:16Z | [Trinea/android-open-project](https://github.com/Trinea/android-open-project) | — | `Apache-2.0` | `safe_to_integrate` |
+| 954 | 31750 | 2026-09-13T05:21:11Z | [ianstormtaylor/slate](https://github.com/ianstormtaylor/slate) | — | `MIT` | `safe_to_integrate` |
+| 955 | 31748 | 2026-09-17T19:42:44Z | [influxdata/influxdb](https://github.com/influxdata/influxdb) | `database-storage`, `devops`, `observability` | `Apache-2.0` | `safe_to_integrate` |
+| 956 | 31744 | 2026-09-16T18:57:15Z | [Fincept-Corporation/FinceptTerminal](https://github.com/Fincept-Corporation/FinceptTerminal) | `ai-ml` | `NOASSERTION` | `discovery_only` |
 | 957 | 31727 | 2026-09-17T07:07:00Z | [mantinedev/mantine](https://github.com/mantinedev/mantine) | `ui-component-library`, `web-ui` | `MIT` | `safe_to_integrate` |
-| 958 | 31697 | 2026-08-08T23:15:21Z | [ReactiveX/rxjs](https://github.com/ReactiveX/rxjs) | — | `Apache-2.0` | `safe_to_integrate` |
-| 959 | 31687 | 2026-09-05T16:11:52Z | [p-e-w/heretic](https://github.com/p-e-w/heretic) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
-| 960 | 31686 | 2026-03-29T18:18:56Z | [iawia002/lux](https://github.com/iawia002/lux) | `cli`, `media` | `MIT` | `safe_to_integrate` |
-| 961 | 31681 | 2026-09-17T21:12:39Z | [atuinsh/atuin](https://github.com/atuinsh/atuin) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
-| 962 | 31674 | 2026-03-24T14:54:56Z | [hesamsheikh/awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases) | — | `MIT` | `safe_to_integrate` |
-| 963 | 31671 | 2026-09-16T12:13:03Z | [nginx/nginx](https://github.com/nginx/nginx) | `security` | `BSD-2-Clause` | `safe_to_integrate` |
-| 964 | 31635 | 2026-09-17T21:26:53Z | [openai/openai-python](https://github.com/openai/openai-python) | `api-backend` | `Apache-2.0` | `safe_to_integrate` |
-| 965 | 31630 | 2026-09-17T19:36:56Z | [jj-vcs/jj](https://github.com/jj-vcs/jj) | — | `Apache-2.0` | `safe_to_integrate` |
-| 966 | 31619 | 2026-09-17T21:05:24Z | [feder-cr/AIHawk](https://github.com/feder-cr/AIHawk) | `ai-ml` | `MIT` | `safe_to_integrate` |
-| 967 | 31614 | 2026-09-17T21:20:56Z | [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi) | `ai-ml`, `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
-| 968 | 31584 | 2026-09-16T03:17:45Z | [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede) | — | `NOASSERTION` | `discovery_only` |
-| 969 | 31575 | 2026-09-17T17:05:19Z | [dragonflydb/dragonfly](https://github.com/dragonflydb/dragonfly) | `cache-key-value`, `database-storage` | `NOASSERTION` | `discovery_only` |
-| 970 | 31551 | 2026-09-17T10:27:02Z | [jumpserver/jumpserver](https://github.com/jumpserver/jumpserver) | `cli`, `database-storage`, `devops` | `GPL-3.0` | `discovery_only` |
-| 971 | 31549 | 2026-09-17T01:47:04Z | [tirth8205/code-review-graph](https://github.com/tirth8205/code-review-graph) | `ai-ml`, `cli`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
-| 972 | 31531 | 2026-09-13T20:13:16Z | [CloakHQ/CloakBrowser](https://github.com/CloakHQ/CloakBrowser) | — | `MIT` | `safe_to_integrate` |
-| 973 | 31519 | 2026-09-17T15:11:05Z | [grafana/k6](https://github.com/grafana/k6) | `performance-testing`, `testing` | `AGPL-3.0` | `discovery_only` |
-| 974 | 31516 | 2026-09-17T18:55:44Z | [AvaloniaUI/Avalonia](https://github.com/AvaloniaUI/Avalonia) | — | `MIT` | `safe_to_integrate` |
-| 975 | 31513 | 2026-09-17T02:09:03Z | [docsifyjs/docsify](https://github.com/docsifyjs/docsify) | — | `MIT` | `safe_to_integrate` |
-| 976 | 31509 | 2026-09-17T17:27:30Z | [iced-rs/iced](https://github.com/iced-rs/iced) | — | `MIT` | `safe_to_integrate` |
-| 977 | 31474 | 2026-09-14T15:15:16Z | [nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) | — | `MIT` | `safe_to_integrate` |
-| 978 | 31447 | 2026-09-15T04:25:26Z | [fabricjs/fabric.js](https://github.com/fabricjs/fabric.js) | — | `MIT` | `safe_to_integrate` |
-| 979 | 31447 | 2026-09-17T08:17:58Z | [lbjlaq/Antigravity-Manager](https://github.com/lbjlaq/Antigravity-Manager) | — | `NOASSERTION` | `discovery_only` |
-| 980 | 31436 | 2026-09-07T20:43:13Z | [imthenachoman/How-To-Secure-A-Linux-Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) | `security` | `CC-BY-SA-4.0` | `discovery_only` |
-| 981 | 31424 | 2025-09-30T18:07:21Z | [stanford-oval/storm](https://github.com/stanford-oval/storm) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
-| 982 | 31396 | 2026-09-15T18:55:08Z | [webtorrent/webtorrent](https://github.com/webtorrent/webtorrent) | — | `MIT` | `safe_to_integrate` |
+| 958 | 31724 | 2026-09-05T16:11:52Z | [p-e-w/heretic](https://github.com/p-e-w/heretic) | `ai-ml` | `AGPL-3.0` | `discovery_only` |
+| 959 | 31698 | 2026-08-08T23:15:21Z | [ReactiveX/rxjs](https://github.com/ReactiveX/rxjs) | — | `Apache-2.0` | `safe_to_integrate` |
+| 960 | 31687 | 2026-03-29T18:18:56Z | [iawia002/lux](https://github.com/iawia002/lux) | `cli`, `media` | `MIT` | `safe_to_integrate` |
+| 961 | 31682 | 2026-09-17T23:31:48Z | [atuinsh/atuin](https://github.com/atuinsh/atuin) | `cli`, `shell-tooling` | `MIT` | `safe_to_integrate` |
+| 962 | 31675 | 2026-03-24T14:54:56Z | [hesamsheikh/awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases) | — | `MIT` | `safe_to_integrate` |
+| 963 | 31672 | 2026-09-16T12:13:03Z | [nginx/nginx](https://github.com/nginx/nginx) | `security` | `BSD-2-Clause` | `safe_to_integrate` |
+| 964 | 31671 | 2026-09-17T23:58:11Z | [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi) | `ai-ml`, `cli`, `terminal-ui` | `MIT` | `safe_to_integrate` |
+| 965 | 31640 | 2026-09-18T02:08:51Z | [openai/openai-python](https://github.com/openai/openai-python) | `api-backend` | `Apache-2.0` | `safe_to_integrate` |
+| 966 | 31637 | 2026-09-18T03:09:07Z | [jj-vcs/jj](https://github.com/jj-vcs/jj) | — | `Apache-2.0` | `safe_to_integrate` |
+| 967 | 31629 | 2026-09-18T02:26:26Z | [feder-cr/AIHawk](https://github.com/feder-cr/AIHawk) | `ai-ml` | `MIT` | `safe_to_integrate` |
+| 968 | 31583 | 2026-09-16T03:17:45Z | [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede) | — | `NOASSERTION` | `discovery_only` |
+| 969 | 31579 | 2026-09-17T17:05:19Z | [dragonflydb/dragonfly](https://github.com/dragonflydb/dragonfly) | `cache-key-value`, `database-storage` | `NOASSERTION` | `discovery_only` |
+| 970 | 31558 | 2026-09-17T01:47:04Z | [tirth8205/code-review-graph](https://github.com/tirth8205/code-review-graph) | `ai-ml`, `cli`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 971 | 31554 | 2026-09-18T04:24:28Z | [jumpserver/jumpserver](https://github.com/jumpserver/jumpserver) | `ai-ml`, `cli`, `devops` | `GPL-3.0` | `discovery_only` |
+| 972 | 31536 | 2026-09-13T20:13:16Z | [CloakHQ/CloakBrowser](https://github.com/CloakHQ/CloakBrowser) | — | `MIT` | `safe_to_integrate` |
+| 973 | 31520 | 2026-09-18T00:04:59Z | [grafana/k6](https://github.com/grafana/k6) | `performance-testing`, `testing` | `AGPL-3.0` | `discovery_only` |
+| 974 | 31518 | 2026-09-17T18:55:44Z | [AvaloniaUI/Avalonia](https://github.com/AvaloniaUI/Avalonia) | — | `MIT` | `safe_to_integrate` |
+| 975 | 31514 | 2026-09-17T23:43:47Z | [iced-rs/iced](https://github.com/iced-rs/iced) | — | `MIT` | `safe_to_integrate` |
+| 976 | 31513 | 2026-09-17T02:09:03Z | [docsifyjs/docsify](https://github.com/docsifyjs/docsify) | — | `MIT` | `safe_to_integrate` |
+| 977 | 31476 | 2026-09-14T15:15:16Z | [nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) | — | `MIT` | `safe_to_integrate` |
+| 978 | 31462 | 2026-09-17T08:17:58Z | [lbjlaq/Antigravity-Manager](https://github.com/lbjlaq/Antigravity-Manager) | — | `NOASSERTION` | `discovery_only` |
+| 979 | 31448 | 2026-09-15T04:25:26Z | [fabricjs/fabric.js](https://github.com/fabricjs/fabric.js) | — | `MIT` | `safe_to_integrate` |
+| 980 | 31439 | 2026-09-07T20:43:13Z | [imthenachoman/How-To-Secure-A-Linux-Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) | `security` | `CC-BY-SA-4.0` | `discovery_only` |
+| 981 | 31428 | 2025-09-30T18:07:21Z | [stanford-oval/storm](https://github.com/stanford-oval/storm) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 982 | 31395 | 2026-09-15T18:55:08Z | [webtorrent/webtorrent](https://github.com/webtorrent/webtorrent) | — | `MIT` | `safe_to_integrate` |
 | 983 | 31349 | 2026-09-17T08:37:45Z | [Lightning-AI/pytorch-lightning](https://github.com/Lightning-AI/pytorch-lightning) | `ai-ml` | `Apache-2.0` | `safe_to_integrate` |
 | 984 | 31337 | 2026-09-11T07:21:04Z | [tqdm/tqdm](https://github.com/tqdm/tqdm) | `cli` | `NOASSERTION` | `discovery_only` |
-| 985 | 31303 | 2026-09-13T05:23:46Z | [parallax/jsPDF](https://github.com/parallax/jsPDF) | — | `MIT` | `safe_to_integrate` |
-| 986 | 31285 | 2026-08-28T13:36:31Z | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | — | `unknown` | `discovery_only` |
-| 987 | 31273 | 2026-09-15T12:54:43Z | [projectdiscovery/nuclei](https://github.com/projectdiscovery/nuclei) | `security`, `vulnerability-scanning` | `MIT` | `safe_to_integrate` |
-| 988 | 31215 | 2026-09-11T20:55:41Z | [OAI/OpenAPI-Specification](https://github.com/OAI/OpenAPI-Specification) | — | `Apache-2.0` | `safe_to_integrate` |
+| 985 | 31304 | 2026-09-13T05:23:46Z | [parallax/jsPDF](https://github.com/parallax/jsPDF) | — | `MIT` | `safe_to_integrate` |
+| 986 | 31293 | 2026-08-28T13:36:31Z | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | — | `unknown` | `discovery_only` |
+| 987 | 31278 | 2026-09-18T00:53:23Z | [projectdiscovery/nuclei](https://github.com/projectdiscovery/nuclei) | `security`, `vulnerability-scanning` | `MIT` | `safe_to_integrate` |
+| 988 | 31217 | 2026-09-11T20:55:41Z | [OAI/OpenAPI-Specification](https://github.com/OAI/OpenAPI-Specification) | — | `Apache-2.0` | `safe_to_integrate` |
 | 989 | 31182 | 2026-03-24T22:02:22Z | [SortableJS/Sortable](https://github.com/SortableJS/Sortable) | `web-ui` | `MIT` | `safe_to_integrate` |
-| 990 | 31153 | 2026-09-17T08:51:58Z | [symfony/symfony](https://github.com/symfony/symfony) | — | `MIT` | `safe_to_integrate` |
-| 991 | 31114 | 2026-09-16T18:38:51Z | [BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus) | — | `AGPL-3.0` | `discovery_only` |
-| 992 | 31102 | 2026-09-17T21:04:25Z | [vercel/turborepo](https://github.com/vercel/turborepo) | — | `MIT` | `safe_to_integrate` |
-| 993 | 31079 | 2026-09-11T23:08:19Z | [abhisheknaiidu/awesome-github-profile-readme](https://github.com/abhisheknaiidu/awesome-github-profile-readme) | — | `CC0-1.0` | `discovery_only` |
-| 994 | 31072 | 2026-06-09T09:43:14Z | [mqyqingfeng/Blog](https://github.com/mqyqingfeng/Blog) | — | `unknown` | `discovery_only` |
-| 995 | 31069 | 2026-09-17T00:28:08Z | [StevenBlack/hosts](https://github.com/StevenBlack/hosts) | `media`, `security` | `MIT` | `safe_to_integrate` |
-| 996 | 31058 | 2026-09-07T13:49:52Z | [ScrapeGraphAI/Scrapegraph-ai](https://github.com/ScrapeGraphAI/Scrapegraph-ai) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 990 | 31154 | 2026-09-17T08:51:58Z | [symfony/symfony](https://github.com/symfony/symfony) | — | `MIT` | `safe_to_integrate` |
+| 991 | 31135 | 2026-09-16T18:38:51Z | [BigPizzaV3/CodexPlusPlus](https://github.com/BigPizzaV3/CodexPlusPlus) | — | `AGPL-3.0` | `discovery_only` |
+| 992 | 31102 | 2026-09-18T01:37:03Z | [vercel/turborepo](https://github.com/vercel/turborepo) | — | `MIT` | `safe_to_integrate` |
+| 993 | 31082 | 2026-09-11T23:08:19Z | [abhisheknaiidu/awesome-github-profile-readme](https://github.com/abhisheknaiidu/awesome-github-profile-readme) | — | `CC0-1.0` | `discovery_only` |
+| 994 | 31073 | 2026-06-09T09:43:14Z | [mqyqingfeng/Blog](https://github.com/mqyqingfeng/Blog) | — | `unknown` | `discovery_only` |
+| 995 | 31071 | 2026-09-17T00:28:08Z | [StevenBlack/hosts](https://github.com/StevenBlack/hosts) | `media`, `security` | `MIT` | `safe_to_integrate` |
+| 996 | 31064 | 2026-09-07T13:49:52Z | [ScrapeGraphAI/Scrapegraph-ai](https://github.com/ScrapeGraphAI/Scrapegraph-ai) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
 | 997 | 31053 | 2026-09-16T03:45:37Z | [microsoft/calculator](https://github.com/microsoft/calculator) | — | `MIT` | `safe_to_integrate` |
-| 998 | 31035 | 2026-09-17T21:08:32Z | [googleworkspace/cli](https://github.com/googleworkspace/cli) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
-| 999 | 31025 | 2026-09-17T17:05:46Z | [virgiliojr94/book-to-skill](https://github.com/virgiliojr94/book-to-skill) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
-| 1000 | 30983 | 2026-09-17T21:03:05Z | [ankitects/anki](https://github.com/ankitects/anki) | — | `NOASSERTION` | `discovery_only` |
+| 998 | 31051 | 2026-09-17T17:05:46Z | [virgiliojr94/book-to-skill](https://github.com/virgiliojr94/book-to-skill) | `ai-ml`, `rag-retrieval` | `MIT` | `safe_to_integrate` |
+| 999 | 31040 | 2026-09-17T21:08:32Z | [googleworkspace/cli](https://github.com/googleworkspace/cli) | `ai-ml`, `cli` | `Apache-2.0` | `safe_to_integrate` |
+| 1000 | 31012 | 2026-09-17T21:03:05Z | [ankitects/anki](https://github.com/ankitects/anki) | — | `NOASSERTION` | `discovery_only` |

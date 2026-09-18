@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-17T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-09-18T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `188876` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `188775` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 127 | 96279 | 2026-09-17T21:03:59Z | [microsoft/playwright](https://github.com/microsoft/playwright) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 427 | 51015 | 2026-09-17T20:55:48Z | [cypress-io/cypress](https://github.com/cypress-io/cypress) | 0.97 | `MIT` | `safe_to_integrate` |
+| 127 | 96294 | 2026-09-18T04:39:15Z | [microsoft/playwright](https://github.com/microsoft/playwright) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 427 | 51016 | 2026-09-18T03:18:21Z | [cypress-io/cypress](https://github.com/cypress-io/cypress) | 0.97 | `MIT` | `safe_to_integrate` |
