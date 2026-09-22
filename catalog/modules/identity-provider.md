@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-22T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `189566` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `189621` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 757 | 36938 | 2026-09-22T15:46:10Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 756 | 36943 | 2026-09-22T20:28:35Z | [keycloak/keycloak](https://github.com/keycloak/keycloak) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
