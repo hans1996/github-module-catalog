@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-22T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `189440` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `189566` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 538 | 44822 | 2026-09-22T04:51:17Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 654 | 39891 | 2026-09-22T04:55:55Z | [PostHog/posthog](https://github.com/PostHog/posthog) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 538 | 44824 | 2026-09-22T16:59:07Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 653 | 39899 | 2026-09-22T17:01:28Z | [PostHog/posthog](https://github.com/PostHog/posthog) | 0.77 | `NOASSERTION` | `discovery_only` |
