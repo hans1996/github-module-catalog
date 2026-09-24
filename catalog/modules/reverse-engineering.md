@@ -4,13 +4,13 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-24T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `189655` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `189744` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 194 | 79525 | 2026-09-21T18:16:49Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 274 | 66728 | 2026-09-22T15:15:45Z | [xtekky/gpt4free](https://github.com/xtekky/gpt4free) | 0.97 | `GPL-3.0` | `discovery_only` |
-| 384 | 54886 | 2026-09-23T00:47:44Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | 0.97 | `GPL-2.0` | `discovery_only` |
-| 434 | 50601 | 2026-09-12T18:25:15Z | [skylot/jadx](https://github.com/skylot/jadx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 453 | 49592 | 2026-09-23T10:46:25Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 754 | 37032 | 2026-09-22T06:43:21Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | 0.75 | `MIT` | `safe_to_integrate` |
+| 194 | 79553 | 2026-09-24T09:52:11Z | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 274 | 66726 | 2026-09-22T15:15:45Z | [xtekky/gpt4free](https://github.com/xtekky/gpt4free) | 0.97 | `GPL-3.0` | `discovery_only` |
+| 384 | 54890 | 2026-09-23T00:47:44Z | [WerWolv/ImHex](https://github.com/WerWolv/ImHex) | 0.97 | `GPL-2.0` | `discovery_only` |
+| 435 | 50609 | 2026-09-12T18:25:15Z | [skylot/jadx](https://github.com/skylot/jadx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 453 | 49596 | 2026-09-23T10:46:25Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 749 | 37104 | 2026-09-22T06:43:21Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | 0.75 | `MIT` | `safe_to_integrate` |
