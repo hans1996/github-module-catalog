@@ -4,11 +4,11 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-24T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `189744` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `189846` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 75 | 129397 | 2026-09-24T11:40:06Z | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | 0.77 | `MIT` | `safe_to_integrate` |
-| 139 | 92606 | 2026-09-24T11:17:26Z | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 472 | 48539 | 2026-09-24T10:26:04Z | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | 0.97 | `MIT` | `safe_to_integrate` |
-| 564 | 43913 | 2026-09-24T11:54:17Z | [ray-project/ray](https://github.com/ray-project/ray) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 75 | 129440 | 2026-09-24T21:13:03Z | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | 0.77 | `MIT` | `safe_to_integrate` |
+| 139 | 92639 | 2026-09-24T20:36:36Z | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 472 | 48551 | 2026-09-24T17:50:12Z | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | 0.97 | `MIT` | `safe_to_integrate` |
+| 564 | 43916 | 2026-09-24T21:20:41Z | [ray-project/ray](https://github.com/ray-project/ray) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
