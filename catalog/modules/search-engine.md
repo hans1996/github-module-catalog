@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-26T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `189963` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `190012` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 201 | 77995 | 2026-09-26T10:44:21Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 201 | 77998 | 2026-09-26T14:13:11Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | 0.99 | `NOASSERTION` | `discovery_only` |
 | 345 | 59413 | 2026-09-24T16:27:41Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 731 | 37651 | 2026-09-25T16:53:26Z | [searxng/searxng](https://github.com/searxng/searxng) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 765 | 36912 | 2026-09-01T14:12:12Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.95 | `MIT` | `safe_to_integrate` |
-| 829 | 34833 | 2026-09-26T09:35:52Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 731 | 37655 | 2026-09-25T16:53:26Z | [searxng/searxng](https://github.com/searxng/searxng) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 765 | 36914 | 2026-09-01T14:12:12Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.95 | `MIT` | `safe_to_integrate` |
+| 829 | 34836 | 2026-09-26T15:29:40Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
