@@ -2,12 +2,12 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-26T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-09-27T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `190062` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `189987` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 212 | 76657 | 2026-09-26T01:04:19Z | [obsproject/obs-studio](https://github.com/obsproject/obs-studio) | 0.97 | `GPL-2.0` | `discovery_only` |
-| 292 | 64545 | 2026-09-26T21:15:44Z | [FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 656 | 39901 | 2026-09-16T08:26:46Z | [videojs/video.js](https://github.com/videojs/video.js) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 212 | 76663 | 2026-09-26T01:04:19Z | [obsproject/obs-studio](https://github.com/obsproject/obs-studio) | 0.97 | `GPL-2.0` | `discovery_only` |
+| 292 | 64555 | 2026-09-27T03:05:30Z | [FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 656 | 39900 | 2026-09-16T08:26:46Z | [videojs/video.js](https://github.com/videojs/video.js) | 0.97 | `NOASSERTION` | `discovery_only` |
