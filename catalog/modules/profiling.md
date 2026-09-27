@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-09-27T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `190129` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `190174` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 540 | 44856 | 2026-09-27T12:08:56Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 944 | 32217 | 2026-09-27T11:52:51Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 541 | 44857 | 2026-09-27T20:23:02Z | [getsentry/sentry](https://github.com/getsentry/sentry) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 944 | 32219 | 2026-09-27T19:36:13Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.95 | `NOASSERTION` | `discovery_only` |
