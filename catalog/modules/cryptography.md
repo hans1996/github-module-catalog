@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-28T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-09-29T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `190309` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `190374` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 156 | 90268 | 2026-09-28T09:18:53Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | 0.97 | `MIT` | `safe_to_integrate` |
-| 890 | 33593 | 2026-06-15T14:56:43Z | [anoma/anoma](https://github.com/anoma/anoma) | 0.95 | `MIT` | `safe_to_integrate` |
+| 157 | 90276 | 2026-09-29T11:24:12Z | [bitcoin/bitcoin](https://github.com/bitcoin/bitcoin) | 0.97 | `MIT` | `safe_to_integrate` |
+| 890 | 33592 | 2026-06-15T14:56:43Z | [anoma/anoma](https://github.com/anoma/anoma) | 0.95 | `MIT` | `safe_to_integrate` |
