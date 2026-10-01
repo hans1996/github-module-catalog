@@ -2,18 +2,18 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-30T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-01T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `190615` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `190544` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 141 | 93080 | 2026-09-30T05:18:35Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
-| 288 | 65765 | 2026-09-30T21:07:40Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 435 | 50820 | 2026-09-22T21:44:42Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 457 | 49661 | 2026-09-27T22:47:16Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 141 | 93088 | 2026-10-01T05:18:30Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
+| 288 | 65808 | 2026-10-01T03:22:02Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 435 | 50825 | 2026-09-22T21:44:42Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 456 | 49664 | 2026-09-27T22:47:16Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
 | 477 | 48503 | 2026-09-30T14:20:55Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 687 | 39086 | 2026-09-22T06:43:21Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | 0.75 | `MIT` | `safe_to_integrate` |
-| 708 | 38563 | 2026-09-28T20:20:32Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 723 | 38175 | 2026-09-30T06:31:01Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |
-| 889 | 33628 | 2026-08-31T04:32:44Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 686 | 39140 | 2026-09-22T06:43:21Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | 0.75 | `MIT` | `safe_to_integrate` |
+| 708 | 38564 | 2026-09-28T20:20:32Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 724 | 38178 | 2026-10-01T06:04:16Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |
+| 888 | 33636 | 2026-08-31T04:32:44Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | 0.97 | `Apache-2.0` | `safe_to_integrate` |

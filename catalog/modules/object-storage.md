@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-09-30T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-01T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `190615` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `190544` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 822 | 35144 | 2026-09-30T17:43:46Z | [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 860 | 34217 | 2026-09-30T22:14:08Z | [rustfs/rustfs](https://github.com/rustfs/rustfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 822 | 35159 | 2026-10-01T00:56:46Z | [seaweedfs/seaweedfs](https://github.com/seaweedfs/seaweedfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 860 | 34234 | 2026-10-01T03:37:08Z | [rustfs/rustfs](https://github.com/rustfs/rustfs) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
