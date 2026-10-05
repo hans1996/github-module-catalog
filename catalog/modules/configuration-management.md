@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-04T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-05T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `190901` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `190881` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 253 | 70853 | 2026-10-02T21:01:26Z | [ansible/ansible](https://github.com/ansible/ansible) | 0.77 | `GPL-3.0` | `discovery_only` |
-| 901 | 33419 | 2026-10-04T15:26:18Z | [alibaba/nacos](https://github.com/alibaba/nacos) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 253 | 70860 | 2026-10-02T21:01:26Z | [ansible/ansible](https://github.com/ansible/ansible) | 0.77 | `GPL-3.0` | `discovery_only` |
+| 902 | 33419 | 2026-10-04T15:26:18Z | [alibaba/nacos](https://github.com/alibaba/nacos) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
