@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-08T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `191217` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `191312` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 617 | 41581 | 2026-09-28T07:04:35Z | [apache/dubbo](https://github.com/apache/dubbo) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 617 | 41580 | 2026-09-28T07:04:35Z | [apache/dubbo](https://github.com/apache/dubbo) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
 | 910 | 33367 | 2026-10-06T19:54:16Z | [zeromicro/go-zero](https://github.com/zeromicro/go-zero) | 0.97 | `MIT` | `safe_to_integrate` |
