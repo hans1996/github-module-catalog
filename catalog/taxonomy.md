@@ -19,7 +19,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 96
+- [`cli`](modules/cli.md) — Command-line interface — 97
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
@@ -43,15 +43,15 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 61
+- [`media`](modules/media.md) — Media processing — 62
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
-  - [`image-processing`](modules/image-processing.md) — Image processing — 4
+  - [`image-processing`](modules/image-processing.md) — Image processing — 5
   - [`media-downloader`](modules/media-downloader.md) — Media downloader — 2
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 41
+- [`security`](modules/security.md) — Security — 42
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
@@ -61,7 +61,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`malware-analysis`](modules/malware-analysis.md) — Malware analysis — 2
   - [`network-security`](modules/network-security.md) — Network security — 1
   - [`penetration-testing`](modules/penetration-testing.md) — Penetration testing — 9
-  - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 6
+  - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 7
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
   - [`vulnerability-scanning`](modules/vulnerability-scanning.md) — Vulnerability scanning — 2
 - [`testing`](modules/testing.md) — Testing — 12

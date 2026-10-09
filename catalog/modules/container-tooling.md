@@ -4,11 +4,11 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-09T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `191390` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `191525` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 314 | 62751 | 2026-10-08T16:25:23Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 527 | 45926 | 2026-10-08T15:50:30Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.95 | `MIT` | `safe_to_integrate` |
-| 712 | 38621 | 2026-10-08T04:54:15Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
-| 724 | 38295 | 2026-10-08T14:49:41Z | [docker/compose](https://github.com/docker/compose) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 314 | 62766 | 2026-10-09T12:55:52Z | [coollabsio/coolify](https://github.com/coollabsio/coolify) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 527 | 45929 | 2026-10-08T15:50:30Z | [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) | 0.95 | `MIT` | `safe_to_integrate` |
+| 712 | 38626 | 2026-10-08T04:54:15Z | [portainer/portainer](https://github.com/portainer/portainer) | 0.95 | `Zlib` | `discovery_only` |
+| 724 | 38305 | 2026-10-09T13:25:08Z | [docker/compose](https://github.com/docker/compose) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
