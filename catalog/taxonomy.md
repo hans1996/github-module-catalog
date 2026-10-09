@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 242
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 241
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 5
@@ -31,7 +31,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 2
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 10
-- [`devops`](modules/devops.md) — DevOps and delivery — 44
+- [`devops`](modules/devops.md) — DevOps and delivery — 43
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 4
@@ -59,7 +59,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - `oauth-oidc` — OAuth and OpenID Connect — 0
   - [`cryptography`](modules/cryptography.md) — Cryptography — 2
   - [`malware-analysis`](modules/malware-analysis.md) — Malware analysis — 2
-  - [`network-security`](modules/network-security.md) — Network security — 1
+  - [`network-security`](modules/network-security.md) — Network security — 2
   - [`penetration-testing`](modules/penetration-testing.md) — Penetration testing — 9
   - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 7
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
