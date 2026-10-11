@@ -2,14 +2,14 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-10T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-11T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `191647` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `191553` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 204 | 78225 | 2026-10-10T17:40:18Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 347 | 59541 | 2026-10-08T16:37:35Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | 0.99 | `NOASSERTION` | `discovery_only` |
-| 730 | 38198 | 2026-10-09T19:03:13Z | [searxng/searxng](https://github.com/searxng/searxng) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 765 | 37222 | 2026-09-01T14:12:12Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.95 | `MIT` | `safe_to_integrate` |
-| 835 | 35011 | 2026-10-10T20:58:36Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 205 | 78223 | 2026-10-11T05:55:18Z | [elastic/elasticsearch](https://github.com/elastic/elasticsearch) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 349 | 59541 | 2026-10-08T16:37:35Z | [meilisearch/meilisearch](https://github.com/meilisearch/meilisearch) | 0.99 | `NOASSERTION` | `discovery_only` |
+| 729 | 38209 | 2026-10-09T19:03:13Z | [searxng/searxng](https://github.com/searxng/searxng) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 763 | 37238 | 2026-09-01T14:12:12Z | [ItzCrazyKns/Vane](https://github.com/ItzCrazyKns/Vane) | 0.95 | `MIT` | `safe_to_integrate` |
+| 833 | 35020 | 2026-10-10T23:30:41Z | [qdrant/qdrant](https://github.com/qdrant/qdrant) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
