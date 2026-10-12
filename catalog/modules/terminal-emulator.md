@@ -2,16 +2,16 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-11T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-12T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `191753` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `191720` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 113 | 105136 | 2026-10-09T21:11:18Z | [microsoft/terminal](https://github.com/microsoft/terminal) | 0.97 | `MIT` | `safe_to_integrate` |
-| 231 | 74920 | 2026-10-09T04:03:14Z | [Eugeny/tabby](https://github.com/Eugeny/tabby) | 0.95 | `MIT` | `safe_to_integrate` |
-| 290 | 65930 | 2026-10-05T12:48:27Z | [alacritty/alacritty](https://github.com/alacritty/alacritty) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 321 | 62406 | 2026-09-26T05:11:44Z | [termux/termux-app](https://github.com/termux/termux-app) | 0.75 | `NOASSERTION` | `discovery_only` |
-| 324 | 62078 | 2026-10-11T21:11:41Z | [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty) | 0.75 | `MIT` | `safe_to_integrate` |
-| 557 | 44738 | 2026-08-21T20:44:39Z | [vercel/hyper](https://github.com/vercel/hyper) | 0.95 | `MIT` | `safe_to_integrate` |
-| 827 | 35239 | 2026-10-11T14:53:36Z | [kovidgoyal/kitty](https://github.com/kovidgoyal/kitty) | 0.95 | `GPL-3.0` | `discovery_only` |
+| 115 | 105142 | 2026-10-09T21:11:18Z | [microsoft/terminal](https://github.com/microsoft/terminal) | 0.97 | `MIT` | `safe_to_integrate` |
+| 230 | 74929 | 2026-10-09T04:03:14Z | [Eugeny/tabby](https://github.com/Eugeny/tabby) | 0.95 | `MIT` | `safe_to_integrate` |
+| 289 | 65934 | 2026-10-05T12:48:27Z | [alacritty/alacritty](https://github.com/alacritty/alacritty) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 320 | 62427 | 2026-09-26T05:11:44Z | [termux/termux-app](https://github.com/termux/termux-app) | 0.75 | `NOASSERTION` | `discovery_only` |
+| 323 | 62092 | 2026-10-12T06:05:05Z | [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty) | 0.75 | `MIT` | `safe_to_integrate` |
+| 556 | 44737 | 2026-08-21T20:44:39Z | [vercel/hyper](https://github.com/vercel/hyper) | 0.95 | `MIT` | `safe_to_integrate` |
+| 827 | 35241 | 2026-10-12T04:31:55Z | [kovidgoyal/kitty](https://github.com/kovidgoyal/kitty) | 0.95 | `GPL-3.0` | `discovery_only` |

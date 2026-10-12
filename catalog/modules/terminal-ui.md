@@ -2,20 +2,20 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-11T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-12T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `191753` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `191720` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 184 | 83109 | 2026-10-11T09:23:14Z | [jesseduffield/lazygit](https://github.com/jesseduffield/lazygit) | 0.77 | `MIT` | `safe_to_integrate` |
-| 258 | 69965 | 2026-10-11T22:02:54Z | [code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 369 | 57501 | 2026-06-23T03:10:19Z | [Textualize/rich](https://github.com/Textualize/rich) | 0.97 | `MIT` | `safe_to_integrate` |
-| 396 | 54635 | 2025-12-15T17:20:36Z | [wagoodman/dive](https://github.com/wagoodman/dive) | 0.97 | `MIT` | `safe_to_integrate` |
-| 541 | 45439 | 2026-10-08T20:50:41Z | [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) | 0.97 | `MIT` | `safe_to_integrate` |
-| 584 | 43398 | 2026-10-11T21:35:19Z | [herdrdev/herdr](https://github.com/herdrdev/herdr) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 594 | 42764 | 2026-10-10T13:53:14Z | [sxyazi/yazi](https://github.com/sxyazi/yazi) | 0.97 | `MIT` | `safe_to_integrate` |
-| 631 | 41078 | 2026-10-11T17:35:39Z | [codewhale-hq/Codewhale](https://github.com/codewhale-hq/Codewhale) | 0.97 | `MIT` | `safe_to_integrate` |
-| 753 | 37430 | 2026-10-09T17:24:10Z | [Textualize/textual](https://github.com/Textualize/textual) | 0.97 | `MIT` | `safe_to_integrate` |
-| 811 | 35768 | 2026-10-11T22:04:37Z | [esengine/DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) | 0.97 | `MIT` | `safe_to_integrate` |
-| 833 | 35048 | 2026-10-11T21:29:41Z | [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi) | 0.97 | `MIT` | `safe_to_integrate` |
+| 183 | 83114 | 2026-10-11T09:23:14Z | [jesseduffield/lazygit](https://github.com/jesseduffield/lazygit) | 0.77 | `MIT` | `safe_to_integrate` |
+| 258 | 69968 | 2026-10-12T06:01:27Z | [code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 368 | 57503 | 2026-06-23T03:10:19Z | [Textualize/rich](https://github.com/Textualize/rich) | 0.97 | `MIT` | `safe_to_integrate` |
+| 395 | 54634 | 2025-12-15T17:20:36Z | [wagoodman/dive](https://github.com/wagoodman/dive) | 0.97 | `MIT` | `safe_to_integrate` |
+| 541 | 45438 | 2026-10-08T20:50:41Z | [charmbracelet/bubbletea](https://github.com/charmbracelet/bubbletea) | 0.97 | `MIT` | `safe_to_integrate` |
+| 583 | 43458 | 2026-10-11T22:52:58Z | [herdrdev/herdr](https://github.com/herdrdev/herdr) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 593 | 42771 | 2026-10-10T13:53:14Z | [sxyazi/yazi](https://github.com/sxyazi/yazi) | 0.97 | `MIT` | `safe_to_integrate` |
+| 632 | 41075 | 2026-10-12T05:39:34Z | [codewhale-hq/Codewhale](https://github.com/codewhale-hq/Codewhale) | 0.97 | `MIT` | `safe_to_integrate` |
+| 752 | 37431 | 2026-10-09T17:24:10Z | [Textualize/textual](https://github.com/Textualize/textual) | 0.97 | `MIT` | `safe_to_integrate` |
+| 810 | 35764 | 2026-10-12T06:03:37Z | [esengine/DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) | 0.97 | `MIT` | `safe_to_integrate` |
+| 830 | 35113 | 2026-10-12T06:06:37Z | [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi) | 0.97 | `MIT` | `safe_to_integrate` |
