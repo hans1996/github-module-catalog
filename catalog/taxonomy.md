@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 244
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 245
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 6
@@ -43,7 +43,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 62
+- [`media`](modules/media.md) — Media processing — 61
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
@@ -73,4 +73,4 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
-  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 14
+  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 15
