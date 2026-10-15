@@ -13,7 +13,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 31
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
-- [`api-backend`](modules/api-backend.md) — API backend — 57
+- [`api-backend`](modules/api-backend.md) — API backend — 58
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
