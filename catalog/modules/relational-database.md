@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-16T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `192229` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `192272` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 606 | 42203 | 2026-10-16T16:25:49Z | [duckdb/duckdb](https://github.com/duckdb/duckdb) | 0.77 | `MIT` | `safe_to_integrate` |
-| 944 | 32573 | 2026-10-15T16:42:00Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 606 | 42205 | 2026-10-16T16:49:31Z | [duckdb/duckdb](https://github.com/duckdb/duckdb) | 0.77 | `MIT` | `safe_to_integrate` |
+| 945 | 32574 | 2026-10-15T16:42:00Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | 0.77 | `NOASSERTION` | `discovery_only` |
