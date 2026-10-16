@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-16T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `192129` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `192196` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 194 | 80634 | 2026-10-12T04:41:25Z | [hoppscotch/hoppscotch](https://github.com/hoppscotch/hoppscotch) | 0.97 | `MIT` | `safe_to_integrate` |
-| 500 | 47668 | 2026-10-15T17:57:13Z | [usebruno/bruno](https://github.com/usebruno/bruno) | 0.97 | `MIT` | `safe_to_integrate` |
+| 194 | 80633 | 2026-10-12T04:41:25Z | [hoppscotch/hoppscotch](https://github.com/hoppscotch/hoppscotch) | 0.97 | `MIT` | `safe_to_integrate` |
+| 501 | 47682 | 2026-10-16T09:03:22Z | [usebruno/bruno](https://github.com/usebruno/bruno) | 0.97 | `MIT` | `safe_to_integrate` |
