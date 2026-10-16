@@ -4,30 +4,30 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-16T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `192196` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `192229` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 30 | 194671 | 2026-09-10T22:33:44Z | [massgravel/Microsoft-Activation-Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) | 0.95 | `GPL-3.0` | `discovery_only` |
-| 34 | 190045 | 2026-10-13T09:22:27Z | [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | 0.99 | `MIT` | `safe_to_integrate` |
-| 138 | 95555 | 2026-10-10T04:34:41Z | [nvm-sh/nvm](https://github.com/nvm-sh/nvm) | 0.99 | `MIT` | `safe_to_integrate` |
-| 181 | 83595 | 2026-10-15T16:35:58Z | [junegunn/fzf](https://github.com/junegunn/fzf) | 0.97 | `MIT` | `safe_to_integrate` |
-| 254 | 70619 | 2026-10-16T10:15:08Z | [tw93/Mole](https://github.com/tw93/Mole) | 0.97 | `GPL-3.0` | `discovery_only` |
-| 290 | 65471 | 2026-10-16T04:55:00Z | [warpdotdev/warp](https://github.com/warpdotdev/warp) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 295 | 64897 | 2026-10-15T08:38:36Z | [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 306 | 63960 | 2026-10-16T10:39:56Z | [tldr-pages/tldr](https://github.com/tldr-pages/tldr) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 311 | 63820 | 2026-10-15T20:18:55Z | [git/git](https://github.com/git/git) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 336 | 61292 | 2026-10-11T14:38:48Z | [pi-hole/pi-hole](https://github.com/pi-hole/pi-hole) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 346 | 60285 | 2026-10-16T08:26:42Z | [starship/starship](https://github.com/starship/starship) | 0.97 | `ISC` | `safe_to_integrate` |
-| 353 | 59379 | 2026-10-15T22:35:53Z | [Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat) | 0.97 | `MIT` | `safe_to_integrate` |
-| 387 | 55766 | 2026-10-15T23:22:34Z | [PowerShell/PowerShell](https://github.com/PowerShell/PowerShell) | 0.97 | `MIT` | `safe_to_integrate` |
-| 394 | 55253 | 2026-09-14T08:10:04Z | [romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k) | 0.99 | `MIT` | `safe_to_integrate` |
-| 496 | 47824 | 2026-10-16T08:16:13Z | [acmesh-official/acme.sh](https://github.com/acmesh-official/acme.sh) | 0.97 | `GPL-3.0` | `discovery_only` |
-| 534 | 45794 | 2026-10-12T11:32:12Z | [google/zx](https://github.com/google/zx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 547 | 45144 | 2026-10-16T08:12:17Z | [pyenv/pyenv](https://github.com/pyenv/pyenv) | 0.97 | `MIT` | `safe_to_integrate` |
-| 646 | 40671 | 2026-10-16T11:13:55Z | [nushell/nushell](https://github.com/nushell/nushell) | 0.97 | `MIT` | `safe_to_integrate` |
-| 658 | 40179 | 2026-10-14T02:12:17Z | [koalaman/shellcheck](https://github.com/koalaman/shellcheck) | 0.95 | `GPL-3.0` | `discovery_only` |
-| 663 | 40128 | 2026-10-14T04:57:13Z | [ajeetdsouza/zoxide](https://github.com/ajeetdsouza/zoxide) | 0.97 | `MIT` | `safe_to_integrate` |
-| 773 | 37160 | 2026-09-06T04:01:05Z | [jaywcjlove/linux-command](https://github.com/jaywcjlove/linux-command) | 0.95 | `MIT` | `safe_to_integrate` |
-| 875 | 34298 | 2026-10-14T15:08:51Z | [fish-shell/fish-shell](https://github.com/fish-shell/fish-shell) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 979 | 32003 | 2026-10-16T07:42:32Z | [atuinsh/atuin](https://github.com/atuinsh/atuin) | 0.97 | `MIT` | `safe_to_integrate` |
+| 30 | 194698 | 2026-09-10T22:33:44Z | [massgravel/Microsoft-Activation-Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) | 0.95 | `GPL-3.0` | `discovery_only` |
+| 34 | 190044 | 2026-10-13T09:22:27Z | [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) | 0.99 | `MIT` | `safe_to_integrate` |
+| 138 | 95559 | 2026-10-10T04:34:41Z | [nvm-sh/nvm](https://github.com/nvm-sh/nvm) | 0.99 | `MIT` | `safe_to_integrate` |
+| 182 | 83599 | 2026-10-15T16:35:58Z | [junegunn/fzf](https://github.com/junegunn/fzf) | 0.97 | `MIT` | `safe_to_integrate` |
+| 254 | 70640 | 2026-10-16T16:38:22Z | [tw93/Mole](https://github.com/tw93/Mole) | 0.97 | `GPL-3.0` | `discovery_only` |
+| 290 | 65476 | 2026-10-16T15:54:41Z | [warpdotdev/warp](https://github.com/warpdotdev/warp) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 295 | 64899 | 2026-10-15T08:38:36Z | [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 306 | 63961 | 2026-10-16T14:48:54Z | [tldr-pages/tldr](https://github.com/tldr-pages/tldr) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 311 | 63827 | 2026-10-16T15:38:01Z | [git/git](https://github.com/git/git) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 336 | 61296 | 2026-10-11T14:38:48Z | [pi-hole/pi-hole](https://github.com/pi-hole/pi-hole) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 346 | 60287 | 2026-10-16T08:26:42Z | [starship/starship](https://github.com/starship/starship) | 0.97 | `ISC` | `safe_to_integrate` |
+| 353 | 59389 | 2026-10-15T22:35:53Z | [Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat) | 0.97 | `MIT` | `safe_to_integrate` |
+| 387 | 55772 | 2026-10-16T15:02:17Z | [PowerShell/PowerShell](https://github.com/PowerShell/PowerShell) | 0.97 | `MIT` | `safe_to_integrate` |
+| 394 | 55255 | 2026-09-14T08:10:04Z | [romkatv/powerlevel10k](https://github.com/romkatv/powerlevel10k) | 0.99 | `MIT` | `safe_to_integrate` |
+| 497 | 47826 | 2026-10-16T12:50:38Z | [acmesh-official/acme.sh](https://github.com/acmesh-official/acme.sh) | 0.97 | `GPL-3.0` | `discovery_only` |
+| 535 | 45794 | 2026-10-12T11:32:12Z | [google/zx](https://github.com/google/zx) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 547 | 45146 | 2026-10-16T08:12:17Z | [pyenv/pyenv](https://github.com/pyenv/pyenv) | 0.97 | `MIT` | `safe_to_integrate` |
+| 646 | 40671 | 2026-10-16T16:12:59Z | [nushell/nushell](https://github.com/nushell/nushell) | 0.97 | `MIT` | `safe_to_integrate` |
+| 658 | 40180 | 2026-10-14T02:12:17Z | [koalaman/shellcheck](https://github.com/koalaman/shellcheck) | 0.95 | `GPL-3.0` | `discovery_only` |
+| 664 | 40134 | 2026-10-14T04:57:13Z | [ajeetdsouza/zoxide](https://github.com/ajeetdsouza/zoxide) | 0.97 | `MIT` | `safe_to_integrate` |
+| 773 | 37161 | 2026-09-06T04:01:05Z | [jaywcjlove/linux-command](https://github.com/jaywcjlove/linux-command) | 0.95 | `MIT` | `safe_to_integrate` |
+| 875 | 34299 | 2026-10-16T14:44:55Z | [fish-shell/fish-shell](https://github.com/fish-shell/fish-shell) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 979 | 32006 | 2026-10-16T07:42:32Z | [atuinsh/atuin](https://github.com/atuinsh/atuin) | 0.97 | `MIT` | `safe_to_integrate` |
