@@ -4,12 +4,12 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-17T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `192364` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `192441` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 157 | 91204 | 2026-10-16T18:08:45Z | [opencv/opencv](https://github.com/opencv/opencv) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 290 | 65902 | 2026-10-17T14:39:16Z | [storytold/photocraft](https://github.com/storytold/photocraft) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 437 | 51230 | 2026-10-17T05:48:01Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.97 | `MIT` | `safe_to_integrate` |
-| 840 | 35065 | 2026-10-12T07:50:51Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | 0.97 | `MPL-2.0` | `discovery_only` |
+| 157 | 91206 | 2026-10-16T18:08:45Z | [opencv/opencv](https://github.com/opencv/opencv) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 288 | 66232 | 2026-10-17T20:20:45Z | [storytold/photocraft](https://github.com/storytold/photocraft) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 437 | 51233 | 2026-10-17T05:48:01Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.97 | `MIT` | `safe_to_integrate` |
+| 840 | 35068 | 2026-10-12T07:50:51Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | 0.97 | `MPL-2.0` | `discovery_only` |
 | 940 | 32770 | 2026-10-15T07:10:34Z | [lovell/sharp](https://github.com/lovell/sharp) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
