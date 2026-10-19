@@ -2,27 +2,27 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-18T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-19T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `192636` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `192614` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 156 | 91318 | 2026-09-16T03:31:50Z | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 157 | 91216 | 2026-10-16T18:08:45Z | [opencv/opencv](https://github.com/opencv/opencv) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 190 | 81982 | 2026-10-17T15:18:55Z | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 215 | 77056 | 2026-10-18T19:50:19Z | [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 260 | 69952 | 2026-09-16T20:17:56Z | [microsoft/AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners) | 0.95 | `MIT` | `safe_to_integrate` |
-| 325 | 62617 | 2026-10-18T20:34:18Z | [ultralytics/ultralytics](https://github.com/ultralytics/ultralytics) | 0.99 | `AGPL-3.0` | `discovery_only` |
-| 362 | 58181 | 2026-10-18T14:15:38Z | [ultralytics/yolov5](https://github.com/ultralytics/yolov5) | 0.99 | `AGPL-3.0` | `discovery_only` |
-| 438 | 51244 | 2026-10-17T05:48:01Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.99 | `MIT` | `safe_to_integrate` |
-| 468 | 49620 | 2026-10-18T20:38:46Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
-| 490 | 48014 | 2025-11-20T14:58:13Z | [hiroi-sora/Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) | 0.97 | `MIT` | `safe_to_integrate` |
-| 515 | 46846 | 2026-10-18T14:30:49Z | [paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) | 0.97 | `GPL-3.0` | `discovery_only` |
-| 667 | 40172 | 2026-10-18T04:31:46Z | [ShareX/ShareX](https://github.com/ShareX/ShareX) | 0.95 | `GPL-3.0` | `discovery_only` |
-| 712 | 38770 | 2026-05-17T04:19:12Z | [naptha/tesseract.js](https://github.com/naptha/tesseract.js) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 765 | 37318 | 2026-10-16T20:57:35Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 770 | 37226 | 2026-10-18T19:31:44Z | [huggingface/pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 784 | 36722 | 2026-10-18T20:12:02Z | [blakeblackshear/frigate](https://github.com/blakeblackshear/frigate) | 0.99 | `MIT` | `safe_to_integrate` |
-| 840 | 35089 | 2026-10-12T07:50:51Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | 0.97 | `MPL-2.0` | `discovery_only` |
-| 850 | 34926 | 2026-09-30T06:02:30Z | [facebookresearch/detectron2](https://github.com/facebookresearch/detectron2) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 155 | 91342 | 2026-09-16T03:31:50Z | [PaddlePaddle/PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 158 | 91223 | 2026-10-16T18:08:45Z | [opencv/opencv](https://github.com/opencv/opencv) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 189 | 82005 | 2026-10-17T15:18:55Z | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 214 | 77060 | 2026-10-18T19:50:19Z | [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 259 | 69966 | 2026-09-16T20:17:56Z | [microsoft/AI-For-Beginners](https://github.com/microsoft/AI-For-Beginners) | 0.95 | `MIT` | `safe_to_integrate` |
+| 324 | 62623 | 2026-10-19T03:28:00Z | [ultralytics/ultralytics](https://github.com/ultralytics/ultralytics) | 0.99 | `AGPL-3.0` | `discovery_only` |
+| 361 | 58183 | 2026-10-18T14:15:38Z | [ultralytics/yolov5](https://github.com/ultralytics/yolov5) | 0.99 | `AGPL-3.0` | `discovery_only` |
+| 438 | 51246 | 2026-10-19T00:04:23Z | [roboflow/supervision](https://github.com/roboflow/supervision) | 0.99 | `MIT` | `safe_to_integrate` |
+| 469 | 49626 | 2026-10-19T00:24:20Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
+| 489 | 48031 | 2025-11-20T14:58:13Z | [hiroi-sora/Umi-OCR](https://github.com/hiroi-sora/Umi-OCR) | 0.97 | `MIT` | `safe_to_integrate` |
+| 514 | 46862 | 2026-10-19T03:25:08Z | [paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) | 0.97 | `GPL-3.0` | `discovery_only` |
+| 663 | 40196 | 2026-10-18T21:45:57Z | [ShareX/ShareX](https://github.com/ShareX/ShareX) | 0.95 | `GPL-3.0` | `discovery_only` |
+| 711 | 38770 | 2026-05-17T04:19:12Z | [naptha/tesseract.js](https://github.com/naptha/tesseract.js) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 763 | 37320 | 2026-10-16T20:57:35Z | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 769 | 37226 | 2026-10-19T01:51:39Z | [huggingface/pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 783 | 36731 | 2026-10-18T20:12:02Z | [blakeblackshear/frigate](https://github.com/blakeblackshear/frigate) | 0.99 | `MIT` | `safe_to_integrate` |
+| 839 | 35093 | 2026-10-12T07:50:51Z | [ocrmypdf/OCRmyPDF](https://github.com/ocrmypdf/OCRmyPDF) | 0.97 | `MPL-2.0` | `discovery_only` |
+| 849 | 34928 | 2026-09-30T06:02:30Z | [facebookresearch/detectron2](https://github.com/facebookresearch/detectron2) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
