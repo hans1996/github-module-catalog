@@ -28,7 +28,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 4
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
   - [`object-storage`](modules/object-storage.md) — Object and blob storage — 2
-  - [`relational-database`](modules/relational-database.md) — Relational database — 2
+  - [`relational-database`](modules/relational-database.md) — Relational database — 1
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 11
 - [`devops`](modules/devops.md) — DevOps and delivery — 44
