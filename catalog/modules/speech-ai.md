@@ -4,21 +4,21 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-21T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `193305` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `193356` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 47 | 167954 | 2026-10-21T17:07:23Z | [huggingface/transformers](https://github.com/huggingface/transformers) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 75 | 133722 | 2026-10-21T06:54:32Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
-| 105 | 111007 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | 0.77 | `MIT` | `safe_to_integrate` |
-| 198 | 80010 | 2026-10-21T05:19:20Z | [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 206 | 78371 | 2026-10-21T17:15:58Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 259 | 70563 | 2026-10-16T15:07:33Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 317 | 63402 | 2026-10-19T10:05:29Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | 0.97 | `MIT` | `safe_to_integrate` |
-| 349 | 60208 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 405 | 54541 | 2026-10-19T14:14:00Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | 0.97 | `MIT` | `safe_to_integrate` |
-| 467 | 49833 | 2026-10-21T17:15:18Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
-| 681 | 39922 | 2026-04-10T16:33:48Z | [2noise/ChatTTS](https://github.com/2noise/ChatTTS) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 684 | 39660 | 2026-10-08T03:26:41Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 780 | 36884 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 926 | 33336 | 2026-10-14T06:14:59Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 47 | 167958 | 2026-10-21T19:27:08Z | [huggingface/transformers](https://github.com/huggingface/transformers) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 75 | 133769 | 2026-10-21T06:54:32Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
+| 105 | 111016 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | 0.77 | `MIT` | `safe_to_integrate` |
+| 197 | 80264 | 2026-10-21T19:58:46Z | [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 206 | 78376 | 2026-10-21T21:47:01Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 259 | 70595 | 2026-10-16T15:07:33Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 316 | 63412 | 2026-10-19T10:05:29Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | 0.97 | `MIT` | `safe_to_integrate` |
+| 349 | 60207 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 405 | 54546 | 2026-10-19T14:14:00Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | 0.97 | `MIT` | `safe_to_integrate` |
+| 467 | 49840 | 2026-10-21T21:31:56Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
+| 681 | 39921 | 2026-04-10T16:33:48Z | [2noise/ChatTTS](https://github.com/2noise/ChatTTS) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 684 | 39669 | 2026-10-08T03:26:41Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 781 | 36883 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 926 | 33341 | 2026-10-14T06:14:59Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | 0.97 | `NOASSERTION` | `discovery_only` |
