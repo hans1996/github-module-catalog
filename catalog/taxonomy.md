@@ -6,14 +6,14 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 249
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 251
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 6
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 31
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
-- [`api-backend`](modules/api-backend.md) — API backend — 59
+- [`api-backend`](modules/api-backend.md) — API backend — 60
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
@@ -24,26 +24,26 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
   - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
-- [`database-storage`](modules/database-storage.md) — Database and storage — 45
+- [`database-storage`](modules/database-storage.md) — Database and storage — 44
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 4
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
   - [`object-storage`](modules/object-storage.md) — Object and blob storage — 2
   - [`relational-database`](modules/relational-database.md) — Relational database — 1
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 11
-- [`devops`](modules/devops.md) — DevOps and delivery — 45
+- [`devops`](modules/devops.md) — DevOps and delivery — 44
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 4
   - [`infrastructure-as-code`](modules/infrastructure-as-code.md) — Infrastructure as code — 1
   - [`kubernetes-tooling`](modules/kubernetes-tooling.md) — Kubernetes tooling — 1
-  - [`observability`](modules/observability.md) — Observability — 20
+  - [`observability`](modules/observability.md) — Observability — 19
     - [`distributed-tracing`](modules/distributed-tracing.md) — Distributed tracing — 2
     - [`error-tracking`](modules/error-tracking.md) — Error tracking — 2
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 61
+- [`media`](modules/media.md) — Media processing — 60
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
@@ -51,7 +51,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 43
+- [`security`](modules/security.md) — Security — 44
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
@@ -60,11 +60,11 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`cryptography`](modules/cryptography.md) — Cryptography — 2
   - [`malware-analysis`](modules/malware-analysis.md) — Malware analysis — 2
   - [`network-security`](modules/network-security.md) — Network security — 2
-  - [`penetration-testing`](modules/penetration-testing.md) — Penetration testing — 9
+  - [`penetration-testing`](modules/penetration-testing.md) — Penetration testing — 10
   - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 7
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
   - [`vulnerability-scanning`](modules/vulnerability-scanning.md) — Vulnerability scanning — 2
-- [`testing`](modules/testing.md) — Testing — 12
+- [`testing`](modules/testing.md) — Testing — 13
   - [`api-testing`](modules/api-testing.md) — API testing — 2
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
   - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
