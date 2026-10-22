@@ -24,8 +24,8 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
   - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
-- [`database-storage`](modules/database-storage.md) — Database and storage — 44
-  - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 4
+- [`database-storage`](modules/database-storage.md) — Database and storage — 43
+  - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 3
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
   - [`object-storage`](modules/object-storage.md) — Object and blob storage — 2
   - [`relational-database`](modules/relational-database.md) — Relational database — 1
