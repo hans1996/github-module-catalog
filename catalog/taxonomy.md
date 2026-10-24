@@ -9,17 +9,17 @@ Repositories can appear in multiple capability branches. Parent counts include r
 - [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 251
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
-  - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 6
+  - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 7
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 31
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
-- [`api-backend`](modules/api-backend.md) — API backend — 60
+- [`api-backend`](modules/api-backend.md) — API backend — 61
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 97
+- [`cli`](modules/cli.md) — Command-line interface — 96
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
@@ -43,7 +43,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 60
+- [`media`](modules/media.md) — Media processing — 61
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
@@ -69,8 +69,8 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
   - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
-- [`web-ui`](modules/web-ui.md) — Web user interface — 58
+- [`web-ui`](modules/web-ui.md) — Web user interface — 57
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
-  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 15
+  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 14
