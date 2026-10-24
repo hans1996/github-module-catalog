@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-24T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `193313` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `193396` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 259 | 71080 | 2026-10-23T22:40:29Z | [ansible/ansible](https://github.com/ansible/ansible) | 0.77 | `GPL-3.0` | `discovery_only` |
-| 921 | 33473 | 2026-10-23T08:29:04Z | [alibaba/nacos](https://github.com/alibaba/nacos) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 260 | 71083 | 2026-10-23T22:40:29Z | [ansible/ansible](https://github.com/ansible/ansible) | 0.77 | `GPL-3.0` | `discovery_only` |
+| 921 | 33475 | 2026-10-23T08:29:04Z | [alibaba/nacos](https://github.com/alibaba/nacos) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
