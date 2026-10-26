@@ -4,10 +4,10 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-26T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `193764` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `193918` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 222 | 77108 | 2026-10-26T02:01:34Z | [redis/redis](https://github.com/redis/redis) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 431 | 52428 | 2026-10-23T20:28:27Z | [etcd-io/etcd](https://github.com/etcd-io/etcd) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
-| 985 | 32225 | 2026-10-23T23:03:53Z | [facebook/rocksdb](https://github.com/facebook/rocksdb) | 0.77 | `GPL-2.0` | `discovery_only` |
+| 223 | 77111 | 2026-10-26T12:40:46Z | [redis/redis](https://github.com/redis/redis) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 432 | 52428 | 2026-10-23T20:28:27Z | [etcd-io/etcd](https://github.com/etcd-io/etcd) | 0.77 | `Apache-2.0` | `safe_to_integrate` |
+| 988 | 32225 | 2026-10-23T23:03:53Z | [facebook/rocksdb](https://github.com/facebook/rocksdb) | 0.77 | `GPL-2.0` | `discovery_only` |

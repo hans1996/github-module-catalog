@@ -51,7 +51,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 43
+- [`security`](modules/security.md) — Security — 42
   - [`auth`](modules/auth.md) — Authentication and authorization — 9
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
@@ -69,7 +69,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
   - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
-- [`web-ui`](modules/web-ui.md) — Web user interface — 57
+- [`web-ui`](modules/web-ui.md) — Web user interface — 56
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
