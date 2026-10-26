@@ -13,7 +13,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 31
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
-- [`api-backend`](modules/api-backend.md) — API backend — 60
+- [`api-backend`](modules/api-backend.md) — API backend — 59
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
@@ -52,7 +52,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
 - [`security`](modules/security.md) — Security — 42
-  - [`auth`](modules/auth.md) — Authentication and authorization — 9
+  - [`auth`](modules/auth.md) — Authentication and authorization — 8
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
     - `multi-factor-auth` — Multi-factor authentication — 0
