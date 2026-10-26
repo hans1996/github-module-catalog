@@ -2,10 +2,10 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-25T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-26T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `193769` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `193764` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 936 | 33228 | 2026-10-19T09:13:46Z | [surrealdb/surrealdb](https://github.com/surrealdb/surrealdb) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 936 | 33230 | 2026-10-19T09:13:46Z | [surrealdb/surrealdb](https://github.com/surrealdb/surrealdb) | 0.97 | `NOASSERTION` | `discovery_only` |
