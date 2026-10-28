@@ -13,8 +13,8 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 31
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
-- [`api-backend`](modules/api-backend.md) — API backend — 59
-  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 5
+- [`api-backend`](modules/api-backend.md) — API backend — 60
+  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 6
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
@@ -51,9 +51,9 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 41
-  - [`auth`](modules/auth.md) — Authentication and authorization — 8
-    - [`access-control`](modules/access-control.md) — Access control — 1
+- [`security`](modules/security.md) — Security — 42
+  - [`auth`](modules/auth.md) — Authentication and authorization — 9
+    - [`access-control`](modules/access-control.md) — Access control — 2
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
     - `multi-factor-auth` — Multi-factor authentication — 0
     - `oauth-oidc` — OAuth and OpenID Connect — 0
