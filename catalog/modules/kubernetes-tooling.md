@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-29T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `194555` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `194889` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 869 | 34894 | 2026-10-27T20:40:04Z | [derailed/k9s](https://github.com/derailed/k9s) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 870 | 34897 | 2026-10-29T16:46:11Z | [derailed/k9s](https://github.com/derailed/k9s) | 0.97 | `Apache-2.0` | `safe_to_integrate` |

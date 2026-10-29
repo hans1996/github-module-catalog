@@ -4,8 +4,8 @@
 
 Minimum stars: `100`; Pushed since: `2025-10-29T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `194555` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `194889` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 972 | 32593 | 2026-10-21T21:32:37Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 973 | 32596 | 2026-10-29T12:06:14Z | [cockroachdb/cockroach](https://github.com/cockroachdb/cockroach) | 0.77 | `NOASSERTION` | `discovery_only` |
