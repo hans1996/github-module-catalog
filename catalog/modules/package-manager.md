@@ -2,14 +2,14 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-29T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-10-30T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `194889` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `194753` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 140 | 96461 | 2026-10-29T22:44:11Z | [oven-sh/bun](https://github.com/oven-sh/bun) | 0.77 | `NOASSERTION` | `discovery_only` |
-| 467 | 50152 | 2026-10-29T17:04:53Z | [Homebrew/brew](https://github.com/Homebrew/brew) | 0.97 | `BSD-2-Clause` | `safe_to_integrate` |
-| 635 | 41467 | 2026-05-12T11:09:42Z | [yarnpkg/yarn](https://github.com/yarnpkg/yarn) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 795 | 36956 | 2026-10-29T22:35:12Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | 0.99 | `MIT` | `safe_to_integrate` |
-| 890 | 34320 | 2026-10-28T04:02:20Z | [python-poetry/poetry](https://github.com/python-poetry/poetry) | 0.97 | `MIT` | `safe_to_integrate` |
+| 140 | 96464 | 2026-10-30T05:55:55Z | [oven-sh/bun](https://github.com/oven-sh/bun) | 0.77 | `NOASSERTION` | `discovery_only` |
+| 468 | 50155 | 2026-10-30T05:49:53Z | [Homebrew/brew](https://github.com/Homebrew/brew) | 0.97 | `BSD-2-Clause` | `safe_to_integrate` |
+| 635 | 41468 | 2026-05-12T11:09:42Z | [yarnpkg/yarn](https://github.com/yarnpkg/yarn) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 795 | 36961 | 2026-10-30T01:43:06Z | [pnpm/pnpm](https://github.com/pnpm/pnpm) | 0.99 | `MIT` | `safe_to_integrate` |
+| 890 | 34323 | 2026-10-28T04:02:20Z | [python-poetry/poetry](https://github.com/python-poetry/poetry) | 0.97 | `MIT` | `safe_to_integrate` |
