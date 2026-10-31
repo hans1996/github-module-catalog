@@ -61,7 +61,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`malware-analysis`](modules/malware-analysis.md) — Malware analysis — 2
   - [`network-security`](modules/network-security.md) — Network security — 2
   - [`penetration-testing`](modules/penetration-testing.md) — Penetration testing — 10
-  - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 7
+  - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 6
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
   - [`vulnerability-scanning`](modules/vulnerability-scanning.md) — Vulnerability scanning — 2
 - [`testing`](modules/testing.md) — Testing — 13
