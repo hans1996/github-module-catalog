@@ -2,19 +2,19 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-10-31T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-11-01T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `195300` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `195241` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 149 | 95327 | 2026-10-31T05:12:25Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
-| 255 | 73082 | 2026-10-30T20:56:09Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
-| 441 | 51663 | 2026-09-22T21:44:42Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 459 | 50658 | 2026-10-27T06:17:04Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.95 | `AGPL-3.0` | `discovery_only` |
-| 474 | 50089 | 2026-10-28T22:00:03Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
-| 595 | 43873 | 2026-09-22T06:43:21Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | 0.75 | `MIT` | `safe_to_integrate` |
-| 701 | 39577 | 2026-10-31T10:28:42Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |
+| 149 | 95347 | 2026-11-01T05:13:17Z | [sherlock-project/sherlock](https://github.com/sherlock-project/sherlock) | 0.97 | `MIT` | `safe_to_integrate` |
+| 255 | 73115 | 2026-10-30T20:56:09Z | [usestrix/strix](https://github.com/usestrix/strix) | 0.99 | `Apache-2.0` | `safe_to_integrate` |
+| 441 | 51668 | 2026-09-22T21:44:42Z | [elder-plinius/CL4R1T4S](https://github.com/elder-plinius/CL4R1T4S) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 458 | 50703 | 2026-10-27T06:17:04Z | [KeygraphHQ/shannon](https://github.com/KeygraphHQ/shannon) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 473 | 50101 | 2026-10-28T22:00:03Z | [x64dbg/x64dbg](https://github.com/x64dbg/x64dbg) | 0.95 | `NOASSERTION` | `discovery_only` |
+| 596 | 43892 | 2026-09-22T06:43:21Z | [zhaoxuya520/reverse-skill](https://github.com/zhaoxuya520/reverse-skill) | 0.75 | `MIT` | `safe_to_integrate` |
+| 701 | 39585 | 2026-10-31T10:28:42Z | [soxoj/maigret](https://github.com/soxoj/maigret) | 0.97 | `MIT` | `safe_to_integrate` |
 | 732 | 38825 | 2026-10-30T16:31:42Z | [sqlmapproject/sqlmap](https://github.com/sqlmapproject/sqlmap) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 855 | 35349 | 2026-08-31T04:32:44Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 959 | 32862 | 2026-10-22T23:26:13Z | [vxcontrol/pentagi](https://github.com/vxcontrol/pentagi) | 0.99 | `MIT` | `safe_to_integrate` |
+| 855 | 35364 | 2026-08-31T04:32:44Z | [mukul975/Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 959 | 32881 | 2026-10-22T23:26:13Z | [vxcontrol/pentagi](https://github.com/vxcontrol/pentagi) | 0.99 | `MIT` | `safe_to_integrate` |
