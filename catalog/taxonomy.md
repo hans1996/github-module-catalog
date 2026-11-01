@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 253
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 254
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 7
@@ -64,10 +64,10 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 6
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
   - [`vulnerability-scanning`](modules/vulnerability-scanning.md) — Vulnerability scanning — 2
-- [`testing`](modules/testing.md) — Testing — 13
+- [`testing`](modules/testing.md) — Testing — 12
   - [`api-testing`](modules/api-testing.md) — API testing — 2
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
-  - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
+  - `performance-testing` — Performance and load testing — 0
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
 - [`web-ui`](modules/web-ui.md) — Web user interface — 56
   - [`content-management`](modules/content-management.md) — Content management system — 7
