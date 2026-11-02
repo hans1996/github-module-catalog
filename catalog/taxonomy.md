@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 254
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 253
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 7
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 7
@@ -19,19 +19,19 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 7
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 96
+- [`cli`](modules/cli.md) — Command-line interface — 97
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
   - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
-- [`database-storage`](modules/database-storage.md) — Database and storage — 43
+- [`database-storage`](modules/database-storage.md) — Database and storage — 44
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 3
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
   - [`object-storage`](modules/object-storage.md) — Object and blob storage — 2
   - [`relational-database`](modules/relational-database.md) — Relational database — 1
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 11
-- [`devops`](modules/devops.md) — DevOps and delivery — 43
+- [`devops`](modules/devops.md) — DevOps and delivery — 44
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 4
