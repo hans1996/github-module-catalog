@@ -13,7 +13,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 31
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
-- [`api-backend`](modules/api-backend.md) — API backend — 60
+- [`api-backend`](modules/api-backend.md) — API backend — 61
   - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 6
   - [`graphql-api`](modules/graphql-api.md) — GraphQL API server — 1
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
@@ -22,7 +22,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 - [`cli`](modules/cli.md) — Command-line interface — 97
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
-  - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 7
+  - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 6
   - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
 - [`database-storage`](modules/database-storage.md) — Database and storage — 44
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 3
@@ -64,10 +64,10 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 6
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
   - [`vulnerability-scanning`](modules/vulnerability-scanning.md) — Vulnerability scanning — 2
-- [`testing`](modules/testing.md) — Testing — 12
+- [`testing`](modules/testing.md) — Testing — 13
   - [`api-testing`](modules/api-testing.md) — API testing — 2
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
-  - `performance-testing` — Performance and load testing — 0
+  - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
 - [`web-ui`](modules/web-ui.md) — Web user interface — 56
   - [`content-management`](modules/content-management.md) — Content management system — 7
