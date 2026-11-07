@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-11-06T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-11-07T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
 Top `1000` of `195962` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 27 | 205748 | 2026-11-04T07:16:27Z | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | 0.99 | `Unlicense` | `safe_to_integrate` |
-| 554 | 45852 | 2026-04-06T11:59:56Z | [imputnet/cobalt](https://github.com/imputnet/cobalt) | 0.95 | `AGPL-3.0` | `discovery_only` |
+| 27 | 205839 | 2026-11-04T07:16:27Z | [yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp) | 0.99 | `Unlicense` | `safe_to_integrate` |
+| 553 | 45878 | 2026-04-06T11:59:56Z | [imputnet/cobalt](https://github.com/imputnet/cobalt) | 0.95 | `AGPL-3.0` | `discovery_only` |
