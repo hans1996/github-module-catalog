@@ -4,21 +4,21 @@
 
 Minimum stars: `100`; Pushed since: `2025-11-07T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `196046` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `196279` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 49 | 168622 | 2026-11-07T12:31:22Z | [huggingface/transformers](https://github.com/huggingface/transformers) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 75 | 140488 | 2026-11-07T00:43:54Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
-| 109 | 112156 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | 0.77 | `MIT` | `safe_to_integrate` |
-| 129 | 103407 | 2026-11-07T12:34:08Z | [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 212 | 79146 | 2026-11-07T13:14:03Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 222 | 78001 | 2026-11-03T17:42:02Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 318 | 64474 | 2026-10-31T15:56:56Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | 0.97 | `MIT` | `safe_to_integrate` |
-| 362 | 60230 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 412 | 54992 | 2026-11-06T05:18:00Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | 0.97 | `MIT` | `safe_to_integrate` |
-| 473 | 50242 | 2026-11-07T13:07:47Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
-| 656 | 41156 | 2026-11-05T08:00:22Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 49 | 168631 | 2026-11-07T20:57:03Z | [huggingface/transformers](https://github.com/huggingface/transformers) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 73 | 140723 | 2026-11-07T00:43:54Z | [harry0703/MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | 0.97 | `MIT` | `safe_to_integrate` |
+| 109 | 112185 | 2026-08-31T17:19:19Z | [openai/whisper](https://github.com/openai/whisper) | 0.77 | `MIT` | `safe_to_integrate` |
+| 127 | 103781 | 2026-11-07T21:02:43Z | [debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 212 | 79156 | 2026-11-07T21:26:48Z | [unslothai/unsloth](https://github.com/unslothai/unsloth) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 221 | 78236 | 2026-11-07T19:46:29Z | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | 0.97 | `AGPL-3.0` | `discovery_only` |
+| 318 | 64509 | 2026-10-31T15:56:56Z | [RVC-Boss/GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | 0.97 | `MIT` | `safe_to_integrate` |
+| 362 | 60234 | 2026-03-09T10:31:58Z | [CorentinJ/Real-Time-Voice-Cloning](https://github.com/CorentinJ/Real-Time-Voice-Cloning) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 412 | 55003 | 2026-11-07T15:03:02Z | [ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp) | 0.97 | `MIT` | `safe_to_integrate` |
+| 473 | 50243 | 2026-11-07T19:47:32Z | [mudler/LocalAI](https://github.com/mudler/LocalAI) | 0.95 | `MIT` | `safe_to_integrate` |
+| 650 | 41320 | 2026-11-05T08:00:22Z | [OpenBMB/VoxCPM](https://github.com/OpenBMB/VoxCPM) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
 | 696 | 39994 | 2026-04-10T16:33:48Z | [2noise/ChatTTS](https://github.com/2noise/ChatTTS) | 0.97 | `AGPL-3.0` | `discovery_only` |
-| 805 | 36872 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 930 | 33605 | 2026-11-02T20:02:21Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 805 | 36871 | 2026-03-03T14:59:58Z | [babysor/MockingBird](https://github.com/babysor/MockingBird) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 931 | 33612 | 2026-11-02T20:02:21Z | [fishaudio/fish-speech](https://github.com/fishaudio/fish-speech) | 0.97 | `NOASSERTION` | `discovery_only` |
