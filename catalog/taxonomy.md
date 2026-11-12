@@ -7,23 +7,23 @@ Repositories can appear in multiple capability branches. Parent counts include r
 ## Capability map
 
 - [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 257
-  - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 6
+  - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 5
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
-  - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 8
+  - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 9
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 30
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
-- [`api-backend`](modules/api-backend.md) — API backend — 62
-  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 7
+- [`api-backend`](modules/api-backend.md) — API backend — 63
+  - [`api-gateway`](modules/api-gateway.md) — API gateway and management — 8
   - `graphql-api` — GraphQL API server — 0
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 6
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 98
+- [`cli`](modules/cli.md) — Command-line interface — 96
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 6
-  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
+  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 10
 - [`database-storage`](modules/database-storage.md) — Database and storage — 43
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 3
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
@@ -51,7 +51,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 41
+- [`security`](modules/security.md) — Security — 40
   - [`auth`](modules/auth.md) — Authentication and authorization — 8
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
@@ -69,7 +69,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
   - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
-- [`web-ui`](modules/web-ui.md) — Web user interface — 56
+- [`web-ui`](modules/web-ui.md) — Web user interface — 57
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
