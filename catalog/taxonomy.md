@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 258
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 259
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 5
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 9
@@ -31,7 +31,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`relational-database`](modules/relational-database.md) — Relational database — 1
   - [`search-engine`](modules/search-engine.md) — Search engine — 5
   - [`vector-database`](modules/vector-database.md) — Vector database — 11
-- [`devops`](modules/devops.md) — DevOps and delivery — 44
+- [`devops`](modules/devops.md) — DevOps and delivery — 43
   - [`ci-cd`](modules/ci-cd.md) — Continuous integration and delivery — 5
   - [`configuration-management`](modules/configuration-management.md) — Configuration management — 2
   - [`container-tooling`](modules/container-tooling.md) — Container tooling — 4
@@ -43,7 +43,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 63
+- [`media`](modules/media.md) — Media processing — 64
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5

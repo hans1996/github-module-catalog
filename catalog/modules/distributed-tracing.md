@@ -4,9 +4,9 @@
 
 Minimum stars: `100`; Pushed since: `2025-11-13T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `197544` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `197890` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 310 | 65549 | 2026-11-12T13:54:09Z | [traefik/traefik](https://github.com/traefik/traefik) | 0.97 | `MIT` | `safe_to_integrate` |
-| 980 | 32616 | 2026-11-13T06:51:24Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 310 | 65537 | 2026-11-13T16:12:07Z | [traefik/traefik](https://github.com/traefik/traefik) | 0.97 | `MIT` | `safe_to_integrate` |
+| 980 | 32622 | 2026-11-13T19:43:14Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.97 | `NOASSERTION` | `discovery_only` |
