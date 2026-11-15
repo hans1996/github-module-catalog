@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-11-14T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-11-15T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `199097` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `199078` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 310 | 65549 | 2026-11-13T16:12:07Z | [traefik/traefik](https://github.com/traefik/traefik) | 0.97 | `MIT` | `safe_to_integrate` |
-| 981 | 32643 | 2026-11-14T08:47:58Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 310 | 65550 | 2026-11-13T16:12:07Z | [traefik/traefik](https://github.com/traefik/traefik) | 0.97 | `MIT` | `safe_to_integrate` |
+| 981 | 32646 | 2026-11-15T05:57:35Z | [SigNoz/signoz](https://github.com/SigNoz/signoz) | 0.97 | `NOASSERTION` | `discovery_only` |
