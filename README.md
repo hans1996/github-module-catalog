@@ -17,7 +17,7 @@ CLIs, services, plugins, and templates for larger systems.
 
 | Indexed repositories | GitHub Search matches | Last refresh |
 | ---: | ---: | --- |
-| **1,000** | **199,078** | **2026-11-15 06:44 UTC** |
+| **1,000** | **198,691** | **2026-11-15 18:56 UTC** |
 
 **Selection:** **100+ stars** · pushed since **2025-11-15** · public · non-archived · non-fork
 
