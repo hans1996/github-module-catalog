@@ -19,11 +19,11 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 6
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 97
+- [`cli`](modules/cli.md) — Command-line interface — 98
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 6
-  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 10
+  - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
 - [`database-storage`](modules/database-storage.md) — Database and storage — 42
   - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 2
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
