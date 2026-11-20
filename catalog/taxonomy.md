@@ -38,7 +38,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`infrastructure-as-code`](modules/infrastructure-as-code.md) — Infrastructure as code — 1
   - [`kubernetes-tooling`](modules/kubernetes-tooling.md) — Kubernetes tooling — 1
   - [`observability`](modules/observability.md) — Observability — 19
-    - [`distributed-tracing`](modules/distributed-tracing.md) — Distributed tracing — 2
+    - [`distributed-tracing`](modules/distributed-tracing.md) — Distributed tracing — 3
     - [`error-tracking`](modules/error-tracking.md) — Error tracking — 2
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
@@ -51,7 +51,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
-- [`security`](modules/security.md) — Security — 40
+- [`security`](modules/security.md) — Security — 41
   - [`auth`](modules/auth.md) — Authentication and authorization — 8
     - [`access-control`](modules/access-control.md) — Access control — 1
     - [`identity-provider`](modules/identity-provider.md) — Identity provider — 1
