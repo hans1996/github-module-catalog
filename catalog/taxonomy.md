@@ -6,9 +6,9 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 260
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 258
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 5
-  - [`computer-vision`](modules/computer-vision.md) — Computer vision — 19
+  - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 9
   - [`model-training`](modules/model-training.md) — Model training and fine-tuning — 4
   - [`rag-retrieval`](modules/rag-retrieval.md) — Retrieval-augmented generation — 31
@@ -24,8 +24,8 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 6
   - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
-- [`database-storage`](modules/database-storage.md) — Database and storage — 42
-  - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 2
+- [`database-storage`](modules/database-storage.md) — Database and storage — 43
+  - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 3
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
   - [`object-storage`](modules/object-storage.md) — Object and blob storage — 2
   - [`relational-database`](modules/relational-database.md) — Relational database — 1
@@ -43,9 +43,9 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 65
+- [`media`](modules/media.md) — Media processing — 64
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
-  - [`computer-vision`](modules/computer-vision.md) — Computer vision — 19
+  - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
   - [`media-downloader`](modules/media-downloader.md) — Media downloader — 2
   - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3

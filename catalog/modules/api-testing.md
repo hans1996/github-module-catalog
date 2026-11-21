@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-11-20T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-11-21T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `199265` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `199427` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 207 | 80853 | 2026-11-05T08:16:25Z | [hoppscotch/hoppscotch](https://github.com/hoppscotch/hoppscotch) | 0.97 | `MIT` | `safe_to_integrate` |
-| 506 | 48472 | 2026-11-19T15:38:32Z | [usebruno/bruno](https://github.com/usebruno/bruno) | 0.97 | `MIT` | `safe_to_integrate` |
+| 207 | 80862 | 2026-11-20T13:56:55Z | [hoppscotch/hoppscotch](https://github.com/hoppscotch/hoppscotch) | 0.97 | `MIT` | `safe_to_integrate` |
+| 504 | 48491 | 2026-11-20T18:02:11Z | [usebruno/bruno](https://github.com/usebruno/bruno) | 0.97 | `MIT` | `safe_to_integrate` |

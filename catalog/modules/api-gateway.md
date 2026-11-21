@@ -2,17 +2,17 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-11-20T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-11-21T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `199265` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `199427` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 176 | 89017 | 2026-11-20T07:25:56Z | [cheaper-inference/OmniRoute](https://github.com/cheaper-inference/OmniRoute) | 0.97 | `MIT` | `safe_to_integrate` |
-| 336 | 63587 | 2026-11-20T07:26:44Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 450 | 52255 | 2026-11-20T06:59:50Z | [QuantumNous/new-api](https://github.com/QuantumNous/new-api) | 0.99 | `AGPL-3.0` | `discovery_only` |
-| 589 | 44400 | 2026-11-20T06:56:48Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
-| 763 | 38534 | 2026-11-20T00:26:00Z | [istio/istio](https://github.com/istio/istio) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 789 | 37651 | 2026-11-20T07:23:15Z | [langfuse/langfuse](https://github.com/langfuse/langfuse) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 794 | 37452 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
-| 984 | 32655 | 2026-11-16T02:39:05Z | [decolua/9router](https://github.com/decolua/9router) | 0.95 | `MIT` | `safe_to_integrate` |
+| 176 | 89249 | 2026-11-21T07:19:09Z | [cheaper-inference/OmniRoute](https://github.com/cheaper-inference/OmniRoute) | 0.97 | `MIT` | `safe_to_integrate` |
+| 335 | 63638 | 2026-11-21T07:18:48Z | [BerriAI/litellm](https://github.com/BerriAI/litellm) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 449 | 52292 | 2026-11-20T18:31:12Z | [QuantumNous/new-api](https://github.com/QuantumNous/new-api) | 0.99 | `AGPL-3.0` | `discovery_only` |
+| 587 | 44402 | 2026-11-20T13:02:22Z | [Kong/kong](https://github.com/Kong/kong) | 0.95 | `Apache-2.0` | `safe_to_integrate` |
+| 762 | 38534 | 2026-11-21T05:01:17Z | [istio/istio](https://github.com/istio/istio) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 786 | 37686 | 2026-11-21T06:08:08Z | [langfuse/langfuse](https://github.com/langfuse/langfuse) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 792 | 37453 | 2026-01-09T03:26:43Z | [songquanpeng/one-api](https://github.com/songquanpeng/one-api) | 0.97 | `MIT` | `safe_to_integrate` |
+| 983 | 32686 | 2026-11-16T02:39:05Z | [decolua/9router](https://github.com/decolua/9router) | 0.95 | `MIT` | `safe_to_integrate` |
