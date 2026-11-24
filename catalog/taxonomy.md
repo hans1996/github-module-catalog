@@ -19,13 +19,13 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`realtime-api`](modules/realtime-api.md) — Realtime API — 1
   - [`rest-api`](modules/rest-api.md) — REST API server — 6
   - [`rpc-api`](modules/rpc-api.md) — RPC API server — 2
-- [`cli`](modules/cli.md) — Command-line interface — 98
+- [`cli`](modules/cli.md) — Command-line interface — 99
   - [`package-manager`](modules/package-manager.md) — Package and dependency manager — 5
   - [`shell-tooling`](modules/shell-tooling.md) — Shell tooling — 23
   - [`terminal-emulator`](modules/terminal-emulator.md) — Terminal emulator — 6
   - [`terminal-ui`](modules/terminal-ui.md) — Terminal user interface — 11
-- [`database-storage`](modules/database-storage.md) — Database and storage — 43
-  - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 3
+- [`database-storage`](modules/database-storage.md) — Database and storage — 42
+  - [`cache-key-value`](modules/cache-key-value.md) — Cache and key-value store — 2
   - [`document-database`](modules/document-database.md) — Document and NoSQL database — 1
   - [`object-storage`](modules/object-storage.md) — Object and blob storage — 2
   - [`relational-database`](modules/relational-database.md) — Relational database — 1
@@ -43,7 +43,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 64
+- [`media`](modules/media.md) — Media processing — 65
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
@@ -69,8 +69,8 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
   - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
-- [`web-ui`](modules/web-ui.md) — Web user interface — 57
+- [`web-ui`](modules/web-ui.md) — Web user interface — 58
   - [`content-management`](modules/content-management.md) — Content management system — 7
   - [`dashboard-ui`](modules/dashboard-ui.md) — Dashboard and admin UI — 6
   - [`static-site-generator`](modules/static-site-generator.md) — Static site generator — 7
-  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 14
+  - [`ui-component-library`](modules/ui-component-library.md) — UI component library — 15
