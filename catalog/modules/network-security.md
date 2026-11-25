@@ -2,11 +2,11 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-11-23T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-11-25T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `200410` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `200542` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 118 | 110739 | 2026-11-10T09:44:59Z | [fatedier/frp](https://github.com/fatedier/frp) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 385 | 58546 | 2026-11-23T23:58:36Z | [appwrite/appwrite](https://github.com/appwrite/appwrite) | 0.95 | `BSD-3-Clause` | `safe_to_integrate` |
+| 118 | 110783 | 2026-11-10T09:44:59Z | [fatedier/frp](https://github.com/fatedier/frp) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 385 | 58613 | 2026-11-25T08:31:10Z | [appwrite/appwrite](https://github.com/appwrite/appwrite) | 0.95 | `BSD-3-Clause` | `safe_to_integrate` |
