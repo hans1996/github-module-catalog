@@ -4,14 +4,14 @@
 
 Minimum stars: `100`; Pushed since: `2025-11-25T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `200542` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `200890` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 70 | 143686 | 2026-11-25T08:43:13Z | [vercel/next.js](https://github.com/vercel/next.js) | 0.97 | `MIT` | `safe_to_integrate` |
-| 173 | 90557 | 2026-11-25T08:23:30Z | [gohugoio/hugo](https://github.com/gohugoio/hugo) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 332 | 64194 | 2026-11-25T07:50:57Z | [withastro/astro](https://github.com/withastro/astro) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 360 | 61094 | 2026-11-24T22:51:38Z | [nuxt/nuxt](https://github.com/nuxt/nuxt) | 0.97 | `MIT` | `safe_to_integrate` |
-| 412 | 55917 | 2026-11-20T21:42:34Z | [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby) | 0.97 | `MIT` | `safe_to_integrate` |
-| 455 | 51798 | 2026-10-13T18:44:40Z | [jekyll/jekyll](https://github.com/jekyll/jekyll) | 0.99 | `MIT` | `safe_to_integrate` |
+| 70 | 143720 | 2026-11-25T21:44:05Z | [vercel/next.js](https://github.com/vercel/next.js) | 0.97 | `MIT` | `safe_to_integrate` |
+| 173 | 90564 | 2026-11-25T20:12:06Z | [gohugoio/hugo](https://github.com/gohugoio/hugo) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 332 | 64206 | 2026-11-25T21:05:09Z | [withastro/astro](https://github.com/withastro/astro) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 360 | 61099 | 2026-11-25T21:30:27Z | [nuxt/nuxt](https://github.com/nuxt/nuxt) | 0.97 | `MIT` | `safe_to_integrate` |
+| 412 | 55919 | 2026-11-20T21:42:34Z | [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby) | 0.97 | `MIT` | `safe_to_integrate` |
+| 455 | 51799 | 2026-10-13T18:44:40Z | [jekyll/jekyll](https://github.com/jekyll/jekyll) | 0.99 | `MIT` | `safe_to_integrate` |
 | 648 | 41780 | 2026-10-26T23:52:47Z | [hexojs/hexo](https://github.com/hexojs/hexo) | 0.97 | `MIT` | `safe_to_integrate` |

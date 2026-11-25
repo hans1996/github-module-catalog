@@ -6,7 +6,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
 
 ## Capability map
 
-- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 258
+- [`ai-ml`](modules/ai-ml.md) — Artificial intelligence and machine learning — 259
   - [`ai-agent-framework`](modules/ai-agent-framework.md) — AI agent framework — 5
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`llm-runtime`](modules/llm-runtime.md) — LLM inference runtime — 9
@@ -48,7 +48,7 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
   - [`media-downloader`](modules/media-downloader.md) — Media downloader — 2
-  - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
+  - [`media-streaming`](modules/media-streaming.md) — Media streaming — 2
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
 - [`security`](modules/security.md) — Security — 41
