@@ -2,16 +2,16 @@
 
 ## Selection
 
-Minimum stars: `100`; Pushed since: `2025-11-25T00:00:00Z`.
+Minimum stars: `100`; Pushed since: `2025-11-26T00:00:00Z`.
 Archived: `false`; forks: `false`; visibility: `public`; Order: `stars desc`.
-Top `1000` of `200890` matching repositories; result limit: `1000`; pages fetched: `10`.
+Top `1000` of `200826` matching repositories; result limit: `1000`; pages fetched: `10`.
 
 | Rank | Stars | Last push | Repository | Confidence | License | Reuse status |
 | ---: | ---: | --- | --- | ---: | --- | --- |
-| 70 | 143720 | 2026-11-25T21:44:05Z | [vercel/next.js](https://github.com/vercel/next.js) | 0.97 | `MIT` | `safe_to_integrate` |
-| 173 | 90564 | 2026-11-25T20:12:06Z | [gohugoio/hugo](https://github.com/gohugoio/hugo) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
-| 332 | 64206 | 2026-11-25T21:05:09Z | [withastro/astro](https://github.com/withastro/astro) | 0.97 | `NOASSERTION` | `discovery_only` |
-| 360 | 61099 | 2026-11-25T21:30:27Z | [nuxt/nuxt](https://github.com/nuxt/nuxt) | 0.97 | `MIT` | `safe_to_integrate` |
-| 412 | 55919 | 2026-11-20T21:42:34Z | [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby) | 0.97 | `MIT` | `safe_to_integrate` |
-| 455 | 51799 | 2026-10-13T18:44:40Z | [jekyll/jekyll](https://github.com/jekyll/jekyll) | 0.99 | `MIT` | `safe_to_integrate` |
-| 648 | 41780 | 2026-10-26T23:52:47Z | [hexojs/hexo](https://github.com/hexojs/hexo) | 0.97 | `MIT` | `safe_to_integrate` |
+| 70 | 143734 | 2026-11-26T08:10:46Z | [vercel/next.js](https://github.com/vercel/next.js) | 0.97 | `MIT` | `safe_to_integrate` |
+| 173 | 90569 | 2026-11-26T08:24:00Z | [gohugoio/hugo](https://github.com/gohugoio/hugo) | 0.97 | `Apache-2.0` | `safe_to_integrate` |
+| 332 | 64218 | 2026-11-25T22:18:09Z | [withastro/astro](https://github.com/withastro/astro) | 0.97 | `NOASSERTION` | `discovery_only` |
+| 361 | 61101 | 2026-11-25T21:30:27Z | [nuxt/nuxt](https://github.com/nuxt/nuxt) | 0.97 | `MIT` | `safe_to_integrate` |
+| 412 | 55919 | 2026-11-25T22:20:05Z | [gatsbyjs/gatsby](https://github.com/gatsbyjs/gatsby) | 0.97 | `MIT` | `safe_to_integrate` |
+| 455 | 51802 | 2026-10-13T18:44:40Z | [jekyll/jekyll](https://github.com/jekyll/jekyll) | 0.99 | `MIT` | `safe_to_integrate` |
+| 648 | 41781 | 2026-10-26T23:52:47Z | [hexojs/hexo](https://github.com/hexojs/hexo) | 0.97 | `MIT` | `safe_to_integrate` |

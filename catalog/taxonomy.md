@@ -43,12 +43,12 @@ Repositories can appear in multiple capability branches. Parent counts include r
     - [`log-management`](modules/log-management.md) — Logging and log management — 1
     - `metrics-monitoring` — Metrics and monitoring — 0
     - [`profiling`](modules/profiling.md) — Profiling and APM — 2
-- [`media`](modules/media.md) — Media processing — 65
+- [`media`](modules/media.md) — Media processing — 66
   - [`audio-processing`](modules/audio-processing.md) — Audio processing — 2
   - [`computer-vision`](modules/computer-vision.md) — Computer vision — 18
   - [`image-processing`](modules/image-processing.md) — Image processing — 5
   - [`media-downloader`](modules/media-downloader.md) — Media downloader — 2
-  - [`media-streaming`](modules/media-streaming.md) — Media streaming — 2
+  - [`media-streaming`](modules/media-streaming.md) — Media streaming — 3
   - [`speech-ai`](modules/speech-ai.md) — Speech AI — 14
   - [`video-processing`](modules/video-processing.md) — Video processing — 10
 - [`security`](modules/security.md) — Security — 41
@@ -64,10 +64,10 @@ Repositories can appear in multiple capability branches. Parent counts include r
   - [`reverse-engineering`](modules/reverse-engineering.md) — Reverse engineering — 6
   - [`secrets-management`](modules/secrets-management.md) — Secrets management — 1
   - [`vulnerability-scanning`](modules/vulnerability-scanning.md) — Vulnerability scanning — 2
-- [`testing`](modules/testing.md) — Testing — 13
+- [`testing`](modules/testing.md) — Testing — 12
   - [`api-testing`](modules/api-testing.md) — API testing — 2
   - [`browser-e2e-testing`](modules/browser-e2e-testing.md) — Browser end-to-end testing — 2
-  - [`performance-testing`](modules/performance-testing.md) — Performance and load testing — 1
+  - `performance-testing` — Performance and load testing — 0
   - [`unit-test-framework`](modules/unit-test-framework.md) — Unit test framework — 1
 - [`web-ui`](modules/web-ui.md) — Web user interface — 58
   - [`content-management`](modules/content-management.md) — Content management system — 7
